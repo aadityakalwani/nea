@@ -10,6 +10,7 @@ namespace bobFinal
         private const int gridSize = 20;
         private const int tileSize = 32;
         private string selectedBuilding;
+        // temp change
 
         public Form1()
         {

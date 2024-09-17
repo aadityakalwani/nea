@@ -10,7 +10,7 @@ namespace bobFinal
         private const int gridSize = 20;
         private const int tileSize = 32;
         private string selectedBuilding;
-        // temp change
+
 
         public Form1()
         {
@@ -26,7 +26,7 @@ namespace bobFinal
             int panelWidth = gridSize * tileSize;
             int panelHeight = gridSize * tileSize;
 
-            // Set the size of the gridPanel
+            // set the size of the gridPanel
             gridPanel.Size = new Size(panelWidth, panelHeight);
 
             for (int i = 0; i < gridSize; i++)

@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace bobFinal
@@ -44,6 +41,8 @@ namespace bobFinal
         {
             // tk to do later
         }
+
+
     }
 
     public class Farm : Property

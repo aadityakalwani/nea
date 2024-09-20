@@ -45,6 +45,38 @@ namespace bobFinal
 
     }
 
+    public class Resource
+    {
+        public string Name { get; set; }
+        public int Value { get; private set; }
+        public int Maximum { get; set; }
+        private ProgressBar progressBar;
+        private TextBox textBox;
+
+        public Resource(string name, int initialValue, int maximum, ProgressBar progressBar, TextBox textBox)
+        {
+            Name = name;
+            Value = initialValue;
+            Maximum = maximum;
+            this.progressBar = progressBar;
+            this.textBox = textBox;
+            UpdateUI();
+        }
+
+        public void ChangeQuantity(int amount)
+        {
+            Value = Math.Max(0, Math.Min(Value + amount, Maximum));
+            UpdateUI();
+        }
+
+        private void UpdateUI()
+        {
+            progressBar.Maximum = Maximum;
+            progressBar.Value = Value;
+            textBox.Text = $"{Value}/{Maximum}";
+        }
+    }
+
     public class Farm : Property
     {
         public Farm()

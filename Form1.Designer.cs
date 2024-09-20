@@ -57,6 +57,7 @@
             this.listBoxPrices.Name = "listBoxPrices";
             this.listBoxPrices.Size = new System.Drawing.Size(653, 404);
             this.listBoxPrices.TabIndex = 2;
+            this.listBoxPrices.SelectedIndexChanged += new System.EventHandler(this.listBoxPrices_SelectedIndexChanged);
             //
             // btnBuild
             //
@@ -67,6 +68,7 @@
             this.btnBuild.TabIndex = 3;
             this.btnBuild.Text = "Build";
             this.btnBuild.UseVisualStyleBackColor = true;
+            this.btnBuild.Click += new System.EventHandler(this.btnBuild_Click);
             //
             // btnSell
             //

@@ -20,11 +20,11 @@ namespace bobFinal
 
     public abstract class Property
     {
-        public int GoldCost { get; set; }
-        public int LumberCost { get; set; }
-        public int DailyGoldGain { get; set; }
-        public int DailyLumberGain { get; set; }
-        public string ImageFileName { get; set; }
+        public int GoldCost { get; protected set; }
+        public int LumberCost { get; protected set; }
+        public int DailyGoldGain { get; protected set; }
+        public int DailyLumberGain { get; protected set; }
+        public string ImageFileName { get; protected set; }
     }
 
     public class House : Property
@@ -91,7 +91,7 @@ namespace bobFinal
     {
         public string Name { get; set; }
         public int Value { get; private set; }
-        public int Maximum { get; set; }
+        private int Maximum { get; set; }
         private ProgressBar progressBar;
         private TextBox textBox;
 

@@ -8,7 +8,7 @@ namespace bobFinal
 {
     private PictureBox[,] grid;
     private Point selectedPosition;
-    private const int gridSize = 20;
+    private const int gridSize = 30;
     private const int tileSize = 32;
     private string selectedBuilding;
     private Resource gold;
@@ -42,9 +42,9 @@ namespace bobFinal
                     BorderStyle = BorderStyle.FixedSingle,
                     Image = Image.FromFile("empty.jpg"),
                     SizeMode = PictureBoxSizeMode.StretchImage,
-                    Tag = new Point(i, j) // Store the position in the Tag property
+                    Tag = new Point(i, j) // store the position in the Tag property
                 };
-                grid[i, j].Click += GridPictureBox_Click; // Add Click event handler
+                grid[i, j].Click += GridPictureBox_Click; // add Click event handler
                 gridPanel.Controls.Add(grid[i, j]);
             }
         }
@@ -63,11 +63,11 @@ namespace bobFinal
 
     private void InitialisePrices()
     {
-        listBoxPrices.Items.Add("House:   100 Gold, 50 Lumber    |  Weekly Gain: +30 Gold");
-        listBoxPrices.Items.Add("Farm:    100 Gold, 100 Lumber   |  Weekly Gain: +60 Gold");
-        listBoxPrices.Items.Add("Sawmill: 300 Gold, 150 Lumber   |  Weekly Gain: +400 Lumber");
-        listBoxPrices.Items.Add("Mine:    400 Gold, 200 Lumber   |  Weekly Gain: +200 Gold");
-        listBoxPrices.Items.Add("Cafe:    500 Gold, 250 Lumber   |  Weekly Gain: +250 Gold");
+        listBoxPrices.Items.Add("House:   100 Gold, 50 Lumber    |  Daily Gain: +30 Gold");
+        listBoxPrices.Items.Add("Farm:    100 Gold, 100 Lumber   |  Daily Gain: +60 Gold");
+        listBoxPrices.Items.Add("Sawmill: 300 Gold, 150 Lumber   |  Daily Gain: +400 Lumber");
+        listBoxPrices.Items.Add("Mine:    400 Gold, 200 Lumber   |  Daily Gain: +200 Gold");
+        listBoxPrices.Items.Add("Cafe:    500 Gold, 250 Lumber   |  Daily Gain: +250 Gold");
     }
 
     private void listBoxPrices_SelectedIndexChanged(object sender, EventArgs e)
@@ -78,8 +78,7 @@ namespace bobFinal
 
     private void GridPictureBox_Click(object sender, EventArgs e)
     {
-        PictureBox pictureBox = sender as PictureBox;
-        if (pictureBox != null)
+        if (sender is PictureBox pictureBox)
         {
             selectedPosition = (Point)pictureBox.Tag;
             MessageBox.Show($"Selected position: {selectedPosition.X}, {selectedPosition.Y}");
@@ -98,7 +97,7 @@ namespace bobFinal
             case "Farm":
                 property = new Farm();
                 break;
-            // Add cases for other buildings
+            // add cases for other buildings
         }
 
         if (property != null)
@@ -115,6 +114,11 @@ namespace bobFinal
                 MessageBox.Show("Not enough resources!");
             }
         }
+    }
+
+    private void btnNextDay_Click(object sender, EventArgs e)
+    {
+        throw new System.NotImplementedException();
     }
 }
 }

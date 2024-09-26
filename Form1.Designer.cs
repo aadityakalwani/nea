@@ -39,6 +39,7 @@
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBoxGoldAmount = new System.Windows.Forms.TextBox();
             this.textBoxLumberAmount = new System.Windows.Forms.TextBox();
+            this.btnNextDay = new System.Windows.Forms.Button();
             this.SuspendLayout();
             //
             // gridPanel
@@ -51,17 +52,19 @@
             // listBoxPrices
             //
             this.listBoxPrices.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.listBoxPrices.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listBoxPrices.FormattingEnabled = true;
-            this.listBoxPrices.ItemHeight = 25;
-            this.listBoxPrices.Location = new System.Drawing.Point(1145, 356);
+            this.listBoxPrices.ItemHeight = 42;
+            this.listBoxPrices.Location = new System.Drawing.Point(913, 348);
             this.listBoxPrices.Name = "listBoxPrices";
-            this.listBoxPrices.Size = new System.Drawing.Size(653, 404);
+            this.listBoxPrices.Size = new System.Drawing.Size(988, 382);
             this.listBoxPrices.TabIndex = 2;
             this.listBoxPrices.SelectedIndexChanged += new System.EventHandler(this.listBoxPrices_SelectedIndexChanged);
             //
             // btnBuild
             //
             this.btnBuild.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnBuild.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBuild.Location = new System.Drawing.Point(1145, 209);
             this.btnBuild.Name = "btnBuild";
             this.btnBuild.Size = new System.Drawing.Size(150, 75);
@@ -73,6 +76,7 @@
             // btnSell
             //
             this.btnSell.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSell.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSell.Location = new System.Drawing.Point(1364, 209);
             this.btnSell.Name = "btnSell";
             this.btnSell.Size = new System.Drawing.Size(172, 75);
@@ -132,12 +136,25 @@
             this.textBoxLumberAmount.TabIndex = 10;
             this.textBoxLumberAmount.Text = "0/1000";
             //
+            // btnNextDay
+            //
+            this.btnNextDay.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnNextDay.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNextDay.Location = new System.Drawing.Point(913, 53);
+            this.btnNextDay.Name = "btnNextDay";
+            this.btnNextDay.Size = new System.Drawing.Size(373, 75);
+            this.btnNextDay.TabIndex = 11;
+            this.btnNextDay.Text = "Next Day";
+            this.btnNextDay.UseVisualStyleBackColor = true;
+            this.btnNextDay.Click += new System.EventHandler(this.btnNextDay_Click);
+            //
             // Form1
             //
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(2053, 932);
+            this.Controls.Add(this.btnNextDay);
             this.Controls.Add(this.textBoxLumberAmount);
             this.Controls.Add(this.textBoxGoldAmount);
             this.Controls.Add(this.textBox2);
@@ -153,6 +170,8 @@
             this.ResumeLayout(false);
             this.PerformLayout();
         }
+
+        private System.Windows.Forms.Button btnNextDay;
 
         private System.Windows.Forms.TextBox textBoxGoldAmount;
 

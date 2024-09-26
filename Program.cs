@@ -75,9 +75,17 @@ namespace bobFinal
         }
     }
 
-// Add similar classes for other buildings
-
-
+    public class Cafe : Property
+    {
+        public Cafe()
+        {
+            GoldCost = 200;
+            LumberCost = 100;
+            DailyGoldGain = 100;
+            DailyLumberGain = 0;
+            ImageFileName = "CafeTile.jpg";
+        }
+    }
 
     public class Resource
     {

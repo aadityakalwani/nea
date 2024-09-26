@@ -30,7 +30,45 @@
         private void InitializeComponent()
         {
             this.gridPanel = new System.Windows.Forms.Panel();
-            this.listBoxPrices = new System.Windows.Forms.ListBox();
+            this.listViewPrices = new System.Windows.Forms.ListView();
+            this.columnHeaderBuilding = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeaderCost = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeaderGain = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+
+//
+// listViewPrices
+//
+            this.listViewPrices.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+                this.columnHeaderBuilding,
+                this.columnHeaderCost,
+                this.columnHeaderGain});
+            this.listViewPrices.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.listViewPrices.FullRowSelect = true;
+            this.listViewPrices.GridLines = true;
+            this.listViewPrices.HideSelection = false;
+            this.listViewPrices.Location = new System.Drawing.Point(913, 348);
+            this.listViewPrices.Name = "listViewPrices";
+            this.listViewPrices.Size = new System.Drawing.Size(988, 382);
+            this.listViewPrices.TabIndex = 2;
+            this.listViewPrices.UseCompatibleStateImageBehavior = false;
+            this.listViewPrices.View = System.Windows.Forms.View.Details;
+            this.listViewPrices.SelectedIndexChanged += new System.EventHandler(this.listViewPrices_SelectedIndexChanged);
+
+//
+// columnHeaderBuilding
+//
+            this.columnHeaderBuilding.Text = "Building";
+            this.columnHeaderBuilding.Width = 200;
+//
+// columnHeaderCost
+//
+            this.columnHeaderCost.Text = "Cost";
+            this.columnHeaderCost.Width = 300;
+//
+// columnHeaderGain
+//
+            this.columnHeaderGain.Text = "Daily Gain";
+            this.columnHeaderGain.Width = 200;
             this.btnBuild = new System.Windows.Forms.Button();
             this.btnSell = new System.Windows.Forms.Button();
             this.progressBarGold = new System.Windows.Forms.ProgressBar();
@@ -49,17 +87,7 @@
             this.gridPanel.Size = new System.Drawing.Size(800, 800);
             this.gridPanel.TabIndex = 1;
             //
-            // listBoxPrices
-            //
-            this.listBoxPrices.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.listBoxPrices.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.listBoxPrices.FormattingEnabled = true;
-            this.listBoxPrices.ItemHeight = 42;
-            this.listBoxPrices.Location = new System.Drawing.Point(913, 348);
-            this.listBoxPrices.Name = "listBoxPrices";
-            this.listBoxPrices.Size = new System.Drawing.Size(988, 382);
-            this.listBoxPrices.TabIndex = 2;
-            this.listBoxPrices.SelectedIndexChanged += new System.EventHandler(this.listBoxPrices_SelectedIndexChanged);
+
             //
             // btnBuild
             //
@@ -163,7 +191,7 @@
             this.Controls.Add(this.progressBarGold);
             this.Controls.Add(this.btnSell);
             this.Controls.Add(this.btnBuild);
-            this.Controls.Add(this.listBoxPrices);
+            this.Controls.Add(this.listViewPrices);
             this.Controls.Add(this.gridPanel);
             this.Location = new System.Drawing.Point(15, 15);
             this.Name = "Form1";
@@ -185,7 +213,10 @@
         private System.Windows.Forms.Button btnBuild;
         private System.Windows.Forms.Button btnSell;
 
-        private System.Windows.Forms.ListBox listBoxPrices;
+        private System.Windows.Forms.ListView listViewPrices;
+        private System.Windows.Forms.ColumnHeader columnHeaderBuilding;
+        private System.Windows.Forms.ColumnHeader columnHeaderCost;
+        private System.Windows.Forms.ColumnHeader columnHeaderGain;
 
         private System.Windows.Forms.Panel gridPanel;
 

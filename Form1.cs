@@ -66,11 +66,14 @@ namespace bobFinal
 
     private void InitialisePrices()
     {
-        listBoxPrices.Items.Add("House:   100 Gold, 50 Lumber    |  Daily Gain: +30 Gold");
-        listBoxPrices.Items.Add("Farm:    100 Gold, 100 Lumber   |  Daily Gain: +60 Gold");
-        listBoxPrices.Items.Add("Sawmill: 300 Gold, 150 Lumber   |  Daily Gain: +400 Lumber");
-        listBoxPrices.Items.Add("Mine:    400 Gold, 200 Lumber   |  Daily Gain: +200 Gold");
-        listBoxPrices.Items.Add("Cafe:    500 Gold, 250 Lumber   |  Daily Gain: +250 Gold");
+
+        listViewPrices.Items.Add(new ListViewItem(new[] { "House", "100 Gold, 50 Lumber", "+30 Gold" }));
+        listViewPrices.Items.Add(new ListViewItem(new[] { "Farm", "100 Gold, 100 Lumber", "+60 Gold" }));
+        listViewPrices.Items.Add(new ListViewItem(new[] { "Sawmill", "300 Gold, 150 Lumber", "+400 Lumber" }));
+        listViewPrices.Items.Add(new ListViewItem(new[] { "Mine", "400 Gold, 200 Lumber", "+200 Gold" }));
+        listViewPrices.Items.Add(new ListViewItem(new[] { "Cafe", "500 Gold, 250 Lumber", "+250 Gold" }));
+
+
     }
 
     private void InitialiseStartingProperties()
@@ -86,10 +89,13 @@ namespace bobFinal
         properties.Add(house);
     }
 
-    private void listBoxPrices_SelectedIndexChanged(object sender, EventArgs e)
+    private void listViewPrices_SelectedIndexChanged(object sender, EventArgs e)
     {
-        string selectedItem = listBoxPrices.SelectedItem.ToString();
-        selectedBuilding = selectedItem.Split(':')[0].Trim();
+        if (listViewPrices.SelectedItems.Count > 0)
+        {
+            string selectedItem = listViewPrices.SelectedItems[0].Text;
+            selectedBuilding = selectedItem.Split(':')[0].Trim();
+        }
     }
 
     private void GridPictureBox_Click(object sender, EventArgs e)
@@ -115,6 +121,12 @@ namespace bobFinal
                 break;
             case "Sawmill":
                 property = new Sawmill();
+                break;
+            case "Mine":
+                property = new Mine();
+                break;
+            case "Cafe":
+                property = new Cafe();
                 break;
             // Add cases for other buildings
         }

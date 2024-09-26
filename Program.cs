@@ -24,6 +24,7 @@ namespace bobFinal
         public int LumberCost { get; set; }
         public int DailyGoldGain { get; set; }
         public int DailyLumberGain { get; set; }
+        public string ImageFileName { get; set; }
     }
 
     public class House : Property
@@ -34,6 +35,7 @@ namespace bobFinal
             LumberCost = 50;
             DailyGoldGain = 30;
             DailyLumberGain = 0;
+            ImageFileName = "HouseTile.jpg";
         }
     }
 
@@ -45,6 +47,31 @@ namespace bobFinal
             LumberCost = 100;
             DailyGoldGain = 60;
             DailyLumberGain = 0;
+            ImageFileName = "FarmTile.jpg";
+        }
+    }
+
+    public class Sawmill : Property
+    {
+        public Sawmill()
+        {
+            GoldCost = 200;
+            LumberCost = 100;
+            DailyGoldGain = 0;
+            DailyLumberGain = 30;
+            ImageFileName = "SawmillTile.jpg";
+        }
+    }
+
+    public class Mine : Property
+    {
+        public Mine()
+        {
+            GoldCost = 400;
+            LumberCost = 200;
+            DailyGoldGain = 200;
+            DailyLumberGain = 0;
+            ImageFileName = "MineTile.jpg";
         }
     }
 

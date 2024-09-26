@@ -22,6 +22,7 @@ namespace bobFinal
         InitializeGrid();
         InitialiseLoot();
         InitialisePrices();
+        InitialiseStartingProperties();
     }
 
     private void InitializeGrid()
@@ -72,6 +73,19 @@ namespace bobFinal
         listBoxPrices.Items.Add("Cafe:    500 Gold, 250 Lumber   |  Daily Gain: +250 Gold");
     }
 
+    private void InitialiseStartingProperties()
+    {
+        // Create and place the initial sawmill
+        Property sawmill = new Sawmill();
+        grid[10, 10].Image = Image.FromFile(sawmill.ImageFileName);
+        properties.Add(sawmill);
+
+        // Create and place the initial house
+        Property house = new House();
+        grid[15, 15].Image = Image.FromFile(house.ImageFileName);
+        properties.Add(house);
+    }
+
     private void listBoxPrices_SelectedIndexChanged(object sender, EventArgs e)
     {
         string selectedItem = listBoxPrices.SelectedItem.ToString();
@@ -99,6 +113,9 @@ namespace bobFinal
             case "Farm":
                 property = new Farm();
                 break;
+            case "Sawmill":
+                property = new Sawmill();
+                break;
             // Add cases for other buildings
         }
 
@@ -109,7 +126,7 @@ namespace bobFinal
                 gold.ChangeQuantity(-property.GoldCost);
                 lumber.ChangeQuantity(-property.LumberCost);
 
-                grid[selectedPosition.X, selectedPosition.Y].Image = Image.FromFile(selectedBuilding.ToLower() + "Tile.jpg");
+                grid[selectedPosition.X, selectedPosition.Y].Image = Image.FromFile(property.ImageFileName);
                 properties.Add(property); // Add the property to the list
             }
             else

@@ -14,36 +14,43 @@ namespace bobFinal
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());
+
         }
     }
 
     public abstract class Property
     {
-        public string Name { get; set; }
         public int GoldCost { get; set; }
         public int LumberCost { get; set; }
-        public int WeeklyGain { get; set; }
-
-        public abstract void Advertise();
+        public int DailyGoldGain { get; set; }
+        public int DailyLumberGain { get; set; }
     }
 
     public class House : Property
     {
         public House()
         {
-            Name = "House";
             GoldCost = 100;
             LumberCost = 50;
-            WeeklyGain = 30;
+            DailyGoldGain = 30;
+            DailyLumberGain = 0;
         }
-
-        public override void Advertise()
-        {
-            // tk to do later
-        }
-
-
     }
+
+    public class Farm : Property
+    {
+        public Farm()
+        {
+            GoldCost = 100;
+            LumberCost = 100;
+            DailyGoldGain = 60;
+            DailyLumberGain = 0;
+        }
+    }
+
+// Add similar classes for other buildings
+
+
 
     public class Resource
     {
@@ -74,22 +81,6 @@ namespace bobFinal
             progressBar.Maximum = Maximum;
             progressBar.Value = Value;
             textBox.Text = $"{Value}/{Maximum}";
-        }
-    }
-
-    public class Farm : Property
-    {
-        public Farm()
-        {
-            Name = "Farm";
-            GoldCost = 100;
-            LumberCost = 100;
-            WeeklyGain = 60;
-        }
-
-        public override void Advertise()
-        {
-            // again to do later
         }
     }
 }

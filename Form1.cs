@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -13,6 +14,7 @@ namespace bobFinal
     private string selectedBuilding;
     private Resource gold;
     private Resource lumber;
+    private List<Property> properties = new List<Property>();
 
     public Form1()
     {
@@ -97,7 +99,7 @@ namespace bobFinal
             case "Farm":
                 property = new Farm();
                 break;
-            // add cases for other buildings
+            // Add cases for other buildings
         }
 
         if (property != null)
@@ -108,6 +110,7 @@ namespace bobFinal
                 lumber.ChangeQuantity(-property.LumberCost);
 
                 grid[selectedPosition.X, selectedPosition.Y].Image = Image.FromFile(selectedBuilding.ToLower() + "Tile.jpg");
+                properties.Add(property); // Add the property to the list
             }
             else
             {
@@ -118,7 +121,17 @@ namespace bobFinal
 
     private void btnNextDay_Click(object sender, EventArgs e)
     {
-        throw new System.NotImplementedException();
+        int totalGoldGain = 0;
+        int totalLumberGain = 0;
+
+        foreach (var property in properties)
+        {
+            totalGoldGain += property.DailyGoldGain;
+            totalLumberGain += property.DailyLumberGain;
+        }
+
+        gold.ChangeQuantity(totalGoldGain);
+        lumber.ChangeQuantity(totalLumberGain);
     }
 }
 }

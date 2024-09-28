@@ -17,7 +17,69 @@ namespace bobFinal
     private Resource lumber;
     private Resource diamond;
     private List<Property> properties = new List<Property>();
+    private Market market;
 
+    private ListView listViewMarket;
+    private Button btnBuy;
+    private Button btnSell;
+
+    private void InitializeMarketUI()
+    {
+        listViewMarket = new ListView
+        {
+            Location = new Point(20, 400),
+            Size = new Size(400, 200),
+            View = View.Details
+        };
+        listViewMarket.Columns.Add("Item", 100);
+        listViewMarket.Columns.Add("Price", 100);
+
+        btnBuy = new Button
+        {
+            Text = "Buy",
+            Location = new Point(430, 400)
+        };
+        btnBuy.Click += BtnBuy_Click;
+
+        btnSell = new Button
+        {
+            Text = "Sell",
+            Location = new Point(430, 450)
+        };
+        btnSell.Click += BtnSell_Click;
+
+        Controls.Add(listViewMarket);
+        Controls.Add(btnBuy);
+        Controls.Add(btnSell);
+    }
+
+    private void BtnBuy_Click(object sender, EventArgs e)
+    {
+        if (listViewMarket.SelectedItems.Count > 0)
+        {
+            string itemName = listViewMarket.SelectedItems[0].Text;
+            if (market.BuyItem(itemName, 1, dollars))
+            {
+                MessageBox.Show($"Bought 1 {itemName}");
+            }
+            else
+            {
+                MessageBox.Show("Not enough dollars!");
+            }
+        }
+    }
+
+    private void BtnSell_Click(object sender, EventArgs e)
+    {
+        if (listViewMarket.SelectedItems.Count > 0)
+        {
+            string itemName = listViewMarket.SelectedItems[0].Text;
+            if (market.SellItem(itemName, 1, dollars))
+            {
+                MessageBox.Show($"Sold 1 {itemName}");
+            }
+        }
+    }
 
     public Form1()
     {
@@ -26,6 +88,18 @@ namespace bobFinal
         InitialiseLoot();
         InitialisePrices();
         InitialiseStartingProperties();
+        InitializeMarketUI();
+        market = new Market();
+        UpdateMarketUI();
+    }
+
+    private void UpdateMarketUI()
+    {
+        listViewMarket.Items.Clear();
+        foreach (var item in market.GetItems())
+        {
+            listViewMarket.Items.Add(new ListViewItem(new[] { item.Name, item.Price.ToString() }));
+        }
     }
 
     private void InitializeGrid()

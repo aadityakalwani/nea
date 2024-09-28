@@ -50,6 +50,9 @@
             this.progressBarDollars = new System.Windows.Forms.ProgressBar();
             this.btnSell = new System.Windows.Forms.Button();
             this.btnBuy = new System.Windows.Forms.Button();
+            this.listView1 = new System.Windows.Forms.ListView();
+            this.Item = new System.Windows.Forms.ColumnHeader();
+            this.Price = new System.Windows.Forms.ColumnHeader();
             this.SuspendLayout();
             //
             // gridPanel
@@ -244,12 +247,25 @@
             this.btnBuy.Text = "Buy";
             this.btnBuy.UseVisualStyleBackColor = true;
             //
+            // listView1
+            //
+            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] { this.Item, this.Price });
+            this.listView1.FullRowSelect = true;
+            this.listView1.GridLines = true;
+            this.listView1.HideSelection = false;
+            this.listView1.Location = new System.Drawing.Point(956, 1109);
+            this.listView1.Name = "listView1";
+            this.listView1.Size = new System.Drawing.Size(922, 227);
+            this.listView1.TabIndex = 20;
+            this.listView1.UseCompatibleStateImageBehavior = false;
+            //
             // Form1
             //
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(2162, 1417);
+            this.Controls.Add(this.listView1);
             this.Controls.Add(this.btnBuy);
             this.Controls.Add(this.btnSell);
             this.Controls.Add(this.textBoxDollarsAmount);
@@ -273,6 +289,11 @@
             this.ResumeLayout(false);
             this.PerformLayout();
         }
+
+        private System.Windows.Forms.ColumnHeader Item;
+        private System.Windows.Forms.ColumnHeader Price;
+
+        private System.Windows.Forms.ListView listView1;
 
         private System.Windows.Forms.Button btnBuy;
 

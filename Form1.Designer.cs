@@ -35,7 +35,6 @@
             this.columnHeaderCost = new System.Windows.Forms.ColumnHeader();
             this.columnHeaderGain = new System.Windows.Forms.ColumnHeader();
             this.btnBuild = new System.Windows.Forms.Button();
-            this.btnSell = new System.Windows.Forms.Button();
             this.progressBarGold = new System.Windows.Forms.ProgressBar();
             this.progressBarLumber = new System.Windows.Forms.ProgressBar();
             this.textBox1 = new System.Windows.Forms.TextBox();
@@ -49,17 +48,19 @@
             this.textBoxDollarsAmount = new System.Windows.Forms.TextBox();
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.progressBarDollars = new System.Windows.Forms.ProgressBar();
+            this.btnSell = new System.Windows.Forms.Button();
+            this.btnBuy = new System.Windows.Forms.Button();
             this.SuspendLayout();
-            // 
+            //
             // gridPanel
-            // 
+            //
             this.gridPanel.Location = new System.Drawing.Point(41, 53);
             this.gridPanel.Name = "gridPanel";
             this.gridPanel.Size = new System.Drawing.Size(800, 800);
             this.gridPanel.TabIndex = 1;
-            // 
+            //
             // listViewPrices
-            // 
+            //
             this.listViewPrices.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.listViewPrices.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] { this.columnHeaderBuilding, this.columnHeaderCost, this.columnHeaderGain });
             this.listViewPrices.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -93,24 +94,13 @@
             //
             this.btnBuild.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnBuild.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBuild.Location = new System.Drawing.Point(1168, 454);
+            this.btnBuild.Location = new System.Drawing.Point(939, 500);
             this.btnBuild.Name = "btnBuild";
             this.btnBuild.Size = new System.Drawing.Size(149, 75);
             this.btnBuild.TabIndex = 3;
             this.btnBuild.Text = "Build";
             this.btnBuild.UseVisualStyleBackColor = true;
             this.btnBuild.Click += new System.EventHandler(this.btnBuild_Click);
-            //
-            // btnSell
-            //
-            this.btnSell.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSell.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSell.Location = new System.Drawing.Point(1438, 454);
-            this.btnSell.Name = "btnSell";
-            this.btnSell.Size = new System.Drawing.Size(158, 75);
-            this.btnSell.TabIndex = 4;
-            this.btnSell.Text = "Sell Resource";
-            this.btnSell.UseVisualStyleBackColor = true;
             //
             // progressBarGold
             //
@@ -232,12 +222,36 @@
             this.progressBarDollars.Size = new System.Drawing.Size(380, 47);
             this.progressBarDollars.TabIndex = 15;
             //
+            // btnSell
+            //
+            this.btnSell.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSell.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSell.Location = new System.Drawing.Point(1170, 984);
+            this.btnSell.Name = "btnSell";
+            this.btnSell.Size = new System.Drawing.Size(149, 75);
+            this.btnSell.TabIndex = 18;
+            this.btnSell.Text = "Sell";
+            this.btnSell.UseVisualStyleBackColor = true;
+            //
+            // btnBuy
+            //
+            this.btnBuy.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnBuy.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBuy.Location = new System.Drawing.Point(939, 984);
+            this.btnBuy.Name = "btnBuy";
+            this.btnBuy.Size = new System.Drawing.Size(149, 75);
+            this.btnBuy.TabIndex = 19;
+            this.btnBuy.Text = "Buy";
+            this.btnBuy.UseVisualStyleBackColor = true;
+            //
             // Form1
             //
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(2316, 1454);
+            this.ClientSize = new System.Drawing.Size(2162, 1417);
+            this.Controls.Add(this.btnBuy);
+            this.Controls.Add(this.btnSell);
             this.Controls.Add(this.textBoxDollarsAmount);
             this.Controls.Add(this.textBox5);
             this.Controls.Add(this.progressBarDollars);
@@ -251,7 +265,6 @@
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.progressBarLumber);
             this.Controls.Add(this.progressBarGold);
-            this.Controls.Add(this.btnSell);
             this.Controls.Add(this.btnBuild);
             this.Controls.Add(this.listViewPrices);
             this.Controls.Add(this.gridPanel);
@@ -260,6 +273,8 @@
             this.ResumeLayout(false);
             this.PerformLayout();
         }
+
+        private System.Windows.Forms.Button btnBuy;
 
         private System.Windows.Forms.TextBox textBoxDollarsAmount;
         private System.Windows.Forms.TextBox textBox5;

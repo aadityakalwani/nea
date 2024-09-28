@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace bobFinal
@@ -124,4 +126,70 @@ namespace bobFinal
             textBox.Text = $"{Value}/{MaxValue}";
         }
     }
+
+    public class Market
+    {
+        private List<MarketItem> items;
+
+        public Market()
+        {
+            items = new List<MarketItem>
+            {
+                new MarketItem("Gold", 100),
+                new MarketItem("Lumber", 50),
+                new MarketItem("Diamond", 500)
+            };
+        }
+
+        public List<MarketItem> GetItems()
+        {
+            return items;
+        }
+
+        public void FluctuatePrices()
+        {
+            Random rand = new Random();
+            foreach (var item in items)
+            {
+                int fluctuation = rand.Next(-10, 11); // Random fluctuation between -10 and +10
+                item.Price = Math.Max(1, item.Price + fluctuation); // Ensure price doesn't go below 1
+            }
+        }
+
+        public bool BuyItem(string itemName, int quantity, Resource dollars)
+        {
+            var item = items.FirstOrDefault(i => i.Name == itemName);
+            if (item != null && dollars.Value >= item.Price * quantity)
+            {
+                dollars.ChangeQuantity(-item.Price * quantity);
+                return true;
+            }
+            return false;
+        }
+
+        public bool SellItem(string itemName, int quantity, Resource dollars)
+        {
+            var item = items.FirstOrDefault(i => i.Name == itemName);
+            if (item != null)
+            {
+                dollars.ChangeQuantity(item.Price * quantity);
+                return true;
+            }
+            return false;
+        }
+
+    }
+
+    public class MarketItem
+    {
+        public string Name { get; private set; }
+        public int Price { get; set; }
+
+        public MarketItem(string name, int price)
+        {
+            Name = name;
+            Price = price;
+        }
+    }
+
 }

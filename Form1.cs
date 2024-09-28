@@ -18,6 +18,7 @@ namespace bobFinal
     private Resource diamond;
     private List<Property> properties = new List<Property>();
 
+
     public Form1()
     {
         InitializeComponent();

@@ -12,6 +12,7 @@ namespace bobFinal
     private const int gridSize = 30;
     private const int tileSize = 32;
     private string selectedBuilding;
+    private Resource dollars;
     private Resource gold;
     private Resource lumber;
     private Resource diamond;
@@ -61,6 +62,7 @@ namespace bobFinal
 
     private void InitialiseLoot()
     {
+        dollars = new Resource("Dollars", 100, 1000, progressBarDollars, textBoxDollarsAmount);
         gold = new Resource("Gold", 100, 1000, progressBarGold, textBoxGoldAmount);
         lumber = new Resource("Lumber", 100, 1000, progressBarLumber, textBoxLumberAmount);
         diamond = new Resource("Diamond", 50, 1000, progressBarDiamond, textBoxDiamondAmount);
@@ -141,7 +143,7 @@ namespace bobFinal
                 lumber.ChangeQuantity(-property.LumberCost);
 
                 grid[selectedPosition.X, selectedPosition.Y].Image = Image.FromFile(property.ImageFileName);
-                properties.Add(property); // Add the property to the list
+                properties.Add(property); // add the property to the list
             }
             else
             {

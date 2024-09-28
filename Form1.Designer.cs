@@ -46,6 +46,9 @@
             this.textBoxDiamondAmount = new System.Windows.Forms.TextBox();
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.progressBarDiamond = new System.Windows.Forms.ProgressBar();
+            this.textBoxDollarsAmount = new System.Windows.Forms.TextBox();
+            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.progressBarDollars = new System.Windows.Forms.ProgressBar();
             this.SuspendLayout();
             //
             // gridPanel
@@ -63,9 +66,9 @@
             this.listViewPrices.FullRowSelect = true;
             this.listViewPrices.GridLines = true;
             this.listViewPrices.HideSelection = false;
-            this.listViewPrices.Location = new System.Drawing.Point(913, 471);
+            this.listViewPrices.Location = new System.Drawing.Point(875, 538);
             this.listViewPrices.Name = "listViewPrices";
-            this.listViewPrices.Size = new System.Drawing.Size(988, 382);
+            this.listViewPrices.Size = new System.Drawing.Size(988, 315);
             this.listViewPrices.TabIndex = 2;
             this.listViewPrices.UseCompatibleStateImageBehavior = false;
             this.listViewPrices.View = System.Windows.Forms.View.Details;
@@ -90,7 +93,7 @@
             //
             this.btnBuild.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnBuild.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBuild.Location = new System.Drawing.Point(1145, 332);
+            this.btnBuild.Location = new System.Drawing.Point(1097, 397);
             this.btnBuild.Name = "btnBuild";
             this.btnBuild.Size = new System.Drawing.Size(150, 75);
             this.btnBuild.TabIndex = 3;
@@ -102,7 +105,7 @@
             //
             this.btnSell.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSell.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSell.Location = new System.Drawing.Point(1364, 332);
+            this.btnSell.Location = new System.Drawing.Point(1367, 397);
             this.btnSell.Name = "btnSell";
             this.btnSell.Size = new System.Drawing.Size(159, 75);
             this.btnSell.TabIndex = 4;
@@ -112,7 +115,7 @@
             // progressBarGold
             //
             this.progressBarGold.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.progressBarGold.Location = new System.Drawing.Point(1520, 53);
+            this.progressBarGold.Location = new System.Drawing.Point(1570, 157);
             this.progressBarGold.Name = "progressBarGold";
             this.progressBarGold.Size = new System.Drawing.Size(381, 47);
             this.progressBarGold.TabIndex = 5;
@@ -120,7 +123,7 @@
             // progressBarLumber
             //
             this.progressBarLumber.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.progressBarLumber.Location = new System.Drawing.Point(1509, 151);
+            this.progressBarLumber.Location = new System.Drawing.Point(1559, 255);
             this.progressBarLumber.Name = "progressBarLumber";
             this.progressBarLumber.Size = new System.Drawing.Size(381, 35);
             this.progressBarLumber.TabIndex = 6;
@@ -128,7 +131,7 @@
             // textBox1
             //
             this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox1.Location = new System.Drawing.Point(1383, 53);
+            this.textBox1.Location = new System.Drawing.Point(1433, 157);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(89, 31);
             this.textBox1.TabIndex = 7;
@@ -137,7 +140,7 @@
             // textBox2
             //
             this.textBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox2.Location = new System.Drawing.Point(1383, 151);
+            this.textBox2.Location = new System.Drawing.Point(1433, 255);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(89, 31);
             this.textBox2.TabIndex = 8;
@@ -146,7 +149,7 @@
             // textBoxGoldAmount
             //
             this.textBoxGoldAmount.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxGoldAmount.Location = new System.Drawing.Point(1649, 16);
+            this.textBoxGoldAmount.Location = new System.Drawing.Point(1699, 120);
             this.textBoxGoldAmount.Name = "textBoxGoldAmount";
             this.textBoxGoldAmount.Size = new System.Drawing.Size(124, 31);
             this.textBoxGoldAmount.TabIndex = 9;
@@ -155,7 +158,7 @@
             // textBoxLumberAmount
             //
             this.textBoxLumberAmount.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxLumberAmount.Location = new System.Drawing.Point(1649, 114);
+            this.textBoxLumberAmount.Location = new System.Drawing.Point(1699, 218);
             this.textBoxLumberAmount.Name = "textBoxLumberAmount";
             this.textBoxLumberAmount.Size = new System.Drawing.Size(124, 31);
             this.textBoxLumberAmount.TabIndex = 10;
@@ -176,7 +179,7 @@
             // textBoxDiamondAmount
             //
             this.textBoxDiamondAmount.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxDiamondAmount.Location = new System.Drawing.Point(1649, 208);
+            this.textBoxDiamondAmount.Location = new System.Drawing.Point(1699, 312);
             this.textBoxDiamondAmount.Name = "textBoxDiamondAmount";
             this.textBoxDiamondAmount.Size = new System.Drawing.Size(124, 31);
             this.textBoxDiamondAmount.TabIndex = 14;
@@ -185,7 +188,7 @@
             // textBox4
             //
             this.textBox4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox4.Location = new System.Drawing.Point(1383, 245);
+            this.textBox4.Location = new System.Drawing.Point(1433, 349);
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(89, 31);
             this.textBox4.TabIndex = 13;
@@ -194,10 +197,36 @@
             // progressBarDiamond
             //
             this.progressBarDiamond.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.progressBarDiamond.Location = new System.Drawing.Point(1520, 245);
+            this.progressBarDiamond.Location = new System.Drawing.Point(1570, 349);
             this.progressBarDiamond.Name = "progressBarDiamond";
             this.progressBarDiamond.Size = new System.Drawing.Size(381, 47);
             this.progressBarDiamond.TabIndex = 12;
+            //
+            // textBoxDollarsAmount
+            //
+            this.textBoxDollarsAmount.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxDollarsAmount.Location = new System.Drawing.Point(1699, 30);
+            this.textBoxDollarsAmount.Name = "textBoxDollarsAmount";
+            this.textBoxDollarsAmount.Size = new System.Drawing.Size(124, 31);
+            this.textBoxDollarsAmount.TabIndex = 17;
+            this.textBoxDollarsAmount.Text = "0/1000";
+            //
+            // textBox5
+            //
+            this.textBox5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBox5.Location = new System.Drawing.Point(1433, 67);
+            this.textBox5.Name = "textBox5";
+            this.textBox5.Size = new System.Drawing.Size(89, 31);
+            this.textBox5.TabIndex = 16;
+            this.textBox5.Text = "Dollars";
+            //
+            // progressBarDollars
+            //
+            this.progressBarDollars.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.progressBarDollars.Location = new System.Drawing.Point(1570, 67);
+            this.progressBarDollars.Name = "progressBarDollars";
+            this.progressBarDollars.Size = new System.Drawing.Size(381, 47);
+            this.progressBarDollars.TabIndex = 15;
             //
             // Form1
             //
@@ -205,6 +234,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(2053, 932);
+            this.Controls.Add(this.textBoxDollarsAmount);
+            this.Controls.Add(this.textBox5);
+            this.Controls.Add(this.progressBarDollars);
             this.Controls.Add(this.textBoxDiamondAmount);
             this.Controls.Add(this.textBox4);
             this.Controls.Add(this.progressBarDiamond);
@@ -224,6 +256,10 @@
             this.ResumeLayout(false);
             this.PerformLayout();
         }
+
+        private System.Windows.Forms.TextBox textBoxDollarsAmount;
+        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.ProgressBar progressBarDollars;
 
         private System.Windows.Forms.TextBox textBoxDiamondAmount;
         private System.Windows.Forms.TextBox textBox4;

@@ -36,7 +36,7 @@ namespace bobFinal
             LumberCost = 50;
             DailyGoldGain = 30;
             DailyLumberGain = 0;
-            DailyDiamondGain = 1;
+            DailyDiamondGain = 0;
             ImageFileName = "HouseTile.jpg";
         }
     }
@@ -49,6 +49,7 @@ namespace bobFinal
             LumberCost = 100;
             DailyGoldGain = 60;
             DailyLumberGain = 0;
+            DailyDiamondGain = 0;
             ImageFileName = "FarmTile.jpg";
         }
     }
@@ -61,6 +62,7 @@ namespace bobFinal
             LumberCost = 100;
             DailyGoldGain = 0;
             DailyLumberGain = 30;
+            DailyDiamondGain = 0;
             ImageFileName = "SawmillTile.jpg";
         }
     }
@@ -73,6 +75,7 @@ namespace bobFinal
             LumberCost = 200;
             DailyGoldGain = 200;
             DailyLumberGain = 0;
+            DailyDiamondGain = 0;
             ImageFileName = "MineTile.jpg";
         }
     }
@@ -85,6 +88,7 @@ namespace bobFinal
             LumberCost = 100;
             DailyGoldGain = 100;
             DailyLumberGain = 0;
+            DailyDiamondGain = 0;
             ImageFileName = "CafeTile.jpg";
         }
     }

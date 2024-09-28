@@ -154,15 +154,19 @@ namespace bobFinal
     {
         int totalGoldGain = 0;
         int totalLumberGain = 0;
+        int totalDiamondGain = 0;
 
         foreach (var property in properties)
         {
             totalGoldGain += property.DailyGoldGain;
             totalLumberGain += property.DailyLumberGain;
+            totalDiamondGain += property.DailyDiamondGain;
+
         }
 
         gold.ChangeQuantity(totalGoldGain);
         lumber.ChangeQuantity(totalLumberGain);
+        diamond.ChangeQuantity(totalDiamondGain);
     }
 }
 }

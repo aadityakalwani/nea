@@ -14,6 +14,7 @@ namespace bobFinal
     private string selectedBuilding;
     private Resource gold;
     private Resource lumber;
+    private Resource diamond;
     private List<Property> properties = new List<Property>();
 
     public Form1()
@@ -62,6 +63,7 @@ namespace bobFinal
     {
         gold = new Resource("Gold", 100, 1000, progressBarGold, textBoxGoldAmount);
         lumber = new Resource("Lumber", 100, 1000, progressBarLumber, textBoxLumberAmount);
+        diamond = new Resource("Diamond", 50, 1000, progressBarDiamond, textBoxDiamondAmount);
     }
 
     private void InitialisePrices()

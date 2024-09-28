@@ -24,6 +24,7 @@ namespace bobFinal
         public int LumberCost { get; protected set; }
         public int DailyGoldGain { get; protected set; }
         public int DailyLumberGain { get; protected set; }
+        public int DailyDiamondGain { get; protected set; }
         public string ImageFileName { get; protected set; }
     }
 
@@ -35,6 +36,7 @@ namespace bobFinal
             LumberCost = 50;
             DailyGoldGain = 30;
             DailyLumberGain = 0;
+            DailyDiamondGain = 1;
             ImageFileName = "HouseTile.jpg";
         }
     }
@@ -89,17 +91,17 @@ namespace bobFinal
 
     public class Resource
     {
-        public string Name { get; set; }
+        public string Name { get; private set; }
         public int Value { get; private set; }
-        private int Maximum { get; set; }
+        public int MaxValue { get; private set; }
         private ProgressBar progressBar;
         private TextBox textBox;
 
-        public Resource(string name, int initialValue, int maximum, ProgressBar progressBar, TextBox textBox)
+        public Resource(string name, int initialValue, int maxValue, ProgressBar progressBar, TextBox textBox)
         {
             Name = name;
             Value = initialValue;
-            Maximum = maximum;
+            MaxValue = maxValue;
             this.progressBar = progressBar;
             this.textBox = textBox;
             UpdateUI();
@@ -107,15 +109,15 @@ namespace bobFinal
 
         public void ChangeQuantity(int amount)
         {
-            Value = Math.Max(0, Math.Min(Value + amount, Maximum));
+            Value = Math.Max(0, Math.Min(MaxValue, Value + amount));
             UpdateUI();
         }
 
         private void UpdateUI()
         {
-            progressBar.Maximum = Maximum;
+            progressBar.Maximum = MaxValue;
             progressBar.Value = Value;
-            textBox.Text = $"{Value}/{Maximum}";
+            textBox.Text = $"{Value}/{MaxValue}";
         }
     }
 }

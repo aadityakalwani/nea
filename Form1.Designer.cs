@@ -250,8 +250,8 @@
             // listViewMarket
             //
             this.listViewMarket.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.listViewMarket.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] { this.Price, this.Item });
-            this.listViewMarket.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.listViewMarket.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] { this.Item, this.Price });
+            this.listViewMarket.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
             this.listViewMarket.FullRowSelect = true;
             this.listViewMarket.GridLines = true;
             this.listViewMarket.HideSelection = false;
@@ -264,15 +264,15 @@
             //
             // Item
             //
-            this.Item.DisplayIndex = 0;
+            this.Item.DisplayIndex = 1;
             this.Item.Text = "Dollar Conversion Rate";
             this.Item.Width = 487;
             //
             // Price
             //
-            this.Price.DisplayIndex = 1;
+            this.Price.DisplayIndex = 0;
             this.Price.Text = "Item";
-            this.Price.Width = 243;
+            this.Price.Width = 311;
             //
             // Form1
             //

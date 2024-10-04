@@ -25,6 +25,7 @@ namespace bobFinal
         InitializeGrid();
         InitialiseLoot();
         InitialisePrices();
+        InitialiseMarketPrices();
         InitialiseStartingProperties();
     }
 
@@ -71,14 +72,18 @@ namespace bobFinal
 
     private void InitialisePrices()
     {
-
         listViewPrices.Items.Add(new ListViewItem(new[] { "House", "100 Gold, 50 Lumber", "+30 Gold" }));
         listViewPrices.Items.Add(new ListViewItem(new[] { "Farm", "100 Gold, 100 Lumber", "+60 Gold" }));
         listViewPrices.Items.Add(new ListViewItem(new[] { "Sawmill", "300 Gold, 150 Lumber", "+400 Lumber" }));
         listViewPrices.Items.Add(new ListViewItem(new[] { "Mine", "400 Gold, 200 Lumber", "+200 Gold" }));
         listViewPrices.Items.Add(new ListViewItem(new[] { "Cafe", "500 Gold, 250 Lumber", "+250 Gold" }));
+    }
 
-
+    private void InitialiseMarketPrices()
+    {
+        listViewMarket.Items.Add(new ListViewItem(new[] { "1 Gold", "100 Dollars" }));
+        listViewMarket.Items.Add(new ListViewItem(new[] { "1 Lumber", "50 Dollars" }));
+        listViewMarket.Items.Add(new ListViewItem(new[] { "1 Diamond", "500 Dollars" }));
     }
 
     private void InitialiseStartingProperties()

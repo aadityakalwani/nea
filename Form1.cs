@@ -101,7 +101,7 @@ namespace bobFinal
             listViewMarket.Items.Add(new ListViewItem(new[] { item.Name, item.Price.ToString() }));
         }
     }
-
+// tmepa
     private void InitializeGrid()
     {
         grid = new PictureBox[gridSize, gridSize];

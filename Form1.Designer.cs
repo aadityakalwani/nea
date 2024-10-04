@@ -50,7 +50,7 @@
             this.progressBarDollars = new System.Windows.Forms.ProgressBar();
             this.btnSell = new System.Windows.Forms.Button();
             this.btnBuy = new System.Windows.Forms.Button();
-            this.listView1 = new System.Windows.Forms.ListView();
+            this.listViewMarket = new System.Windows.Forms.ListView();
             this.Item = new System.Windows.Forms.ColumnHeader();
             this.Price = new System.Windows.Forms.ColumnHeader();
             this.SuspendLayout();
@@ -247,17 +247,32 @@
             this.btnBuy.Text = "Buy";
             this.btnBuy.UseVisualStyleBackColor = true;
             //
-            // listView1
+            // listViewMarket
             //
-            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] { this.Item, this.Price });
-            this.listView1.FullRowSelect = true;
-            this.listView1.GridLines = true;
-            this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(956, 1109);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(922, 227);
-            this.listView1.TabIndex = 20;
-            this.listView1.UseCompatibleStateImageBehavior = false;
+            this.listViewMarket.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.listViewMarket.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] { this.Price, this.Item });
+            this.listViewMarket.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.listViewMarket.FullRowSelect = true;
+            this.listViewMarket.GridLines = true;
+            this.listViewMarket.HideSelection = false;
+            this.listViewMarket.Location = new System.Drawing.Point(939, 1113);
+            this.listViewMarket.Name = "listViewMarket";
+            this.listViewMarket.Size = new System.Drawing.Size(922, 227);
+            this.listViewMarket.TabIndex = 20;
+            this.listViewMarket.UseCompatibleStateImageBehavior = false;
+            this.listViewMarket.View = System.Windows.Forms.View.Details;
+            //
+            // Item
+            //
+            this.Item.DisplayIndex = 0;
+            this.Item.Text = "Dollar Conversion Rate";
+            this.Item.Width = 487;
+            //
+            // Price
+            //
+            this.Price.DisplayIndex = 1;
+            this.Price.Text = "Item";
+            this.Price.Width = 243;
             //
             // Form1
             //
@@ -265,7 +280,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(2162, 1417);
-            this.Controls.Add(this.listView1);
+            this.Controls.Add(this.listViewMarket);
             this.Controls.Add(this.btnBuy);
             this.Controls.Add(this.btnSell);
             this.Controls.Add(this.textBoxDollarsAmount);
@@ -293,7 +308,7 @@
         private System.Windows.Forms.ColumnHeader Item;
         private System.Windows.Forms.ColumnHeader Price;
 
-        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ListView listViewMarket;
 
         private System.Windows.Forms.Button btnBuy;
 

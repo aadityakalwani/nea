@@ -16,7 +16,14 @@ namespace bobFinal
     private Resource gold;
     private Resource lumber;
     private Resource diamond;
-    private List<Property> properties = new List<Property>();
+    private List<Property> properties = new List<Property>
+    {
+        new House(),
+        new Farm(),
+        new Sawmill(),
+        new Mine(),
+        new Cafe()
+    };
 
 
     public Form1()
@@ -72,11 +79,12 @@ namespace bobFinal
 
     private void InitialisePrices()
     {
-        listViewPrices.Items.Add(new ListViewItem(new[] { "House", "100 Gold, 50 Lumber", "+30 Gold" }));
-        listViewPrices.Items.Add(new ListViewItem(new[] { "Farm", "100 Gold, 100 Lumber", "+60 Gold" }));
-        listViewPrices.Items.Add(new ListViewItem(new[] { "Sawmill", "300 Gold, 150 Lumber", "+400 Lumber" }));
-        listViewPrices.Items.Add(new ListViewItem(new[] { "Mine", "400 Gold, 200 Lumber", "+200 Gold" }));
-        listViewPrices.Items.Add(new ListViewItem(new[] { "Cafe", "500 Gold, 250 Lumber", "+250 Gold" }));
+        foreach (var property in properties)
+        {
+            string cost = $"{property.GoldCost} Gold, {property.LumberCost} Lumber";
+            string gain = $"+{property.DailyGoldGain} Gold, +{property.DailyLumberGain} Lumber, +{property.DailyDiamondGain} Diamond";
+            listViewPrices.Items.Add(new ListViewItem(new[] { property.GetType().Name, cost, gain }));
+        }
     }
 
     private void InitialiseMarketPrices()

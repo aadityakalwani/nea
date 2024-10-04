@@ -100,16 +100,18 @@ namespace bobFinal
         public string Name { get; private set; }
         public int Value { get; private set; }
         public int MaxValue { get; private set; }
-        private ProgressBar progressBar;
-        private TextBox textBox;
+        public ProgressBar ProgressBar { get; private set; }
+        public TextBox TextBox { get; private set; }
+        public int ConversionRate { get; private set; } // Conversion rate in dollars
 
-        public Resource(string name, int initialValue, int maxValue, ProgressBar progressBar, TextBox textBox)
+        public Resource(string name, int initialValue, int maxValue, ProgressBar progressBar, TextBox textBox, int conversionRate)
         {
             Name = name;
             Value = initialValue;
             MaxValue = maxValue;
-            this.progressBar = progressBar;
-            this.textBox = textBox;
+            ProgressBar = progressBar;
+            TextBox = textBox;
+            ConversionRate = conversionRate;
             UpdateUI();
         }
 
@@ -121,75 +123,8 @@ namespace bobFinal
 
         private void UpdateUI()
         {
-            progressBar.Maximum = MaxValue;
-            progressBar.Value = Value;
-            textBox.Text = $"{Value}/{MaxValue}";
+            ProgressBar.Value = Value;
+            TextBox.Text = Value.ToString();
         }
     }
-
-    public class Market
-    {
-        private List<MarketItem> items;
-
-        public Market()
-        {
-            items = new List<MarketItem>
-            {
-                new MarketItem("Gold", 100),
-                new MarketItem("Lumber", 50),
-                new MarketItem("Diamond", 500)
-            };
-        }
-
-        public List<MarketItem> GetItems()
-        {
-            return items;
-        }
-
-        public void FluctuatePrices()
-        {
-            Random rand = new Random();
-            foreach (var item in items)
-            {
-                int fluctuation = rand.Next(-10, 11); // Random fluctuation between -10 and +10
-                item.Price = Math.Max(1, item.Price + fluctuation); // Ensure price doesn't go below 1
-            }
-        }
-
-        public bool BuyItem(string itemName, int quantity, Resource dollars)
-        {
-            var item = items.FirstOrDefault(i => i.Name == itemName);
-            if (item != null && dollars.Value >= item.Price * quantity)
-            {
-                dollars.ChangeQuantity(-item.Price * quantity);
-                return true;
-            }
-            return false;
-        }
-
-        public bool SellItem(string itemName, int quantity, Resource dollars)
-        {
-            var item = items.FirstOrDefault(i => i.Name == itemName);
-            if (item != null)
-            {
-                dollars.ChangeQuantity(item.Price * quantity);
-                return true;
-            }
-            return false;
-        }
-
-    }
-
-    public class MarketItem
-    {
-        public string Name { get; private set; }
-        public int Price { get; set; }
-
-        public MarketItem(string name, int price)
-        {
-            Name = name;
-            Price = price;
-        }
-    }
-
 }

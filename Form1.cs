@@ -25,6 +25,8 @@ namespace bobFinal
         new Cafe()
     };
 
+    private List<Resource> resources;
+
 
     public Form1()
     {
@@ -71,10 +73,10 @@ namespace bobFinal
 
     private void InitialiseLoot()
     {
-        dollars = new Resource("Dollars", 100, 1000, progressBarDollars, textBoxDollarsAmount);
-        gold = new Resource("Gold", 100, 1000, progressBarGold, textBoxGoldAmount);
-        lumber = new Resource("Lumber", 100, 1000, progressBarLumber, textBoxLumberAmount);
-        diamond = new Resource("Diamond", 50, 1000, progressBarDiamond, textBoxDiamondAmount);
+        dollars = new Resource("Dollars", 100, 1000, progressBarDollars, textBoxDollarsAmount, 1);
+        gold = new Resource("Gold", 100, 1000, progressBarGold, textBoxGoldAmount, 100);
+        lumber = new Resource("Lumber", 100, 1000, progressBarLumber, textBoxLumberAmount, 50);
+        diamond = new Resource("Diamond", 50, 1000, progressBarDiamond, textBoxDiamondAmount, 500);
     }
 
     private void InitialisePrices()
@@ -89,9 +91,13 @@ namespace bobFinal
 
     private void InitialiseMarketPrices()
     {
-        listViewMarket.Items.Add(new ListViewItem(new[] { "1 Gold", "100 Dollars" }));
-        listViewMarket.Items.Add(new ListViewItem(new[] { "1 Lumber", "50 Dollars" }));
-        listViewMarket.Items.Add(new ListViewItem(new[] { "1 Diamond", "500 Dollars" }));
+        resources = new List<Resource> { gold, lumber, diamond };
+
+        foreach (var resource in resources)
+        {
+            string conversionRate = $"{resource.ConversionRate} dollars";
+            listViewMarket.Items.Add(new ListViewItem(new[] { conversionRate, $"1 {resource.Name}"}));
+        }
     }
 
     private void InitialiseStartingProperties()

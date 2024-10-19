@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
+// ReSharper disable All
 
 namespace bobFinal
 {
@@ -154,6 +155,7 @@ namespace bobFinal
                 break;
             // Add cases for other buildings
         }
+        // temp on new parallels for the first time
 
         if (property != null)
         {

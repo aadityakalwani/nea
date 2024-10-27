@@ -264,7 +264,7 @@ namespace bobFinal
     private void numericUpDownAmount_ValueChanged(object sender, EventArgs e)
     {
         // not sure what the correct argument here is
-        UpdateCost("buy");
+        UpdateCost("buy"); uhiy
     }
 
     private void btnConfirmMarketAction_Click(object sender, EventArgs e)

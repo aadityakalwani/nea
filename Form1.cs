@@ -219,7 +219,6 @@ namespace bobFinal
         }
     }
 
-
     private void btnBuy_Click(object sender, EventArgs e)
     {
         performMarketAction("buy");
@@ -232,32 +231,24 @@ namespace bobFinal
 
     private void performMarketAction(string buyOrSell)
     {
-        if (buyOrSell == "buy")
+        if (listViewMarket.SelectedItems.Count > 0)
         {
-            if (listViewMarket.SelectedItems.Count > 0)
-            {
-                // as the resource name is in the second column (index 1)
-                string selectedItem = listViewMarket.SelectedItems[0].SubItems[1].Text;
-                selectedResource = resources.Find(r => r.Name == selectedItem);
+            string selectedItem = listViewMarket.SelectedItems[0].SubItems[1].Text;
+            selectedResource = resources.Find(r => r.Name == selectedItem);
 
-                if (selectedResource != null)
-                {
-                    pnlBuy.Visible = true;
-                    UpdateCost("buy");
-                }
-                else
-                {
-                    MessageBox.Show("Resource not found.");
-                }
+            if (selectedResource != null)
+            {
+                pnlBuy.Visible = true;
+                UpdateCost(buyOrSell);
             }
             else
             {
-                MessageBox.Show("Please select a resource to buy.");
+                MessageBox.Show("Resource not found.");
             }
         }
         else
         {
-            MessageBox.Show("waiting for implementation");
+            MessageBox.Show($"Please select a resource to {buyOrSell}.");
         }
     }
 
@@ -269,18 +260,37 @@ namespace bobFinal
 
     private void btnConfirmMarketAction_Click(object sender, EventArgs e)
     {
-        int amountToBuy = (int)numericUpDownAmount.Value;
-        int cost = amountToBuy * selectedResource.ConversionRate;
+        int amount = (int)numericUpDownAmount.Value;
+        int cost = amount * selectedResource.ConversionRate;
 
-        if (dollars.Value >= cost)
+        if (selectedResource != null)
         {
-            dollars.ChangeQuantity(-cost);
-            selectedResource.ChangeQuantity(amountToBuy);
-            pnlBuy.Visible = false;
-        }
-        else
-        {
-            MessageBox.Show("Not enough dollars!");
+            if (selectedResource.Name == "Dollars")
+            {
+                if (dollars.Value >= cost)
+                {
+                    dollars.ChangeQuantity(-cost);
+                    selectedResource.ChangeQuantity(amount);
+                    pnlBuy.Visible = false;
+                }
+                else
+                {
+                    MessageBox.Show("Not enough dollars!");
+                }
+            }
+            else
+            {
+                if (selectedResource.Value >= amount)
+                {
+                    selectedResource.ChangeQuantity(-amount);
+                    dollars.ChangeQuantity(cost);
+                    pnlBuy.Visible = false;
+                }
+                else
+                {
+                    MessageBox.Show($"Not enough {selectedResource.Name}!");
+                }
+            }
         }
     }
 

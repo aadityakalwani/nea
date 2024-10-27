@@ -1,0 +1,14 @@
+test if the refreshing of market data is working on every new day
+
+future ideas:
+- events that affect the market prices such as stock market crashes or booms
+- more resources
+- history of properties upon click
+- path tiles to connect properties to the town hall
+- general balance changes
+- idea of 'villagers or visitors to the town that effect the market prices
+- upgradable tile size of the map
+- ability to sell a property (for 80% of the price)
+- 'teaching' mode where the player can learn about business and economics
+- tutorial / introduction to the game upon start
+

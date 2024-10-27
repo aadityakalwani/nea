@@ -192,6 +192,9 @@ namespace bobFinal
         gold.ChangeQuantity(totalGoldGain);
         lumber.ChangeQuantity(totalLumberGain);
         diamond.ChangeQuantity(totalDiamondGain);
+
+        // update market prices
+        Market.UpdateConversionRates(resources);
         RefreshMarketPrices();
     }
 

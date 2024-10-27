@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Windows.Forms;
 
 namespace bobFinal
@@ -101,7 +100,7 @@ namespace bobFinal
         public int MaxValue { get; }
         public ProgressBar ProgressBar { get; }
         public TextBox TextBox { get; }
-        public int ConversionRate { get; }
+        public int ConversionRate { get; set; }
 
         public Resource(string name, int value, int maxValue, ProgressBar progressBar, TextBox textBox, int conversionRate)
         {
@@ -138,4 +137,26 @@ namespace bobFinal
             TextBox.Text = Value.ToString();
         }
     }
+
+    public static class Market
+    {
+        private static Random random = new Random();
+
+        public static void UpdateConversionRates(List<Resource> resources)
+        {
+            foreach (var resource in resources)
+            {
+                // Fluctuate the conversion rate by +/- 10%
+                int fluctuation = random.Next(-10, 11);
+                resource.ConversionRate += resource.ConversionRate * fluctuation / 100;
+
+                // ensure the conversion rate is at least 1
+                if (resource.ConversionRate < 1)
+                {
+                    resource.ConversionRate = 1;
+                }
+            }
+        }
+    }
+
 }

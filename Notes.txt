@@ -1,5 +1,10 @@
 test if the refreshing of market data is working on every new day
 
+current issues:
+- the panel should update whenever a new item is selected/toggled
+- market prices are not updating - make sure that im fluctuating the 'conversion rate' property
+- the panel label should specify what youre buying/selling
+
 future ideas:
 - events that affect the market prices such as stock market crashes or booms
 - more resources
@@ -11,4 +16,8 @@ future ideas:
 - ability to sell a property (for 80% of the price)
 - 'teaching' mode where the player can learn about business and economics
 - tutorial / introduction to the game upon start
+- upgrade storage capacity
+- separate UI items for things like market to make things look better
+
+- copy other ideas from GoldDiggerzz
 

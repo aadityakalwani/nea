@@ -18,6 +18,7 @@ namespace bobFinal
     private Resource lumber;
     private Resource diamond;
     private Resource selectedResource;
+    private string currentAction;
     private List<Property> properties = new List<Property>
     {
         new House(),
@@ -229,8 +230,11 @@ namespace bobFinal
         performMarketAction("sell");
     }
 
+
     private void performMarketAction(string buyOrSell)
     {
+        currentAction = buyOrSell;
+
         if (listViewMarket.SelectedItems.Count > 0)
         {
             string selectedItem = listViewMarket.SelectedItems[0].SubItems[1].Text;
@@ -243,7 +247,7 @@ namespace bobFinal
             }
             else
             {
-                MessageBox.Show("Resource not found.");
+                MessageBox.Show("Resource not found!");
             }
         }
         else
@@ -254,8 +258,7 @@ namespace bobFinal
 
     private void numericUpDownAmount_ValueChanged(object sender, EventArgs e)
     {
-        // not sure what the correct argument here is
-        UpdateCost("buy");
+        UpdateCost(currentAction); // Use the stored action type
     }
 
     private void btnConfirmMarketAction_Click(object sender, EventArgs e)
@@ -265,13 +268,12 @@ namespace bobFinal
 
         if (selectedResource != null)
         {
-            if (selectedResource.Name == "Dollars")
+            if (currentAction == "buy")
             {
                 if (dollars.Value >= cost)
                 {
                     dollars.ChangeQuantity(-cost);
                     selectedResource.ChangeQuantity(amount);
-                    pnlBuy.Visible = false;
                 }
                 else
                 {
@@ -282,15 +284,15 @@ namespace bobFinal
             {
                 if (selectedResource.Value >= amount)
                 {
-                    selectedResource.ChangeQuantity(-amount);
                     dollars.ChangeQuantity(cost);
-                    pnlBuy.Visible = false;
+                    selectedResource.ChangeQuantity(-amount);
                 }
                 else
                 {
-                    MessageBox.Show($"Not enough {selectedResource.Name}!");
+                    MessageBox.Show("Not enough resources!");
                 }
             }
+
         }
     }
 

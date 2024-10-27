@@ -286,7 +286,7 @@
             //
             this.Price.DisplayIndex = 0;
             this.Price.Text = "Item";
-            this.Price.Width = 237;
+            this.Price.Width = 124;
             //
             // listViewMarket
             //
@@ -296,10 +296,10 @@
             this.listViewMarket.FullRowSelect = true;
             this.listViewMarket.GridLines = true;
             this.listViewMarket.HideSelection = false;
-            this.listViewMarket.Location = new System.Drawing.Point(347, 590);
+            this.listViewMarket.Location = new System.Drawing.Point(347, 601);
             this.listViewMarket.Margin = new System.Windows.Forms.Padding(2);
             this.listViewMarket.Name = "listViewMarket";
-            this.listViewMarket.Size = new System.Drawing.Size(574, 171);
+            this.listViewMarket.Size = new System.Drawing.Size(340, 171);
             this.listViewMarket.TabIndex = 20;
             this.listViewMarket.UseCompatibleStateImageBehavior = false;
             this.listViewMarket.View = System.Windows.Forms.View.Details;
@@ -322,9 +322,9 @@
             this.pnlBuy.Controls.Add(this.btnConfirmMarketAction);
             this.pnlBuy.Controls.Add(this.lblCost);
             this.pnlBuy.Controls.Add(this.numericUpDownAmount);
-            this.pnlBuy.Location = new System.Drawing.Point(668, 90);
+            this.pnlBuy.Location = new System.Drawing.Point(694, 601);
             this.pnlBuy.Name = "pnlBuy";
-            this.pnlBuy.Size = new System.Drawing.Size(253, 189);
+            this.pnlBuy.Size = new System.Drawing.Size(253, 194);
             this.pnlBuy.TabIndex = 22;
             this.pnlBuy.Visible = false;
             //
@@ -341,9 +341,10 @@
             // btnCancelMarketAction
             //
             this.btnCancelMarketAction.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCancelMarketAction.Location = new System.Drawing.Point(11, 124);
+            this.btnCancelMarketAction.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
+            this.btnCancelMarketAction.Location = new System.Drawing.Point(11, 146);
             this.btnCancelMarketAction.Name = "btnCancelMarketAction";
-            this.btnCancelMarketAction.Size = new System.Drawing.Size(112, 57);
+            this.btnCancelMarketAction.Size = new System.Drawing.Size(112, 35);
             this.btnCancelMarketAction.TabIndex = 26;
             this.btnCancelMarketAction.Text = "Cancel";
             this.btnCancelMarketAction.UseVisualStyleBackColor = true;
@@ -352,9 +353,10 @@
             // btnConfirmMarketAction
             //
             this.btnConfirmMarketAction.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnConfirmMarketAction.Location = new System.Drawing.Point(126, 124);
+            this.btnConfirmMarketAction.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
+            this.btnConfirmMarketAction.Location = new System.Drawing.Point(126, 146);
             this.btnConfirmMarketAction.Name = "btnConfirmMarketAction";
-            this.btnConfirmMarketAction.Size = new System.Drawing.Size(110, 57);
+            this.btnConfirmMarketAction.Size = new System.Drawing.Size(110, 35);
             this.btnConfirmMarketAction.TabIndex = 25;
             this.btnConfirmMarketAction.Text = "Confirm";
             this.btnConfirmMarketAction.UseVisualStyleBackColor = true;
@@ -373,9 +375,10 @@
             // numericUpDownAmount
             //
             this.numericUpDownAmount.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.numericUpDownAmount.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
             this.numericUpDownAmount.Location = new System.Drawing.Point(63, 98);
             this.numericUpDownAmount.Name = "numericUpDownAmount";
-            this.numericUpDownAmount.Size = new System.Drawing.Size(137, 20);
+            this.numericUpDownAmount.Size = new System.Drawing.Size(137, 30);
             this.numericUpDownAmount.TabIndex = 23;
             this.numericUpDownAmount.ValueChanged += new System.EventHandler(this.numericUpDownAmount_ValueChanged);
             // 

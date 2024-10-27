@@ -98,7 +98,7 @@
             this.listViewPrices.Location = new System.Drawing.Point(304, 360);
             this.listViewPrices.Margin = new System.Windows.Forms.Padding(2);
             this.listViewPrices.Name = "listViewPrices";
-            this.listViewPrices.Size = new System.Drawing.Size(574, 165);
+            this.listViewPrices.Size = new System.Drawing.Size(574, 201);
             this.listViewPrices.TabIndex = 2;
             this.listViewPrices.UseCompatibleStateImageBehavior = false;
             this.listViewPrices.View = System.Windows.Forms.View.Details;
@@ -180,7 +180,7 @@
             // btnNextDay
             //
             this.btnNextDay.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnNextDay.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNextDay.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnNextDay.Location = new System.Drawing.Point(304, 27);
             this.btnNextDay.Margin = new System.Windows.Forms.Padding(2);
             this.btnNextDay.Name = "btnNextDay";
@@ -254,7 +254,7 @@
             //
             this.btnSell.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSell.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSell.Location = new System.Drawing.Point(419, 544);
+            this.btnSell.Location = new System.Drawing.Point(419, 576);
             this.btnSell.Margin = new System.Windows.Forms.Padding(2);
             this.btnSell.Name = "btnSell";
             this.btnSell.Size = new System.Drawing.Size(74, 39);
@@ -267,7 +267,7 @@
             //
             this.btnBuy.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnBuy.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBuy.Location = new System.Drawing.Point(304, 544);
+            this.btnBuy.Location = new System.Drawing.Point(304, 576);
             this.btnBuy.Margin = new System.Windows.Forms.Padding(2);
             this.btnBuy.Name = "btnBuy";
             this.btnBuy.Size = new System.Drawing.Size(74, 39);
@@ -296,7 +296,7 @@
             this.listViewMarket.FullRowSelect = true;
             this.listViewMarket.GridLines = true;
             this.listViewMarket.HideSelection = false;
-            this.listViewMarket.Location = new System.Drawing.Point(304, 614);
+            this.listViewMarket.Location = new System.Drawing.Point(304, 633);
             this.listViewMarket.Margin = new System.Windows.Forms.Padding(2);
             this.listViewMarket.Name = "listViewMarket";
             this.listViewMarket.Size = new System.Drawing.Size(340, 171);
@@ -308,7 +308,7 @@
             //
             this.lblSelectedPosition.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblSelectedPosition.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSelectedPosition.Location = new System.Drawing.Point(394, 302);
+            this.lblSelectedPosition.Location = new System.Drawing.Point(394, 310);
             this.lblSelectedPosition.Name = "lblSelectedPosition";
             this.lblSelectedPosition.Size = new System.Drawing.Size(238, 35);
             this.lblSelectedPosition.TabIndex = 21;
@@ -322,7 +322,7 @@
             this.pnlBuy.Controls.Add(this.btnConfirmMarketAction);
             this.pnlBuy.Controls.Add(this.lblCost);
             this.pnlBuy.Controls.Add(this.numericUpDownAmount);
-            this.pnlBuy.Location = new System.Drawing.Point(664, 614);
+            this.pnlBuy.Location = new System.Drawing.Point(664, 633);
             this.pnlBuy.Name = "pnlBuy";
             this.pnlBuy.Size = new System.Drawing.Size(283, 194);
             this.pnlBuy.TabIndex = 22;
@@ -337,6 +337,7 @@
             this.label1.Size = new System.Drawing.Size(239, 27);
             this.label1.TabIndex = 27;
             this.label1.Text = "enter amount to buy/sell";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.TopRight;
             //
             // btnCancelMarketAction
             //
@@ -366,11 +367,12 @@
             //
             this.lblCost.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblCost.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCost.Location = new System.Drawing.Point(88, 17);
+            this.lblCost.Location = new System.Drawing.Point(27, 18);
             this.lblCost.Name = "lblCost";
-            this.lblCost.Size = new System.Drawing.Size(139, 27);
+            this.lblCost.Size = new System.Drawing.Size(223, 27);
             this.lblCost.TabIndex = 24;
             this.lblCost.Text = "buy/sell panel";
+            this.lblCost.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             //
             // numericUpDownAmount
             //

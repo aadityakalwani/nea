@@ -1,17 +1,14 @@
-test if the refreshing of market data is working on every new day
-
 current issues:
-- the panel label should update whenever a new item is selected/toggled
-- round the resource labels to 2 decimal places
 - you can add a property to a tile that is already occupied
+
+immediate future ideas:
+- more resources
 
 future ideas:
 - events that affect the market prices such as stock market crashes or booms
-- more resources
 - due to the way I fluctuate the stock market, the resources deviate from their starting values, so I need to balance this out
 - history of properties upon click - databases and stuff
 - path tiles to connect properties to the town hall
-- general balance changes
 - idea of 'villagers or visitors to the town that effect the market prices
 - upgradable tile size of the map
 - ability to sell a property (for 80% of the price)
@@ -21,4 +18,3 @@ future ideas:
 - separate UI items for things like market to make things look better
 
 - copy other ideas from GoldDiggerzz
-

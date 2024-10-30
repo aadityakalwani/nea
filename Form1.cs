@@ -214,20 +214,20 @@ namespace bobFinal
     }
 
 
-    public void RefreshMarketPrices()
+    private void RefreshMarketPrices()
     {
         listViewMarket.Items.Clear();
         foreach (var resource in resources)
         {
-            string conversionRate = $"{resource.ConversionRate} dollars";
-            listViewMarket.Items.Add(new ListViewItem(new[] { conversionRate, $"{resource.Name}"} ));
+            string conversionRate = $"{Math.Round(resource.ConversionRate, 2)} dollars";
+            listViewMarket.Items.Add(new ListViewItem(new[] { conversionRate, resource.Name }));
         }
     }
 
     private void UpdateCost(string buyOrSell)
     {
         int amount = (int)numericUpDownAmount.Value;
-        int cost = amount * selectedResource.ConversionRate;
+        float cost = amount * selectedResource.ConversionRate;
 
         if (buyOrSell == "buy")
         {
@@ -266,6 +266,16 @@ namespace bobFinal
                 // make the buy panel visible and update the cost
                 pnlBuy.Visible = true;
                 UpdateCost(buyOrSell);
+
+                // update label1 text based on the action and selected resource
+                if (buyOrSell == "buy")
+                {
+                    label1.Text = $"enter amount of {selectedResource.Name} to buy";
+                }
+                else
+                {
+                    label1.Text = $"enter amount of {selectedResource.Name} to sell";
+                }
             }
             else
             {
@@ -288,7 +298,7 @@ namespace bobFinal
     private void btnConfirmMarketAction_Click(object sender, EventArgs e)
     {
         int amount = (int)numericUpDownAmount.Value;
-        int cost = amount * selectedResource.ConversionRate;
+        float cost = amount * selectedResource.ConversionRate;
 
         if (selectedResource != null)
         {

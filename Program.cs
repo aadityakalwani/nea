@@ -96,13 +96,13 @@ namespace bobFinal
     public class Resource
     {
         public string Name { get; }
-        public int Value { get; private set; }
+        public float Value { get; private set; }
         public int MaxValue { get; }
         public ProgressBar ProgressBar { get; }
         public TextBox TextBox { get; }
-        public int ConversionRate { get; set; }
+        public float ConversionRate { get; set; }
 
-        public Resource(string name, int value, int maxValue, ProgressBar progressBar, TextBox textBox, int conversionRate)
+        public Resource(string name, float value, int maxValue, ProgressBar progressBar, TextBox textBox, float conversionRate)
         {
             Name = name;
             Value = value;
@@ -113,7 +113,7 @@ namespace bobFinal
             UpdateUI();
         }
 
-        public void ChangeQuantity(int amount)
+        public void ChangeQuantity(float amount)
         {
             Value = Math.Max(0, Math.Min(MaxValue, Value + amount));
             UpdateUI();
@@ -131,7 +131,7 @@ namespace bobFinal
             }
             else
             {
-                ProgressBar.Value = Value * ProgressBar.Maximum / MaxValue;
+                ProgressBar.Value = (int)(Value * ProgressBar.Maximum / MaxValue);
             }
 
             TextBox.Text = Value.ToString();

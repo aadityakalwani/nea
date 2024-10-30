@@ -8,6 +8,7 @@ current issues:
 future ideas:
 - events that affect the market prices such as stock market crashes or booms
 - more resources
+- due to the way I fluctuate the stock market, the resources deviate from their starting values, so I need to balance this out
 - history of properties upon click - databases and stuff
 - path tiles to connect properties to the town hall
 - general balance changes

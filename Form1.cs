@@ -24,15 +24,16 @@ namespace bobFinal
 
     public Form1()
     {
-        initialiseComponent();
-        initialiseGrid();
-        initialiseLoot();
-        initialiseStartingProperties();
-        initialisePrices();
-        initialiseMarketPrices();
+        InitializeComponent();
+        initializeGrid();
+        initializeLoot();
+        initializeStartingProperties();
+        initializePrices();
+        initializeMarketPrices();
     }
 
-    private void initialiseGrid()
+
+    private void initializeGrid()
     {
         // create a new grid of PictureBox objects
         grid = new PictureBox[gridSize, gridSize];
@@ -46,7 +47,7 @@ namespace bobFinal
         {
             for (int j = 0; j < gridSize; j++)
             {
-                // initialise each PictureBox in the grid
+                // initialize each PictureBox in the grid
                 grid[i, j] = new PictureBox
                 {
                     Width = tileSize,
@@ -71,7 +72,7 @@ namespace bobFinal
         grid[5, 5].Image = Image.FromFile("TownHallBottomRight.jpg");
     }
 
-    private void initialiseLoot()
+    private void initializeLoot()
     {
         dollars = new Resource("Dollars", 100, 1000, progressBarDollars, textBoxDollarsAmount, 1);
         gold = new Resource("Gold", 100, 1000, progressBarGold, textBoxGoldAmount, 2);
@@ -79,7 +80,7 @@ namespace bobFinal
         diamond = new Resource("Diamond", 50, 1000, progressBarDiamond, textBoxDiamondAmount, 10);
     }
 
-    private void initialisePrices()
+    private void initializePrices()
     {
         foreach (var property in properties)
         {
@@ -89,7 +90,7 @@ namespace bobFinal
         }
     }
 
-    private void initialiseMarketPrices()
+    private void initializeMarketPrices()
     {
         resources = new List<Resource> { gold, lumber, diamond };
 
@@ -101,7 +102,7 @@ namespace bobFinal
         RefreshMarketPrices();
     }
 
-    private void initialiseStartingProperties()
+    private void initializeStartingProperties()
     {
         // Create and place the initial sawmill
         Property sawmill = new Sawmill(10, 10);
@@ -321,21 +322,6 @@ namespace bobFinal
     private void btnCancelMarketAction_Click(object sender, EventArgs e)
     {
         pnlBuy.Visible = false;
-    }
-
-    /// <summary>
-    /// Required method for Designer support - do not modify
-    /// the contents of this method with the code editor.
-    /// </summary>
-    private void InitializeComponent()
-    {
-        this.SuspendLayout();
-        //
-        // Form1
-        //
-        this.ClientSize = new System.Drawing.Size(284, 261);
-        this.Name = "Form1";
-        this.ResumeLayout(false);
     }
 }
 }

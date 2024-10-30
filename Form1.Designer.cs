@@ -27,7 +27,7 @@
         /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
         /// </summary>
-        private void initialiseComponent()
+        private void InitializeComponent()
         {
             this.gridPanel = new System.Windows.Forms.Panel();
             this.columnHeaderBuilding = new System.Windows.Forms.ColumnHeader();

@@ -43,16 +43,19 @@ namespace bobFinal
 
     private void InitializeGrid()
     {
+        // create a new grid of PictureBox objects
         grid = new PictureBox[gridSize, gridSize];
         int panelWidth = gridSize * tileSize;
         int panelHeight = gridSize * tileSize;
 
+        // set the size of the grid panel
         gridPanel.Size = new Size(panelWidth, panelHeight);
 
         for (int i = 0; i < gridSize; i++)
         {
             for (int j = 0; j < gridSize; j++)
             {
+                // initialize each PictureBox in the grid
                 grid[i, j] = new PictureBox
                 {
                     Width = tileSize,
@@ -61,13 +64,16 @@ namespace bobFinal
                     BorderStyle = BorderStyle.FixedSingle,
                     Image = Image.FromFile("empty.jpg"),
                     SizeMode = PictureBoxSizeMode.StretchImage,
-                    Tag = new Point(i, j) // store the position in the Tag property
+                    Tag = new Point(i, j) // store the position in the tag property
                 };
-                grid[i, j].Click += GridPictureBox_Click; // add Click event handler
+                // add click event handler to each PictureBox
+                grid[i, j].Click += GridPictureBox_Click;
+                // add the PictureBox to the grid panel
                 gridPanel.Controls.Add(grid[i, j]);
             }
         }
 
+        // set initial images for specific grid positions
         grid[4, 4].Image = Image.FromFile("TownHallTopLeft.jpg");
         grid[4, 5].Image = Image.FromFile("TownHallBottomLeft.jpg");
         grid[5, 4].Image = Image.FromFile("TownHallTopRight.jpg");
@@ -139,6 +145,7 @@ namespace bobFinal
     {
         Property property = null;
 
+        // determine the type of property to build based on selectedBuilding
         switch (selectedBuilding)
         {
             case "House":
@@ -156,25 +163,31 @@ namespace bobFinal
             case "Cafe":
                 property = new Cafe();
                 break;
-            // Add cases for other buildings
+            // add cases for other buildings
         }
 
         if (property != null)
         {
+            // check if there are enough resources to build the property
             if (gold.Value >= property.GoldCost && lumber.Value >= property.LumberCost)
             {
+                // deduct the cost of the property from the resources
                 gold.ChangeQuantity(-property.GoldCost);
                 lumber.ChangeQuantity(-property.LumberCost);
 
+                // set the image of the selected grid position to the property image
                 grid[selectedPosition.X, selectedPosition.Y].Image = Image.FromFile(property.ImageFileName);
-                properties.Add(property); // add the property to the list
+                // add the property to the list of properties
+                properties.Add(property);
             }
             else
             {
+                // show a message if there are not enough resources
                 MessageBox.Show("Not enough resources!");
             }
         }
     }
+
 
     private void btnNextDay_Click(object sender, EventArgs e)
     {
@@ -182,6 +195,7 @@ namespace bobFinal
         int totalLumberGain = 0;
         int totalDiamondGain = 0;
 
+        // calculate the total resource gain from all properties
         foreach (var property in properties)
         {
             totalGoldGain += property.DailyGoldGain;
@@ -189,6 +203,7 @@ namespace bobFinal
             totalDiamondGain += property.DailyDiamondGain;
         }
 
+        // update the resource quantities with the total gains
         gold.ChangeQuantity(totalGoldGain);
         lumber.ChangeQuantity(totalLumberGain);
         diamond.ChangeQuantity(totalDiamondGain);
@@ -197,6 +212,7 @@ namespace bobFinal
         Market.UpdateConversionRates(resources);
         RefreshMarketPrices();
     }
+
 
     public void RefreshMarketPrices()
     {
@@ -238,30 +254,35 @@ namespace bobFinal
     {
         currentAction = buyOrSell;
 
+        // check if a resource is selected in the market list view
         if (listViewMarket.SelectedItems.Count > 0)
         {
             string selectedItem = listViewMarket.SelectedItems[0].SubItems[1].Text;
+            // find the selected resource from the list of resources
             selectedResource = resources.Find(r => r.Name == selectedItem);
 
             if (selectedResource != null)
             {
+                // make the buy panel visible and update the cost
                 pnlBuy.Visible = true;
                 UpdateCost(buyOrSell);
             }
             else
             {
+                // show a message if the resource is not found
                 MessageBox.Show("Resource not found!");
             }
         }
         else
         {
+            // show a message if no resource is selected
             MessageBox.Show($"Please select a resource to {buyOrSell}.");
         }
     }
 
     private void numericUpDownAmount_ValueChanged(object sender, EventArgs e)
     {
-        UpdateCost(currentAction); // Use the stored action type
+        UpdateCost(currentAction); // using the stored action type
     }
 
     private void btnConfirmMarketAction_Click(object sender, EventArgs e)

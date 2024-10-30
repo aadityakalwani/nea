@@ -337,7 +337,7 @@
             this.label1.Size = new System.Drawing.Size(239, 27);
             this.label1.TabIndex = 27;
             this.label1.Text = "enter amount to buy/sell";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.label1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             //
             // btnCancelMarketAction
             //

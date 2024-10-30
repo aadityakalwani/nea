@@ -38,6 +38,18 @@ namespace bobFinal
         initializeMarketPrices();
     }
 
+    private void initializeMarketPrices()
+    {
+        listViewMarket.Items.Clear();
+        foreach (var resource in resources)
+        {
+            if (resource.Name != "Dollars")
+            {
+                string conversionRate = $"{Math.Round(resource.ConversionRate, 2)} dollars";
+                listViewMarket.Items.Add(new ListViewItem(new[] { conversionRate, resource.Name }));
+            }
+        }
+    }
 
     private void initializeGrid()
     {
@@ -84,6 +96,8 @@ namespace bobFinal
         gold = new Resource("Gold", 100, 1000, progressBarGold, textBoxGoldAmount, 2);
         lumber = new Resource("Lumber", 100, 1000, progressBarLumber, textBoxLumberAmount, 3);
         diamond = new Resource("Diamond", 50, 1000, progressBarDiamond, textBoxDiamondAmount, 10);
+
+        resources = new List<Resource> { dollars, gold, lumber, diamond };
     }
 
     private void initializePrices()
@@ -92,21 +106,29 @@ namespace bobFinal
         foreach (Property property in listOfAllProperties)
         {
             string cost = $"{property.GoldCost} Gold, {property.LumberCost} Lumber";
-            string gain = $"{property.DailyGoldGain} Gold, {property.DailyLumberGain} Lumber, +{property.DailyDiamondGain} Diamond";
+            string gain = string.Empty;
+
+            if (property.DailyGoldGain > 0)
+            {
+                gain += $"+{property.DailyGoldGain} Gold, ";
+            }
+            if (property.DailyLumberGain > 0)
+            {
+                gain += $"+{property.DailyLumberGain} Lumber, ";
+            }
+            if (property.DailyDiamondGain > 0)
+            {
+                gain += $"+{property.DailyDiamondGain} Diamond, ";
+            }
+
+            // Remove the trailing comma and space if any
+            if (gain.EndsWith(", "))
+            {
+                gain = gain.Substring(0, gain.Length - 2);
+            }
+
             listViewPrices.Items.Add(new ListViewItem(new[] { property.GetType().Name, cost, gain }));
         }
-    }
-
-    private void initializeMarketPrices()
-    {
-        resources = new List<Resource> { gold, lumber, diamond };
-
-        foreach (var resource in resources)
-        {
-            string conversionRate = $"{resource.ConversionRate} dollars";
-            listViewMarket.Items.Add(new ListViewItem(new[] { conversionRate, resource.Name }));
-        }
-        RefreshMarketPrices();
     }
 
     private void initializeStartingProperties()
@@ -216,8 +238,11 @@ namespace bobFinal
         listViewMarket.Items.Clear();
         foreach (var resource in resources)
         {
-            string conversionRate = $"{Math.Round(resource.ConversionRate, 2)} dollars";
-            listViewMarket.Items.Add(new ListViewItem(new[] { conversionRate, resource.Name }));
+            if (resource.Name != "Dollars")
+            {
+                string conversionRate = $"{Math.Round(resource.ConversionRate, 2)} dollars";
+                listViewMarket.Items.Add(new ListViewItem(new[] { conversionRate, resource.Name }));
+            }
         }
     }
 

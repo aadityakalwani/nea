@@ -2,7 +2,6 @@ test if the refreshing of market data is working on every new day
 
 current issues:
 - the panel label should update whenever a new item is selected/toggled
-- issue where you're gaining too much gold per day
 
 future ideas:
 - events that affect the market prices such as stock market crashes or booms

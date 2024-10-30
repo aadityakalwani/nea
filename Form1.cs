@@ -19,15 +19,7 @@ namespace bobFinal
     private Resource diamond;
     private Resource selectedResource;
     private string currentAction;
-    private List<Property> properties = new List<Property>
-    {
-        new House(),
-        new Farm(),
-        new Sawmill(),
-        new Mine(),
-        new Cafe()
-    };
-
+    private List<Property> properties;
     private List<Resource> resources;
 
 
@@ -36,9 +28,9 @@ namespace bobFinal
         InitializeComponent();
         InitializeGrid();
         InitialiseLoot();
+        InitialiseStartingProperties();
         InitialisePrices();
         InitialiseMarketPrices();
-        InitialiseStartingProperties();
     }
 
     private void InitializeGrid()
@@ -112,12 +104,14 @@ namespace bobFinal
 
     private void InitialiseStartingProperties()
     {
-        // Create and place the initial sawmill
+        properties = new List<Property>();
+
+        // create and place the initial sawmill
         Property sawmill = new Sawmill();
         grid[10, 10].Image = Image.FromFile(sawmill.ImageFileName);
         properties.Add(sawmill);
 
-        // Create and place the initial house
+        // create and place the initial house
         Property house = new House();
         grid[15, 15].Image = Image.FromFile(house.ImageFileName);
         properties.Add(house);
@@ -221,7 +215,6 @@ namespace bobFinal
         Market.UpdateConversionRates(resources);
         RefreshMarketPrices();
     }
-
 
     private void RefreshMarketPrices()
     {

@@ -8,6 +8,7 @@ namespace bobFinal
 {
     public partial class Form1 : Form
 {
+
     private PictureBox[,] grid;
     private Point selectedPosition;
     private const int gridSize = 30;

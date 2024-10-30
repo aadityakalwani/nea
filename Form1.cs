@@ -19,7 +19,15 @@ namespace bobFinal
     private Resource diamond;
     private Resource selectedResource;
     private string currentAction;
-    private List<Property> properties;
+    private List<Property> properties = new List<Property>
+    {
+        new House(),
+        new Farm(),
+        new Sawmill(),
+        new Mine(),
+        new Cafe()
+    };
+
     private List<Resource> resources;
 
 
@@ -28,9 +36,9 @@ namespace bobFinal
         InitializeComponent();
         InitializeGrid();
         InitialiseLoot();
-        InitialiseStartingProperties();
         InitialisePrices();
         InitialiseMarketPrices();
+        InitialiseStartingProperties();
     }
 
     private void InitializeGrid()
@@ -104,14 +112,12 @@ namespace bobFinal
 
     private void InitialiseStartingProperties()
     {
-        properties = new List<Property>();
-
-        // create and place the initial sawmill
+        // Create and place the initial sawmill
         Property sawmill = new Sawmill();
         grid[10, 10].Image = Image.FromFile(sawmill.ImageFileName);
         properties.Add(sawmill);
 
-        // create and place the initial house
+        // Create and place the initial house
         Property house = new House();
         grid[15, 15].Image = Image.FromFile(house.ImageFileName);
         properties.Add(house);
@@ -162,31 +168,22 @@ namespace bobFinal
 
         if (property != null)
         {
-            // check if the selected tile is empty
-            if (grid[selectedPosition.X, selectedPosition.Y].ImageLocation == "empty.jpg")
+            // check if there are enough resources to build the property
+            if (gold.Value >= property.GoldCost && lumber.Value >= property.LumberCost)
             {
-                // check if there are enough resources to build the property
-                if (gold.Value >= property.GoldCost && lumber.Value >= property.LumberCost)
-                {
-                    // deduct the cost of the property from the resources
-                    gold.ChangeQuantity(-property.GoldCost);
-                    lumber.ChangeQuantity(-property.LumberCost);
+                // deduct the cost of the property from the resources
+                gold.ChangeQuantity(-property.GoldCost);
+                lumber.ChangeQuantity(-property.LumberCost);
 
-                    // set the image of the selected grid position to the property image
-                    grid[selectedPosition.X, selectedPosition.Y].Image = Image.FromFile(property.ImageFileName);
-                    // add the property to the list of properties
-                    properties.Add(property);
-                }
-                else
-                {
-                    // show a message if there are not enough resources
-                    MessageBox.Show("Not enough resources!");
-                }
+                // set the image of the selected grid position to the property image
+                grid[selectedPosition.X, selectedPosition.Y].Image = Image.FromFile(property.ImageFileName);
+                // add the property to the list of properties
+                properties.Add(property);
             }
             else
             {
-                // show a message if the tile is not empty
-                MessageBox.Show("Tile is already occupied!");
+                // show a message if there are not enough resources
+                MessageBox.Show("Not enough resources!");
             }
         }
     }
@@ -215,6 +212,7 @@ namespace bobFinal
         Market.UpdateConversionRates(resources);
         RefreshMarketPrices();
     }
+
 
     private void RefreshMarketPrices()
     {

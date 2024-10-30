@@ -230,10 +230,11 @@ namespace bobFinal
 
         // update market prices
         Market.UpdateConversionRates(resources);
-        RefreshMarketPrices();
+        updateMarketPrices();
+        UpdateMarketPanel();
     }
 
-    private void RefreshMarketPrices()
+    private void updateMarketPrices()
     {
         listViewMarket.Items.Clear();
         foreach (var resource in resources)
@@ -246,6 +247,26 @@ namespace bobFinal
         }
     }
 
+    private void UpdateMarketPanel()
+    {
+        if (selectedResource != null)
+        {
+            int amount = (int)numericUpDownAmount.Value;
+            float cost = amount * selectedResource.ConversionRate;
+
+            if (currentAction == "buy")
+            {
+                label1.Text = $"Enter amount of {selectedResource.Name} to buy";
+                lblCost.Text = $"Cost: {Math.Round(cost, 2)} dollars";
+            }
+            else
+            {
+                label1.Text = $"Enter amount of {selectedResource.Name} to sell";
+                lblCost.Text = $"Value: {Math.Round(cost, 2)} dollars";
+            }
+        }
+    }
+
     private void UpdateCost(string buyOrSell)
     {
         int amount = (int)numericUpDownAmount.Value;
@@ -253,7 +274,7 @@ namespace bobFinal
 
         if (buyOrSell == "buy")
         {
-            lblCost.Text = $"Cost: {cost} dollars";
+            lblCost.Text = $"Cost: {Math.Round(cost, 2)} dollars";
         }
         else
         {

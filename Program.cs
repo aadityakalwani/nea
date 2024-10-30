@@ -142,7 +142,7 @@ namespace bobFinal
                 ProgressBar.Value = (int)(Value * ProgressBar.Maximum / MaxValue);
             }
 
-            TextBox.Text = Value.ToString();
+            TextBox.Text = Math.Round(Value, 2).ToString();
         }
     }
 

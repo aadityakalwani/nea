@@ -19,29 +19,20 @@ namespace bobFinal
     private Resource diamond;
     private Resource selectedResource;
     private string currentAction;
-    private List<Property> properties = new List<Property>
-    {
-        new House(),
-        new Farm(),
-        new Sawmill(),
-        new Mine(),
-        new Cafe()
-    };
-
+    private List<Property> properties = new List<Property>();
     private List<Resource> resources;
-
 
     public Form1()
     {
-        InitializeComponent();
-        InitializeGrid();
-        InitialiseLoot();
-        InitialisePrices();
-        InitialiseMarketPrices();
-        InitialiseStartingProperties();
+        initialiseComponent();
+        initialiseGrid();
+        initialiseLoot();
+        initialiseStartingProperties();
+        initialisePrices();
+        initialiseMarketPrices();
     }
 
-    private void InitializeGrid()
+    private void initialiseGrid()
     {
         // create a new grid of PictureBox objects
         grid = new PictureBox[gridSize, gridSize];
@@ -55,7 +46,7 @@ namespace bobFinal
         {
             for (int j = 0; j < gridSize; j++)
             {
-                // initialize each PictureBox in the grid
+                // initialise each PictureBox in the grid
                 grid[i, j] = new PictureBox
                 {
                     Width = tileSize,
@@ -80,7 +71,7 @@ namespace bobFinal
         grid[5, 5].Image = Image.FromFile("TownHallBottomRight.jpg");
     }
 
-    private void InitialiseLoot()
+    private void initialiseLoot()
     {
         dollars = new Resource("Dollars", 100, 1000, progressBarDollars, textBoxDollarsAmount, 1);
         gold = new Resource("Gold", 100, 1000, progressBarGold, textBoxGoldAmount, 2);
@@ -88,7 +79,7 @@ namespace bobFinal
         diamond = new Resource("Diamond", 50, 1000, progressBarDiamond, textBoxDiamondAmount, 10);
     }
 
-    private void InitialisePrices()
+    private void initialisePrices()
     {
         foreach (var property in properties)
         {
@@ -98,7 +89,7 @@ namespace bobFinal
         }
     }
 
-    private void InitialiseMarketPrices()
+    private void initialiseMarketPrices()
     {
         resources = new List<Resource> { gold, lumber, diamond };
 
@@ -110,16 +101,16 @@ namespace bobFinal
         RefreshMarketPrices();
     }
 
-    private void InitialiseStartingProperties()
+    private void initialiseStartingProperties()
     {
         // Create and place the initial sawmill
-        Property sawmill = new Sawmill();
-        grid[10, 10].Image = Image.FromFile(sawmill.ImageFileName);
+        Property sawmill = new Sawmill(10, 10);
+        grid[sawmill.XCoordinate, sawmill.YCoordinate].Image = Image.FromFile(sawmill.ImageFileName);
         properties.Add(sawmill);
 
         // Create and place the initial house
-        Property house = new House();
-        grid[15, 15].Image = Image.FromFile(house.ImageFileName);
+        Property house = new House(15, 15);
+        grid[house.XCoordinate, house.YCoordinate].Image = Image.FromFile(house.ImageFileName);
         properties.Add(house);
     }
 
@@ -149,19 +140,19 @@ namespace bobFinal
         switch (selectedBuilding)
         {
             case "House":
-                property = new House();
+                property = new House(selectedPosition.X, selectedPosition.Y);
                 break;
             case "Farm":
-                property = new Farm();
+                property = new Farm(selectedPosition.X, selectedPosition.Y);
                 break;
             case "Sawmill":
-                property = new Sawmill();
+                property = new Sawmill(selectedPosition.X, selectedPosition.Y);
                 break;
             case "Mine":
-                property = new Mine();
+                property = new Mine(selectedPosition.X, selectedPosition.Y);
                 break;
             case "Cafe":
-                property = new Cafe();
+                property = new Cafe(selectedPosition.X, selectedPosition.Y);
                 break;
             // add cases for other buildings
         }
@@ -176,7 +167,7 @@ namespace bobFinal
                 lumber.ChangeQuantity(-property.LumberCost);
 
                 // set the image of the selected grid position to the property image
-                grid[selectedPosition.X, selectedPosition.Y].Image = Image.FromFile(property.ImageFileName);
+                grid[property.XCoordinate, property.YCoordinate].Image = Image.FromFile(property.ImageFileName);
                 // add the property to the list of properties
                 properties.Add(property);
             }
@@ -187,7 +178,6 @@ namespace bobFinal
             }
         }
     }
-
 
     private void btnNextDay_Click(object sender, EventArgs e)
     {
@@ -213,7 +203,6 @@ namespace bobFinal
         RefreshMarketPrices();
     }
 
-
     private void RefreshMarketPrices()
     {
         listViewMarket.Items.Clear();
@@ -235,7 +224,7 @@ namespace bobFinal
         }
         else
         {
-            lblCost.Text = $"Value: {cost} dollars";
+            lblCost.Text = $"Value: {Math.Round(cost, 2)} dollars";
         }
     }
 
@@ -326,13 +315,27 @@ namespace bobFinal
                     MessageBox.Show("Not enough resources!");
                 }
             }
-
         }
     }
 
     private void btnCancelMarketAction_Click(object sender, EventArgs e)
     {
         pnlBuy.Visible = false;
+    }
+
+    /// <summary>
+    /// Required method for Designer support - do not modify
+    /// the contents of this method with the code editor.
+    /// </summary>
+    private void InitializeComponent()
+    {
+        this.SuspendLayout();
+        //
+        // Form1
+        //
+        this.ClientSize = new System.Drawing.Size(284, 261);
+        this.Name = "Form1";
+        this.ResumeLayout(false);
     }
 }
 }

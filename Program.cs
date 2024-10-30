@@ -26,11 +26,19 @@ namespace bobFinal
         public int DailyLumberGain { get; protected set; }
         public int DailyDiamondGain { get; protected set; }
         public string ImageFileName { get; protected set; }
+        public int XCoordinate { get; private set; }
+        public int YCoordinate { get; private set; }
+
+        protected Property(int x, int y)
+        {
+            XCoordinate = x;
+            YCoordinate = y;
+        }
     }
 
     public class House : Property
     {
-        public House()
+        public House(int x, int y) : base(x, y)
         {
             GoldCost = 100;
             LumberCost = 50;
@@ -43,7 +51,7 @@ namespace bobFinal
 
     public class Farm : Property
     {
-        public Farm()
+        public Farm(int x, int y) : base(x, y)
         {
             GoldCost = 100;
             LumberCost = 100;
@@ -56,7 +64,7 @@ namespace bobFinal
 
     public class Sawmill : Property
     {
-        public Sawmill()
+        public Sawmill(int x, int y) : base(x, y)
         {
             GoldCost = 200;
             LumberCost = 100;
@@ -69,7 +77,7 @@ namespace bobFinal
 
     public class Mine : Property
     {
-        public Mine()
+        public Mine(int x, int y) : base(x, y)
         {
             GoldCost = 400;
             LumberCost = 200;
@@ -82,7 +90,7 @@ namespace bobFinal
 
     public class Cafe : Property
     {
-        public Cafe()
+        public Cafe(int x, int y) : base(x, y)
         {
             GoldCost = 200;
             LumberCost = 100;

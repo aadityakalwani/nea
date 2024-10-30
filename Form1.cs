@@ -168,22 +168,31 @@ namespace bobFinal
 
         if (property != null)
         {
-            // check if there are enough resources to build the property
-            if (gold.Value >= property.GoldCost && lumber.Value >= property.LumberCost)
+            // check if the selected tile is empty
+            if (grid[selectedPosition.X, selectedPosition.Y].ImageLocation == "empty.jpg")
             {
-                // deduct the cost of the property from the resources
-                gold.ChangeQuantity(-property.GoldCost);
-                lumber.ChangeQuantity(-property.LumberCost);
+                // check if there are enough resources to build the property
+                if (gold.Value >= property.GoldCost && lumber.Value >= property.LumberCost)
+                {
+                    // deduct the cost of the property from the resources
+                    gold.ChangeQuantity(-property.GoldCost);
+                    lumber.ChangeQuantity(-property.LumberCost);
 
-                // set the image of the selected grid position to the property image
-                grid[selectedPosition.X, selectedPosition.Y].Image = Image.FromFile(property.ImageFileName);
-                // add the property to the list of properties
-                properties.Add(property);
+                    // set the image of the selected grid position to the property image
+                    grid[selectedPosition.X, selectedPosition.Y].Image = Image.FromFile(property.ImageFileName);
+                    // add the property to the list of properties
+                    properties.Add(property);
+                }
+                else
+                {
+                    // show a message if there are not enough resources
+                    MessageBox.Show("Not enough resources!");
+                }
             }
             else
             {
-                // show a message if there are not enough resources
-                MessageBox.Show("Not enough resources!");
+                // show a message if the tile is not empty
+                MessageBox.Show("Tile is already occupied!");
             }
         }
     }

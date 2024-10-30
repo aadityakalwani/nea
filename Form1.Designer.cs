@@ -75,17 +75,17 @@
             // columnHeaderBuilding
             //
             this.columnHeaderBuilding.Text = "Building";
-            this.columnHeaderBuilding.Width = 172;
+            this.columnHeaderBuilding.Width = 123;
             //
             // columnHeaderCost
             //
             this.columnHeaderCost.Text = "Cost";
-            this.columnHeaderCost.Width = 163;
+            this.columnHeaderCost.Width = 198;
             //
             // columnHeaderGain
             //
             this.columnHeaderGain.Text = "Daily Gain";
-            this.columnHeaderGain.Width = 200;
+            this.columnHeaderGain.Width = 267;
             //
             // listViewPrices
             //
@@ -95,10 +95,10 @@
             this.listViewPrices.FullRowSelect = true;
             this.listViewPrices.GridLines = true;
             this.listViewPrices.HideSelection = false;
-            this.listViewPrices.Location = new System.Drawing.Point(304, 360);
+            this.listViewPrices.Location = new System.Drawing.Point(304, 347);
             this.listViewPrices.Margin = new System.Windows.Forms.Padding(2);
             this.listViewPrices.Name = "listViewPrices";
-            this.listViewPrices.Size = new System.Drawing.Size(574, 201);
+            this.listViewPrices.Size = new System.Drawing.Size(610, 201);
             this.listViewPrices.TabIndex = 2;
             this.listViewPrices.UseCompatibleStateImageBehavior = false;
             this.listViewPrices.View = System.Windows.Forms.View.Details;

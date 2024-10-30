@@ -3,7 +3,6 @@ test if the refreshing of market data is working on every new day
 current issues:
 - the panel label should update whenever a new item is selected/toggled
 - round the resource labels to 2 decimal places
-- the list of properties to build is not populating correctly
 
 future ideas:
 - events that affect the market prices such as stock market crashes or booms

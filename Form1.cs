@@ -19,6 +19,12 @@ namespace bobFinal
     private Resource diamond;
     private Resource selectedResource;
     private string currentAction;
+
+    private List<Property> listOfAllProperties = new List<Property>
+    {
+        new House(0, 0), new Farm(0, 0), new Sawmill(0, 0), new Mine(0, 0), new Cafe(0, 0)
+    };
+
     private List<Property> properties = new List<Property>();
     private List<Resource> resources;
 
@@ -82,10 +88,11 @@ namespace bobFinal
 
     private void initializePrices()
     {
-        foreach (var property in properties)
+        listViewPrices.Items.Clear();
+        foreach (Property property in listOfAllProperties)
         {
             string cost = $"{property.GoldCost} Gold, {property.LumberCost} Lumber";
-            string gain = $"+{property.DailyGoldGain} Gold, +{property.DailyLumberGain} Lumber, +{property.DailyDiamondGain} Diamond";
+            string gain = $"{property.DailyGoldGain} Gold, {property.DailyLumberGain} Lumber, +{property.DailyDiamondGain} Diamond";
             listViewPrices.Items.Add(new ListViewItem(new[] { property.GetType().Name, cost, gain }));
         }
     }

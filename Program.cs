@@ -154,7 +154,7 @@ namespace bobFinal
         {
             foreach (var resource in resources)
             {
-                // Fluctuate the conversion rate by +/- 10%
+                // fluctuate the conversion rate by upto +/- 10%
                 int fluctuation = random.Next(-10, 11);
                 resource.ConversionRate += resource.ConversionRate * fluctuation / 100;
 

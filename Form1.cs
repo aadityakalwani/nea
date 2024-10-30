@@ -110,18 +110,18 @@ namespace bobFinal
 
             if (property.DailyGoldGain > 0)
             {
-                gain += $"+{property.DailyGoldGain} Gold, ";
+                gain += $"{property.DailyGoldGain} Gold, ";
             }
             if (property.DailyLumberGain > 0)
             {
-                gain += $"+{property.DailyLumberGain} Lumber, ";
+                gain += $"{property.DailyLumberGain} Lumber, ";
             }
             if (property.DailyDiamondGain > 0)
             {
-                gain += $"+{property.DailyDiamondGain} Diamond, ";
+                gain += $"{property.DailyDiamondGain} Diamond, ";
             }
 
-            // Remove the trailing comma and space if any
+            // remove the trailing comma and space (if any)
             if (gain.EndsWith(", "))
             {
                 gain = gain.Substring(0, gain.Length - 2);
@@ -256,12 +256,12 @@ namespace bobFinal
 
             if (currentAction == "buy")
             {
-                label1.Text = $"Enter amount of {selectedResource.Name} to buy";
+                label1.Text = $"Enter amount of {selectedResource.Name.ToLower()} to buy";
                 lblCost.Text = $"Cost: {Math.Round(cost, 2)} dollars";
             }
             else
             {
-                label1.Text = $"Enter amount of {selectedResource.Name} to sell";
+                label1.Text = $"Enter amount of {selectedResource.Name.ToLower()} to sell";
                 lblCost.Text = $"Value: {Math.Round(cost, 2)} dollars";
             }
         }

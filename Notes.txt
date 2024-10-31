@@ -3,17 +3,15 @@ current issues:
 
 immediate future ideas:
 - more resources
+- ability to sell a property (for 80% of the price)
+- separate pages out into different forms for better UI/UX
+- upgradable storage capacity
 
 future ideas:
 - events that affect the market prices such as stock market crashes or booms
 - history of properties upon click - databases and stuff
 - path tiles to connect properties to the town hall
-- idea of 'villagers or visitors to the town that effect the market prices
-- upgradable tile size of the map
-- ability to sell a property (for 80% of the price)
+- idea of villagers or visitors to the town that effect the market prices
+- upgradable tile size of the map - start with 10x10, upgrade to 15x15, etc
 - 'teaching' mode where the player can learn about business and economics
 - tutorial / introduction to the game upon start
-- upgrade storage capacity
-- separate UI items for things like market to make things look better
-
-- copy other ideas from GoldDiggerzz

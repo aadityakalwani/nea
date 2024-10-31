@@ -8,7 +8,6 @@ namespace bobFinal
 {
     public partial class Form1 : Form
 {
-
     private PictureBox[,] grid;
     private Point selectedPosition;
     private const int gridSize = 30;
@@ -20,6 +19,7 @@ namespace bobFinal
     private Resource diamond;
     private Resource selectedResource;
     private string currentAction;
+    private DateTime currentDate = new DateTime(2021, 1, 1);
 
     private List<Property> listOfAllProperties = new List<Property>
     {
@@ -212,6 +212,9 @@ namespace bobFinal
 
     private void btnNextDay_Click(object sender, EventArgs e)
     {
+        currentDate = currentDate.AddDays(1);
+        lblDate.Text = currentDate.ToString("dd MMMM yyyy");
+
         int totalGoldGain = 0;
         int totalLumberGain = 0;
         int totalDiamondGain = 0;

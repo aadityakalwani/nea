@@ -73,7 +73,7 @@ namespace bobFinal
                     Height = tileSize,
                     Location = new Point(i * tileSize, j * tileSize),
                     BorderStyle = BorderStyle.FixedSingle,
-                    Image = Image.FromFile("empty.jpg"),
+                    Image = Image.FromFile("Images/empty.jpg"),
                     SizeMode = PictureBoxSizeMode.StretchImage,
                     Tag = new Point(i, j) // store the position in the tag property
                 };
@@ -85,10 +85,10 @@ namespace bobFinal
         }
 
         // set initial images for specific grid positions
-        grid[4, 4].Image = Image.FromFile("TownHallTopLeft.jpg");
-        grid[4, 5].Image = Image.FromFile("TownHallBottomLeft.jpg");
-        grid[5, 4].Image = Image.FromFile("TownHallTopRight.jpg");
-        grid[5, 5].Image = Image.FromFile("TownHallBottomRight.jpg");
+        grid[4, 4].Image = Image.FromFile("Images/TownHallTopLeft.jpg");
+        grid[4, 5].Image = Image.FromFile("Images/TownHallBottomLeft.jpg");
+        grid[5, 4].Image = Image.FromFile("Images/TownHallTopRight.jpg");
+        grid[5, 5].Image = Image.FromFile("Images/TownHallBottomRight.jpg");
     }
 
     private void initializeLoot()
@@ -213,7 +213,7 @@ namespace bobFinal
     private void btnNextDay_Click(object sender, EventArgs e)
     {
         currentDate = currentDate.AddDays(1);
-        lblDate.Text = currentDate.ToString("dd MMMM yyyy");
+        lblDate.Text = "Today's Date:\n" + currentDate.ToString("dd MMMM yyyy");
 
         int totalGoldGain = 0;
         int totalLumberGain = 0;

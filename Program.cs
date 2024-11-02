@@ -45,7 +45,7 @@ namespace bobFinal
             DailyGoldGain = 30;
             DailyLumberGain = 0;
             DailyDiamondGain = 0;
-            ImageFileName = "HouseTile.jpg";
+            ImageFileName = "Images/HouseTile.jpg";
         }
     }
 
@@ -58,7 +58,7 @@ namespace bobFinal
             DailyGoldGain = 60;
             DailyLumberGain = 0;
             DailyDiamondGain = 0;
-            ImageFileName = "FarmTile.jpg";
+            ImageFileName = "Images/FarmTile.jpg";
         }
     }
 
@@ -71,7 +71,7 @@ namespace bobFinal
             DailyGoldGain = 0;
             DailyLumberGain = 30;
             DailyDiamondGain = 0;
-            ImageFileName = "SawmillTile.jpg";
+            ImageFileName = "Images/SawmillTile.jpg";
         }
     }
 
@@ -84,7 +84,7 @@ namespace bobFinal
             DailyGoldGain = 200;
             DailyLumberGain = 0;
             DailyDiamondGain = 0;
-            ImageFileName = "MineTile.jpg";
+            ImageFileName = "Images/MineTile.jpg";
         }
     }
 
@@ -97,7 +97,7 @@ namespace bobFinal
             DailyGoldGain = 100;
             DailyLumberGain = 0;
             DailyDiamondGain = 0;
-            ImageFileName = "CafeTile.jpg";
+            ImageFileName = "Images/CafeTile.jpg";
         }
     }
 
@@ -129,7 +129,7 @@ namespace bobFinal
 
         private void UpdateUI()
         {
-            if (Value == MaxValue)
+            if (Value >= MaxValue)
             {
                 ProgressBar.Value = ProgressBar.Maximum;
             }

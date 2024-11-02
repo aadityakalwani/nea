@@ -1,4 +1,5 @@
 current issues:
+- you an spam 'new day' button to get infinite money
 
 immediate future ideas:
 - more resources

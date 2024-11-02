@@ -1,5 +1,4 @@
 current issues:
-- you can add a property to a tile that is already occupied
 
 immediate future ideas:
 - more resources
@@ -12,6 +11,6 @@ future ideas:
 - history of properties upon click - databases and stuff
 - path tiles to connect properties to the town hall
 - idea of villagers or visitors to the town that effect the market prices
-- upgradable tile size of the map - start with 10x10, upgrade to 15x15, etc
+- upgradable tile size of the map - start with 10x10, upgrade to 15x15, etc.
 - 'teaching' mode where the player can learn about business and economics
 - tutorial / introduction to the game upon start

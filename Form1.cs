@@ -8,7 +8,7 @@ namespace bobFinal
 {
     public partial class Form1 : Form
 {
-    private PictureBox[,] grid;
+    private CustomPictureBox[,] grid;
     private Point selectedPosition;
     private const int gridSize = 30;
     private const int tileSize = 32;
@@ -55,7 +55,7 @@ namespace bobFinal
     private void initializeGrid()
     {
         // create a new grid of PictureBox objects
-        grid = new PictureBox[gridSize, gridSize];
+        grid = new CustomPictureBox[gridSize, gridSize];
         int panelWidth = gridSize * tileSize;
         int panelHeight = gridSize * tileSize;
 
@@ -67,7 +67,7 @@ namespace bobFinal
             for (int j = 0; j < gridSize; j++)
             {
                 // initialize each PictureBox in the grid
-                grid[i, j] = new PictureBox
+                grid[i, j] = new CustomPictureBox
                 {
                     Width = tileSize,
                     Height = tileSize,
@@ -75,6 +75,7 @@ namespace bobFinal
                     BorderStyle = BorderStyle.FixedSingle,
                     Image = Image.FromFile("Images/empty.jpg"),
                     SizeMode = PictureBoxSizeMode.StretchImage,
+                    BuiltUpon = false,
                     Tag = new Point(i, j) // store the position in the tag property
                 };
                 // add click event handler to each PictureBox
@@ -86,9 +87,13 @@ namespace bobFinal
 
         // set initial images for specific grid positions
         grid[4, 4].Image = Image.FromFile("Images/TownHallTopLeft.jpg");
+        grid[4,4].BuiltUpon = true;
         grid[4, 5].Image = Image.FromFile("Images/TownHallBottomLeft.jpg");
+        grid[4, 5].BuiltUpon = true;
         grid[5, 4].Image = Image.FromFile("Images/TownHallTopRight.jpg");
+        grid[5, 4].BuiltUpon = true;
         grid[5, 5].Image = Image.FromFile("Images/TownHallBottomRight.jpg");
+        grid[5, 5].BuiltUpon = true;
     }
 
     private void initializeLoot()
@@ -137,11 +142,13 @@ namespace bobFinal
         // Create and place the initial sawmill
         Property sawmill = new Sawmill(10, 10);
         grid[sawmill.XCoordinate, sawmill.YCoordinate].Image = Image.FromFile(sawmill.ImageFileName);
+        grid[sawmill.XCoordinate, sawmill.YCoordinate].BuiltUpon = true;
         properties.Add(sawmill);
 
         // Create and place the initial house
         Property house = new House(15, 15);
         grid[house.XCoordinate, house.YCoordinate].Image = Image.FromFile(house.ImageFileName);
+        grid[house.XCoordinate, house.YCoordinate].BuiltUpon = true;
         properties.Add(house);
     }
 
@@ -167,7 +174,7 @@ namespace bobFinal
     {
         Property property = null;
 
-        // determine the type of property to build based on selectedBuilding
+        // Determine the type of property to build based on selectedBuilding
         switch (selectedBuilding)
         {
             case "House":
@@ -185,26 +192,33 @@ namespace bobFinal
             case "Cafe":
                 property = new Cafe(selectedPosition.X, selectedPosition.Y);
                 break;
-            // add cases for other buildings
         }
 
         if (property != null)
         {
-            // check if there are enough resources to build the property
+            var selectedTile = grid[selectedPosition.X, selectedPosition.Y];
+
+            // Check if the selected tile is empty by verifying the image and BuiltUpon status
+            if (selectedTile.BuiltUpon || (selectedTile.ImageLocation != null && !selectedTile.ImageLocation.Contains("empty.jpg")))
+            {
+                MessageBox.Show("You can only build on an empty tile!");
+                return;
+            }
+
+            // Check if there are enough resources to build the property
             if (gold.Value >= property.GoldCost && lumber.Value >= property.LumberCost)
             {
-                // deduct the cost of the property from the resources
+                // Deduct the cost of the property from the resources
                 gold.ChangeQuantity(-property.GoldCost);
                 lumber.ChangeQuantity(-property.LumberCost);
 
-                // set the image of the selected grid position to the property image
-                grid[property.XCoordinate, property.YCoordinate].Image = Image.FromFile(property.ImageFileName);
-                // add the property to the list of properties
-                properties.Add(property);
+                // Set the image of the selected grid position to the property image
+                selectedTile.Image = Image.FromFile(property.ImageFileName);
+                selectedTile.BuiltUpon = true; // Mark tile as built upon
+                properties.Add(property); // Add the property to the list
             }
             else
             {
-                // show a message if there are not enough resources
                 MessageBox.Show("Not enough resources!");
             }
         }

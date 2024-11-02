@@ -18,6 +18,11 @@ namespace bobFinal
         }
     }
 
+    public class CustomPictureBox : PictureBox
+    {
+        public bool BuiltUpon { get; set; } = false;
+    }
+
     public abstract class Property
     {
         public int GoldCost { get; protected set; }

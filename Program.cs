@@ -20,7 +20,7 @@ namespace bobFinal
 
     public class CustomPictureBox : PictureBox
     {
-        public bool BuiltUpon { get; set; } = false;
+        public bool BuiltUpon { get; set; }
     }
 
     public abstract class Property
@@ -110,9 +110,9 @@ namespace bobFinal
     {
         public string Name { get; }
         public float Value { get; private set; }
-        public int MaxValue { get; }
-        public ProgressBar ProgressBar { get; }
-        public TextBox TextBox { get; }
+        private int MaxValue { get; }
+        private ProgressBar ProgressBar { get; }
+        private TextBox TextBox { get; }
         public float ConversionRate { get; set; }
 
         public Resource(string name, float value, int maxValue, ProgressBar progressBar, TextBox textBox, float conversionRate)
@@ -123,16 +123,16 @@ namespace bobFinal
             ProgressBar = progressBar;
             TextBox = textBox;
             ConversionRate = conversionRate;
-            UpdateUI();
+            UpdateUi();
         }
 
         public void ChangeQuantity(float amount)
         {
             Value = Math.Max(0, Math.Min(MaxValue, Value + amount));
-            UpdateUI();
+            UpdateUi();
         }
 
-        private void UpdateUI()
+        private void UpdateUi()
         {
             if (Value >= MaxValue)
             {
@@ -147,20 +147,20 @@ namespace bobFinal
                 ProgressBar.Value = (int)(Value * ProgressBar.Maximum / MaxValue);
             }
 
-            TextBox.Text = Math.Round(Value, 2).ToString();
+            TextBox.Text = $@"{Math.Round(Value, 2)}";
         }
     }
 
     public static class Market
     {
-        private static Random random = new Random();
+        private static readonly Random Random = new Random();
 
         public static void UpdateConversionRates(List<Resource> resources)
         {
             foreach (var resource in resources)
             {
                 // fluctuate the conversion rate by upto +/- 10%
-                int fluctuation = random.Next(-10, 11);
+                int fluctuation = Random.Next(-10, 11);
                 resource.ConversionRate += resource.ConversionRate * fluctuation / 100;
 
                 // ensure the conversion rate is at least 1

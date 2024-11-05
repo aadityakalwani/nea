@@ -1,11 +1,13 @@
-﻿namespace bobFinal
+﻿using System.ComponentModel;
+
+namespace bobFinal
 {
     partial class Form1
     {
         /// <summary>
         /// Required designer variable.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private IContainer components = null;
 
         /// <summary>
         /// Clean up any resources being used.

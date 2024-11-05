@@ -1,5 +1,5 @@
 current issues:
-- you an spam 'new day' button to get infinite money
+- you can spam 'new day' button to get infinite money - add in a timer?
 
 immediate future ideas:
 - more resources

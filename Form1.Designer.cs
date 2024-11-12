@@ -64,8 +64,12 @@ namespace bobFinal
             this.numericUpDownAmount = new System.Windows.Forms.NumericUpDown();
             this.lblMarket = new System.Windows.Forms.Label();
             this.lblDate = new System.Windows.Forms.Label();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
             this.pnlBuy.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownAmount)).BeginInit();
+            this.tabControl1.SuspendLayout();
             this.SuspendLayout();
             //
             // gridPanel
@@ -408,12 +412,43 @@ namespace bobFinal
             this.lblDate.TabIndex = 24;
             this.lblDate.Text = "Today\'s Date:\r\nJanuary 1st, 2024\r\n";
             //
+            // tabControl1
+            //
+            this.tabControl1.Controls.Add(this.tabPage1);
+            this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Location = new System.Drawing.Point(35, 299);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(234, 215);
+            this.tabControl1.TabIndex = 25;
+            //
+            // tabPage1
+            //
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(226, 189);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "tabPage1";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            //
+            // tabPage2
+            //
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(226, 189);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "tabPage2";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            //
             // Form1
             //
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(959, 911);
+            this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.lblDate);
             this.Controls.Add(this.lblMarket);
             this.Controls.Add(this.pnlBuy);
@@ -443,9 +478,14 @@ namespace bobFinal
             this.Name = "Form1";
             this.pnlBuy.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownAmount)).EndInit();
+            this.tabControl1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
         }
+
+        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabPage tabPage2;
 
         private System.Windows.Forms.Label lblDate;
 

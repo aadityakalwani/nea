@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace bobFinal
 {
     public partial class MasterForm : Form
     {
+        protected class CustomPictureBox : PictureBox { public bool BuiltUpon { get; set; } }
         protected CustomPictureBox[,] grid;
 
         protected const int gridSize = 30;
@@ -18,7 +20,15 @@ namespace bobFinal
         protected string currentAction;
         protected DateTime currentDate = new DateTime(2021, 1, 1);
 
-        public MasterForm()
+        protected List<Property> listOfAllProperties = new List<Property>
+        {
+            new House(0, 0), new Farm(0, 0), new Sawmill(0, 0), new Mine(0, 0), new Cafe(0, 0)
+        };
+
+        protected List<Property> properties = new List<Property>();
+        protected List<Resource> resources;
+
+        protected MasterForm()
         {
             InitializeComponent();
         }

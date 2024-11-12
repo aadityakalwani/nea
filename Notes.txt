@@ -2,9 +2,9 @@ current issues:
 - you can spam 'new day' button to get infinite money - add in a timer?
 
 immediate future ideas:
+- separate pages out into different forms for better UI/UX
 - more resources
 - ability to sell a property (for 80% of the price)
-- separate pages out into different forms for better UI/UX
 - upgradable storage capacity
 
 future ideas:

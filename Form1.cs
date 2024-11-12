@@ -12,14 +12,6 @@ namespace bobFinal
     {
         private Point selectedPosition;
 
-        private List<Property> listOfAllProperties = new List<Property>
-        {
-            new House(0, 0), new Farm(0, 0), new Sawmill(0, 0), new Mine(0, 0), new Cafe(0, 0)
-        };
-
-        private List<Property> properties = new List<Property>();
-        private List<Resource> resources;
-
         public Form1()
         {
             InitializeComponent();
@@ -300,7 +292,6 @@ namespace bobFinal
         {
             performMarketAction("sell");
         }
-
 
         private void performMarketAction(string buyOrSell)
         {

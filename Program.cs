@@ -4,8 +4,6 @@ using System.Windows.Forms;
 
 namespace bobFinal
 {
-
-
     static class Program
     {
         /// <summary>
@@ -17,12 +15,8 @@ namespace bobFinal
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());
+            Application.Run(new Form2());
         }
-    }
-
-    public class CustomPictureBox : PictureBox
-    {
-        public bool BuiltUpon { get; set; }
     }
 
     public abstract class Property
@@ -173,5 +167,4 @@ namespace bobFinal
             }
         }
     }
-
 }

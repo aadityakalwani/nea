@@ -14,8 +14,13 @@ namespace bobFinal
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MasterForm());
+            Application.Run(new Form1());
         }
+    }
+
+    public class CustomPictureBox : PictureBox
+    {
+        public bool BuiltUpon { get; set; }
     }
 
     public abstract class Property
@@ -166,4 +171,5 @@ namespace bobFinal
             }
         }
     }
+
 }

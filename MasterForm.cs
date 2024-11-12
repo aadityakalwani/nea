@@ -28,7 +28,7 @@ namespace bobFinal
         protected List<Property> properties = new List<Property>();
         protected List<Resource> resources;
 
-        protected MasterForm()
+        public MasterForm()
         {
             InitializeComponent();
         }

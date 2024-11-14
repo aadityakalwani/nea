@@ -11,8 +11,8 @@ namespace bobFinal
     {
         private CustomPictureBox[,] grid;
         private Point selectedPosition;
-        private const int gridSize = 30;
-        private const int tileSize = 32;
+        private const int gridSize = 15;
+        private const int tileSize = 40;
         private string selectedBuilding;
         private Resource dollars;
         private Resource gold;
@@ -85,16 +85,6 @@ namespace bobFinal
                     gridPanel.Controls.Add(grid[i, j]);
                 }
             }
-
-            // set initial images for specific grid positions
-            grid[4, 4].Image = Image.FromFile("Images/TownHallTopLeft.jpg");
-            grid[4,4].BuiltUpon = true;
-            grid[4, 5].Image = Image.FromFile("Images/TownHallBottomLeft.jpg");
-            grid[4, 5].BuiltUpon = true;
-            grid[5, 4].Image = Image.FromFile("Images/TownHallTopRight.jpg");
-            grid[5, 4].BuiltUpon = true;
-            grid[5, 5].Image = Image.FromFile("Images/TownHallBottomRight.jpg");
-            grid[5, 5].BuiltUpon = true;
         }
 
         private void initializeLoot()
@@ -140,14 +130,26 @@ namespace bobFinal
 
         private void initializeStartingProperties()
         {
-            // Create and place the initial sawmill
-            Property sawmill = new Sawmill(10, 10);
+            int initialCoordinate = 1;
+
+            // create and place the initial Town Hall
+            grid[initialCoordinate + 1, initialCoordinate + 1].Image = Image.FromFile("Images/TownHallTopLeft.jpg");
+            grid[initialCoordinate + 1, initialCoordinate + 1].BuiltUpon = true;
+            grid[initialCoordinate + 1, initialCoordinate + 2].Image = Image.FromFile("Images/TownHallBottomLeft.jpg");
+            grid[initialCoordinate + 2, initialCoordinate + 2].BuiltUpon = true;
+            grid[initialCoordinate + 2, initialCoordinate + 1].Image = Image.FromFile("Images/TownHallTopRight.jpg");
+            grid[initialCoordinate + 2, initialCoordinate + 1].BuiltUpon = true;
+            grid[initialCoordinate + 2, initialCoordinate + 2].Image = Image.FromFile("Images/TownHallBottomRight.jpg");
+            grid[initialCoordinate + 2, initialCoordinate + 2].BuiltUpon = true;
+
+            // create and place the initial sawmill
+            Property sawmill = new Sawmill(initialCoordinate + 4, initialCoordinate + 4);
             grid[sawmill.XCoordinate, sawmill.YCoordinate].Image = Image.FromFile(sawmill.ImageFileName);
             grid[sawmill.XCoordinate, sawmill.YCoordinate].BuiltUpon = true;
             properties.Add(sawmill);
 
-            // Create and place the initial house
-            Property house = new House(15, 15);
+            // create and place the initial house
+            Property house = new House(initialCoordinate + 5, initialCoordinate + 5);
             grid[house.XCoordinate, house.YCoordinate].Image = Image.FromFile(house.ImageFileName);
             grid[house.XCoordinate, house.YCoordinate].BuiltUpon = true;
             properties.Add(house);
@@ -330,11 +332,11 @@ namespace bobFinal
                     // update label1 text based on the action and selected resource
                     if (buyOrSell == "buy")
                     {
-                        label1.Text = $"enter amount of {selectedResource.Name} to buy";
+                        label1.Text = $"Enter amount of {selectedResource.Name} to buy";
                     }
                     else
                     {
-                        label1.Text = $"enter amount of {selectedResource.Name} to sell";
+                        label1.Text = $"Enter amount of {selectedResource.Name} to sell";
                     }
                 }
                 else

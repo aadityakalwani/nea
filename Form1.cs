@@ -217,8 +217,8 @@ namespace bobFinal
 
                     // Set the image of the selected grid position to the property image
                     selectedTile.Image = Image.FromFile(property.ImageFileName);
-                    selectedTile.BuiltUpon = true; // Mark tile as built upon
-                    properties.Add(property); // Add the property to the list
+                    selectedTile.BuiltUpon = true;
+                    properties.Add(property);
                 }
                 else
                 {

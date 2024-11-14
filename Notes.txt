@@ -2,14 +2,15 @@ current issues:
 - you can spam 'new day' button to get infinite money - add in a timer?
 
 immediate future ideas:
-- more resources
 - rename tabPages to something more descriptive
 - organise code out more  as the file is very long - use other files?
 - ability to sell a property (for 80% of the price)
 - 'lessons' where the player can learn about business and economics
 - history of properties upon click - databases and stuff
+- use correct accessor methods of gets and sets
 
 future ideas:
+- more resources to buy and sell
 - path tiles to connect properties to the town hall
 - upgradable storage capacity by completing 'lessons'
 - upgradable village size by completing 'lessons'

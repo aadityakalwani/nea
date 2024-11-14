@@ -1,18 +1,18 @@
 current issues:
 - you can spam 'new day' button to get infinite money - add in a timer?
-- the game is too easy and boring
-
 
 immediate future ideas:
 - more resources
+- rename tabPages to something more descriptive
+- organise code out more  as the file is very long - use other files?
 - ability to sell a property (for 80% of the price)
-- upgradable storage capacity
+- 'lessons' where the player can learn about business and economics
+- history of properties upon click - databases and stuff
 
 future ideas:
-- events that affect the market prices such as stock market crashes or booms
-- history of properties upon click - databases and stuff
 - path tiles to connect properties to the town hall
+- upgradable storage capacity by completing 'lessons'
+- upgradable village size by completing 'lessons'
 - idea of villagers or visitors to the town that effect the market prices
-- upgradable tile size of the map - start with 10x10, upgrade to 15x15, etc.
-- 'teaching' mode where the player can learn about business and economics
 - tutorial / introduction to the game upon start
+- events that affect the market prices such as stock market crashes or booms

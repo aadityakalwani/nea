@@ -21,6 +21,7 @@ namespace bobFinal
         private Resource selectedResource;
         private string currentAction;
         private DateTime currentDate = new DateTime(2021, 1, 1);
+        private Timer newDayTimer;
 
         private List<Property> listOfAllProperties = new List<Property>
         {
@@ -38,6 +39,21 @@ namespace bobFinal
             initializeStartingProperties();
             initializePrices();
             initializeMarketPrices();
+            initializeNewDayTimer();
+        }
+
+        private void initializeNewDayTimer()
+        {
+            newDayTimer = new Timer();
+            newDayTimer.Interval = 1000; // set the interval to 1 second (1000 ms)
+            newDayTimer.Tick += newDayTimer_Tick;
+        }
+
+        private void newDayTimer_Tick(object sender, EventArgs e)
+        {
+            // Enable the button and stop the timer
+            btnNextDay.Enabled = true;
+            newDayTimer.Stop();
         }
 
         private void initializeMarketPrices()
@@ -229,6 +245,10 @@ namespace bobFinal
 
         private void btnNextDay_Click(object sender, EventArgs e)
         {
+            // Disable the button and start the timer
+            btnNextDay.Enabled = false;
+            newDayTimer.Start();
+
             currentDate = currentDate.AddDays(1);
             lblDate.Text = "Today's Date: " + currentDate.ToString("dd MMMM yyyy");
 

@@ -107,7 +107,7 @@ namespace bobFinal
             this.listViewPrices.FullRowSelect = true;
             this.listViewPrices.GridLines = true;
             this.listViewPrices.HideSelection = false;
-            this.listViewPrices.Location = new System.Drawing.Point(651, 257);
+            this.listViewPrices.Location = new System.Drawing.Point(867, 257);
             this.listViewPrices.Margin = new System.Windows.Forms.Padding(2);
             this.listViewPrices.Name = "listViewPrices";
             this.listViewPrices.Size = new System.Drawing.Size(610, 201);
@@ -120,7 +120,7 @@ namespace bobFinal
             //
             this.btnBuild.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnBuild.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBuild.Location = new System.Drawing.Point(871, 189);
+            this.btnBuild.Location = new System.Drawing.Point(1087, 189);
             this.btnBuild.Margin = new System.Windows.Forms.Padding(2);
             this.btnBuild.Name = "btnBuild";
             this.btnBuild.Size = new System.Drawing.Size(74, 39);
@@ -132,7 +132,7 @@ namespace bobFinal
             // progressBarGold
             //
             this.progressBarGold.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.progressBarGold.Location = new System.Drawing.Point(1428, 181);
+            this.progressBarGold.Location = new System.Drawing.Point(1676, 181);
             this.progressBarGold.Margin = new System.Windows.Forms.Padding(2);
             this.progressBarGold.Name = "progressBarGold";
             this.progressBarGold.Size = new System.Drawing.Size(190, 24);
@@ -141,7 +141,7 @@ namespace bobFinal
             // progressBarLumber
             //
             this.progressBarLumber.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.progressBarLumber.Location = new System.Drawing.Point(1428, 246);
+            this.progressBarLumber.Location = new System.Drawing.Point(1676, 246);
             this.progressBarLumber.Margin = new System.Windows.Forms.Padding(2);
             this.progressBarLumber.Name = "progressBarLumber";
             this.progressBarLumber.Size = new System.Drawing.Size(190, 18);
@@ -151,7 +151,7 @@ namespace bobFinal
             //
             this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
-            this.textBox1.Location = new System.Drawing.Point(1325, 181);
+            this.textBox1.Location = new System.Drawing.Point(1573, 181);
             this.textBox1.Margin = new System.Windows.Forms.Padding(2);
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
@@ -163,7 +163,7 @@ namespace bobFinal
             //
             this.textBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
-            this.textBox2.Location = new System.Drawing.Point(1325, 246);
+            this.textBox2.Location = new System.Drawing.Point(1573, 246);
             this.textBox2.Margin = new System.Windows.Forms.Padding(2);
             this.textBox2.Name = "textBox2";
             this.textBox2.ReadOnly = true;
@@ -174,7 +174,7 @@ namespace bobFinal
             // textBoxGoldAmount
             //
             this.textBoxGoldAmount.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxGoldAmount.Location = new System.Drawing.Point(1493, 161);
+            this.textBoxGoldAmount.Location = new System.Drawing.Point(1741, 161);
             this.textBoxGoldAmount.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxGoldAmount.Name = "textBoxGoldAmount";
             this.textBoxGoldAmount.ReadOnly = true;
@@ -185,7 +185,7 @@ namespace bobFinal
             // textBoxLumberAmount
             //
             this.textBoxLumberAmount.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxLumberAmount.Location = new System.Drawing.Point(1493, 226);
+            this.textBoxLumberAmount.Location = new System.Drawing.Point(1741, 226);
             this.textBoxLumberAmount.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxLumberAmount.Name = "textBoxLumberAmount";
             this.textBoxLumberAmount.ReadOnly = true;
@@ -197,7 +197,7 @@ namespace bobFinal
             //
             this.btnNextDay.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnNextDay.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnNextDay.Location = new System.Drawing.Point(651, 17);
+            this.btnNextDay.Location = new System.Drawing.Point(867, 17);
             this.btnNextDay.Margin = new System.Windows.Forms.Padding(2);
             this.btnNextDay.Name = "btnNextDay";
             this.btnNextDay.Size = new System.Drawing.Size(610, 67);
@@ -209,7 +209,7 @@ namespace bobFinal
             // progressBarDiamond
             //
             this.progressBarDiamond.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.progressBarDiamond.Location = new System.Drawing.Point(1428, 309);
+            this.progressBarDiamond.Location = new System.Drawing.Point(1676, 309);
             this.progressBarDiamond.Margin = new System.Windows.Forms.Padding(2);
             this.progressBarDiamond.Name = "progressBarDiamond";
             this.progressBarDiamond.Size = new System.Drawing.Size(190, 24);
@@ -219,7 +219,7 @@ namespace bobFinal
             //
             this.textBox4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.textBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
-            this.textBox4.Location = new System.Drawing.Point(1325, 309);
+            this.textBox4.Location = new System.Drawing.Point(1573, 309);
             this.textBox4.Margin = new System.Windows.Forms.Padding(2);
             this.textBox4.Name = "textBox4";
             this.textBox4.ReadOnly = true;
@@ -230,7 +230,7 @@ namespace bobFinal
             // textBoxDiamondAmount
             //
             this.textBoxDiamondAmount.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxDiamondAmount.Location = new System.Drawing.Point(1493, 290);
+            this.textBoxDiamondAmount.Location = new System.Drawing.Point(1741, 290);
             this.textBoxDiamondAmount.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxDiamondAmount.Name = "textBoxDiamondAmount";
             this.textBoxDiamondAmount.ReadOnly = true;
@@ -241,7 +241,7 @@ namespace bobFinal
             // progressBarDollars
             //
             this.progressBarDollars.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.progressBarDollars.Location = new System.Drawing.Point(1428, 117);
+            this.progressBarDollars.Location = new System.Drawing.Point(1676, 117);
             this.progressBarDollars.Margin = new System.Windows.Forms.Padding(2);
             this.progressBarDollars.Name = "progressBarDollars";
             this.progressBarDollars.Size = new System.Drawing.Size(190, 24);
@@ -251,7 +251,7 @@ namespace bobFinal
             //
             this.textBox5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.textBox5.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
-            this.textBox5.Location = new System.Drawing.Point(1325, 117);
+            this.textBox5.Location = new System.Drawing.Point(1573, 117);
             this.textBox5.Margin = new System.Windows.Forms.Padding(2);
             this.textBox5.Name = "textBox5";
             this.textBox5.ReadOnly = true;
@@ -262,7 +262,7 @@ namespace bobFinal
             // textBoxDollarsAmount
             //
             this.textBoxDollarsAmount.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxDollarsAmount.Location = new System.Drawing.Point(1493, 98);
+            this.textBoxDollarsAmount.Location = new System.Drawing.Point(1741, 98);
             this.textBoxDollarsAmount.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxDollarsAmount.Name = "textBoxDollarsAmount";
             this.textBoxDollarsAmount.ReadOnly = true;
@@ -328,7 +328,7 @@ namespace bobFinal
             //
             this.lblSelectedPosition.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblSelectedPosition.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSelectedPosition.Location = new System.Drawing.Point(651, 197);
+            this.lblSelectedPosition.Location = new System.Drawing.Point(867, 197);
             this.lblSelectedPosition.Name = "lblSelectedPosition";
             this.lblSelectedPosition.Size = new System.Drawing.Size(215, 35);
             this.lblSelectedPosition.TabIndex = 21;
@@ -417,7 +417,7 @@ namespace bobFinal
             //
             this.lblDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDate.Location = new System.Drawing.Point(1325, 51);
+            this.lblDate.Location = new System.Drawing.Point(1573, 51);
             this.lblDate.Name = "lblDate";
             this.lblDate.Size = new System.Drawing.Size(326, 35);
             this.lblDate.TabIndex = 24;
@@ -432,7 +432,7 @@ namespace bobFinal
             this.tabControl1.Location = new System.Drawing.Point(12, 12);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1291, 891);
+            this.tabControl1.Size = new System.Drawing.Size(1507, 889);
             this.tabControl1.TabIndex = 25;
             //
             // tabPage1
@@ -445,7 +445,7 @@ namespace bobFinal
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1283, 865);
+            this.tabPage1.Size = new System.Drawing.Size(1499, 863);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Village Grid";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -490,7 +490,7 @@ namespace bobFinal
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(1676, 930);
+            this.ClientSize = new System.Drawing.Size(1924, 927);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.lblDate);
             this.Controls.Add(this.textBoxDollarsAmount);

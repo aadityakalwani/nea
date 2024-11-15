@@ -40,10 +40,16 @@ namespace bobFinal
             initializePrices();
             initializeMarketPrices();
             initializeNewDayTimer();
+
+            // open in full screen
+            this.WindowState = FormWindowState.Maximized;
+            this.FormBorderStyle = FormBorderStyle.None;
+
         }
 
         private void initializeNewDayTimer()
         {
+            lblNextDayTimer.Text = "";
             newDayTimer = new Timer();
             newDayTimer.Interval = 1000; // set the interval to 1 second (1000 ms)
             newDayTimer.Tick += newDayTimer_Tick;
@@ -51,7 +57,8 @@ namespace bobFinal
 
         private void newDayTimer_Tick(object sender, EventArgs e)
         {
-            // Enable the button and stop the timer
+            // enable the button and stop the timer
+            lblNextDayTimer.Text = "";
             btnNextDay.Enabled = true;
             newDayTimer.Stop();
         }
@@ -246,6 +253,7 @@ namespace bobFinal
         private void btnNextDay_Click(object sender, EventArgs e)
         {
             // Disable the button and start the timer
+            lblNextDayTimer.Text = "Next day available in 1 second...";
             btnNextDay.Enabled = false;
             newDayTimer.Start();
 

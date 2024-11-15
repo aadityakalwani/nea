@@ -107,7 +107,7 @@ namespace bobFinal
     {
         public string Name { get; }
         public float Value { get; private set; }
-        private int MaxValue { get; }
+        private int MaxValue { get; set; }
         private ProgressBar ProgressBar { get; }
         private TextBox TextBox { get; }
         public float ConversionRate { get; set; }
@@ -126,6 +126,12 @@ namespace bobFinal
         public void ChangeQuantity(float amount)
         {
             Value = Math.Max(0, Math.Min(MaxValue, Value + amount));
+            UpdateUi();
+        }
+
+        public void IncreaseCapacity(int amount)
+        {
+            MaxValue += amount;
             UpdateUi();
         }
 

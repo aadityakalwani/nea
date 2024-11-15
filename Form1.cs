@@ -95,12 +95,12 @@ namespace bobFinal
 
         private void initializeLoot()
         {
-            dollars = new Resource("Dollars", 100, 1000, progressBarDollars, textBoxDollarsAmount, 1);
-            gold = new Resource("Gold", 100, 1000, progressBarGold, textBoxGoldAmount, 2);
-            lumber = new Resource("Lumber", 100, 1000, progressBarLumber, textBoxLumberAmount, 3);
-            diamond = new Resource("Diamond", 50, 1000, progressBarDiamond, textBoxDiamondAmount, 10);
+            dollars = new Resource("Dollars", 100, 10000, progressBarDollars, textBoxDollarsAmount, 1);
+            lumber = new Resource("Lumber", 100, 200, progressBarLumber, textBoxLumberAmount, 3);
+            gold = new Resource("Gold", 100, 200, progressBarGold, textBoxGoldAmount, 2);
+            diamond = new Resource("Diamond", 5, 50, progressBarDiamond, textBoxDiamondAmount, 10);
 
-            resources = new List<Resource> { dollars, gold, lumber, diamond };
+            resources = new List<Resource> { dollars, lumber, gold, diamond };
         }
 
         private void initializePrices()
@@ -423,5 +423,35 @@ namespace bobFinal
             lblCost.Text = "Buy / Sell Panel";
             label1.Text = "Select a resource to buy or sell";
         }
+
+        private void btnUpgradeLumberStorage_Click_1(object sender, EventArgs e)
+        {
+            UpgradeStorage(lumber, 100);
+        }
+
+        private void btnUpgradeGoldStorage_Click(object sender, EventArgs e)
+        {
+            UpgradeStorage(gold, 100);
+        }
+
+        private void btnUpgradeDiamondStorage_Click(object sender, EventArgs e)
+        {
+            UpgradeStorage(diamond, 100);
+        }
+
+        private void UpgradeStorage(Resource resource, int cost)
+        {
+            if (dollars.Value >= cost)
+            {
+                dollars.ChangeQuantity(-cost);
+                resource.IncreaseCapacity(100);
+                MessageBox.Show($"{resource.Name} storage upgraded!");
+            }
+            else
+            {
+                MessageBox.Show("Not enough dollars to upgrade storage!");
+            }
+        }
+
     }
 }

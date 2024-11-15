@@ -134,7 +134,7 @@ namespace bobFinal
             // progressBarGold
             //
             this.progressBarGold.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.progressBarGold.Location = new System.Drawing.Point(1676, 181);
+            this.progressBarGold.Location = new System.Drawing.Point(1676, 293);
             this.progressBarGold.Margin = new System.Windows.Forms.Padding(2);
             this.progressBarGold.Name = "progressBarGold";
             this.progressBarGold.Size = new System.Drawing.Size(190, 24);
@@ -143,7 +143,7 @@ namespace bobFinal
             // progressBarLumber
             //
             this.progressBarLumber.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.progressBarLumber.Location = new System.Drawing.Point(1676, 246);
+            this.progressBarLumber.Location = new System.Drawing.Point(1676, 214);
             this.progressBarLumber.Margin = new System.Windows.Forms.Padding(2);
             this.progressBarLumber.Name = "progressBarLumber";
             this.progressBarLumber.Size = new System.Drawing.Size(190, 18);
@@ -152,46 +152,48 @@ namespace bobFinal
             // textBox1
             //
             this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
-            this.textBox1.Location = new System.Drawing.Point(1573, 181);
+            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
+            this.textBox1.Location = new System.Drawing.Point(1562, 293);
             this.textBox1.Margin = new System.Windows.Forms.Padding(2);
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(81, 27);
+            this.textBox1.Size = new System.Drawing.Size(90, 30);
             this.textBox1.TabIndex = 7;
             this.textBox1.Text = "Gold:";
             //
             // textBox2
             //
             this.textBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
-            this.textBox2.Location = new System.Drawing.Point(1573, 246);
+            this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
+            this.textBox2.Location = new System.Drawing.Point(1562, 214);
             this.textBox2.Margin = new System.Windows.Forms.Padding(2);
             this.textBox2.Name = "textBox2";
             this.textBox2.ReadOnly = true;
-            this.textBox2.Size = new System.Drawing.Size(81, 27);
+            this.textBox2.Size = new System.Drawing.Size(90, 30);
             this.textBox2.TabIndex = 8;
             this.textBox2.Text = "Lumber:";
             //
             // textBoxGoldAmount
             //
             this.textBoxGoldAmount.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxGoldAmount.Location = new System.Drawing.Point(1741, 161);
+            this.textBoxGoldAmount.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
+            this.textBoxGoldAmount.Location = new System.Drawing.Point(1730, 259);
             this.textBoxGoldAmount.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxGoldAmount.Name = "textBoxGoldAmount";
             this.textBoxGoldAmount.ReadOnly = true;
-            this.textBoxGoldAmount.Size = new System.Drawing.Size(64, 20);
+            this.textBoxGoldAmount.Size = new System.Drawing.Size(98, 30);
             this.textBoxGoldAmount.TabIndex = 9;
             this.textBoxGoldAmount.Text = "0/1000";
             //
             // textBoxLumberAmount
             //
             this.textBoxLumberAmount.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxLumberAmount.Location = new System.Drawing.Point(1741, 226);
+            this.textBoxLumberAmount.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
+            this.textBoxLumberAmount.Location = new System.Drawing.Point(1730, 180);
             this.textBoxLumberAmount.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxLumberAmount.Name = "textBoxLumberAmount";
             this.textBoxLumberAmount.ReadOnly = true;
-            this.textBoxLumberAmount.Size = new System.Drawing.Size(64, 20);
+            this.textBoxLumberAmount.Size = new System.Drawing.Size(98, 30);
             this.textBoxLumberAmount.TabIndex = 10;
             this.textBoxLumberAmount.Text = "0/1000";
             //
@@ -211,7 +213,7 @@ namespace bobFinal
             // progressBarDiamond
             //
             this.progressBarDiamond.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.progressBarDiamond.Location = new System.Drawing.Point(1676, 309);
+            this.progressBarDiamond.Location = new System.Drawing.Point(1676, 374);
             this.progressBarDiamond.Margin = new System.Windows.Forms.Padding(2);
             this.progressBarDiamond.Name = "progressBarDiamond";
             this.progressBarDiamond.Size = new System.Drawing.Size(190, 24);
@@ -220,30 +222,31 @@ namespace bobFinal
             // textBox4
             //
             this.textBox4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
-            this.textBox4.Location = new System.Drawing.Point(1573, 309);
+            this.textBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
+            this.textBox4.Location = new System.Drawing.Point(1562, 374);
             this.textBox4.Margin = new System.Windows.Forms.Padding(2);
             this.textBox4.Name = "textBox4";
             this.textBox4.ReadOnly = true;
-            this.textBox4.Size = new System.Drawing.Size(81, 27);
+            this.textBox4.Size = new System.Drawing.Size(90, 30);
             this.textBox4.TabIndex = 13;
             this.textBox4.Text = "Diamond";
             //
             // textBoxDiamondAmount
             //
             this.textBoxDiamondAmount.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxDiamondAmount.Location = new System.Drawing.Point(1741, 290);
+            this.textBoxDiamondAmount.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
+            this.textBoxDiamondAmount.Location = new System.Drawing.Point(1730, 340);
             this.textBoxDiamondAmount.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxDiamondAmount.Name = "textBoxDiamondAmount";
             this.textBoxDiamondAmount.ReadOnly = true;
-            this.textBoxDiamondAmount.Size = new System.Drawing.Size(64, 20);
+            this.textBoxDiamondAmount.Size = new System.Drawing.Size(88, 30);
             this.textBoxDiamondAmount.TabIndex = 14;
             this.textBoxDiamondAmount.Text = "0/1000";
             //
             // progressBarDollars
             //
             this.progressBarDollars.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.progressBarDollars.Location = new System.Drawing.Point(1676, 117);
+            this.progressBarDollars.Location = new System.Drawing.Point(1676, 131);
             this.progressBarDollars.Margin = new System.Windows.Forms.Padding(2);
             this.progressBarDollars.Name = "progressBarDollars";
             this.progressBarDollars.Size = new System.Drawing.Size(190, 24);
@@ -252,23 +255,24 @@ namespace bobFinal
             // textBox5
             //
             this.textBox5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox5.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
-            this.textBox5.Location = new System.Drawing.Point(1573, 117);
+            this.textBox5.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
+            this.textBox5.Location = new System.Drawing.Point(1562, 131);
             this.textBox5.Margin = new System.Windows.Forms.Padding(2);
             this.textBox5.Name = "textBox5";
             this.textBox5.ReadOnly = true;
-            this.textBox5.Size = new System.Drawing.Size(81, 27);
+            this.textBox5.Size = new System.Drawing.Size(90, 30);
             this.textBox5.TabIndex = 16;
             this.textBox5.Text = "Dollars:\r\n";
             //
             // textBoxDollarsAmount
             //
             this.textBoxDollarsAmount.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxDollarsAmount.Location = new System.Drawing.Point(1741, 98);
+            this.textBoxDollarsAmount.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
+            this.textBoxDollarsAmount.Location = new System.Drawing.Point(1730, 97);
             this.textBoxDollarsAmount.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxDollarsAmount.Name = "textBoxDollarsAmount";
             this.textBoxDollarsAmount.ReadOnly = true;
-            this.textBoxDollarsAmount.Size = new System.Drawing.Size(64, 20);
+            this.textBoxDollarsAmount.Size = new System.Drawing.Size(98, 30);
             this.textBoxDollarsAmount.TabIndex = 17;
             this.textBoxDollarsAmount.Text = "0/1000";
             //
@@ -276,7 +280,7 @@ namespace bobFinal
             //
             this.btnSell.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSell.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSell.Location = new System.Drawing.Point(450, 139);
+            this.btnSell.Location = new System.Drawing.Point(280, 162);
             this.btnSell.Margin = new System.Windows.Forms.Padding(2);
             this.btnSell.Name = "btnSell";
             this.btnSell.Size = new System.Drawing.Size(150, 39);
@@ -289,7 +293,7 @@ namespace bobFinal
             //
             this.btnBuy.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnBuy.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBuy.Location = new System.Drawing.Point(271, 139);
+            this.btnBuy.Location = new System.Drawing.Point(101, 162);
             this.btnBuy.Margin = new System.Windows.Forms.Padding(2);
             this.btnBuy.Name = "btnBuy";
             this.btnBuy.Size = new System.Drawing.Size(150, 39);
@@ -302,13 +306,13 @@ namespace bobFinal
             //
             this.Item.DisplayIndex = 1;
             this.Item.Text = "Dollar Conversion Rate";
-            this.Item.Width = 237;
+            this.Item.Width = 254;
             //
             // Price
             //
             this.Price.DisplayIndex = 0;
             this.Price.Text = "Item";
-            this.Price.Width = 124;
+            this.Price.Width = 159;
             //
             // listViewMarket
             //
@@ -318,7 +322,7 @@ namespace bobFinal
             this.listViewMarket.FullRowSelect = true;
             this.listViewMarket.GridLines = true;
             this.listViewMarket.HideSelection = false;
-            this.listViewMarket.Location = new System.Drawing.Point(271, 196);
+            this.listViewMarket.Location = new System.Drawing.Point(101, 219);
             this.listViewMarket.Margin = new System.Windows.Forms.Padding(2);
             this.listViewMarket.Name = "listViewMarket";
             this.listViewMarket.Size = new System.Drawing.Size(442, 233);
@@ -344,7 +348,7 @@ namespace bobFinal
             this.pnlBuy.Controls.Add(this.btnConfirmMarketAction);
             this.pnlBuy.Controls.Add(this.lblCost);
             this.pnlBuy.Controls.Add(this.numericUpDownAmount);
-            this.pnlBuy.Location = new System.Drawing.Point(860, 196);
+            this.pnlBuy.Location = new System.Drawing.Point(690, 219);
             this.pnlBuy.Name = "pnlBuy";
             this.pnlBuy.Size = new System.Drawing.Size(385, 233);
             this.pnlBuy.TabIndex = 22;
@@ -357,7 +361,7 @@ namespace bobFinal
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(239, 27);
             this.label1.TabIndex = 27;
-            this.label1.Text = "bob";
+            this.label1.Text = "to enable this menu";
             this.label1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             //
             // btnCancelMarketAction
@@ -376,7 +380,7 @@ namespace bobFinal
             //
             this.btnConfirmMarketAction.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnConfirmMarketAction.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
-            this.btnConfirmMarketAction.Location = new System.Drawing.Point(186, 154);
+            this.btnConfirmMarketAction.Location = new System.Drawing.Point(201, 154);
             this.btnConfirmMarketAction.Name = "btnConfirmMarketAction";
             this.btnConfirmMarketAction.Size = new System.Drawing.Size(110, 35);
             this.btnConfirmMarketAction.TabIndex = 25;
@@ -388,11 +392,11 @@ namespace bobFinal
             //
             this.lblCost.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblCost.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCost.Location = new System.Drawing.Point(86, 25);
+            this.lblCost.Location = new System.Drawing.Point(55, 25);
             this.lblCost.Name = "lblCost";
-            this.lblCost.Size = new System.Drawing.Size(223, 27);
+            this.lblCost.Size = new System.Drawing.Size(267, 27);
             this.lblCost.TabIndex = 24;
-            this.lblCost.Text = "bob2";
+            this.lblCost.Text = "Choose an item and an action";
             this.lblCost.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             //
             // numericUpDownAmount
@@ -409,11 +413,11 @@ namespace bobFinal
             //
             this.lblMarket.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblMarket.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMarket.Location = new System.Drawing.Point(267, 52);
+            this.lblMarket.Location = new System.Drawing.Point(101, 66);
             this.lblMarket.Name = "lblMarket";
-            this.lblMarket.Size = new System.Drawing.Size(535, 37);
+            this.lblMarket.Size = new System.Drawing.Size(659, 71);
             this.lblMarket.TabIndex = 23;
-            this.lblMarket.Text = "Market - Convert $ and Resources";
+            this.lblMarket.Text = "Welcome to the market!\r\nHere you can convert between resources and $";
             //
             // lblDate
             //
@@ -461,7 +465,7 @@ namespace bobFinal
             this.lblNextDayTimer.Name = "lblNextDayTimer";
             this.lblNextDayTimer.Size = new System.Drawing.Size(301, 30);
             this.lblNextDayTimer.TabIndex = 22;
-            this.lblNextDayTimer.Text = "Next day available in 1 second...";
+            this.lblNextDayTimer.Text = "Next day available in 2 seconds...";
             //
             // tabPage2
             //
@@ -485,7 +489,7 @@ namespace bobFinal
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage3.Size = new System.Drawing.Size(1499, 851);
             this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "tabPage3";
+            this.tabPage3.Text = "Properties";
             this.tabPage3.UseVisualStyleBackColor = true;
             //
             // tabPage4

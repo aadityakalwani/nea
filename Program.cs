@@ -144,7 +144,7 @@ namespace bobFinal
                 ProgressBar.Value = (int)(Value * ProgressBar.Maximum / MaxValue);
             }
 
-            TextBox.Text = $@"{Math.Round(Value, 2)}";
+            TextBox.Text = $@"{Math.Round(Value, 2)} / {MaxValue}";
         }
     }
 

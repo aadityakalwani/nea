@@ -44,23 +44,6 @@ namespace bobFinal
             // open in full screen
             this.WindowState = FormWindowState.Maximized;
             this.FormBorderStyle = FormBorderStyle.None;
-
-        }
-
-        private void initializeNewDayTimer()
-        {
-            lblNextDayTimer.Text = "";
-            newDayTimer = new Timer();
-            newDayTimer.Interval = 1000; // set the interval to 1 second (1000 ms)
-            newDayTimer.Tick += newDayTimer_Tick;
-        }
-
-        private void newDayTimer_Tick(object sender, EventArgs e)
-        {
-            // enable the button and stop the timer
-            lblNextDayTimer.Text = "";
-            btnNextDay.Enabled = true;
-            newDayTimer.Stop();
         }
 
         private void initializeMarketPrices()
@@ -178,6 +161,22 @@ namespace bobFinal
             properties.Add(house);
         }
 
+        private void initializeNewDayTimer()
+        {
+            lblNextDayTimer.Text = "";
+            newDayTimer = new Timer();
+            newDayTimer.Interval = 2000; // set the interval to 2 seconds
+            newDayTimer.Tick += newDayTimer_Tick;
+        }
+
+        private void newDayTimer_Tick(object sender, EventArgs e)
+        {
+            // enable the button and stop the timer
+            lblNextDayTimer.Text = "";
+            btnNextDay.Enabled = true;
+            newDayTimer.Stop();
+        }
+
         private void listViewPrices_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (listViewPrices.SelectedItems.Count > 0)
@@ -253,7 +252,7 @@ namespace bobFinal
         private void btnNextDay_Click(object sender, EventArgs e)
         {
             // Disable the button and start the timer
-            lblNextDayTimer.Text = "Next day available in 1 second...";
+            lblNextDayTimer.Text = "Next day available in 2 seconds...";
             btnNextDay.Enabled = false;
             newDayTimer.Start();
 
@@ -340,7 +339,6 @@ namespace bobFinal
         {
             performMarketAction("sell");
         }
-
 
         private void performMarketAction(string buyOrSell)
         {

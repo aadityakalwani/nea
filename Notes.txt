@@ -7,9 +7,14 @@ immediate future ideas:
 
 future ideas:
 - more resources to buy and sell
+- storage buildings like in COC to store resources
+- quarry to mine stone
+- plantation to grow food
+- weather that affects the market prices / village visitors
+- commission / charge for converting resources
 - path tiles to connect properties to the town hall
-- upgradable storage capacity by completing 'lessons'
-- upgradable village size by completing 'lessons'
+- upgradable town hall
+- upgradable properties
 - use correct accessors and mutators
 - idea of villagers or visitors to the town that effect the market prices
 - tutorial / introduction to the game upon start

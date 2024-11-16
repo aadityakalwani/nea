@@ -358,11 +358,11 @@ namespace bobFinal
                     // update label1 text based on the action and selected resource
                     if (buyOrSell == "buy")
                     {
-                        label1.Text = $"Enter amount of {selectedResource.Name} to buy";
+                        label1.Text = $"Enter amount of {selectedResource.Name.ToLower()} to buy";
                     }
                     else
                     {
-                        label1.Text = $"Enter amount of {selectedResource.Name} to sell";
+                        label1.Text = $"Enter amount of {selectedResource.Name.ToLower()} to sell";
                     }
                 }
                 else

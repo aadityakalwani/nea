@@ -4,7 +4,6 @@ immediate future ideas:
 - ability to sell a property (for 80% of the price)
 - 'lessons' where the player can learn about business and economics
 - history of properties upon click - databases and stuff
-- option to sell 'max' of a resource
 
 future ideas:
 - more resources to buy and sell

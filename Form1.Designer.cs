@@ -293,7 +293,7 @@ namespace bobFinal
             //
             this.btnSell.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSell.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSell.Location = new System.Drawing.Point(324, 401);
+            this.btnSell.Location = new System.Drawing.Point(326, 401);
             this.btnSell.Margin = new System.Windows.Forms.Padding(2);
             this.btnSell.Name = "btnSell";
             this.btnSell.Size = new System.Drawing.Size(216, 56);
@@ -306,7 +306,7 @@ namespace bobFinal
             //
             this.btnBuy.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnBuy.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBuy.Location = new System.Drawing.Point(123, 401);
+            this.btnBuy.Location = new System.Drawing.Point(125, 401);
             this.btnBuy.Margin = new System.Windows.Forms.Padding(2);
             this.btnBuy.Name = "btnBuy";
             this.btnBuy.Size = new System.Drawing.Size(180, 56);
@@ -335,7 +335,7 @@ namespace bobFinal
             this.listViewMarket.FullRowSelect = true;
             this.listViewMarket.GridLines = true;
             this.listViewMarket.HideSelection = false;
-            this.listViewMarket.Location = new System.Drawing.Point(123, 176);
+            this.listViewMarket.Location = new System.Drawing.Point(125, 176);
             this.listViewMarket.Margin = new System.Windows.Forms.Padding(2);
             this.listViewMarket.Name = "listViewMarket";
             this.listViewMarket.Size = new System.Drawing.Size(417, 196);
@@ -356,6 +356,7 @@ namespace bobFinal
             // pnlBuy
             //
             this.pnlBuy.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.pnlBuy.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pnlBuy.Controls.Add(this.btn75);
             this.pnlBuy.Controls.Add(this.btn50);
             this.pnlBuy.Controls.Add(this.btn25);
@@ -365,7 +366,7 @@ namespace bobFinal
             this.pnlBuy.Controls.Add(this.btnConfirmMarketAction);
             this.pnlBuy.Controls.Add(this.lblCost);
             this.pnlBuy.Controls.Add(this.numericUpDownAmount);
-            this.pnlBuy.Location = new System.Drawing.Point(123, 480);
+            this.pnlBuy.Location = new System.Drawing.Point(125, 480);
             this.pnlBuy.Name = "pnlBuy";
             this.pnlBuy.Size = new System.Drawing.Size(417, 321);
             this.pnlBuy.TabIndex = 22;
@@ -373,7 +374,7 @@ namespace bobFinal
             // btn75
             //
             this.btn75.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn75.Location = new System.Drawing.Point(235, 166);
+            this.btn75.Location = new System.Drawing.Point(233, 166);
             this.btn75.Name = "btn75";
             this.btn75.Size = new System.Drawing.Size(76, 29);
             this.btn75.TabIndex = 31;
@@ -384,7 +385,7 @@ namespace bobFinal
             // btn50
             //
             this.btn50.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn50.Location = new System.Drawing.Point(150, 166);
+            this.btn50.Location = new System.Drawing.Point(148, 166);
             this.btn50.Name = "btn50";
             this.btn50.Size = new System.Drawing.Size(76, 29);
             this.btn50.TabIndex = 30;
@@ -395,7 +396,7 @@ namespace bobFinal
             // btn25
             //
             this.btn25.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn25.Location = new System.Drawing.Point(68, 166);
+            this.btn25.Location = new System.Drawing.Point(66, 166);
             this.btn25.Name = "btn25";
             this.btn25.Size = new System.Drawing.Size(76, 29);
             this.btn25.TabIndex = 29;
@@ -406,7 +407,7 @@ namespace bobFinal
             // btn100
             //
             this.btn100.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn100.Location = new System.Drawing.Point(235, 114);
+            this.btn100.Location = new System.Drawing.Point(233, 114);
             this.btn100.Name = "btn100";
             this.btn100.Size = new System.Drawing.Size(75, 29);
             this.btn100.TabIndex = 28;
@@ -418,7 +419,7 @@ namespace bobFinal
             //
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(72, 61);
+            this.label1.Location = new System.Drawing.Point(70, 61);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(239, 27);
             this.label1.TabIndex = 27;
@@ -429,7 +430,7 @@ namespace bobFinal
             //
             this.btnCancelMarketAction.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancelMarketAction.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
-            this.btnCancelMarketAction.Location = new System.Drawing.Point(68, 221);
+            this.btnCancelMarketAction.Location = new System.Drawing.Point(66, 221);
             this.btnCancelMarketAction.Name = "btnCancelMarketAction";
             this.btnCancelMarketAction.Size = new System.Drawing.Size(112, 35);
             this.btnCancelMarketAction.TabIndex = 26;
@@ -441,7 +442,7 @@ namespace bobFinal
             //
             this.btnConfirmMarketAction.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnConfirmMarketAction.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
-            this.btnConfirmMarketAction.Location = new System.Drawing.Point(201, 221);
+            this.btnConfirmMarketAction.Location = new System.Drawing.Point(199, 221);
             this.btnConfirmMarketAction.Name = "btnConfirmMarketAction";
             this.btnConfirmMarketAction.Size = new System.Drawing.Size(110, 35);
             this.btnConfirmMarketAction.TabIndex = 25;
@@ -453,7 +454,7 @@ namespace bobFinal
             //
             this.lblCost.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblCost.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCost.Location = new System.Drawing.Point(46, 34);
+            this.lblCost.Location = new System.Drawing.Point(44, 34);
             this.lblCost.Name = "lblCost";
             this.lblCost.Size = new System.Drawing.Size(305, 27);
             this.lblCost.TabIndex = 24;
@@ -464,7 +465,7 @@ namespace bobFinal
             //
             this.numericUpDownAmount.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.numericUpDownAmount.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
-            this.numericUpDownAmount.Location = new System.Drawing.Point(68, 114);
+            this.numericUpDownAmount.Location = new System.Drawing.Point(66, 114);
             this.numericUpDownAmount.Name = "numericUpDownAmount";
             this.numericUpDownAmount.Size = new System.Drawing.Size(158, 30);
             this.numericUpDownAmount.TabIndex = 23;
@@ -474,7 +475,7 @@ namespace bobFinal
             //
             this.lblMarket.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblMarket.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMarket.Location = new System.Drawing.Point(123, 46);
+            this.lblMarket.Location = new System.Drawing.Point(125, 46);
             this.lblMarket.Name = "lblMarket";
             this.lblMarket.Size = new System.Drawing.Size(659, 42);
             this.lblMarket.TabIndex = 23;
@@ -530,7 +531,6 @@ namespace bobFinal
             //
             // tabPage2
             //
-            this.tabPage2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tabPage2.Controls.Add(this.btnUpgradeDiamondStorage);
             this.tabPage2.Controls.Add(this.btnUpgradeGoldStorage);
             this.tabPage2.Controls.Add(this.btnUpgradeLumberStorage);
@@ -583,7 +583,7 @@ namespace bobFinal
             //
             this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(699, 119);
+            this.label3.Location = new System.Drawing.Point(701, 119);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(450, 42);
             this.label3.TabIndex = 25;
@@ -593,7 +593,7 @@ namespace bobFinal
             //
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(123, 119);
+            this.label2.Location = new System.Drawing.Point(125, 119);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(465, 42);
             this.label2.TabIndex = 24;

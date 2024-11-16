@@ -354,16 +354,7 @@ namespace bobFinal
                 if (selectedResource != null)
                 {
                     UpdateCost(buyOrSell);
-
-                    // update label1 text based on the action and selected resource
-                    if (buyOrSell == "buy")
-                    {
-                        label1.Text = $"Enter amount of {selectedResource.Name.ToLower()} to buy";
-                    }
-                    else
-                    {
-                        label1.Text = $"Enter amount of {selectedResource.Name.ToLower()} to sell";
-                    }
+                    UpdateMarketPanel();
                 }
                 else
                 {

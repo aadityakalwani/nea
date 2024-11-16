@@ -453,5 +453,38 @@ namespace bobFinal
             }
         }
 
+        private void btn25_Click(object sender, EventArgs e)
+        {
+            SetNumericUpDownValue(0.25);
+        }
+
+        private void btn50_Click(object sender, EventArgs e)
+        {
+            SetNumericUpDownValue(0.5);
+        }
+
+        private void btn75_Click(object sender, EventArgs e)
+        {
+            SetNumericUpDownValue(0.75);
+        }
+
+        private void btn100_Click(object sender, EventArgs e)
+        {
+            SetNumericUpDownValue(1.00);
+        }
+
+        private void SetNumericUpDownValue(double percentage)
+        {
+            if (selectedResource != null)
+            {
+                numericUpDownAmount.Value = (decimal)(selectedResource.Value * percentage);
+
+                UpdateMarketPanel();
+            }
+            else
+            {
+                MessageBox.Show("No resource selected!");
+            }
+        }
     }
 }

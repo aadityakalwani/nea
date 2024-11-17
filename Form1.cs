@@ -419,30 +419,30 @@ namespace bobFinal
 
         private void btnUpgradeLumberStorage_Click_1(object sender, EventArgs e)
         {
-            UpgradeStorage(lumber, 100);
+            UpgradeStorage(lumber, 5);
         }
 
         private void btnUpgradeGoldStorage_Click(object sender, EventArgs e)
         {
-            UpgradeStorage(gold, 100);
+            UpgradeStorage(gold, 5);
         }
 
         private void btnUpgradeDiamondStorage_Click(object sender, EventArgs e)
         {
-            UpgradeStorage(diamond, 100);
+            UpgradeStorage(diamond, 5);
         }
 
         private void UpgradeStorage(Resource resource, int cost)
         {
             if (dollars.Value >= cost)
             {
-                dollars.ChangeQuantity(-cost);
+                diamond.ChangeQuantity(-cost);
                 resource.IncreaseCapacity(100);
                 MessageBox.Show($"{resource.Name} storage upgraded!");
             }
             else
             {
-                MessageBox.Show("Not enough dollars to upgrade storage!");
+                MessageBox.Show("Not enough diamonds to upgrade storage!");
             }
         }
 

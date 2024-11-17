@@ -1,9 +1,11 @@
 current issues:
 
 immediate future ideas:
-- ability to sell a property (for 80% of the price)
 - 'lessons' where the player can learn about business and economics
-    - lessons give a 'multiplier' to the player's income
+    - lessons give:
+        - a 'multiplier' to the player's income
+        - increased storage capacity
+        - diamonds
 - history of properties upon click - databases and stuff
 - label for the costs of upgrading storage
 

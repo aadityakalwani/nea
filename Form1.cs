@@ -41,6 +41,8 @@ namespace bobFinal
             initializeMarketPrices();
             initializeNewDayTimer();
 
+            numericUpDownAmount.Maximum = 9999999;
+
             // open in full screen
             this.WindowState = FormWindowState.Maximized;
             this.FormBorderStyle = FormBorderStyle.None;
@@ -345,10 +347,10 @@ namespace bobFinal
             currentAction = buyOrSell;
 
             // check if a resource is selected in the market list view
-            if (listViewMarket.SelectedItems.Count > 0)
+            if (listViewMarket.SelectedItems.Count == 1)
             {
                 string selectedItem = listViewMarket.SelectedItems[0].SubItems[1].Text;
-                // find the selected resource from the list of resources
+                // find the selected resource from the list of resources using regex
                 selectedResource = resources.Find(r => r.Name == selectedItem);
 
                 if (selectedResource != null)
@@ -475,6 +477,41 @@ namespace bobFinal
             else
             {
                 MessageBox.Show("No resource selected!");
+            }
+        }
+
+        private void btnSellBuilding_Click(object sender, EventArgs e)
+        {
+            if (selectedPosition != null)
+            {
+                var selectedTile = grid[selectedPosition.X, selectedPosition.Y];
+                var property = properties.Find(p => p.XCoordinate == selectedPosition.X && p.YCoordinate == selectedPosition.Y);
+
+                if (property != null)
+                {
+                    // calculate the sell price (80% of the original cost)
+                    int sellPriceGold = (int)(property.GoldCost * 0.8);
+                    int sellPriceLumber = (int)(property.LumberCost * 0.8);
+
+                    // remove the property from the list and update the grid
+                    properties.Remove(property);
+                    selectedTile.Image = Image.FromFile("Images/empty.jpg");
+                    selectedTile.BuiltUpon = false;
+
+                    // Add the sell price to the resources
+                    gold.ChangeQuantity(sellPriceGold);
+                    lumber.ChangeQuantity(sellPriceLumber);
+
+                    MessageBox.Show($"{property.GetType().Name} sold for {sellPriceGold} Gold and {sellPriceLumber} Lumber!");
+                }
+                else
+                {
+                    MessageBox.Show("No property found on the selected tile!");
+                }
+            }
+            else
+            {
+                MessageBox.Show("No tile selected!");
             }
         }
     }

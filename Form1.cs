@@ -41,6 +41,8 @@ namespace bobFinal
             initializeMarketPrices();
             initializeNewDayTimer();
 
+            DatabaseUtils.CreateDatabase();
+
             numericUpDownAmount.Maximum = 9999999;
 
             // open in full screen

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.IO;
 using System.Windows.Forms;
 
 // ReSharper disable All
@@ -10,27 +9,28 @@ namespace bobFinal
 {
     public partial class Form1 : Form
     {
-        private CustomPictureBox[,] grid;
-        private Point selectedPosition;
         private const int gridSize = 15;
         private const int tileSize = 40;
-        private string selectedBuilding;
-        private Resource dollars;
-        private Resource gold;
-        private Resource lumber;
-        private Resource diamond;
-        private Resource selectedResource;
         private string currentAction;
         private DateTime currentDate = new DateTime(2021, 1, 1);
-        private Timer newDayTimer;
+        private Resource diamond;
+        private Resource dollars;
+        private Resource gold;
+        private CustomPictureBox[,] grid;
 
         private List<Property> listOfAllProperties = new List<Property>
         {
             new House(0, 0), new Farm(0, 0), new Sawmill(0, 0), new Mine(0, 0), new Cafe(0, 0)
         };
 
+        private Resource lumber;
+        private Timer newDayTimer;
+
         private List<Property> properties = new List<Property>();
         private List<Resource> resources;
+        private string selectedBuilding;
+        private Point selectedPosition;
+        private Resource selectedResource;
 
         public Form1()
         {
@@ -123,10 +123,12 @@ namespace bobFinal
                 {
                     gain += $"{property.DailyGoldGain} Gold, ";
                 }
+
                 if (property.DailyLumberGain > 0)
                 {
                     gain += $"{property.DailyLumberGain} Lumber, ";
                 }
+
                 if (property.DailyDiamondGain > 0)
                 {
                     gain += $"{property.DailyDiamondGain} Diamond, ";

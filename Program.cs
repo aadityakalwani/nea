@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
-using System.Runtime.CompilerServices;
 using System.Windows.Forms;
 
 namespace bobFinal
@@ -24,6 +22,12 @@ namespace bobFinal
 
     public abstract class Property
     {
+        protected Property(int x, int y)
+        {
+            XCoordinate = x;
+            YCoordinate = y;
+        }
+
         public int GoldCost { get; protected set; }
         public int LumberCost { get; protected set; }
         public int DailyGoldGain { get; protected set; }
@@ -32,12 +36,6 @@ namespace bobFinal
         public string ImageFileName { get; protected set; }
         public int XCoordinate { get; private set; }
         public int YCoordinate { get; private set; }
-
-        protected Property(int x, int y)
-        {
-            XCoordinate = x;
-            YCoordinate = y;
-        }
     }
 
     public class House : Property
@@ -107,13 +105,6 @@ namespace bobFinal
 
     public class Resource
     {
-        public string Name { get; }
-        public float Value { get; private set; }
-        private int MaxValue { get; set; }
-        private ProgressBar ProgressBar { get; }
-        private TextBox TextBox { get; }
-        public float ConversionRate { get; set; }
-
         public Resource(string name, float value, int maxValue, ProgressBar progressBar, TextBox textBox, float conversionRate)
         {
             Name = name;
@@ -124,6 +115,13 @@ namespace bobFinal
             ConversionRate = conversionRate;
             UpdateUi();
         }
+
+        public string Name { get; }
+        public float Value { get; private set; }
+        private int MaxValue { get; set; }
+        private ProgressBar ProgressBar { get; }
+        private TextBox TextBox { get; }
+        public float ConversionRate { get; set; }
 
         public void ChangeQuantity(float amount)
         {
@@ -140,17 +138,11 @@ namespace bobFinal
         private void UpdateUi()
         {
             if (Value >= MaxValue)
-            {
                 ProgressBar.Value = ProgressBar.Maximum;
-            }
             else if (Value == 0)
-            {
                 ProgressBar.Value = ProgressBar.Minimum;
-            }
             else
-            {
                 ProgressBar.Value = (int)(Value * ProgressBar.Maximum / MaxValue);
-            }
 
             TextBox.Text = $@"{Math.Round(Value, 2)} / {MaxValue}";
         }
@@ -165,14 +157,11 @@ namespace bobFinal
             foreach (var resource in resources)
             {
                 // fluctuate the conversion rate by upto +/- 10%
-                int fluctuation = Random.Next(-10, 11);
+                var fluctuation = Random.Next(-10, 11);
                 resource.ConversionRate += resource.ConversionRate * fluctuation / 100;
 
                 // ensure the conversion rate is at least 1
-                if (resource.ConversionRate < 1)
-                {
-                    resource.ConversionRate = 1;
-                }
+                if (resource.ConversionRate < 1) resource.ConversionRate = 1;
             }
         }
     }

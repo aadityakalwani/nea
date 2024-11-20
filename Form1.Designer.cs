@@ -79,10 +79,10 @@ namespace bobFinal
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.dataGridViewfinal = new System.Windows.Forms.DataGridView();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.lblTabs = new System.Windows.Forms.Label();
             this.btnApplicationExit = new System.Windows.Forms.Button();
-            this.dataGridViewfinal = new System.Windows.Forms.DataGridView();
             this.pnlBuy.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownAmount)).BeginInit();
             this.tabControl1.SuspendLayout();
@@ -638,6 +638,15 @@ namespace bobFinal
             this.tabPage3.Text = "Properties";
             this.tabPage3.UseVisualStyleBackColor = true;
             //
+            // dataGridViewfinal
+            //
+            this.dataGridViewfinal.AllowUserToOrderColumns = true;
+            this.dataGridViewfinal.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewfinal.Location = new System.Drawing.Point(28, 35);
+            this.dataGridViewfinal.Name = "dataGridViewfinal";
+            this.dataGridViewfinal.Size = new System.Drawing.Size(1356, 554);
+            this.dataGridViewfinal.TabIndex = 0;
+            //
             // tabPage4
             //
             this.tabPage4.Location = new System.Drawing.Point(4, 34);
@@ -667,15 +676,6 @@ namespace bobFinal
             this.btnApplicationExit.Text = "Exit Application";
             this.btnApplicationExit.UseVisualStyleBackColor = true;
             this.btnApplicationExit.Click += new System.EventHandler(this.btnApplicationExit_Click_1);
-            //
-            // dataGridViewfinal
-            //
-            this.dataGridViewfinal.AllowUserToOrderColumns = true;
-            this.dataGridViewfinal.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewfinal.Location = new System.Drawing.Point(93, 66);
-            this.dataGridViewfinal.Name = "dataGridViewfinal";
-            this.dataGridViewfinal.Size = new System.Drawing.Size(845, 330);
-            this.dataGridViewfinal.TabIndex = 0;
             //
             // Form1
             //

@@ -229,9 +229,6 @@ namespace bobFinal
 
             if (property != null)
             {
-                DatabaseUtils.AddNewProperty(property.GetType().Name, property.XCoordinate, property.YCoordinate, property.GoldCost, property.LumberCost, property.DailyGoldGain, property.DailyLumberGain, property.DailyDiamondGain, property.ImageFileName);
-                dataGridViewfinal.DataSource = DatabaseUtils.LoadData();
-
                 var selectedTile = grid[selectedPosition.X, selectedPosition.Y];
 
                 // Check if the selected tile is empty by verifying the image and BuiltUpon status
@@ -252,6 +249,10 @@ namespace bobFinal
                     selectedTile.Image = Image.FromFile(property.ImageFileName);
                     selectedTile.BuiltUpon = true;
                     properties.Add(property);
+
+                    // Add the property to the database and update the DataGridView
+                    DatabaseUtils.AddNewProperty(property.GetType().Name, property.XCoordinate, property.YCoordinate, property.GoldCost, property.LumberCost, property.DailyGoldGain, property.DailyLumberGain, property.DailyDiamondGain, property.ImageFileName);
+                    dataGridViewfinal.DataSource = DatabaseUtils.LoadData();
                 }
                 else
                 {
@@ -526,19 +527,7 @@ namespace bobFinal
 
         private void btnApplicationExit_Click_1(object sender, EventArgs e)
         {
-            string databasePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "bobFinalDatabase.mdb");
-
-            try
-            {
-                // delete the database file
-                File.Delete(databasePath);
-                MessageBox.Show("Database deleted successfully.");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error deleting database: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-
+            DatabaseUtils.DeleteDatabase();
             Application.Exit();
         }
     }

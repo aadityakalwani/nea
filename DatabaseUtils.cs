@@ -14,12 +14,13 @@ namespace bobFinal
 
         public static void InitializeDatabase()
         {
+            DeleteDatabase();
             CreateDatabase();
             CreateTables();
-            InsertInitialData();  // You may want to add a check for existing data here
+            InsertInitialData();
         }
 
-        public static void CreateDatabase()
+        private static void CreateDatabase()
         {
             try
             {
@@ -36,6 +37,22 @@ namespace bobFinal
             catch (Exception ex)
             {
                 MessageBox.Show($@"An error occurred: {ex.Message}", @"Database Creation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        public static void DeleteDatabase()
+        {
+
+            string databasePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "bobFinalDatabase.mdb");
+
+            try
+            {
+                // delete the database file
+                File.Delete(databasePath);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($@"Error deleting database: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

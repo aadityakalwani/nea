@@ -57,7 +57,7 @@ namespace bobFinal
         private void initializeMarketPrices()
         {
             listViewMarket.Items.Clear();
-            foreach (var resource in resources)
+            foreach (Resource resource in resources)
             {
                 if (resource.Name != "Dollars")
                 {
@@ -66,6 +66,7 @@ namespace bobFinal
                 }
             }
         }
+
 
         private void initializeGrid()
         {
@@ -205,7 +206,7 @@ namespace bobFinal
             }
         }
 
-        private void btnBuild_Click(object sender, EventArgs e)
+       private void btnBuild_Click(object sender, EventArgs e)
         {
             Property property = null;
 
@@ -231,7 +232,7 @@ namespace bobFinal
 
             if (property != null)
             {
-                var selectedTile = grid[selectedPosition.X, selectedPosition.Y];
+                CustomPictureBox selectedTile = grid[selectedPosition.X, selectedPosition.Y];
 
                 // Check if the selected tile is empty by verifying the image and BuiltUpon status
                 if (selectedTile.BuiltUpon || (selectedTile.ImageLocation != null && !selectedTile.ImageLocation.Contains("empty.jpg")))
@@ -278,7 +279,7 @@ namespace bobFinal
             int totalDiamondGain = 0;
 
             // calculate the total resource gain from all properties
-            foreach (var property in properties)
+            foreach (Property property in properties)
             {
                 totalGoldGain += property.DailyGoldGain;
                 totalLumberGain += property.DailyLumberGain;
@@ -300,7 +301,7 @@ namespace bobFinal
         private void updateMarketPrices()
         {
             listViewMarket.Items.Clear();
-            foreach (var resource in resources)
+            foreach (Resource resource in resources)
             {
                 if (resource.Name != "Dollars")
                 {
@@ -497,8 +498,8 @@ namespace bobFinal
         {
             if (selectedPosition != null)
             {
-                var selectedTile = grid[selectedPosition.X, selectedPosition.Y];
-                var property = properties.Find(p => p.XCoordinate == selectedPosition.X && p.YCoordinate == selectedPosition.Y);
+                CustomPictureBox selectedTile = grid[selectedPosition.X, selectedPosition.Y];
+                Property property = properties.Find(p => p.XCoordinate == selectedPosition.X && p.YCoordinate == selectedPosition.Y);
 
                 if (property != null)
                 {

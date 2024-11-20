@@ -28,7 +28,7 @@ namespace bobFinal
                 if (!File.Exists(Database))
                 {
                     // Create a catalog object
-                    var cat = new Catalog();
+                    Catalog cat = new Catalog();
 
                     // Create the database
                     cat.Create(CONNECTION_STRING);
@@ -42,7 +42,7 @@ namespace bobFinal
 
         public static void DeleteDatabase()
         {
-            var databasePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "bobFinalDatabase.mdb");
+            string databasePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "bobFinalDatabase.mdb");
 
             try
             {
@@ -57,15 +57,15 @@ namespace bobFinal
 
         public static DataTable LoadData()
         {
-            var query = "SELECT * FROM Properties"; // SQL query to fetch all records from the Properties table
+            string query = "SELECT * FROM Properties"; // SQL query to fetch all records from the Properties table
 
-            using (var conn = new OleDbConnection(CONNECTION_STRING))
+            using (OleDbConnection conn = new OleDbConnection(CONNECTION_STRING))
             {
                 try
                 {
                     conn.Open();
-                    var dataAdapter = new OleDbDataAdapter(query, conn);
-                    var dataTable = new DataTable();
+                    OleDbDataAdapter dataAdapter = new OleDbDataAdapter(query, conn);
+                    DataTable dataTable = new DataTable();
                     dataAdapter.Fill(dataTable);
                     return dataTable;
                 }
@@ -82,10 +82,10 @@ namespace bobFinal
         {
             try
             {
-                using (var cnn = new OleDbConnection(CONNECTION_STRING))
+                using (OleDbConnection cnn = new OleDbConnection(CONNECTION_STRING))
                 {
                     cnn.Open();
-                    using (var cmd = new OleDbCommand(sSqlString, cnn))
+                    using (OleDbCommand cmd = new OleDbCommand(sSqlString, cnn))
                     {
                         cmd.ExecuteNonQuery();
                     }
@@ -99,7 +99,7 @@ namespace bobFinal
 
         private static void CreateTables()
         {
-            var createPropertiesTable = @"
+            string createPropertiesTable = @"
             CREATE TABLE Properties (
                 Id AUTOINCREMENT PRIMARY KEY,
                 PropertyType TEXT NOT NULL,
@@ -117,20 +117,20 @@ namespace bobFinal
         private static void InsertInitialData()
         {
             // Check if data already exists to prevent duplicates
-            var checkData = "SELECT COUNT(*) FROM Properties";
-            using (var conn = new OleDbConnection(CONNECTION_STRING))
+            string checkData = "SELECT COUNT(*) FROM Properties";
+            using (OleDbConnection conn = new OleDbConnection(CONNECTION_STRING))
             {
                 conn.Open();
-                using (var cmd = new OleDbCommand(checkData, conn))
+                using (OleDbCommand cmd = new OleDbCommand(checkData, conn))
                 {
-                    var count = Convert.ToInt32(cmd.ExecuteScalar());
+                    int count = Convert.ToInt32(cmd.ExecuteScalar());
                     if (count == 0)
                     {
                         // Only insert initial data if table is empty
-                        var insertSawmill = "INSERT INTO Properties (PropertyType, XCoordinate, YCoordinate, GoldCost, LumberCost, DailyGoldGain, DailyLumberGain, DailyDiamondGain) " +
-                                            "VALUES ('Sawmill', 10, 20, 100, 200, 0, 50, 0)";
-                        var insertHouse = "INSERT INTO Properties (PropertyType, XCoordinate, YCoordinate, GoldCost, LumberCost, DailyGoldGain, DailyLumberGain, DailyDiamondGain) " +
-                                          "VALUES ('House', 15, 25, 150, 100, 10, 0, 0)";
+                        string insertSawmill = "INSERT INTO Properties (PropertyType, XCoordinate, YCoordinate, GoldCost, LumberCost, DailyGoldGain, DailyLumberGain, DailyDiamondGain) " +
+                                               "VALUES ('Sawmill', 10, 20, 100, 200, 0, 50, 0)";
+                        string insertHouse = "INSERT INTO Properties (PropertyType, XCoordinate, YCoordinate, GoldCost, LumberCost, DailyGoldGain, DailyLumberGain, DailyDiamondGain) " +
+                                             "VALUES ('House', 15, 25, 150, 100, 10, 0, 0)";
                         ExecuteSqlNonQuery(insertSawmill);
                         ExecuteSqlNonQuery(insertHouse);
                     }
@@ -138,18 +138,17 @@ namespace bobFinal
             }
         }
 
-
         public static void AddNewProperty(string propertyType, int xCoordinate, int yCoordinate, int goldCost, int lumberCost, int dailyGoldGain, int dailyLumberGain, int dailyDiamondGain)
         {
-            var insertQuery = "INSERT INTO Properties (PropertyType, XCoordinate, YCoordinate, GoldCost, LumberCost, DailyGoldGain, DailyLumberGain, DailyDiamondGain,) " +
-                              "VALUES (@PropertyType, @XCoordinate, @YCoordinate, @GoldCost, @LumberCost, @DailyGoldGain, @DailyLumberGain, @DailyDiamondGain)";
+            string insertQuery = "INSERT INTO Properties (PropertyType, XCoordinate, YCoordinate, GoldCost, LumberCost, DailyGoldGain, DailyLumberGain, DailyDiamondGain,) " +
+                                 "VALUES (@PropertyType, @XCoordinate, @YCoordinate, @GoldCost, @LumberCost, @DailyGoldGain, @DailyLumberGain, @DailyDiamondGain)";
 
-            using (var conn = new OleDbConnection(CONNECTION_STRING))
+            using (OleDbConnection conn = new OleDbConnection(CONNECTION_STRING))
             {
                 try
                 {
                     conn.Open();
-                    using (var cmd = new OleDbCommand(insertQuery, conn))
+                    using (OleDbCommand cmd = new OleDbCommand(insertQuery, conn))
                     {
                         cmd.Parameters.AddWithValue("@PropertyType", propertyType);
                         cmd.Parameters.AddWithValue("@XCoordinate", xCoordinate);

@@ -251,7 +251,7 @@ namespace bobFinal
                     properties.Add(property);
 
                     // Add the property to the database and update the DataGridView
-                    DatabaseUtils.AddNewProperty(property.GetType().Name, property.XCoordinate, property.YCoordinate, property.GoldCost, property.LumberCost, property.DailyGoldGain, property.DailyLumberGain, property.DailyDiamondGain, property.ImageFileName);
+                    DatabaseUtils.AddNewProperty(property.GetType().Name, property.XCoordinate, property.YCoordinate, property.GoldCost, property.LumberCost, property.DailyGoldGain, property.DailyLumberGain, property.DailyDiamondGain);
                     dataGridViewfinal.DataSource = DatabaseUtils.LoadData();
                 }
                 else
@@ -292,6 +292,7 @@ namespace bobFinal
             Market.UpdateConversionRates(resources);
             updateMarketPrices();
             UpdateMarketPanel();
+            dataGridViewfinal.DataSource = DatabaseUtils.LoadData(); // update the DataGridView
         }
 
         private void updateMarketPrices()

@@ -101,18 +101,17 @@ namespace bobFinal
         private static void CreateTables()
         {
             string createPropertiesTable = @"
-                CREATE TABLE Properties (
-                    Id AUTOINCREMENT PRIMARY KEY,
-                    PropertyType TEXT NOT NULL,
-                    XCoordinate INTEGER NOT NULL,
-                    YCoordinate INTEGER NOT NULL,
-                    GoldCost INTEGER NOT NULL,
-                    LumberCost INTEGER NOT NULL,
-                    DailyGoldGain INTEGER NOT NULL,
-                    DailyLumberGain INTEGER NOT NULL,
-                    DailyDiamondGain INTEGER NOT NULL,
-                    ImageFileName TEXT NOT NULL
-                );";
+            CREATE TABLE Properties (
+                Id AUTOINCREMENT PRIMARY KEY,
+                PropertyType TEXT NOT NULL,
+                XCoordinate INTEGER NOT NULL,
+                YCoordinate INTEGER NOT NULL,
+                GoldCost INTEGER NOT NULL,
+                LumberCost INTEGER NOT NULL,
+                DailyGoldGain INTEGER NOT NULL,
+                DailyLumberGain INTEGER NOT NULL,
+                DailyDiamondGain INTEGER NOT NULL
+            );";
             ExecuteSqlNonQuery(createPropertiesTable);
         }
 
@@ -129,10 +128,10 @@ namespace bobFinal
                     if (count == 0)
                     {
                         // Only insert initial data if table is empty
-                        string insertSawmill = "INSERT INTO Properties (PropertyType, XCoordinate, YCoordinate, GoldCost, LumberCost, DailyGoldGain, DailyLumberGain, DailyDiamondGain, ImageFileName) " +
-                                               "VALUES ('Sawmill', 10, 20, 100, 200, 0, 50, 0, 'sawmill.png')";
-                        string insertHouse = "INSERT INTO Properties (PropertyType, XCoordinate, YCoordinate, GoldCost, LumberCost, DailyGoldGain, DailyLumberGain, DailyDiamondGain, ImageFileName) " +
-                                             "VALUES ('House', 15, 25, 150, 100, 10, 0, 0, 'house.png')";
+                        string insertSawmill = "INSERT INTO Properties (PropertyType, XCoordinate, YCoordinate, GoldCost, LumberCost, DailyGoldGain, DailyLumberGain, DailyDiamondGain) " +
+                                               "VALUES ('Sawmill', 10, 20, 100, 200, 0, 50, 0)";
+                        string insertHouse = "INSERT INTO Properties (PropertyType, XCoordinate, YCoordinate, GoldCost, LumberCost, DailyGoldGain, DailyLumberGain, DailyDiamondGain) " +
+                                             "VALUES ('House', 15, 25, 150, 100, 10, 0, 0)";
                         ExecuteSqlNonQuery(insertSawmill);
                         ExecuteSqlNonQuery(insertHouse);
                     }
@@ -140,10 +139,11 @@ namespace bobFinal
             }
         }
 
-        public static void AddNewProperty(string propertyType, int xCoordinate, int yCoordinate, int goldCost, int lumberCost, int dailyGoldGain, int dailyLumberGain, int dailyDiamondGain, string imageFileName)
+
+        public static void AddNewProperty(string propertyType, int xCoordinate, int yCoordinate, int goldCost, int lumberCost, int dailyGoldGain, int dailyLumberGain, int dailyDiamondGain)
         {
-            string insertQuery = "INSERT INTO Properties (PropertyType, XCoordinate, YCoordinate, GoldCost, LumberCost, DailyGoldGain, DailyLumberGain, DailyDiamondGain, ImageFileName) " +
-                                 "VALUES (@PropertyType, @XCoordinate, @YCoordinate, @GoldCost, @LumberCost, @DailyGoldGain, @DailyLumberGain, @DailyDiamondGain, @ImageFileName)";
+            string insertQuery = "INSERT INTO Properties (PropertyType, XCoordinate, YCoordinate, GoldCost, LumberCost, DailyGoldGain, DailyLumberGain, DailyDiamondGain,) " +
+                                 "VALUES (@PropertyType, @XCoordinate, @YCoordinate, @GoldCost, @LumberCost, @DailyGoldGain, @DailyLumberGain, @DailyDiamondGain)";
 
             using (OleDbConnection conn = new OleDbConnection(CONNECTION_STRING))
             {
@@ -160,7 +160,6 @@ namespace bobFinal
                         cmd.Parameters.AddWithValue("@DailyGoldGain", dailyGoldGain);
                         cmd.Parameters.AddWithValue("@DailyLumberGain", dailyLumberGain);
                         cmd.Parameters.AddWithValue("@DailyDiamondGain", dailyDiamondGain);
-                        cmd.Parameters.AddWithValue("@ImageFileName", imageFileName);
 
                         cmd.ExecuteNonQuery();
                     }

@@ -644,6 +644,8 @@ namespace bobFinal
             this.dataGridViewfinal.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewfinal.Location = new System.Drawing.Point(28, 35);
             this.dataGridViewfinal.Name = "dataGridViewfinal";
+            this.dataGridViewfinal.ReadOnly = true;
+            this.dataGridViewfinal.RowHeadersWidth = 55;
             this.dataGridViewfinal.Size = new System.Drawing.Size(1356, 554);
             this.dataGridViewfinal.TabIndex = 0;
             //

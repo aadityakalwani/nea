@@ -81,11 +81,15 @@ namespace bobFinal
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.lblTabs = new System.Windows.Forms.Label();
+            this.btnApplicationExit = new System.Windows.Forms.Button();
+            this.dataGridViewfinal = new System.Windows.Forms.DataGridView();
             this.pnlBuy.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownAmount)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
+            this.tabPage3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewfinal)).BeginInit();
             this.SuspendLayout();
             //
             // gridPanel
@@ -302,7 +306,7 @@ namespace bobFinal
             //
             this.btnSell.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSell.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSell.Location = new System.Drawing.Point(326, 401);
+            this.btnSell.Location = new System.Drawing.Point(243, 401);
             this.btnSell.Margin = new System.Windows.Forms.Padding(2);
             this.btnSell.Name = "btnSell";
             this.btnSell.Size = new System.Drawing.Size(216, 56);
@@ -315,7 +319,7 @@ namespace bobFinal
             //
             this.btnBuy.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnBuy.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBuy.Location = new System.Drawing.Point(125, 401);
+            this.btnBuy.Location = new System.Drawing.Point(42, 401);
             this.btnBuy.Margin = new System.Windows.Forms.Padding(2);
             this.btnBuy.Name = "btnBuy";
             this.btnBuy.Size = new System.Drawing.Size(180, 56);
@@ -344,7 +348,7 @@ namespace bobFinal
             this.listViewMarket.FullRowSelect = true;
             this.listViewMarket.GridLines = true;
             this.listViewMarket.HideSelection = false;
-            this.listViewMarket.Location = new System.Drawing.Point(125, 176);
+            this.listViewMarket.Location = new System.Drawing.Point(42, 176);
             this.listViewMarket.Margin = new System.Windows.Forms.Padding(2);
             this.listViewMarket.Name = "listViewMarket";
             this.listViewMarket.Size = new System.Drawing.Size(417, 196);
@@ -376,7 +380,7 @@ namespace bobFinal
             this.pnlBuy.Controls.Add(this.btnConfirmMarketAction);
             this.pnlBuy.Controls.Add(this.lblCost);
             this.pnlBuy.Controls.Add(this.numericUpDownAmount);
-            this.pnlBuy.Location = new System.Drawing.Point(125, 480);
+            this.pnlBuy.Location = new System.Drawing.Point(42, 480);
             this.pnlBuy.Name = "pnlBuy";
             this.pnlBuy.Size = new System.Drawing.Size(417, 321);
             this.pnlBuy.TabIndex = 22;
@@ -485,7 +489,7 @@ namespace bobFinal
             //
             this.lblMarket.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblMarket.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMarket.Location = new System.Drawing.Point(125, 46);
+            this.lblMarket.Location = new System.Drawing.Point(42, 46);
             this.lblMarket.Name = "lblMarket";
             this.lblMarket.Size = new System.Drawing.Size(659, 42);
             this.lblMarket.TabIndex = 23;
@@ -547,7 +551,7 @@ namespace bobFinal
             //
             // lblNextDayTimer
             //
-            this.lblNextDayTimer.Location = new System.Drawing.Point(1024, 93);
+            this.lblNextDayTimer.Location = new System.Drawing.Point(936, 95);
             this.lblNextDayTimer.Name = "lblNextDayTimer";
             this.lblNextDayTimer.Size = new System.Drawing.Size(301, 30);
             this.lblNextDayTimer.TabIndex = 22;
@@ -568,7 +572,7 @@ namespace bobFinal
             this.tabPage2.Location = new System.Drawing.Point(4, 34);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1499, 851);
+            this.tabPage2.Size = new System.Drawing.Size(1416, 850);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Market";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -607,7 +611,7 @@ namespace bobFinal
             //
             this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(701, 119);
+            this.label3.Location = new System.Drawing.Point(618, 119);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(450, 42);
             this.label3.TabIndex = 25;
@@ -617,7 +621,7 @@ namespace bobFinal
             //
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(125, 119);
+            this.label2.Location = new System.Drawing.Point(42, 119);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(465, 42);
             this.label2.TabIndex = 24;
@@ -625,10 +629,11 @@ namespace bobFinal
             //
             // tabPage3
             //
+            this.tabPage3.Controls.Add(this.dataGridViewfinal);
             this.tabPage3.Location = new System.Drawing.Point(4, 34);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(1499, 851);
+            this.tabPage3.Size = new System.Drawing.Size(1416, 850);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Properties";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -638,7 +643,7 @@ namespace bobFinal
             this.tabPage4.Location = new System.Drawing.Point(4, 34);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(1499, 851);
+            this.tabPage4.Size = new System.Drawing.Size(1416, 850);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "tabPage4";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -652,12 +657,33 @@ namespace bobFinal
             this.lblTabs.TabIndex = 26;
             this.lblTabs.Text = "Welcome! Use these tabs to toggle across different game views";
             //
+            // btnApplicationExit
+            //
+            this.btnApplicationExit.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnApplicationExit.Location = new System.Drawing.Point(1455, 432);
+            this.btnApplicationExit.Name = "btnApplicationExit";
+            this.btnApplicationExit.Size = new System.Drawing.Size(312, 65);
+            this.btnApplicationExit.TabIndex = 27;
+            this.btnApplicationExit.Text = "Exit Application";
+            this.btnApplicationExit.UseVisualStyleBackColor = true;
+            this.btnApplicationExit.Click += new System.EventHandler(this.btnApplicationExit_Click_1);
+            //
+            // dataGridViewfinal
+            //
+            this.dataGridViewfinal.AllowUserToOrderColumns = true;
+            this.dataGridViewfinal.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewfinal.Location = new System.Drawing.Point(93, 66);
+            this.dataGridViewfinal.Name = "dataGridViewfinal";
+            this.dataGridViewfinal.Size = new System.Drawing.Size(845, 330);
+            this.dataGridViewfinal.TabIndex = 0;
+            //
             // Form1
             //
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(1804, 966);
+            this.Controls.Add(this.btnApplicationExit);
             this.Controls.Add(this.lblTabs);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.lblDate);
@@ -682,9 +708,15 @@ namespace bobFinal
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
+            this.tabPage3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewfinal)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
         }
+
+        private System.Windows.Forms.DataGridView dataGridViewfinal;
+
+        private System.Windows.Forms.Button btnApplicationExit;
 
         private System.Windows.Forms.Button btnSellBuilding;
 

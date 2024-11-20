@@ -1,5 +1,5 @@
 current issues:
-- in Interop.ADOX, i have been unable to change the Change Embed Interop Types to False
+- in Interop.ADOX, I have been unable to change the Change Embed Interop Types to False
 
 immediate future ideas:
 - 'lessons' where the player can learn about business and economics

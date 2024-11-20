@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Windows.Forms;
 
 // ReSharper disable All
@@ -41,7 +42,10 @@ namespace bobFinal
             initializeMarketPrices();
             initializeNewDayTimer();
 
-            DatabaseUtils.CreateDatabase();
+            DatabaseUtils.InitializeDatabase();
+
+            // Bind the DataTable to a DataGridView to display the data
+            dataGridViewfinal.DataSource = DatabaseUtils.LoadData();
 
             numericUpDownAmount.Maximum = 9999999;
 
@@ -225,6 +229,9 @@ namespace bobFinal
 
             if (property != null)
             {
+                DatabaseUtils.AddNewProperty(property.GetType().Name, property.XCoordinate, property.YCoordinate, property.GoldCost, property.LumberCost, property.DailyGoldGain, property.DailyLumberGain, property.DailyDiamondGain, property.ImageFileName);
+                dataGridViewfinal.DataSource = DatabaseUtils.LoadData();
+
                 var selectedTile = grid[selectedPosition.X, selectedPosition.Y];
 
                 // Check if the selected tile is empty by verifying the image and BuiltUpon status
@@ -515,6 +522,24 @@ namespace bobFinal
             {
                 MessageBox.Show("No tile selected!");
             }
+        }
+
+        private void btnApplicationExit_Click_1(object sender, EventArgs e)
+        {
+            string databasePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "bobFinalDatabase.mdb");
+
+            try
+            {
+                // delete the database file
+                File.Delete(databasePath);
+                MessageBox.Show("Database deleted successfully.");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error deleting database: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            Application.Exit();
         }
     }
 }

@@ -35,17 +35,17 @@ namespace bobFinal
         public Form1()
         {
             InitializeComponent();
+
+            DatabaseUtils.InitializeDatabase();
+            // bind the DataTable to a DataGridView to display the data
+            dataGridViewfinal.DataSource = DatabaseUtils.LoadData();
+
             initializeGrid();
             initializeLoot();
             initializeStartingProperties();
             initializePrices();
             initializeMarketPrices();
             initializeNewDayTimer();
-
-            DatabaseUtils.InitializeDatabase();
-
-            // Bind the DataTable to a DataGridView to display the data
-            dataGridViewfinal.DataSource = DatabaseUtils.LoadData();
 
             numericUpDownAmount.Maximum = 9999999;
 
@@ -164,12 +164,14 @@ namespace bobFinal
             grid[sawmill.XCoordinate, sawmill.YCoordinate].Image = Image.FromFile(sawmill.ImageFileName);
             grid[sawmill.XCoordinate, sawmill.YCoordinate].BuiltUpon = true;
             properties.Add(sawmill);
+            DatabaseUtils.AddNewProperty(sawmill.GetType().Name, sawmill.XCoordinate, sawmill.YCoordinate, sawmill.GoldCost, sawmill.LumberCost, sawmill.DailyGoldGain, sawmill.DailyLumberGain, sawmill.DailyDiamondGain);
 
             // create and place the initial house
             Property house = new House(initialCoordinate + 5, initialCoordinate + 5);
             grid[house.XCoordinate, house.YCoordinate].Image = Image.FromFile(house.ImageFileName);
             grid[house.XCoordinate, house.YCoordinate].BuiltUpon = true;
             properties.Add(house);
+            DatabaseUtils.AddNewProperty(house.GetType().Name, house.XCoordinate, house.YCoordinate, house.GoldCost, house.LumberCost, house.DailyGoldGain, house.DailyLumberGain, house.DailyDiamondGain);
         }
 
         private void initializeNewDayTimer()

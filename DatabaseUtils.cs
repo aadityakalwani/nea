@@ -116,31 +116,13 @@ namespace bobFinal
 
         private static void InsertInitialData()
         {
-            // Check if data already exists to prevent duplicates
-            string checkData = "SELECT COUNT(*) FROM Properties";
-            using (OleDbConnection conn = new OleDbConnection(CONNECTION_STRING))
-            {
-                conn.Open();
-                using (OleDbCommand cmd = new OleDbCommand(checkData, conn))
-                {
-                    int count = Convert.ToInt32(cmd.ExecuteScalar());
-                    if (count == 0)
-                    {
-                        // Only insert initial data if table is empty
-                        string insertSawmill = "INSERT INTO Properties (PropertyType, XCoordinate, YCoordinate, GoldCost, LumberCost, DailyGoldGain, DailyLumberGain, DailyDiamondGain) " +
-                                               "VALUES ('Sawmill', 10, 20, 100, 200, 0, 50, 0)";
-                        string insertHouse = "INSERT INTO Properties (PropertyType, XCoordinate, YCoordinate, GoldCost, LumberCost, DailyGoldGain, DailyLumberGain, DailyDiamondGain) " +
-                                             "VALUES ('House', 15, 25, 150, 100, 10, 0, 0)";
-                        ExecuteSqlNonQuery(insertSawmill);
-                        ExecuteSqlNonQuery(insertHouse);
-                    }
-                }
-            }
+            AddNewProperty("Sawmill", 10, 20, 100, 200, 0, 50, 0);
+            AddNewProperty("House", 15, 25, 150, 100, 10, 0, 0);
         }
 
         public static void AddNewProperty(string propertyType, int xCoordinate, int yCoordinate, int goldCost, int lumberCost, int dailyGoldGain, int dailyLumberGain, int dailyDiamondGain)
         {
-            string insertQuery = "INSERT INTO Properties (PropertyType, XCoordinate, YCoordinate, GoldCost, LumberCost, DailyGoldGain, DailyLumberGain, DailyDiamondGain,) " +
+            string insertQuery = "INSERT INTO Properties (PropertyType, XCoordinate, YCoordinate, GoldCost, LumberCost, DailyGoldGain, DailyLumberGain, DailyDiamondGain) " +
                                  "VALUES (@PropertyType, @XCoordinate, @YCoordinate, @GoldCost, @LumberCost, @DailyGoldGain, @DailyLumberGain, @DailyDiamondGain)";
 
             using (OleDbConnection conn = new OleDbConnection(CONNECTION_STRING))

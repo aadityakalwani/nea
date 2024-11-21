@@ -1,5 +1,4 @@
 current issues:
-- in Interop.ADOX, I have been unable to change the Change Embed Interop Types to False
 - code to delete a property form the database when you sell it
 
 immediate future ideas:
@@ -8,20 +7,18 @@ immediate future ideas:
         - a 'multiplier' to the player's income
         - increased storage capacity
         - diamonds
-- history of properties upon click - databases and stuff
+- history of properties upon click
 - label for the costs of upgrading storage
 
 future ideas:
 - more resources to buy and sell
+    - quarry to mine stone
+- upgradable properties
+- idea of villagers or visitors to the town that effect the market prices
 - storage buildings like in COC to store resources
-- quarry to mine stone
-- plantation to grow food
 - weather that affects the market prices / village visitors
 - commission / charge for converting resources
 - path tiles to connect properties to the town hall
 - upgradable town hall
-- upgradable properties
-- use correct accessors and mutators
-- idea of villagers or visitors to the town that effect the market prices
 - tutorial / introduction to the game upon start
 - events that affect the market prices such as stock market crashes or booms

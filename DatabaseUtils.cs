@@ -9,6 +9,7 @@ namespace bobFinal
 {
     public static class DatabaseUtils
     {
+        // - in Interop.ADOX, I have been unable to change the Change Embed Interop Types to False
         private const string Database = "bobFinalDatabase.mdb";
         private const string CONNECTION_STRING = @"Provider=Microsoft Jet 4.0 OLE DB Provider;Data Source=" + Database + ";";
 

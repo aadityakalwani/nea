@@ -18,7 +18,6 @@ namespace bobFinal
             DeleteDatabase();
             CreateDatabase();
             CreateTables();
-            InsertInitialData();
         }
 
         private static void CreateDatabase()
@@ -113,12 +112,6 @@ namespace bobFinal
                 DailyDiamondGain INTEGER NOT NULL
             );";
             ExecuteSqlNonQuery(createPropertiesTable);
-        }
-
-        private static void InsertInitialData()
-        {
-            AddNewProperty("Sawmill", 10, 20, 100, 200, 0, 50, 0);
-            AddNewProperty("House", 15, 25, 150, 100, 10, 0, 0);
         }
 
         public static void AddNewProperty(string propertyType, int xCoordinate, int yCoordinate, int goldCost, int lumberCost, int dailyGoldGain, int dailyLumberGain, int dailyDiamondGain)

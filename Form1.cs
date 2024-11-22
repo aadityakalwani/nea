@@ -536,5 +536,87 @@ namespace bobFinal
             DatabaseUtils.DeleteDatabase();
             Application.Exit();
         }
+
+        private void btnApplyPrims_Click(object sender, EventArgs e)
+        {
+
+
+        }
+
+        private List<(Property, Property)> FindMST(List<Property> properties)
+        {
+            // List to store the edges of the MST
+            List<(Property, Property)> mstEdges = new List<(Property, Property)>();
+
+            // If there are no properties, return an empty list
+            if (properties == null || properties.Count == 0)
+            {
+                return mstEdges;
+            }
+
+            // List to keep track of visited properties
+            List<Property> visited = new List<Property>();
+
+            // Start with the first property
+            Property start = properties[0];
+            visited.Add(start);
+
+            // While not all properties are visited
+            while (visited.Count < properties.Count)
+            {
+                double minDistance = double.MaxValue;
+                Property minProperty1 = null;
+                Property minProperty2 = null;
+
+                // Find the smallest edge connecting a visited property to an unvisited property
+                foreach (Property property1 in visited)
+                {
+                    foreach (Property property2 in properties)
+                    {
+                        if (!visited.Contains(property2)) // property2 is unvisited
+                        {
+                            double distance = CalculateDistance(property1, property2);
+                            if (distance < minDistance)
+                            {
+                                minDistance = distance;
+                                minProperty1 = property1;
+                                minProperty2 = property2;
+                            }
+                        }
+                    }
+                }
+
+                // Add the smallest edge to the MST
+                if (minProperty1 != null && minProperty2 != null)
+                {
+                    mstEdges.Add((minProperty1, minProperty2));
+                    visited.Add(minProperty2);
+                }
+            }
+
+            return mstEdges;
+        }
+
+        // Method to calculate the Euclidean distance between two properties
+        private double CalculateDistance(Property a, Property b)
+        {
+            int deltaX = a.XCoordinate - b.XCoordinate;
+            int deltaY = a.YCoordinate - b.YCoordinate;
+            return Math.Sqrt(deltaX * deltaX + deltaY * deltaY);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            List<(Property, Property)> mstEdges = FindMST(properties);
+
+            // Display the edges of the MST in a message box
+            string message = "Minimum Spanning Tree (MST) Edges:\n";
+            foreach ((Property, Property) edge in mstEdges)
+            {
+                message += $"({edge.Item1.XCoordinate}, {edge.Item1.YCoordinate}) -> ({edge.Item2.XCoordinate}, {edge.Item2.YCoordinate})\n";
+            }
+
+            MessageBox.Show(message);
+        }
     }
 }

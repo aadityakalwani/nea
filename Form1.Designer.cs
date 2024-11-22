@@ -83,6 +83,7 @@ namespace bobFinal
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.lblTabs = new System.Windows.Forms.Label();
             this.btnApplicationExit = new System.Windows.Forms.Button();
+            this.btnApplyPrims = new System.Windows.Forms.Button();
             this.pnlBuy.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownAmount)).BeginInit();
             this.tabControl1.SuspendLayout();
@@ -679,12 +680,23 @@ namespace bobFinal
             this.btnApplicationExit.UseVisualStyleBackColor = true;
             this.btnApplicationExit.Click += new System.EventHandler(this.btnApplicationExit_Click_1);
             //
+            // btnApplyPrims
+            //
+            this.btnApplyPrims.Location = new System.Drawing.Point(1469, 535);
+            this.btnApplyPrims.Name = "btnApplyPrims";
+            this.btnApplyPrims.Size = new System.Drawing.Size(178, 55);
+            this.btnApplyPrims.TabIndex = 28;
+            this.btnApplyPrims.Text = "prim";
+            this.btnApplyPrims.UseVisualStyleBackColor = true;
+            this.btnApplyPrims.Click += new System.EventHandler(this.button1_Click);
+            //
             // Form1
             //
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(1804, 966);
+            this.Controls.Add(this.btnApplyPrims);
             this.Controls.Add(this.btnApplicationExit);
             this.Controls.Add(this.lblTabs);
             this.Controls.Add(this.tabControl1);
@@ -715,6 +727,8 @@ namespace bobFinal
             this.ResumeLayout(false);
             this.PerformLayout();
         }
+
+        private System.Windows.Forms.Button btnApplyPrims;
 
         private System.Windows.Forms.DataGridView dataGridViewfinal;
 

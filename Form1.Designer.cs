@@ -672,7 +672,7 @@ namespace bobFinal
             // btnApplicationExit
             //
             this.btnApplicationExit.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnApplicationExit.Location = new System.Drawing.Point(1455, 432);
+            this.btnApplicationExit.Location = new System.Drawing.Point(1455, 591);
             this.btnApplicationExit.Name = "btnApplicationExit";
             this.btnApplicationExit.Size = new System.Drawing.Size(312, 65);
             this.btnApplicationExit.TabIndex = 27;
@@ -682,11 +682,12 @@ namespace bobFinal
             //
             // btnApplyPrims
             //
-            this.btnApplyPrims.Location = new System.Drawing.Point(1469, 535);
+            this.btnApplyPrims.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
+            this.btnApplyPrims.Location = new System.Drawing.Point(1455, 480);
             this.btnApplyPrims.Name = "btnApplyPrims";
-            this.btnApplyPrims.Size = new System.Drawing.Size(178, 55);
+            this.btnApplyPrims.Size = new System.Drawing.Size(312, 63);
             this.btnApplyPrims.TabIndex = 28;
-            this.btnApplyPrims.Text = "prim";
+            this.btnApplyPrims.Text = "Apply Prim\'s";
             this.btnApplyPrims.UseVisualStyleBackColor = true;
             this.btnApplyPrims.Click += new System.EventHandler(this.button1_Click);
             //

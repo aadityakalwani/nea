@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 // ReSharper disable All
@@ -239,7 +240,7 @@ namespace bobFinal
                 // Check if the selected tile is empty by verifying the image and BuiltUpon status
                 if (selectedTile.BuiltUpon || (selectedTile.ImageLocation != null && !selectedTile.ImageLocation.Contains("empty.jpg")))
                 {
-                    MessageBox.Show("You can only build on an empty tile!");
+                    ShowAutoClosingMessageBox("You can only build on an empty tile!", "Error", 2500);
                     return;
                 }
 
@@ -261,7 +262,7 @@ namespace bobFinal
                 }
                 else
                 {
-                    MessageBox.Show("Not enough resources!");
+                    ShowAutoClosingMessageBox("Not enough resources!", "Error", 2500);
                 }
             }
         }
@@ -377,13 +378,13 @@ namespace bobFinal
                 else
                 {
                     // show a message if the resource is not found
-                    MessageBox.Show("Resource not found!");
+                    ShowAutoClosingMessageBox("Resource not found!", "Error", 2500);
                 }
             }
             else
             {
                 // show a message if no resource is selected
-                MessageBox.Show($"Please select a resource to {buyOrSell}.");
+                ShowAutoClosingMessageBox($"Please select a resource to {buyOrSell}.", "Error", 2500);
             }
         }
 
@@ -408,7 +409,7 @@ namespace bobFinal
                     }
                     else
                     {
-                        MessageBox.Show("Not enough dollars!");
+                        ShowAutoClosingMessageBox("Not enough dollars!", "Error", 2500);
                     }
                 }
                 else
@@ -420,7 +421,7 @@ namespace bobFinal
                     }
                     else
                     {
-                        MessageBox.Show("Not enough resources!");
+                        ShowAutoClosingMessageBox("Not enough resources!", "Error", 2500);
                     }
                 }
             }
@@ -433,19 +434,29 @@ namespace bobFinal
             label1.Text = "Select a resource to buy or sell";
         }
 
+        int lumberStorageUpgradeCost = 5;
+        int goldStorageUpgradeCost = 5;
+        int diamondStorageUpgradeCost = 5;
+
         private void btnUpgradeLumberStorage_Click_1(object sender, EventArgs e)
         {
-            UpgradeStorage(lumber, 5);
+            UpgradeStorage(lumber, lumberStorageUpgradeCost);
+            lumberStorageUpgradeCost *= 2;
+            btnUpgradeLumberStorage.Text = $"Upgrade Lumber Storage (Cost: {lumberStorageUpgradeCost} diamonds)";
         }
 
         private void btnUpgradeGoldStorage_Click(object sender, EventArgs e)
         {
-            UpgradeStorage(gold, 5);
+            UpgradeStorage(gold, goldStorageUpgradeCost);
+            goldStorageUpgradeCost *= 2;
+            btnUpgradeGoldStorage.Text = $"Upgrade Gold Storage (Cost: {goldStorageUpgradeCost} diamonds)";
         }
 
         private void btnUpgradeDiamondStorage_Click(object sender, EventArgs e)
         {
-            UpgradeStorage(diamond, 5);
+            UpgradeStorage(diamond, diamondStorageUpgradeCost);
+            diamondStorageUpgradeCost *= 2;
+            btnUpgradeDiamondStorage.Text = $"Upgrade Diamond Storage (Cost: {diamondStorageUpgradeCost} diamonds)";
         }
 
         private void UpgradeStorage(Resource resource, int cost)
@@ -454,11 +465,12 @@ namespace bobFinal
             {
                 diamond.ChangeQuantity(-cost);
                 resource.IncreaseCapacity(100);
-                MessageBox.Show($"{resource.Name} storage upgraded!");
+                ShowAutoClosingMessageBox($"{resource.Name} storage upgraded!", "Success", 2500);
+
             }
             else
             {
-                MessageBox.Show("Not enough diamonds to upgrade storage!");
+                ShowAutoClosingMessageBox("Not enough diamonds to upgrade storage!", "Error", 2500);
             }
         }
 
@@ -492,42 +504,35 @@ namespace bobFinal
             }
             else
             {
-                MessageBox.Show("No resource selected!");
+                ShowAutoClosingMessageBox("No resource selected!", "Error", 2500);
             }
         }
 
         private void btnSellBuilding_Click(object sender, EventArgs e)
         {
-            if (selectedPosition != null)
+            CustomPictureBox selectedTile = grid[selectedPosition.X, selectedPosition.Y];
+            Property property = properties.Find(p => p.XCoordinate == selectedPosition.X && p.YCoordinate == selectedPosition.Y);
+
+            if (property != null)
             {
-                CustomPictureBox selectedTile = grid[selectedPosition.X, selectedPosition.Y];
-                Property property = properties.Find(p => p.XCoordinate == selectedPosition.X && p.YCoordinate == selectedPosition.Y);
+                // calculate the sell price (80% of the original cost)
+                int sellPriceGold = (int)(property.GoldCost * 0.8);
+                int sellPriceLumber = (int)(property.LumberCost * 0.8);
 
-                if (property != null)
-                {
-                    // calculate the sell price (80% of the original cost)
-                    int sellPriceGold = (int)(property.GoldCost * 0.8);
-                    int sellPriceLumber = (int)(property.LumberCost * 0.8);
+                // remove the property from the list and update the grid
+                properties.Remove(property);
+                selectedTile.Image = Image.FromFile("Images/empty.jpg");
+                selectedTile.BuiltUpon = false;
 
-                    // remove the property from the list and update the grid
-                    properties.Remove(property);
-                    selectedTile.Image = Image.FromFile("Images/empty.jpg");
-                    selectedTile.BuiltUpon = false;
+                // Add the sell price to the resources
+                gold.ChangeQuantity(sellPriceGold);
+                lumber.ChangeQuantity(sellPriceLumber);
 
-                    // Add the sell price to the resources
-                    gold.ChangeQuantity(sellPriceGold);
-                    lumber.ChangeQuantity(sellPriceLumber);
-
-                    MessageBox.Show($"{property.GetType().Name} sold for {sellPriceGold} Gold and {sellPriceLumber} Lumber!");
-                }
-                else
-                {
-                    MessageBox.Show("No property found on the selected tile!");
-                }
+                ShowAutoClosingMessageBox($"{property.GetType().Name} sold for {sellPriceGold} Gold and {sellPriceLumber} Lumber!", "Success", 2500);
             }
             else
             {
-                MessageBox.Show("No tile selected!");
+                ShowAutoClosingMessageBox("No property found on the selected tile!", "Error", 2500);
             }
         }
 
@@ -610,7 +615,18 @@ namespace bobFinal
                 message += $"({edge.Item1.XCoordinate}, {edge.Item1.YCoordinate}) -> ({edge.Item2.XCoordinate}, {edge.Item2.YCoordinate})\n";
             }
 
-            MessageBox.Show(message);
+            ShowAutoClosingMessageBox(message, "MST Edges", 5000);
         }
+
+        public static async void ShowAutoClosingMessageBox(string message, string title, int timeout)
+        {
+            var task = Task.Run(() => MessageBox.Show(message, title));
+            await Task.Delay(timeout);
+            if (!task.IsCompleted)
+            {
+                SendKeys.SendWait("{ENTER}"); // Simulates pressing "OK"
+            }
+        }
+
     }
 }

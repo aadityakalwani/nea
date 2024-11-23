@@ -307,10 +307,10 @@ namespace bobFinal
             //
             this.btnSell.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSell.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSell.Location = new System.Drawing.Point(243, 401);
+            this.btnSell.Location = new System.Drawing.Point(552, 340);
             this.btnSell.Margin = new System.Windows.Forms.Padding(2);
             this.btnSell.Name = "btnSell";
-            this.btnSell.Size = new System.Drawing.Size(216, 56);
+            this.btnSell.Size = new System.Drawing.Size(180, 75);
             this.btnSell.TabIndex = 18;
             this.btnSell.Text = "Sell";
             this.btnSell.UseVisualStyleBackColor = true;
@@ -320,10 +320,10 @@ namespace bobFinal
             //
             this.btnBuy.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnBuy.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBuy.Location = new System.Drawing.Point(42, 401);
+            this.btnBuy.Location = new System.Drawing.Point(552, 219);
             this.btnBuy.Margin = new System.Windows.Forms.Padding(2);
             this.btnBuy.Name = "btnBuy";
-            this.btnBuy.Size = new System.Drawing.Size(180, 56);
+            this.btnBuy.Size = new System.Drawing.Size(180, 75);
             this.btnBuy.TabIndex = 19;
             this.btnBuy.Text = "Buy";
             this.btnBuy.UseVisualStyleBackColor = true;
@@ -349,7 +349,7 @@ namespace bobFinal
             this.listViewMarket.FullRowSelect = true;
             this.listViewMarket.GridLines = true;
             this.listViewMarket.HideSelection = false;
-            this.listViewMarket.Location = new System.Drawing.Point(42, 176);
+            this.listViewMarket.Location = new System.Drawing.Point(42, 219);
             this.listViewMarket.Margin = new System.Windows.Forms.Padding(2);
             this.listViewMarket.Name = "listViewMarket";
             this.listViewMarket.Size = new System.Drawing.Size(417, 196);
@@ -381,7 +381,7 @@ namespace bobFinal
             this.pnlBuy.Controls.Add(this.btnConfirmMarketAction);
             this.pnlBuy.Controls.Add(this.lblCost);
             this.pnlBuy.Controls.Add(this.numericUpDownAmount);
-            this.pnlBuy.Location = new System.Drawing.Point(42, 480);
+            this.pnlBuy.Location = new System.Drawing.Point(839, 180);
             this.pnlBuy.Name = "pnlBuy";
             this.pnlBuy.Size = new System.Drawing.Size(417, 321);
             this.pnlBuy.TabIndex = 22;
@@ -580,7 +580,7 @@ namespace bobFinal
             //
             // btnUpgradeDiamondStorage
             //
-            this.btnUpgradeDiamondStorage.Location = new System.Drawing.Point(701, 330);
+            this.btnUpgradeDiamondStorage.Location = new System.Drawing.Point(125, 740);
             this.btnUpgradeDiamondStorage.Name = "btnUpgradeDiamondStorage";
             this.btnUpgradeDiamondStorage.Size = new System.Drawing.Size(257, 42);
             this.btnUpgradeDiamondStorage.TabIndex = 28;
@@ -590,7 +590,7 @@ namespace bobFinal
             //
             // btnUpgradeGoldStorage
             //
-            this.btnUpgradeGoldStorage.Location = new System.Drawing.Point(701, 257);
+            this.btnUpgradeGoldStorage.Location = new System.Drawing.Point(125, 667);
             this.btnUpgradeGoldStorage.Name = "btnUpgradeGoldStorage";
             this.btnUpgradeGoldStorage.Size = new System.Drawing.Size(257, 42);
             this.btnUpgradeGoldStorage.TabIndex = 27;
@@ -600,7 +600,7 @@ namespace bobFinal
             //
             // btnUpgradeLumberStorage
             //
-            this.btnUpgradeLumberStorage.Location = new System.Drawing.Point(701, 192);
+            this.btnUpgradeLumberStorage.Location = new System.Drawing.Point(125, 602);
             this.btnUpgradeLumberStorage.Name = "btnUpgradeLumberStorage";
             this.btnUpgradeLumberStorage.Size = new System.Drawing.Size(257, 42);
             this.btnUpgradeLumberStorage.TabIndex = 26;
@@ -612,7 +612,7 @@ namespace bobFinal
             //
             this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(618, 119);
+            this.label3.Location = new System.Drawing.Point(42, 529);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(450, 42);
             this.label3.TabIndex = 25;
@@ -622,7 +622,7 @@ namespace bobFinal
             //
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(42, 119);
+            this.label2.Location = new System.Drawing.Point(42, 138);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(465, 42);
             this.label2.TabIndex = 24;

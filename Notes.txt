@@ -11,6 +11,8 @@ immediate future ideas:
         - a 'multiplier' to the player's income
         - increased storage capacity
         - diamonds
+
+- 'gold storage updated' and other message boxes should auto-close after a few seconds
 - history of properties upon click
 - label for the costs of upgrading storage
 

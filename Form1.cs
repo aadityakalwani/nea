@@ -244,7 +244,7 @@ namespace bobFinal
                 }
 
                 // Check if there are enough resources to build the property
-                if (gold.Value >= property.GoldCost && lumber.Value >= property.LumberCost)
+                if (gold.getValue() >= property.GoldCost && lumber.getValue() >= property.LumberCost)
                 {
                     // Deduct the cost of the property from the resources
                     gold.ChangeQuantity(-property.GoldCost);
@@ -401,7 +401,7 @@ namespace bobFinal
             {
                 if (currentAction == "buy")
                 {
-                    if (dollars.Value >= cost)
+                    if (dollars.getValue() >= cost)
                     {
                         dollars.ChangeQuantity(-cost);
                         selectedResource.ChangeQuantity(amount);
@@ -413,7 +413,7 @@ namespace bobFinal
                 }
                 else
                 {
-                    if (selectedResource.Value >= amount)
+                    if (selectedResource.getValue() >= amount)
                     {
                         dollars.ChangeQuantity(cost);
                         selectedResource.ChangeQuantity(-amount);
@@ -450,7 +450,7 @@ namespace bobFinal
 
         private void UpgradeStorage(Resource resource, int cost)
         {
-            if (dollars.Value >= cost)
+            if (diamond.getValue() >= cost)
             {
                 diamond.ChangeQuantity(-cost);
                 resource.IncreaseCapacity(100);
@@ -486,7 +486,7 @@ namespace bobFinal
         {
             if (selectedResource != null)
             {
-                numericUpDownAmount.Value = (decimal)(selectedResource.Value * percentage);
+                numericUpDownAmount.Value = (decimal)(selectedResource.getValue() * percentage);
 
                 UpdateMarketPanel();
             }
@@ -535,12 +535,6 @@ namespace bobFinal
         {
             DatabaseUtils.DeleteDatabase();
             Application.Exit();
-        }
-
-        private void btnApplyPrims_Click(object sender, EventArgs e)
-        {
-
-
         }
 
         private List<(Property, Property)> FindMST(List<Property> properties)

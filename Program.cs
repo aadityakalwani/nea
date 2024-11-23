@@ -117,11 +117,26 @@ namespace bobFinal
         }
 
         public string Name { get; }
-        public float Value { get; private set; }
+        private float Value { get; set; }
         private int MaxValue { get; set; }
         private ProgressBar ProgressBar { get; }
         private TextBox TextBox { get; }
         public float ConversionRate { get; set; }
+
+        public float getValue()
+        {
+            return Value;
+        }
+
+        public int getMaxValue()
+        {
+            return MaxValue;
+        }
+
+        public void setValue(float value)
+        {
+            Value = value;
+        }
 
         public void ChangeQuantity(float amount)
         {

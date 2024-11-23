@@ -671,6 +671,7 @@ namespace bobFinal
             //
             // btnApplicationExit
             //
+            this.btnApplicationExit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnApplicationExit.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnApplicationExit.Location = new System.Drawing.Point(1455, 591);
             this.btnApplicationExit.Name = "btnApplicationExit";
@@ -682,6 +683,7 @@ namespace bobFinal
             //
             // btnApplyPrims
             //
+            this.btnApplyPrims.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnApplyPrims.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
             this.btnApplyPrims.Location = new System.Drawing.Point(1455, 480);
             this.btnApplyPrims.Name = "btnApplyPrims";

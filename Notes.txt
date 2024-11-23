@@ -1,6 +1,6 @@
 current issues:
 - code to delete a property form the database when you sell it
-- upgrading storage costs nothing
+    - alternatively a boolean to state if the property is true or not
 
 immediate future ideas:
 - create a path tile to connect properties to the town hall

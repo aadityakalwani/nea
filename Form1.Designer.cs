@@ -70,6 +70,7 @@ namespace bobFinal
             this.lblDate = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.btnApplyPrims = new System.Windows.Forms.Button();
             this.btnSellBuilding = new System.Windows.Forms.Button();
             this.lblNextDayTimer = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
@@ -79,18 +80,22 @@ namespace bobFinal
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.dataGridViewfinal = new System.Windows.Forms.DataGridView();
+            this.tabControlDatabases = new System.Windows.Forms.TabControl();
+            this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.dataGridViewPropertiesList = new System.Windows.Forms.DataGridView();
+            this.tabPage6 = new System.Windows.Forms.TabPage();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.lblTabs = new System.Windows.Forms.Label();
             this.btnApplicationExit = new System.Windows.Forms.Button();
-            this.btnApplyPrims = new System.Windows.Forms.Button();
             this.pnlBuy.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownAmount)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tabPage3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewfinal)).BeginInit();
+            this.tabControlDatabases.SuspendLayout();
+            this.tabPage5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPropertiesList)).BeginInit();
             this.SuspendLayout();
             //
             // gridPanel
@@ -537,6 +542,18 @@ namespace bobFinal
             this.tabPage1.Text = "Village Grid";
             this.tabPage1.UseVisualStyleBackColor = true;
             //
+            // btnApplyPrims
+            //
+            this.btnApplyPrims.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnApplyPrims.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
+            this.btnApplyPrims.Location = new System.Drawing.Point(1455, 470);
+            this.btnApplyPrims.Name = "btnApplyPrims";
+            this.btnApplyPrims.Size = new System.Drawing.Size(312, 63);
+            this.btnApplyPrims.TabIndex = 28;
+            this.btnApplyPrims.Text = "Apply Prim\'s";
+            this.btnApplyPrims.UseVisualStyleBackColor = true;
+            this.btnApplyPrims.Click += new System.EventHandler(this.button1_Click);
+            //
             // btnSellBuilding
             //
             this.btnSellBuilding.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -630,7 +647,7 @@ namespace bobFinal
             //
             // tabPage3
             //
-            this.tabPage3.Controls.Add(this.dataGridViewfinal);
+            this.tabPage3.Controls.Add(this.tabControlDatabases);
             this.tabPage3.Location = new System.Drawing.Point(4, 34);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
@@ -639,16 +656,47 @@ namespace bobFinal
             this.tabPage3.Text = "Properties";
             this.tabPage3.UseVisualStyleBackColor = true;
             //
-            // dataGridViewfinal
+            // tabControlDatabases
             //
-            this.dataGridViewfinal.AllowUserToOrderColumns = true;
-            this.dataGridViewfinal.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewfinal.Location = new System.Drawing.Point(28, 35);
-            this.dataGridViewfinal.Name = "dataGridViewfinal";
-            this.dataGridViewfinal.ReadOnly = true;
-            this.dataGridViewfinal.RowHeadersWidth = 55;
-            this.dataGridViewfinal.Size = new System.Drawing.Size(1356, 554);
-            this.dataGridViewfinal.TabIndex = 0;
+            this.tabControlDatabases.Controls.Add(this.tabPage5);
+            this.tabControlDatabases.Controls.Add(this.tabPage6);
+            this.tabControlDatabases.Location = new System.Drawing.Point(49, 35);
+            this.tabControlDatabases.Name = "tabControlDatabases";
+            this.tabControlDatabases.SelectedIndex = 0;
+            this.tabControlDatabases.Size = new System.Drawing.Size(1312, 757);
+            this.tabControlDatabases.TabIndex = 1;
+            //
+            // tabPage5
+            //
+            this.tabPage5.Controls.Add(this.dataGridViewPropertiesList);
+            this.tabPage5.Location = new System.Drawing.Point(4, 34);
+            this.tabPage5.Name = "tabPage5";
+            this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage5.Size = new System.Drawing.Size(1304, 719);
+            this.tabPage5.TabIndex = 0;
+            this.tabPage5.Text = "tabPage5";
+            this.tabPage5.UseVisualStyleBackColor = true;
+            //
+            // dataGridViewPropertiesList
+            //
+            this.dataGridViewPropertiesList.AllowUserToOrderColumns = true;
+            this.dataGridViewPropertiesList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewPropertiesList.Location = new System.Drawing.Point(30, 21);
+            this.dataGridViewPropertiesList.Name = "dataGridViewPropertiesList";
+            this.dataGridViewPropertiesList.ReadOnly = true;
+            this.dataGridViewPropertiesList.RowHeadersWidth = 55;
+            this.dataGridViewPropertiesList.Size = new System.Drawing.Size(1246, 673);
+            this.dataGridViewPropertiesList.TabIndex = 0;
+            //
+            // tabPage6
+            //
+            this.tabPage6.Location = new System.Drawing.Point(4, 34);
+            this.tabPage6.Name = "tabPage6";
+            this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage6.Size = new System.Drawing.Size(1304, 719);
+            this.tabPage6.TabIndex = 1;
+            this.tabPage6.Text = "tabPage6";
+            this.tabPage6.UseVisualStyleBackColor = true;
             //
             // tabPage4
             //
@@ -680,18 +728,6 @@ namespace bobFinal
             this.btnApplicationExit.Text = "Exit Application";
             this.btnApplicationExit.UseVisualStyleBackColor = true;
             this.btnApplicationExit.Click += new System.EventHandler(this.btnApplicationExit_Click_1);
-            //
-            // btnApplyPrims
-            //
-            this.btnApplyPrims.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnApplyPrims.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
-            this.btnApplyPrims.Location = new System.Drawing.Point(1455, 480);
-            this.btnApplyPrims.Name = "btnApplyPrims";
-            this.btnApplyPrims.Size = new System.Drawing.Size(312, 63);
-            this.btnApplyPrims.TabIndex = 28;
-            this.btnApplyPrims.Text = "Apply Prim\'s";
-            this.btnApplyPrims.UseVisualStyleBackColor = true;
-            this.btnApplyPrims.Click += new System.EventHandler(this.button1_Click);
             //
             // Form1
             //
@@ -726,14 +762,20 @@ namespace bobFinal
             this.tabPage1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
             this.tabPage3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewfinal)).EndInit();
+            this.tabControlDatabases.ResumeLayout(false);
+            this.tabPage5.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPropertiesList)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
         }
 
+        private System.Windows.Forms.TabControl tabControlDatabases;
+        private System.Windows.Forms.TabPage tabPage5;
+        private System.Windows.Forms.TabPage tabPage6;
+
         private System.Windows.Forms.Button btnApplyPrims;
 
-        private System.Windows.Forms.DataGridView dataGridViewfinal;
+        private System.Windows.Forms.DataGridView dataGridViewPropertiesList;
 
         private System.Windows.Forms.Button btnApplicationExit;
 

@@ -103,8 +103,7 @@ namespace bobFinal
             CREATE TABLE Properties (
                 Id AUTOINCREMENT PRIMARY KEY,
                 PropertyType TEXT NOT NULL,
-                XCoordinate INTEGER NOT NULL,
-                YCoordinate INTEGER NOT NULL,
+                Coordinate TEXT NOT NULL,
                 GoldCost INTEGER NOT NULL,
                 LumberCost INTEGER NOT NULL,
                 DailyGoldGain INTEGER NOT NULL,
@@ -116,8 +115,9 @@ namespace bobFinal
 
         public static void AddNewProperty(string propertyType, int xCoordinate, int yCoordinate, int goldCost, int lumberCost, int dailyGoldGain, int dailyLumberGain, int dailyDiamondGain)
         {
-            string insertQuery = "INSERT INTO Properties (PropertyType, XCoordinate, YCoordinate, GoldCost, LumberCost, DailyGoldGain, DailyLumberGain, DailyDiamondGain) " +
-                                 "VALUES (@PropertyType, @XCoordinate, @YCoordinate, @GoldCost, @LumberCost, @DailyGoldGain, @DailyLumberGain, @DailyDiamondGain)";
+            string coordinate = $"({xCoordinate},{yCoordinate})";
+            string insertQuery = "INSERT INTO Properties (PropertyType, Coordinate, GoldCost, LumberCost, DailyGoldGain, DailyLumberGain, DailyDiamondGain) " +
+                                 "VALUES (@PropertyType, @coordinate, @GoldCost, @LumberCost, @DailyGoldGain, @DailyLumberGain, @DailyDiamondGain)";
 
             using (OleDbConnection conn = new OleDbConnection(CONNECTION_STRING))
             {
@@ -127,8 +127,7 @@ namespace bobFinal
                     using (OleDbCommand cmd = new OleDbCommand(insertQuery, conn))
                     {
                         cmd.Parameters.AddWithValue("@PropertyType", propertyType);
-                        cmd.Parameters.AddWithValue("@XCoordinate", xCoordinate);
-                        cmd.Parameters.AddWithValue("@YCoordinate", yCoordinate);
+                        cmd.Parameters.AddWithValue("@Coordinate", coordinate);
                         cmd.Parameters.AddWithValue("@GoldCost", goldCost);
                         cmd.Parameters.AddWithValue("@LumberCost", lumberCost);
                         cmd.Parameters.AddWithValue("@DailyGoldGain", dailyGoldGain);

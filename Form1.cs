@@ -12,19 +12,22 @@ namespace bobFinal
     {
         private const int gridSize = 15;
         private const int tileSize = 40;
+        private const int newDayInterval = 2000;
         private string currentAction;
         private DateTime currentDate = new DateTime(2021, 1, 1);
         private Resource diamond;
+        int diamondStorageUpgradeCost = 5;
+        int goldStorageUpgradeCost = 5;
+        int lumberStorageUpgradeCost = 5;
         private Resource dollars;
         private Resource gold;
         private CustomPictureBox[,] grid;
 
         private List<Property> listOfAllProperties = new List<Property>
-        {
-            new House(0, 0), new Farm(0, 0), new Sawmill(0, 0), new Mine(0, 0), new Cafe(0, 0)
-        };
+            { new House(0, 0), new Farm(0, 0), new Sawmill(0, 0), new Mine(0, 0), new Cafe(0, 0) };
 
         private Resource lumber;
+
         private Timer newDayTimer;
 
         private List<Property> properties = new List<Property>();
@@ -61,14 +64,13 @@ namespace bobFinal
             listViewMarket.Items.Clear();
             foreach (Resource resource in resources)
             {
-                if (resource.Name != "Dollars")
+                if (resource.getName() != "Dollars")
                 {
-                    string conversionRate = $"{Math.Round(resource.ConversionRate, 2)} dollars";
-                    listViewMarket.Items.Add(new ListViewItem(new[] { conversionRate, resource.Name }));
+                    string conversionRate = $"{Math.Round(resource.getConversionRate(), 2)} dollars";
+                    listViewMarket.Items.Add(new ListViewItem(new[] { conversionRate, resource.getName() }));
                 }
             }
         }
-
 
         private void initializeGrid()
         {
@@ -120,7 +122,7 @@ namespace bobFinal
             foreach (Property property in listOfAllProperties)
             {
                 string cost = $"{property.GoldCost} Gold, {property.LumberCost} Lumber";
-                string gain = string.Empty;
+                string gain = "";
 
                 if (property.DailyGoldGain > 0)
                 {
@@ -180,7 +182,7 @@ namespace bobFinal
         {
             lblNextDayTimer.Text = "";
             newDayTimer = new Timer();
-            newDayTimer.Interval = 2000; // set the interval to 2 seconds
+            newDayTimer.Interval = newDayInterval; // set the interval to 2 seconds
             newDayTimer.Tick += newDayTimer_Tick;
         }
 
@@ -210,7 +212,7 @@ namespace bobFinal
             }
         }
 
-       private void btnBuild_Click(object sender, EventArgs e)
+        private void btnBuild_Click(object sender, EventArgs e)
         {
             Property property = null;
 
@@ -312,10 +314,10 @@ namespace bobFinal
             listViewMarket.Items.Clear();
             foreach (Resource resource in resources)
             {
-                if (resource.Name != "Dollars")
+                if (resource.getName() != "Dollars")
                 {
-                    string conversionRate = $"{Math.Round(resource.ConversionRate, 2)} dollars";
-                    listViewMarket.Items.Add(new ListViewItem(new[] { conversionRate, resource.Name }));
+                    string conversionRate = $"{Math.Round(resource.getConversionRate(), 2)} dollars";
+                    listViewMarket.Items.Add(new ListViewItem(new[] { conversionRate, resource.getName() }));
                 }
             }
         }
@@ -325,16 +327,16 @@ namespace bobFinal
             if (selectedResource != null)
             {
                 int amount = (int)numericUpDownAmount.Value;
-                float cost = amount * selectedResource.ConversionRate;
+                float cost = amount * selectedResource.getConversionRate();
 
                 if (currentAction == "buy")
                 {
-                    label1.Text = $"Enter amount of {selectedResource.Name.ToLower()} to buy";
+                    label1.Text = $"Enter amount of {selectedResource.getName().ToLower()} to buy";
                     lblCost.Text = $"Cost: {Math.Round(cost, 2)} dollars";
                 }
                 else
                 {
-                    label1.Text = $"Enter amount of {selectedResource.Name.ToLower()} to sell";
+                    label1.Text = $"Enter amount of {selectedResource.getName().ToLower()} to sell";
                     lblCost.Text = $"Value: {Math.Round(cost, 2)} dollars";
                 }
             }
@@ -343,7 +345,7 @@ namespace bobFinal
         private void UpdateCost(string buyOrSell)
         {
             int amount = (int)numericUpDownAmount.Value;
-            float cost = amount * selectedResource.ConversionRate;
+            float cost = amount * selectedResource.getConversionRate();
 
             if (buyOrSell == "buy")
             {
@@ -402,7 +404,7 @@ namespace bobFinal
         private void btnConfirmMarketAction_Click(object sender, EventArgs e)
         {
             int amount = (int)numericUpDownAmount.Value;
-            float cost = amount * selectedResource.ConversionRate;
+            float cost = amount * selectedResource.getConversionRate();
 
             if (selectedResource != null)
             {
@@ -440,10 +442,6 @@ namespace bobFinal
             label1.Text = "Select a resource to buy or sell";
         }
 
-        int lumberStorageUpgradeCost = 5;
-        int goldStorageUpgradeCost = 5;
-        int diamondStorageUpgradeCost = 5;
-
         private void btnUpgradeLumberStorage_Click_1(object sender, EventArgs e)
         {
             UpgradeStorage(lumber, lumberStorageUpgradeCost);
@@ -471,8 +469,7 @@ namespace bobFinal
             {
                 diamond.ChangeQuantity(-cost);
                 resource.IncreaseCapacity(100);
-                ShowAutoClosingMessageBox($"{resource.Name} storage upgraded!", "Success", 2500);
-
+                ShowAutoClosingMessageBox($"{resource.getName()} storage upgraded!", "Success", 2500);
             }
             else
             {

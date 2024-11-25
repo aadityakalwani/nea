@@ -128,6 +128,16 @@ namespace bobFinal
             return Value;
         }
 
+        public float getConversionRate()
+        {
+            return ConversionRate;
+        }
+
+        public string getName()
+        {
+            return Name;
+        }
+
         public int getMaxValue()
         {
             return MaxValue;

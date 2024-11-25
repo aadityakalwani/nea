@@ -39,7 +39,8 @@ namespace bobFinal
 
             DatabaseUtils.InitializeDatabase();
             // bind the DataTable to a DataGridView to display the data
-            dataGridViewPropertiesList.DataSource = DatabaseUtils.LoadData();
+            dataGridViewPropertiesList.DataSource = DatabaseUtils.LoadPropertiesData();
+            dataGridViewIncomeHistory.DataSource = DatabaseUtils.LoadIncomeHistoryData();
 
             initializeGrid();
             initializeLoot();
@@ -258,7 +259,7 @@ namespace bobFinal
 
                     // Add the property to the database and update the DataGridView
                     DatabaseUtils.AddNewProperty(property.GetType().Name, property.XCoordinate, property.YCoordinate, property.GoldCost, property.LumberCost, property.DailyGoldGain, property.DailyLumberGain, property.DailyDiamondGain);
-                    dataGridViewPropertiesList.DataSource = DatabaseUtils.LoadData();
+                    dataGridViewPropertiesList.DataSource = DatabaseUtils.LoadPropertiesData();
                 }
                 else
                 {
@@ -298,7 +299,10 @@ namespace bobFinal
             Market.UpdateConversionRates(resources);
             updateMarketPrices();
             UpdateMarketPanel();
-            dataGridViewPropertiesList.DataSource = DatabaseUtils.LoadData(); // update the DataGridView
+
+            DatabaseUtils.AddNewDayOfIncome(currentDate, totalGoldGain, totalLumberGain, totalDiamondGain);
+            dataGridViewPropertiesList.DataSource = DatabaseUtils.LoadPropertiesData(); // update the DataGridView for properties
+            dataGridViewIncomeHistory.DataSource = DatabaseUtils.LoadIncomeHistoryData(); // update the DataGridView for income history
         }
 
         private void updateMarketPrices()

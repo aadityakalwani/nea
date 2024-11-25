@@ -55,9 +55,32 @@ namespace bobFinal
             }
         }
 
-        public static DataTable LoadData()
+        public static DataTable LoadPropertiesData()
         {
             string query = "SELECT * FROM Properties"; // SQL query to fetch all records from the Properties table
+
+            using (OleDbConnection conn = new OleDbConnection(ConnectionString))
+            {
+                try
+                {
+                    conn.Open();
+                    OleDbDataAdapter dataAdapter = new OleDbDataAdapter(query, conn);
+                    DataTable dataTable = new DataTable();
+                    dataAdapter.Fill(dataTable);
+                    return dataTable;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($@"Error loading data: {ex.Message}", @"Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+
+            return null;
+        }
+
+        public static DataTable LoadIncomeHistoryData()
+        {
+            string query = "SELECT * FROM incomeHistoryTable"; // SQL query to fetch all records from the incomeHistoryTable table
 
             using (OleDbConnection conn = new OleDbConnection(ConnectionString))
             {
@@ -111,6 +134,44 @@ namespace bobFinal
                 DailyDiamondGain INTEGER NOT NULL
             );";
             ExecuteSqlNonQuery(createPropertiesTable);
+
+            string createIncomeHistoryTable = @"
+            CREATE TABLE incomeHistoryTable (
+                [Date] DATETIME NOT NULL PRIMARY KEY,
+                Gold INTEGER NOT NULL,
+                Lumber INTEGER NOT NULL,
+                Diamonds INTEGER NOT NULL
+            );";
+
+
+            ExecuteSqlNonQuery(createIncomeHistoryTable);
+        }
+
+        public static void AddNewDayOfIncome(DateTime DateInput, float GoldInput, float LumberInput, float DiamondsInput)
+        {
+            string insertQuery = "INSERT INTO incomeHistoryTable ([Date], Gold, Lumber, Diamonds) " +
+                                 "VALUES (@DateInput, @GoldInput, @LumberInput, @DiamondsInput)";
+
+            using (OleDbConnection command = new OleDbConnection(ConnectionString))
+            {
+                try
+                {
+                    command.Open();
+                    using (OleDbCommand cmd = new OleDbCommand(insertQuery, command))
+                    {
+                        cmd.Parameters.AddWithValue("@DateInput", DateInput.ToShortDateString());
+                        cmd.Parameters.AddWithValue("@GoldInput", GoldInput);
+                        cmd.Parameters.AddWithValue("@LumberInput", LumberInput);
+                        cmd.Parameters.AddWithValue("@DiamondsInput", DiamondsInput);
+
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($@"Error adding new day of income: {ex.Message}", @"Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
 
         public static void AddNewProperty(string propertyType, int xCoordinate, int yCoordinate, int goldCost, int lumberCost, int dailyGoldGain, int dailyLumberGain, int dailyDiamondGain)

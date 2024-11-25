@@ -55,32 +55,9 @@ namespace bobFinal
             }
         }
 
-        public static DataTable LoadPropertiesData()
+        public static DataTable LoadDatabaseData(string whichTable)
         {
-            string query = "SELECT * FROM Properties"; // SQL query to fetch all records from the Properties table
-
-            using (OleDbConnection conn = new OleDbConnection(ConnectionString))
-            {
-                try
-                {
-                    conn.Open();
-                    OleDbDataAdapter dataAdapter = new OleDbDataAdapter(query, conn);
-                    DataTable dataTable = new DataTable();
-                    dataAdapter.Fill(dataTable);
-                    return dataTable;
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show($@"Error loading data: {ex.Message}", @"Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-
-            return null;
-        }
-
-        public static DataTable LoadIncomeHistoryData()
-        {
-            string query = "SELECT * FROM incomeHistoryTable"; // SQL query to fetch all records from the incomeHistoryTable table
+            string query = $"SELECT * FROM {whichTable}"; // SQL query to fetch all records from the specified table
 
             using (OleDbConnection conn = new OleDbConnection(ConnectionString))
             {

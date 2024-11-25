@@ -39,8 +39,8 @@ namespace bobFinal
 
             DatabaseUtils.InitializeDatabase();
             // bind the DataTable to a DataGridView to display the data
-            dataGridViewPropertiesList.DataSource = DatabaseUtils.LoadPropertiesData();
-            dataGridViewIncomeHistory.DataSource = DatabaseUtils.LoadIncomeHistoryData();
+            dataGridViewPropertiesList.DataSource = DatabaseUtils.LoadDatabaseData("Properties");
+            dataGridViewIncomeHistory.DataSource = DatabaseUtils.LoadDatabaseData("incomeHistoryTable");
 
             initializeGrid();
             initializeLoot();
@@ -259,8 +259,9 @@ namespace bobFinal
 
                     // Add the property to the database and update the DataGridView
                     DatabaseUtils.AddNewProperty(property.GetType().Name, property.XCoordinate, property.YCoordinate, property.GoldCost, property.LumberCost, property.DailyGoldGain, property.DailyLumberGain, property.DailyDiamondGain);
-                    dataGridViewPropertiesList.DataSource = DatabaseUtils.LoadPropertiesData();
+                    dataGridViewPropertiesList.DataSource = DatabaseUtils.LoadDatabaseData("Properties");
                 }
+
                 else
                 {
                     ShowAutoClosingMessageBox("Not enough resources!", "Error", 2500);
@@ -274,9 +275,6 @@ namespace bobFinal
             lblNextDayTimer.Text = "Next day available in 2 seconds...";
             btnNextDay.Enabled = false;
             newDayTimer.Start();
-
-            currentDate = currentDate.AddDays(1);
-            lblDate.Text = "Today's Date: " + currentDate.ToString("dd MMMM yyyy");
 
             int totalGoldGain = 0;
             int totalLumberGain = 0;
@@ -300,9 +298,13 @@ namespace bobFinal
             updateMarketPrices();
             UpdateMarketPanel();
 
+            // update databases and their dataGridViews
             DatabaseUtils.AddNewDayOfIncome(currentDate, totalGoldGain, totalLumberGain, totalDiamondGain);
-            dataGridViewPropertiesList.DataSource = DatabaseUtils.LoadPropertiesData(); // update the DataGridView for properties
-            dataGridViewIncomeHistory.DataSource = DatabaseUtils.LoadIncomeHistoryData(); // update the DataGridView for income history
+            dataGridViewPropertiesList.DataSource = DatabaseUtils.LoadDatabaseData("Properties");
+            dataGridViewIncomeHistory.DataSource = DatabaseUtils.LoadDatabaseData("incomeHistoryTable");
+
+            currentDate = currentDate.AddDays(1);
+            lblDate.Text = "Today's Date: " + currentDate.ToString("dd MMMM yyyy");
         }
 
         private void updateMarketPrices()

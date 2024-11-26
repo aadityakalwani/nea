@@ -117,17 +117,18 @@ namespace bobFinal
                 [Date] DATETIME NOT NULL PRIMARY KEY,
                 Gold INTEGER NOT NULL,
                 Lumber INTEGER NOT NULL,
-                Diamonds INTEGER NOT NULL
+                Diamonds INTEGER NOT NULL,
+                NumberOfProperties INTEGER NOT NULL
             );";
 
 
             ExecuteSqlNonQuery(createIncomeHistoryTable);
         }
 
-        public static void AddNewDayOfIncome(DateTime DateInput, float GoldInput, float LumberInput, float DiamondsInput)
+        public static void AddNewDayOfIncome(DateTime DateInput, float GoldInput, float LumberInput, float DiamondsInput, int NumberOfPropertiesInput)
         {
-            string insertQuery = "INSERT INTO incomeHistoryTable ([Date], Gold, Lumber, Diamonds) " +
-                                 "VALUES (@DateInput, @GoldInput, @LumberInput, @DiamondsInput)";
+            string insertQuery = "INSERT INTO incomeHistoryTable ([Date], Gold, Lumber, Diamonds, NumberOfProperties) " +
+                                 "VALUES (@DateInput, @GoldInput, @LumberInput, @DiamondsInput, @NumberOfPropertiesInput)";
 
             using (OleDbConnection command = new OleDbConnection(ConnectionString))
             {
@@ -140,6 +141,7 @@ namespace bobFinal
                         cmd.Parameters.AddWithValue("@GoldInput", GoldInput);
                         cmd.Parameters.AddWithValue("@LumberInput", LumberInput);
                         cmd.Parameters.AddWithValue("@DiamondsInput", DiamondsInput);
+                        cmd.Parameters.AddWithValue("@NumberOfPropertiesInput", NumberOfPropertiesInput);
 
                         cmd.ExecuteNonQuery();
                     }

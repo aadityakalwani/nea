@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 // ReSharper disable All
@@ -301,7 +300,7 @@ namespace bobFinal
             UpdateMarketPanel();
 
             // update databases and their dataGridViews
-            DatabaseUtils.AddNewDayOfIncome(currentDate, totalGoldGain, totalLumberGain, totalDiamondGain);
+            DatabaseUtils.AddNewDayOfIncome(currentDate, totalGoldGain, totalLumberGain, totalDiamondGain, properties.Count);
             dataGridViewPropertiesList.DataSource = DatabaseUtils.LoadDatabaseData("Properties");
             dataGridViewIncomeHistory.DataSource = DatabaseUtils.LoadDatabaseData("incomeHistoryTable");
 
@@ -611,8 +610,8 @@ namespace bobFinal
         {
             List<(Property, Property)> mstEdges = FindMST(properties);
 
-            // Display the edges of the MST in a message box
-            string message = "Minimum Spanning Tree (MST) Edges:\n";
+            // display the edges of the MST in a message box
+            string message = "Edges in the Minimum Spanning Tree (MST):\n";
             foreach ((Property, Property) edge in mstEdges)
             {
                 message += $"({edge.Item1.XCoordinate}, {edge.Item1.YCoordinate}) -> ({edge.Item2.XCoordinate}, {edge.Item2.YCoordinate})\n";

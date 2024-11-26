@@ -623,7 +623,7 @@ namespace bobFinal
 
         public static async void ShowAutoClosingMessageBox(string message, string title, int timeout)
         {
-            var task = Task.Run(() => MessageBox.Show(message, title));
+            Task task = Task.Run(() => MessageBox.Show(message, title));
             await Task.Delay(timeout);
             if (!task.IsCompleted)
             {

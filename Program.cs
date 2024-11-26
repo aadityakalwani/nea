@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+// ReSharper disable All
 
 namespace bobFinal
 {
@@ -169,10 +170,10 @@ namespace bobFinal
 
         public static void UpdateConversionRates(List<Resource> resources)
         {
-            foreach (var resource in resources)
+            foreach (Resource resource in resources)
             {
                 // fluctuate the conversion rate by upto +/- 10%
-                var fluctuation = customRandom.Next(-10, 11);
+                int fluctuation = customRandom.Next(-10, 11);
                 resource.ConversionRate += resource.ConversionRate * fluctuation / 100;
 
                 // ensure the conversion rate is at least 1

@@ -633,10 +633,13 @@ namespace bobFinal
 
         private void btnLesson1_Click_1(object sender, EventArgs e)
         {
-            ShowAutoClosingMessageBox("you chose lesson 1", "Lesson 1", 2500);
+            ShowAutoClosingMessageBox("you chose lesson 1", "Lesson 1", 2250);
         }
 
 
-
+        private void btnLesson2_Click(object sender, EventArgs e)
+        {
+            ShowAutoClosingMessageBox("you chose lesson 2", "Lesson 2", 2250);
+        }
     }
 }

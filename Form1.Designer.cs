@@ -85,6 +85,7 @@ namespace bobFinal
             this.tabPage6 = new System.Windows.Forms.TabPage();
             this.dataGridViewIncomeHistory = new System.Windows.Forms.DataGridView();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.btnLesson2 = new System.Windows.Forms.Button();
             this.btnLesson1 = new System.Windows.Forms.Button();
             this.btnApplyPrims = new System.Windows.Forms.Button();
             this.lblTabs = new System.Windows.Forms.Label();
@@ -713,6 +714,7 @@ namespace bobFinal
             //
             // tabPage4
             //
+            this.tabPage4.Controls.Add(this.btnLesson2);
             this.tabPage4.Controls.Add(this.btnLesson1);
             this.tabPage4.Location = new System.Drawing.Point(4, 34);
             this.tabPage4.Name = "tabPage4";
@@ -721,6 +723,16 @@ namespace bobFinal
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Lessons";
             this.tabPage4.UseVisualStyleBackColor = true;
+            //
+            // btnLesson2
+            //
+            this.btnLesson2.Location = new System.Drawing.Point(90, 208);
+            this.btnLesson2.Name = "btnLesson2";
+            this.btnLesson2.Size = new System.Drawing.Size(183, 68);
+            this.btnLesson2.TabIndex = 1;
+            this.btnLesson2.Text = "Lesson 2";
+            this.btnLesson2.UseVisualStyleBackColor = true;
+            this.btnLesson2.Click += new System.EventHandler(this.btnLesson2_Click);
             //
             // btnLesson1
             //
@@ -807,6 +819,8 @@ namespace bobFinal
             this.ResumeLayout(false);
             this.PerformLayout();
         }
+
+        private System.Windows.Forms.Button btnLesson2;
 
         private System.Windows.Forms.Button btnLesson1;
 

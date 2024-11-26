@@ -243,7 +243,7 @@ namespace bobFinal
                 // Check if the selected tile is empty by verifying the image and BuiltUpon status
                 if (selectedTile.BuiltUpon || (selectedTile.ImageLocation != null && !selectedTile.ImageLocation.Contains("empty.jpg")))
                 {
-                    ShowAutoClosingMessageBox("You can only build on an empty tile!", "Error", 2500);
+                    Program.ShowAutoClosingMessageBox("You can only build on an empty tile!", "Error", 2500);
                     return;
                 }
 
@@ -266,7 +266,7 @@ namespace bobFinal
 
                 else
                 {
-                    ShowAutoClosingMessageBox("Not enough resources!", "Error", 2500);
+                    Program.ShowAutoClosingMessageBox("Not enough resources!", "Error", 2500);
                 }
             }
         }
@@ -386,13 +386,13 @@ namespace bobFinal
                 else
                 {
                     // show a message if the resource is not found
-                    ShowAutoClosingMessageBox("Resource not found!", "Error", 2500);
+                    Program.ShowAutoClosingMessageBox("Resource not found!", "Error", 2500);
                 }
             }
             else
             {
                 // show a message if no resource is selected
-                ShowAutoClosingMessageBox($"Please select a resource to {buyOrSell}.", "Error", 2500);
+                Program.ShowAutoClosingMessageBox($"Please select a resource to {buyOrSell}.", "Error", 2500);
             }
         }
 
@@ -417,7 +417,7 @@ namespace bobFinal
                     }
                     else
                     {
-                        ShowAutoClosingMessageBox("Not enough dollars!", "Error", 2500);
+                        Program.ShowAutoClosingMessageBox("Not enough dollars!", "Error", 2500);
                     }
                 }
                 else
@@ -429,7 +429,7 @@ namespace bobFinal
                     }
                     else
                     {
-                        ShowAutoClosingMessageBox("Not enough resources!", "Error", 2500);
+                        Program.ShowAutoClosingMessageBox("Not enough resources!", "Error", 2500);
                     }
                 }
             }
@@ -469,11 +469,11 @@ namespace bobFinal
             {
                 diamond.ChangeQuantity(-cost);
                 resource.IncreaseCapacity(100);
-                ShowAutoClosingMessageBox($"{resource.getName()} storage upgraded!", "Success", 2500);
+                Program.ShowAutoClosingMessageBox($"{resource.getName()} storage upgraded!", "Success", 2500);
             }
             else
             {
-                ShowAutoClosingMessageBox("Not enough diamonds to upgrade storage!", "Error", 2500);
+                Program.ShowAutoClosingMessageBox("Not enough diamonds to upgrade storage!", "Error", 2500);
             }
         }
 
@@ -507,7 +507,7 @@ namespace bobFinal
             }
             else
             {
-                ShowAutoClosingMessageBox("No resource selected!", "Error", 2500);
+                Program.ShowAutoClosingMessageBox("No resource selected!", "Error", 2500);
             }
         }
 
@@ -531,11 +531,11 @@ namespace bobFinal
                 gold.ChangeQuantity(sellPriceGold);
                 lumber.ChangeQuantity(sellPriceLumber);
 
-                ShowAutoClosingMessageBox($"{property.GetType().Name} sold for {sellPriceGold} Gold and {sellPriceLumber} Lumber!", "Success", 2500);
+                Program.ShowAutoClosingMessageBox($"{property.GetType().Name} sold for {sellPriceGold} Gold and {sellPriceLumber} Lumber!", "Success", 2500);
             }
             else
             {
-                ShowAutoClosingMessageBox("No property found on the selected tile!", "Error", 2500);
+                Program.ShowAutoClosingMessageBox("No property found on the selected tile!", "Error", 2500);
             }
         }
 
@@ -618,28 +618,18 @@ namespace bobFinal
                 message += $"({edge.Item1.XCoordinate}, {edge.Item1.YCoordinate}) -> ({edge.Item2.XCoordinate}, {edge.Item2.YCoordinate})\n";
             }
 
-            ShowAutoClosingMessageBox(message, "MST Edges", 5000);
-        }
-
-        public static async void ShowAutoClosingMessageBox(string message, string title, int timeout)
-        {
-            Task task = Task.Run(() => MessageBox.Show(message, title));
-            await Task.Delay(timeout);
-            if (!task.IsCompleted)
-            {
-                SendKeys.SendWait("{ENTER}"); // Simulates pressing "OK"
-            }
+            Program.ShowAutoClosingMessageBox(message, "MST Edges", 5000);
         }
 
         private void btnLesson1_Click_1(object sender, EventArgs e)
         {
-            ShowAutoClosingMessageBox("you chose lesson 1", "Lesson 1", 2250);
+            Program.ShowAutoClosingMessageBox("you chose lesson 1", "Lesson 1", 2250);
         }
 
 
         private void btnLesson2_Click(object sender, EventArgs e)
         {
-            ShowAutoClosingMessageBox("you chose lesson 2", "Lesson 2", 2250);
+            Program.ShowAutoClosingMessageBox("you chose lesson 2", "Lesson 2", 2250);
         }
     }
 }

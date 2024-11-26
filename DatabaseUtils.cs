@@ -102,13 +102,13 @@ namespace bobFinal
             string createPropertiesTable = @"
             CREATE TABLE Properties (
                 Id AUTOINCREMENT PRIMARY KEY,
-                PropertyType TEXT NOT NULL,
+                [Property Type] TEXT NOT NULL,
                 Coordinate TEXT NOT NULL,
-                GoldCost INTEGER NOT NULL,
-                LumberCost INTEGER NOT NULL,
-                DailyGoldGain INTEGER NOT NULL,
-                DailyLumberGain INTEGER NOT NULL,
-                DailyDiamondGain INTEGER NOT NULL
+                [Gold Cost] INTEGER NOT NULL,
+                [Lumber Cost] INTEGER NOT NULL,
+                [Daily Gold Gain] INTEGER NOT NULL,
+                [Daily Lumber Gain] INTEGER NOT NULL,
+                [Daily Diamond Gain] INTEGER NOT NULL
             );";
             ExecuteSqlNonQuery(createPropertiesTable);
 
@@ -118,7 +118,7 @@ namespace bobFinal
                 Gold INTEGER NOT NULL,
                 Lumber INTEGER NOT NULL,
                 Diamonds INTEGER NOT NULL,
-                NumberOfProperties INTEGER NOT NULL
+                [Number Of Properties] INTEGER NOT NULL
             );";
 
 
@@ -127,7 +127,7 @@ namespace bobFinal
 
         public static void AddNewDayOfIncome(DateTime DateInput, float GoldInput, float LumberInput, float DiamondsInput, int NumberOfPropertiesInput)
         {
-            string insertQuery = "INSERT INTO incomeHistoryTable ([Date], Gold, Lumber, Diamonds, NumberOfProperties) " +
+            string insertQuery = "INSERT INTO incomeHistoryTable ([Date], Gold, Lumber, Diamonds, [Number Of Properties]) " +
                                  "VALUES (@DateInput, @GoldInput, @LumberInput, @DiamondsInput, @NumberOfPropertiesInput)";
 
             using (OleDbConnection command = new OleDbConnection(ConnectionString))
@@ -156,7 +156,7 @@ namespace bobFinal
         public static void AddNewProperty(string propertyType, int xCoordinate, int yCoordinate, int goldCost, int lumberCost, int dailyGoldGain, int dailyLumberGain, int dailyDiamondGain)
         {
             string coordinate = $"({xCoordinate},{yCoordinate})";
-            string insertQuery = "INSERT INTO Properties (PropertyType, Coordinate, GoldCost, LumberCost, DailyGoldGain, DailyLumberGain, DailyDiamondGain) " +
+            string insertQuery = "INSERT INTO Properties ([Property Type], Coordinate, [Gold Cost], [Lumber Cost], [Daily Gold Gain], [Daily Lumber Gain], [Daily Diamond Gain]) " +
                                  "VALUES (@PropertyType, @coordinate, @GoldCost, @LumberCost, @DailyGoldGain, @DailyLumberGain, @DailyDiamondGain)";
 
             using (OleDbConnection conn = new OleDbConnection(ConnectionString))

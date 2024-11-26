@@ -630,5 +630,13 @@ namespace bobFinal
                 SendKeys.SendWait("{ENTER}"); // Simulates pressing "OK"
             }
         }
+
+        private void btnLesson1_Click_1(object sender, EventArgs e)
+        {
+            ShowAutoClosingMessageBox("you chose lesson 1", "Lesson 1", 2500);
+        }
+
+
+
     }
 }

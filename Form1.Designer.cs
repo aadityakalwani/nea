@@ -83,11 +83,12 @@ namespace bobFinal
             this.tabPage5 = new System.Windows.Forms.TabPage();
             this.dataGridViewPropertiesList = new System.Windows.Forms.DataGridView();
             this.tabPage6 = new System.Windows.Forms.TabPage();
+            this.dataGridViewIncomeHistory = new System.Windows.Forms.DataGridView();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.btnLesson1 = new System.Windows.Forms.Button();
             this.btnApplyPrims = new System.Windows.Forms.Button();
             this.lblTabs = new System.Windows.Forms.Label();
             this.btnApplicationExit = new System.Windows.Forms.Button();
-            this.dataGridViewIncomeHistory = new System.Windows.Forms.DataGridView();
             this.pnlBuy.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownAmount)).BeginInit();
             this.tabControl1.SuspendLayout();
@@ -99,6 +100,7 @@ namespace bobFinal
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPropertiesList)).BeginInit();
             this.tabPage6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewIncomeHistory)).BeginInit();
+            this.tabPage4.SuspendLayout();
             this.SuspendLayout();
             //
             // gridPanel
@@ -694,15 +696,41 @@ namespace bobFinal
             this.tabPage6.Text = "tabPage6";
             this.tabPage6.UseVisualStyleBackColor = true;
             //
+            // dataGridViewIncomeHistory
+            //
+            this.dataGridViewIncomeHistory.AllowUserToAddRows = false;
+            this.dataGridViewIncomeHistory.AllowUserToDeleteRows = false;
+            this.dataGridViewIncomeHistory.AllowUserToResizeColumns = false;
+            this.dataGridViewIncomeHistory.AllowUserToResizeRows = false;
+            this.dataGridViewIncomeHistory.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dataGridViewIncomeHistory.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewIncomeHistory.Location = new System.Drawing.Point(6, 6);
+            this.dataGridViewIncomeHistory.Name = "dataGridViewIncomeHistory";
+            this.dataGridViewIncomeHistory.ReadOnly = true;
+            this.dataGridViewIncomeHistory.RowHeadersWidth = 55;
+            this.dataGridViewIncomeHistory.Size = new System.Drawing.Size(1349, 749);
+            this.dataGridViewIncomeHistory.TabIndex = 1;
+            //
             // tabPage4
             //
+            this.tabPage4.Controls.Add(this.btnLesson1);
             this.tabPage4.Location = new System.Drawing.Point(4, 34);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage4.Size = new System.Drawing.Size(1416, 850);
             this.tabPage4.TabIndex = 3;
-            this.tabPage4.Text = "tabPage4";
+            this.tabPage4.Text = "Lessons";
             this.tabPage4.UseVisualStyleBackColor = true;
+            //
+            // btnLesson1
+            //
+            this.btnLesson1.Location = new System.Drawing.Point(90, 79);
+            this.btnLesson1.Name = "btnLesson1";
+            this.btnLesson1.Size = new System.Drawing.Size(183, 68);
+            this.btnLesson1.TabIndex = 0;
+            this.btnLesson1.Text = "Lesson 1";
+            this.btnLesson1.UseVisualStyleBackColor = true;
+            this.btnLesson1.Click += new System.EventHandler(this.btnLesson1_Click_1);
             //
             // btnApplyPrims
             //
@@ -736,21 +764,6 @@ namespace bobFinal
             this.btnApplicationExit.Text = "Exit Application";
             this.btnApplicationExit.UseVisualStyleBackColor = true;
             this.btnApplicationExit.Click += new System.EventHandler(this.btnApplicationExit_Click_1);
-            //
-            // dataGridViewIncomeHistory
-            //
-            this.dataGridViewIncomeHistory.AllowUserToAddRows = false;
-            this.dataGridViewIncomeHistory.AllowUserToDeleteRows = false;
-            this.dataGridViewIncomeHistory.AllowUserToResizeColumns = false;
-            this.dataGridViewIncomeHistory.AllowUserToResizeRows = false;
-            this.dataGridViewIncomeHistory.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
-            this.dataGridViewIncomeHistory.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewIncomeHistory.Location = new System.Drawing.Point(6, 6);
-            this.dataGridViewIncomeHistory.Name = "dataGridViewIncomeHistory";
-            this.dataGridViewIncomeHistory.ReadOnly = true;
-            this.dataGridViewIncomeHistory.RowHeadersWidth = 55;
-            this.dataGridViewIncomeHistory.Size = new System.Drawing.Size(1349, 749);
-            this.dataGridViewIncomeHistory.TabIndex = 1;
             //
             // Form1
             //
@@ -790,9 +803,12 @@ namespace bobFinal
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPropertiesList)).EndInit();
             this.tabPage6.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewIncomeHistory)).EndInit();
+            this.tabPage4.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
         }
+
+        private System.Windows.Forms.Button btnLesson1;
 
         private System.Windows.Forms.DataGridView dataGridViewIncomeHistory;
 

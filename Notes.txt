@@ -1,30 +1,30 @@
 current issues:
 - code to delete a property form the database when you sell it
-    - alternatively a boolean to state if the property is true or not
+    - alternatively a boolean to state if the property is active/sold or not
 
 immediate future ideas:
-- create a path tile to connect properties to the town hall
-- allow the Apply Prims to auto-put-in path tiles
 
-- 'lessons' where the player can learn about business and economics
-    - lessons give:
-        - a 'multiplier' to the player's income
-        - increased storage capacity
-        - diamonds
+    - 'lessons' where the player can learn about business and economics
+        - lessons give:
+            - a 'multiplier' to the player's income
+            - increased storage capacity
+            - diamonds
 
-- 'gold storage updated' and other message boxes should auto-close after a few seconds
-- history of properties upon click
-- label for the costs of upgrading storage
+    - create a path tile to connect properties to the town hall
+        - if a property is not connected to the town hall then it cannot provide income (bool connected = false)
+    - allow the Apply Prims to auto-put-in path tiles
+
+    - history of properties upon click
 
 future ideas:
-- more resources to buy and sell
-    - quarry to mine stone
-- upgradable properties
-- idea of villagers or visitors to the town that effect the market prices
-- storage buildings like in COC to store resources
-- weather that affects the market prices / village visitors
-- commission / charge for converting resources
-- path tiles to connect properties to the town hall
-- upgradable town hall
-- tutorial / introduction to the game upon start
-- events that affect the market prices such as stock market crashes or booms
+    - more resources to buy and sell
+        - quarry to mine stone
+    - upgradable properties
+    - idea of villagers or visitors to the town that effect the market prices
+    - storage buildings like in COC to store resources
+    - weather that affects the market prices / village visitors
+    - commission / charge for converting resources
+    - path tiles to connect properties to the town hall
+    - upgradable town hall
+    - tutorial / introduction to the game upon start
+    - events that affect the market prices such as stock market crashes or booms

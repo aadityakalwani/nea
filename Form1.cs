@@ -21,6 +21,7 @@ namespace bobFinal
         private Resource dollars;
         private Resource gold;
         private CustomPictureBox[,] grid;
+        private MergeSort mergeSort = new MergeSort();
 
         private List<Property> listOfAllProperties = new List<Property>
             { new House(0, 0), new Farm(0, 0), new Sawmill(0, 0), new Mine(0, 0), new Cafe(0, 0) };
@@ -41,8 +42,8 @@ namespace bobFinal
 
             DatabaseUtils.InitializeDatabase();
             // bind the DataTable to a DataGridView to display the data
-            dataGridViewPropertiesList.DataSource = DatabaseUtils.LoadDatabaseData("Properties");
-            dataGridViewIncomeHistory.DataSource = DatabaseUtils.LoadDatabaseData("incomeHistoryTable");
+            RefreshDataGridView("Properties");
+            RefreshDataGridView("incomeHistoryTable");
 
             initializeGrid();
             initializeLoot();
@@ -264,7 +265,7 @@ namespace bobFinal
 
                     // Add the property to the database and update the DataGridView
                     DatabaseUtils.AddNewProperty(property.GetType().Name, property.XCoordinate, property.YCoordinate, property.GoldCost, property.LumberCost, property.DailyGoldGain, property.DailyLumberGain, property.DailyDiamondGain);
-                    dataGridViewPropertiesList.DataSource = DatabaseUtils.LoadDatabaseData("Properties");
+                    RefreshDataGridView("Properties");
                 }
 
                 else
@@ -305,8 +306,8 @@ namespace bobFinal
 
             // update databases and their dataGridViews
             DatabaseUtils.AddNewDayOfIncome(currentDate, totalGoldGain, totalLumberGain, totalDiamondGain, properties.Count);
-            dataGridViewPropertiesList.DataSource = DatabaseUtils.LoadDatabaseData("Properties");
-            dataGridViewIncomeHistory.DataSource = DatabaseUtils.LoadDatabaseData("incomeHistoryTable");
+            RefreshDataGridView("Properties");
+            RefreshDataGridView("incomeHistoryTable");
 
             currentDate = currentDate.AddDays(1);
             lblDate.Text = "Today's Date: " + currentDate.ToString("dd MMMM yyyy");
@@ -633,6 +634,32 @@ namespace bobFinal
         private void btnLesson2_Click(object sender, EventArgs e)
         {
             Program.ShowAutoClosingMessageBox("you chose lesson 2", "Lesson 2", 2250);
+        }
+
+        private void btnSortByGoldIncome_Click(object sender, EventArgs e)
+        {
+            Program.ShowAutoClosingMessageBox("you chose to sort by gold income", "Sort by Gold Income", 2250);
+            mergeSort.Sort(properties.ToArray(), "Gold");
+            RefreshDataGridView("Properties");
+        }
+
+        private void btnSortByLumberIncome_Click(object sender, EventArgs e)
+        {
+            Program.ShowAutoClosingMessageBox("you chose to sort by lumber income", "Sort by Lumber Income", 2250);
+            mergeSort.Sort(properties.ToArray(), "Lumber");
+            RefreshDataGridView("Properties");
+        }
+
+        private void btnSortByID_Click(object sender, EventArgs e)
+        {
+            Program.ShowAutoClosingMessageBox("THIS DOESNT WORK YET IDIOT", "Sort by ID", 2250);
+            // mergeSort.Sort(properties.ToArray(), "ID");
+            // RefreshDataGridView("Properties");
+        }
+
+        private void RefreshDataGridView(string tableName)
+        {
+            dataGridViewPropertiesList.DataSource = DatabaseUtils.LoadDatabaseData(tableName);
         }
     }
 }

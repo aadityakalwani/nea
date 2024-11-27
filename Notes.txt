@@ -2,6 +2,8 @@ current issues:
 - code to delete a property form the database when you sell it
     - alternatively a boolean to state if the property is active/sold or not
 
+- fix the table column title to be "Day's Gold Income" instead of "Gold" on the table that tracks daily income
+
 immediate future ideas:
 
     - 'lessons' where the player can learn about business and economics

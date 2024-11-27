@@ -79,6 +79,7 @@ namespace bobFinal
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.btnSortByGoldIncome = new System.Windows.Forms.Button();
             this.tabControlDatabases = new System.Windows.Forms.TabControl();
             this.tabPage5 = new System.Windows.Forms.TabPage();
             this.dataGridViewPropertiesList = new System.Windows.Forms.DataGridView();
@@ -90,6 +91,8 @@ namespace bobFinal
             this.btnApplyPrims = new System.Windows.Forms.Button();
             this.lblTabs = new System.Windows.Forms.Label();
             this.btnApplicationExit = new System.Windows.Forms.Button();
+            this.btnSortByLumberIncome = new System.Windows.Forms.Button();
+            this.btnSortByID = new System.Windows.Forms.Button();
             this.pnlBuy.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownAmount)).BeginInit();
             this.tabControl1.SuspendLayout();
@@ -641,6 +644,9 @@ namespace bobFinal
             //
             // tabPage3
             //
+            this.tabPage3.Controls.Add(this.btnSortByID);
+            this.tabPage3.Controls.Add(this.btnSortByLumberIncome);
+            this.tabPage3.Controls.Add(this.btnSortByGoldIncome);
             this.tabPage3.Controls.Add(this.tabControlDatabases);
             this.tabPage3.Location = new System.Drawing.Point(4, 34);
             this.tabPage3.Name = "tabPage3";
@@ -649,6 +655,16 @@ namespace bobFinal
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Properties";
             this.tabPage3.UseVisualStyleBackColor = true;
+            //
+            // btnSortByGoldIncome
+            //
+            this.btnSortByGoldIncome.Location = new System.Drawing.Point(237, -1);
+            this.btnSortByGoldIncome.Name = "btnSortByGoldIncome";
+            this.btnSortByGoldIncome.Size = new System.Drawing.Size(342, 54);
+            this.btnSortByGoldIncome.TabIndex = 2;
+            this.btnSortByGoldIncome.Text = "Sort by Total Gold Income";
+            this.btnSortByGoldIncome.UseVisualStyleBackColor = true;
+            this.btnSortByGoldIncome.Click += new System.EventHandler(this.btnSortByGoldIncome_Click);
             //
             // tabControlDatabases
             //
@@ -777,6 +793,26 @@ namespace bobFinal
             this.btnApplicationExit.UseVisualStyleBackColor = true;
             this.btnApplicationExit.Click += new System.EventHandler(this.btnApplicationExit_Click_1);
             //
+            // btnSortByLumberIncome
+            //
+            this.btnSortByLumberIncome.Location = new System.Drawing.Point(585, 0);
+            this.btnSortByLumberIncome.Name = "btnSortByLumberIncome";
+            this.btnSortByLumberIncome.Size = new System.Drawing.Size(306, 53);
+            this.btnSortByLumberIncome.TabIndex = 3;
+            this.btnSortByLumberIncome.Text = "Sort by Total Lumber Income";
+            this.btnSortByLumberIncome.UseVisualStyleBackColor = true;
+            this.btnSortByLumberIncome.Click += new System.EventHandler(this.btnSortByLumberIncome_Click);
+            //
+            // btnSortByID
+            //
+            this.btnSortByID.Location = new System.Drawing.Point(897, 3);
+            this.btnSortByID.Name = "btnSortByID";
+            this.btnSortByID.Size = new System.Drawing.Size(234, 50);
+            this.btnSortByID.TabIndex = 4;
+            this.btnSortByID.Text = "Sort by Property ID";
+            this.btnSortByID.UseVisualStyleBackColor = true;
+            this.btnSortByID.Click += new System.EventHandler(this.btnSortByID_Click);
+            //
             // Form1
             //
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -819,6 +855,12 @@ namespace bobFinal
             this.ResumeLayout(false);
             this.PerformLayout();
         }
+
+        private System.Windows.Forms.Button btnSortByLumberIncome;
+
+        private System.Windows.Forms.Button btnSortByID;
+
+        private System.Windows.Forms.Button btnSortByGoldIncome;
 
         private System.Windows.Forms.Button btnLesson2;
 

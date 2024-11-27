@@ -1,4 +1,11 @@
 current issues:
+- sort by ID number for a property
+
+- when sorting, the propertiesArray is being sorted, not the data in the database table itself
+    - as a result, 'sorting' does nothing (nothing visible to the user)
+        - so I need to sort the data in the database table itself
+        - or overwrite the database data with the sorted array?
+
 - code to delete a property form the database when you sell it
     - alternatively a boolean to state if the property is active/sold or not
 

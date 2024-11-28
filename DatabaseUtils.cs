@@ -195,6 +195,7 @@ namespace bobFinal
 
         }
 
+        /*
         public static Lesson GetRandomIncompleteLesson()
         {
             string query = "SELECT TOP 1 LessonId, Topic, Title, Question, CorrectAnswerIndex, Reward, Completed FROM Lessons WHERE Completed = False ORDER BY RND(LessonId)";
@@ -234,8 +235,7 @@ namespace bobFinal
 
             return lesson;
         }
-
-
+*/
         public static void MarkLessonComplete(int lessonId)
         {
             string insertQuery = "INSERT INTO PlayerProgress (LessonId, CompletionDate) VALUES (@LessonId, @CompletionDate)";

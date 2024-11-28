@@ -26,10 +26,12 @@ namespace bobFinal
             Completed = false; // Default value
         }
 
+        /*
         public Lesson()
         {
             throw new System.NotImplementedException();
         }
+        */
 
         // Marks the lesson as completed
         public void MarkAsCompleted()

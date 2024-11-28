@@ -62,7 +62,6 @@ namespace bobFinal
             return ExecuteQuery(query);
         }
 
-
         public static DataTable ExecuteQuery(string query)
         {
             using (OleDbConnection conn = new OleDbConnection(ConnectionString))
@@ -193,6 +192,37 @@ namespace bobFinal
             );";
             ExecuteSqlNonQuery(createPlayerProgressTable);
 
+        }
+
+        public static Lesson GetRandomIncompleteLesson()
+        {
+            string query = "SELECT TOP 1 LessonId, Topic, Question, Reward FROM lessonsTable WHERE Completed = False ORDER BY RND(LessonId)";
+            //                                                                  ^ this is causing an error (FROM)
+            Lesson lesson = null;
+
+            using (OleDbConnection conn = new OleDbConnection(ConnectionString))
+            {
+                try
+                {
+                    conn.Open();
+                    using (OleDbCommand cmd = new OleDbCommand(query, conn))
+                    {
+                        using (OleDbDataReader reader = cmd.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                lesson = new Lesson(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetInt32(3));
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($@"Error fetching random lesson: {ex.Message}", @"Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+
+            return lesson;
         }
 
         /*

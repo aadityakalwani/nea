@@ -35,6 +35,7 @@ namespace bobFinal
         private string selectedBuilding;
         private Point selectedPosition;
         private Resource selectedResource;
+        private Lesson currentLesson;
 
         public Form1()
         {
@@ -55,6 +56,10 @@ namespace bobFinal
             initializeNewDayTimer();
             initializeLessons();
 
+            // test data for the first lesson
+            List<string> choices = new List<string> { "10N", "20N", "30N", "40N" };
+            DatabaseUtils.AddLesson("Physics", "Newton's Laws", "What is the force on a 10kg object with 2m/s² acceleration?", 2, 50, choices);
+
             numericUpDownAmount.Maximum = 9999999;
 
             // open in full screen
@@ -63,7 +68,6 @@ namespace bobFinal
 
             dataGridViewIncomeHistory.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridViewPropertiesList.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-
         }
 
         private void initializeMarketPrices()
@@ -639,6 +643,24 @@ namespace bobFinal
 
             // Get the selected lesson from the DataGridView
 
+            Lesson lesson = DatabaseUtils.GetRandomIncompleteLesson();
+
+            currentLesson = DatabaseUtils.GetRandomIncompleteLesson();
+
+            MessageBox.Show($"Lesson ID: {currentLesson.LessonId}\nTopic: {currentLesson.Topic}\nTitle: {currentLesson.Title}\nQuestion: {currentLesson.Question}\nReward: {currentLesson.Reward}", "Lesson Details", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            if (lesson != null)
+            {
+                // Display the question
+                lblQuestion.Text = lesson.Question;
+
+                // Populate choices (you'll want to populate choices dynamically if needed)
+                radioButton1.Text = lesson.Choices.Count > 0 ? lesson.Choices[0] : "Choice 1";
+                radioButton2.Text = lesson.Choices.Count > 1 ? lesson.Choices[1] : "Choice 2";
+                radioButton3.Text = lesson.Choices.Count > 2 ? lesson.Choices[2] : "Choice 3";
+                radioButton4.Text = lesson.Choices.Count > 3 ? lesson.Choices[3] : "Choice 4";
+            }
+
         }
 
         private void btnSortByGoldIncome_Click(object sender, EventArgs e)
@@ -673,6 +695,31 @@ namespace bobFinal
                 case "incomeHistoryTable":
                     dataGridViewIncomeHistory.DataSource = DatabaseUtils.LoadDatabaseData(tableName);
                     break;
+            }
+        }
+
+        private void btnSubmit_Click(object sender, EventArgs e)
+        {
+            int selectedAnswerIndex = -1;
+
+            // Determine which answer was selected
+            if (radioButton1.Checked)
+                selectedAnswerIndex = 0;
+            else if (radioButton2.Checked)
+                selectedAnswerIndex = 1;
+            else if (radioButton3.Checked)
+                selectedAnswerIndex = 2;
+            else if (radioButton4.Checked)
+                selectedAnswerIndex = 3;
+
+            // Check if the answer is correct
+            if (selectedAnswerIndex == currentLesson.CorrectAnswerIndex)
+            {
+                MessageBox.Show("Correct Answer!", "Result", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show("Incorrect Answer! Try again.", "Result", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

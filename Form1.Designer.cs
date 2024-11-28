@@ -88,11 +88,18 @@ namespace bobFinal
             this.tabPage6 = new System.Windows.Forms.TabPage();
             this.dataGridViewIncomeHistory = new System.Windows.Forms.DataGridView();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.groupBox = new System.Windows.Forms.GroupBox();
+            this.btnSubmit = new System.Windows.Forms.Button();
+            this.radioButton4 = new System.Windows.Forms.RadioButton();
+            this.radioButton3 = new System.Windows.Forms.RadioButton();
+            this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.lblQuestion = new System.Windows.Forms.Label();
+            this.dataGridViewLessons = new System.Windows.Forms.DataGridView();
             this.btnLesson1 = new System.Windows.Forms.Button();
             this.btnApplyPrims = new System.Windows.Forms.Button();
             this.lblTabs = new System.Windows.Forms.Label();
             this.btnApplicationExit = new System.Windows.Forms.Button();
-            this.dataGridViewLessons = new System.Windows.Forms.DataGridView();
             this.pnlBuy.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownAmount)).BeginInit();
             this.tabControl1.SuspendLayout();
@@ -105,6 +112,7 @@ namespace bobFinal
             this.tabPage6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewIncomeHistory)).BeginInit();
             this.tabPage4.SuspendLayout();
+            this.groupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewLessons)).BeginInit();
             this.SuspendLayout();
             //
@@ -751,6 +759,8 @@ namespace bobFinal
             //
             // tabPage4
             //
+            this.tabPage4.Controls.Add(this.groupBox);
+            this.tabPage4.Controls.Add(this.lblQuestion);
             this.tabPage4.Controls.Add(this.dataGridViewLessons);
             this.tabPage4.Controls.Add(this.btnLesson1);
             this.tabPage4.Location = new System.Drawing.Point(4, 34);
@@ -760,6 +770,89 @@ namespace bobFinal
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Lessons";
             this.tabPage4.UseVisualStyleBackColor = true;
+            //
+            // groupBox
+            //
+            this.groupBox.Controls.Add(this.btnSubmit);
+            this.groupBox.Controls.Add(this.radioButton4);
+            this.groupBox.Controls.Add(this.radioButton3);
+            this.groupBox.Controls.Add(this.radioButton2);
+            this.groupBox.Controls.Add(this.radioButton1);
+            this.groupBox.Location = new System.Drawing.Point(715, 63);
+            this.groupBox.Name = "groupBox";
+            this.groupBox.Size = new System.Drawing.Size(326, 185);
+            this.groupBox.TabIndex = 3;
+            this.groupBox.TabStop = false;
+            this.groupBox.Text = "groupBox1";
+            //
+            // btnSubmit
+            //
+            this.btnSubmit.Location = new System.Drawing.Point(42, 142);
+            this.btnSubmit.Name = "btnSubmit";
+            this.btnSubmit.Size = new System.Drawing.Size(194, 32);
+            this.btnSubmit.TabIndex = 4;
+            this.btnSubmit.Text = "submit";
+            this.btnSubmit.UseVisualStyleBackColor = true;
+            this.btnSubmit.Click += new System.EventHandler(this.btnSubmit_Click);
+            //
+            // radioButton4
+            //
+            this.radioButton4.Location = new System.Drawing.Point(157, 82);
+            this.radioButton4.Name = "radioButton4";
+            this.radioButton4.Size = new System.Drawing.Size(156, 49);
+            this.radioButton4.TabIndex = 3;
+            this.radioButton4.TabStop = true;
+            this.radioButton4.Text = "radioButton4";
+            this.radioButton4.UseVisualStyleBackColor = true;
+            //
+            // radioButton3
+            //
+            this.radioButton3.Location = new System.Drawing.Point(159, 31);
+            this.radioButton3.Name = "radioButton3";
+            this.radioButton3.Size = new System.Drawing.Size(152, 45);
+            this.radioButton3.TabIndex = 2;
+            this.radioButton3.TabStop = true;
+            this.radioButton3.Text = "radioButton3";
+            this.radioButton3.UseVisualStyleBackColor = true;
+            //
+            // radioButton2
+            //
+            this.radioButton2.Location = new System.Drawing.Point(10, 85);
+            this.radioButton2.Name = "radioButton2";
+            this.radioButton2.Size = new System.Drawing.Size(143, 42);
+            this.radioButton2.TabIndex = 1;
+            this.radioButton2.TabStop = true;
+            this.radioButton2.Text = "radioButton2";
+            this.radioButton2.UseVisualStyleBackColor = true;
+            //
+            // radioButton1
+            //
+            this.radioButton1.Location = new System.Drawing.Point(11, 34);
+            this.radioButton1.Name = "radioButton1";
+            this.radioButton1.Size = new System.Drawing.Size(142, 32);
+            this.radioButton1.TabIndex = 0;
+            this.radioButton1.TabStop = true;
+            this.radioButton1.Text = "radioButton1";
+            this.radioButton1.UseVisualStyleBackColor = true;
+            //
+            // lblQuestion
+            //
+            this.lblQuestion.Location = new System.Drawing.Point(418, 63);
+            this.lblQuestion.Name = "lblQuestion";
+            this.lblQuestion.Size = new System.Drawing.Size(302, 62);
+            this.lblQuestion.TabIndex = 2;
+            this.lblQuestion.Text = "label for the question";
+            //
+            // dataGridViewLessons
+            //
+            this.dataGridViewLessons.AllowUserToAddRows = false;
+            this.dataGridViewLessons.AllowUserToDeleteRows = false;
+            this.dataGridViewLessons.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewLessons.Location = new System.Drawing.Point(80, 272);
+            this.dataGridViewLessons.Name = "dataGridViewLessons";
+            this.dataGridViewLessons.ReadOnly = true;
+            this.dataGridViewLessons.Size = new System.Drawing.Size(900, 365);
+            this.dataGridViewLessons.TabIndex = 1;
             //
             // btnLesson1
             //
@@ -804,17 +897,6 @@ namespace bobFinal
             this.btnApplicationExit.UseVisualStyleBackColor = true;
             this.btnApplicationExit.Click += new System.EventHandler(this.btnApplicationExit_Click_1);
             //
-            // dataGridViewLessons
-            //
-            this.dataGridViewLessons.AllowUserToAddRows = false;
-            this.dataGridViewLessons.AllowUserToDeleteRows = false;
-            this.dataGridViewLessons.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewLessons.Location = new System.Drawing.Point(80, 272);
-            this.dataGridViewLessons.Name = "dataGridViewLessons";
-            this.dataGridViewLessons.ReadOnly = true;
-            this.dataGridViewLessons.Size = new System.Drawing.Size(900, 365);
-            this.dataGridViewLessons.TabIndex = 1;
-            //
             // Form1
             //
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -854,10 +936,23 @@ namespace bobFinal
             this.tabPage6.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewIncomeHistory)).EndInit();
             this.tabPage4.ResumeLayout(false);
+            this.groupBox.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewLessons)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
         }
+
+        private System.Windows.Forms.Button btnSubmit;
+
+        private System.Windows.Forms.RadioButton radioButton2;
+        private System.Windows.Forms.RadioButton radioButton3;
+        private System.Windows.Forms.RadioButton radioButton4;
+
+        private System.Windows.Forms.RadioButton radioButton1;
+
+        private System.Windows.Forms.GroupBox groupBox;
+
+        private System.Windows.Forms.Label lblQuestion;
 
         private System.Windows.Forms.DataGridView dataGridViewLessons;
 

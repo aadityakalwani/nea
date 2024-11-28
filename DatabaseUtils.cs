@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.OleDb;
 using System.IO;
@@ -55,26 +56,63 @@ namespace bobFinal
             }
         }
 
-        public static DataTable LoadDatabaseData(string whichTable)
+        public static DataTable LoadLessonStatus()
         {
-            string query = $"SELECT * FROM {whichTable}"; // SQL query to fetch all records from the specified table
+            string query = "SELECT LessonId, Question, Completed FROM lessonsTable";
+            return ExecuteQuery(query);
+        }
 
+
+        public static DataTable ExecuteQuery(string query)
+        {
             using (OleDbConnection conn = new OleDbConnection(ConnectionString))
             {
                 try
                 {
                     conn.Open();
-                    OleDbDataAdapter dataAdapter = new OleDbDataAdapter(query, conn);
+                    OleDbDataAdapter adapter = new OleDbDataAdapter(query, conn);
                     DataTable dataTable = new DataTable();
-                    dataAdapter.Fill(dataTable);
+                    adapter.Fill(dataTable);
                     return dataTable;
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show($@"Error loading data: {ex.Message}", @"Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show($@"Error executing query: {ex.Message}", @"Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
 
+            return null;
+        }
+
+
+        public static DataTable LoadDatabaseData(string whichTable)
+        {
+
+            if (whichTable == "temp")
+            {
+
+            }
+
+            else
+            {
+                string query = $"SELECT * FROM {whichTable}"; // SQL query to fetch all records from the specified table
+
+                using (OleDbConnection conn = new OleDbConnection(ConnectionString))
+                {
+                    try
+                    {
+                        conn.Open();
+                        OleDbDataAdapter dataAdapter = new OleDbDataAdapter(query, conn);
+                        DataTable dataTable = new DataTable();
+                        dataAdapter.Fill(dataTable);
+                        return dataTable;
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($@"Error loading data: {ex.Message}", @"Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
             return null;
         }
 
@@ -121,9 +159,150 @@ namespace bobFinal
                 [Number Of Properties] INTEGER NOT NULL
             );";
 
-
             ExecuteSqlNonQuery(createIncomeHistoryTable);
+
+            string createLessonsTable = @"
+            CREATE TABLE lessonsTable (
+                LessonId AUTOINCREMENT PRIMARY KEY,
+                Topic TEXT NOT NULL,
+                Title TEXT NOT NULL,
+                Question TEXT NOT NULL,
+                CorrectAnswerIndex INTEGER NOT NULL,
+                Reward INTEGER NOT NULL,
+                Completed YESNO DEFAULT FALSE
+
+            );";
+            ExecuteSqlNonQuery(createLessonsTable);
+
+
+            string createChoicesTable = @"
+            CREATE TABLE Choices (
+                ChoiceId AUTOINCREMENT PRIMARY KEY,
+                LessonId INTEGER NOT NULL,
+                ChoiceText TEXT NOT NULL,
+                FOREIGN KEY (LessonId) REFERENCES lessonsTable(LessonId)
+            );";
+            ExecuteSqlNonQuery(createChoicesTable);
+
+            string createPlayerProgressTable = @"
+            CREATE TABLE PlayerProgress (
+                PlayerId AUTOINCREMENT PRIMARY KEY,
+                LessonId INTEGER NOT NULL,
+                CompletionDate DATETIME NOT NULL,
+                FOREIGN KEY (LessonId) REFERENCES lessonsTable(LessonId)
+            );";
+            ExecuteSqlNonQuery(createPlayerProgressTable);
+
         }
+
+        public static Lesson GetRandomIncompleteLesson()
+        {
+            string query = "SELECT TOP 1 LessonId, Topic, Title, Question, CorrectAnswerIndex, Reward, Completed FROM Lessons WHERE Completed = False ORDER BY RND(LessonId)";
+            Lesson lesson = null;
+
+            using (OleDbConnection conn = new OleDbConnection(ConnectionString))
+            {
+                try
+                {
+                    conn.Open();
+                    using (OleDbCommand cmd = new OleDbCommand(query, conn))
+                    {
+                        using (OleDbDataReader reader = cmd.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                lesson = new Lesson
+                                {
+                                    LessonId = reader.GetInt32(0),
+                                    Topic = reader.GetString(1),
+                                    Title = reader.GetString(2),
+                                    Question = reader.GetString(3),
+                                    CorrectAnswerIndex = reader.GetInt32(4),
+                                    Reward = reader.GetInt32(5),
+                                    Completed = reader.GetBoolean(6), // Ensure you're fetching Completed field
+                                    Choices = new List<string>(), // Initialize Choices (you may fetch these if needed later)
+                                };
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($@"Error fetching random lesson: {ex.Message}", @"Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+
+            return lesson;
+        }
+
+
+        public static void MarkLessonComplete(int lessonId)
+        {
+            string insertQuery = "INSERT INTO PlayerProgress (LessonId, CompletionDate) VALUES (@LessonId, @CompletionDate)";
+
+            using (OleDbConnection conn = new OleDbConnection(ConnectionString))
+            {
+                try
+                {
+                    conn.Open();
+                    using (OleDbCommand cmd = new OleDbCommand(insertQuery, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@LessonId", lessonId);
+                        cmd.Parameters.AddWithValue("@CompletionDate", DateTime.Now);
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($@"Error marking lesson complete: {ex.Message}", @"Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+
+        public static void AddLesson(string topic, string title, string question, int correctAnswerIndex, int reward, List<string> choices)
+        {
+            string insertLessonQuery = "INSERT INTO lessonsTable (Topic, Title, Question, CorrectAnswerIndex, Reward) " +
+                                       "VALUES (@Topic, @Title, @Question, @CorrectAnswerIndex, @Reward)";
+
+            using (OleDbConnection conn = new OleDbConnection(ConnectionString))
+            {
+                try
+                {
+                    conn.Open();
+                    using (OleDbCommand cmd = new OleDbCommand(insertLessonQuery, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@Topic", topic);
+                        cmd.Parameters.AddWithValue("@Title", title);
+                        cmd.Parameters.AddWithValue("@Question", question);
+                        cmd.Parameters.AddWithValue("@CorrectAnswerIndex", correctAnswerIndex);
+                        cmd.Parameters.AddWithValue("@Reward", reward);
+                        cmd.ExecuteNonQuery();
+
+                        // Retrieve the LessonId of the newly inserted lesson
+                        cmd.CommandText = "SELECT @@IDENTITY";
+                        int lessonId = (int)cmd.ExecuteScalar();
+
+                        // Add choices to the Choices table
+                        foreach (var choice in choices)
+                        {
+                            string insertChoiceQuery = "INSERT INTO Choices (LessonId, ChoiceText) VALUES (@LessonId, @ChoiceText)";
+                            using (OleDbCommand choiceCmd = new OleDbCommand(insertChoiceQuery, conn))
+                            {
+                                choiceCmd.Parameters.AddWithValue("@LessonId", lessonId);
+                                choiceCmd.Parameters.AddWithValue("@ChoiceText", choice);
+                                choiceCmd.ExecuteNonQuery();
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($@"Error adding lesson: {ex.Message}", @"Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
 
         public static void AddNewDayOfIncome(DateTime DateInput, float GoldInput, float LumberInput, float DiamondsInput, int NumberOfPropertiesInput)
         {

@@ -79,6 +79,8 @@ namespace bobFinal
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.btnSortByID = new System.Windows.Forms.Button();
+            this.btnSortByLumberIncome = new System.Windows.Forms.Button();
             this.btnSortByGoldIncome = new System.Windows.Forms.Button();
             this.tabControlDatabases = new System.Windows.Forms.TabControl();
             this.tabPage5 = new System.Windows.Forms.TabPage();
@@ -86,13 +88,11 @@ namespace bobFinal
             this.tabPage6 = new System.Windows.Forms.TabPage();
             this.dataGridViewIncomeHistory = new System.Windows.Forms.DataGridView();
             this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.btnLesson2 = new System.Windows.Forms.Button();
             this.btnLesson1 = new System.Windows.Forms.Button();
             this.btnApplyPrims = new System.Windows.Forms.Button();
             this.lblTabs = new System.Windows.Forms.Label();
             this.btnApplicationExit = new System.Windows.Forms.Button();
-            this.btnSortByLumberIncome = new System.Windows.Forms.Button();
-            this.btnSortByID = new System.Windows.Forms.Button();
+            this.dataGridViewLessons = new System.Windows.Forms.DataGridView();
             this.pnlBuy.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownAmount)).BeginInit();
             this.tabControl1.SuspendLayout();
@@ -105,6 +105,7 @@ namespace bobFinal
             this.tabPage6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewIncomeHistory)).BeginInit();
             this.tabPage4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewLessons)).BeginInit();
             this.SuspendLayout();
             //
             // gridPanel
@@ -656,6 +657,26 @@ namespace bobFinal
             this.tabPage3.Text = "Properties";
             this.tabPage3.UseVisualStyleBackColor = true;
             //
+            // btnSortByID
+            //
+            this.btnSortByID.Location = new System.Drawing.Point(897, 3);
+            this.btnSortByID.Name = "btnSortByID";
+            this.btnSortByID.Size = new System.Drawing.Size(234, 50);
+            this.btnSortByID.TabIndex = 4;
+            this.btnSortByID.Text = "Sort by Property ID";
+            this.btnSortByID.UseVisualStyleBackColor = true;
+            this.btnSortByID.Click += new System.EventHandler(this.btnSortByID_Click);
+            //
+            // btnSortByLumberIncome
+            //
+            this.btnSortByLumberIncome.Location = new System.Drawing.Point(585, 0);
+            this.btnSortByLumberIncome.Name = "btnSortByLumberIncome";
+            this.btnSortByLumberIncome.Size = new System.Drawing.Size(306, 53);
+            this.btnSortByLumberIncome.TabIndex = 3;
+            this.btnSortByLumberIncome.Text = "Sort by Total Lumber Income";
+            this.btnSortByLumberIncome.UseVisualStyleBackColor = true;
+            this.btnSortByLumberIncome.Click += new System.EventHandler(this.btnSortByLumberIncome_Click);
+            //
             // btnSortByGoldIncome
             //
             this.btnSortByGoldIncome.Location = new System.Drawing.Point(237, -1);
@@ -730,7 +751,7 @@ namespace bobFinal
             //
             // tabPage4
             //
-            this.tabPage4.Controls.Add(this.btnLesson2);
+            this.tabPage4.Controls.Add(this.dataGridViewLessons);
             this.tabPage4.Controls.Add(this.btnLesson1);
             this.tabPage4.Location = new System.Drawing.Point(4, 34);
             this.tabPage4.Name = "tabPage4";
@@ -739,16 +760,6 @@ namespace bobFinal
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Lessons";
             this.tabPage4.UseVisualStyleBackColor = true;
-            //
-            // btnLesson2
-            //
-            this.btnLesson2.Location = new System.Drawing.Point(90, 208);
-            this.btnLesson2.Name = "btnLesson2";
-            this.btnLesson2.Size = new System.Drawing.Size(183, 68);
-            this.btnLesson2.TabIndex = 1;
-            this.btnLesson2.Text = "Lesson 2";
-            this.btnLesson2.UseVisualStyleBackColor = true;
-            this.btnLesson2.Click += new System.EventHandler(this.btnLesson2_Click);
             //
             // btnLesson1
             //
@@ -793,25 +804,16 @@ namespace bobFinal
             this.btnApplicationExit.UseVisualStyleBackColor = true;
             this.btnApplicationExit.Click += new System.EventHandler(this.btnApplicationExit_Click_1);
             //
-            // btnSortByLumberIncome
+            // dataGridViewLessons
             //
-            this.btnSortByLumberIncome.Location = new System.Drawing.Point(585, 0);
-            this.btnSortByLumberIncome.Name = "btnSortByLumberIncome";
-            this.btnSortByLumberIncome.Size = new System.Drawing.Size(306, 53);
-            this.btnSortByLumberIncome.TabIndex = 3;
-            this.btnSortByLumberIncome.Text = "Sort by Total Lumber Income";
-            this.btnSortByLumberIncome.UseVisualStyleBackColor = true;
-            this.btnSortByLumberIncome.Click += new System.EventHandler(this.btnSortByLumberIncome_Click);
-            //
-            // btnSortByID
-            //
-            this.btnSortByID.Location = new System.Drawing.Point(897, 3);
-            this.btnSortByID.Name = "btnSortByID";
-            this.btnSortByID.Size = new System.Drawing.Size(234, 50);
-            this.btnSortByID.TabIndex = 4;
-            this.btnSortByID.Text = "Sort by Property ID";
-            this.btnSortByID.UseVisualStyleBackColor = true;
-            this.btnSortByID.Click += new System.EventHandler(this.btnSortByID_Click);
+            this.dataGridViewLessons.AllowUserToAddRows = false;
+            this.dataGridViewLessons.AllowUserToDeleteRows = false;
+            this.dataGridViewLessons.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewLessons.Location = new System.Drawing.Point(80, 272);
+            this.dataGridViewLessons.Name = "dataGridViewLessons";
+            this.dataGridViewLessons.ReadOnly = true;
+            this.dataGridViewLessons.Size = new System.Drawing.Size(900, 365);
+            this.dataGridViewLessons.TabIndex = 1;
             //
             // Form1
             //
@@ -852,17 +854,18 @@ namespace bobFinal
             this.tabPage6.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewIncomeHistory)).EndInit();
             this.tabPage4.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewLessons)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
         }
+
+        private System.Windows.Forms.DataGridView dataGridViewLessons;
 
         private System.Windows.Forms.Button btnSortByLumberIncome;
 
         private System.Windows.Forms.Button btnSortByID;
 
         private System.Windows.Forms.Button btnSortByGoldIncome;
-
-        private System.Windows.Forms.Button btnLesson2;
 
         private System.Windows.Forms.Button btnLesson1;
 

@@ -13,7 +13,7 @@ namespace bobFinal
         private const int tileSize = 40;
         private const int newDayInterval = 2000;
         private string currentAction;
-        private DateTime currentDate = new DateTime(2021, 1, 1);
+        private DateTime currentDate = new DateTime(2024, 1, 1);
         private Resource diamond;
         int diamondStorageUpgradeCost = 5;
         int goldStorageUpgradeCost = 5;
@@ -45,12 +45,15 @@ namespace bobFinal
             RefreshDataGridView("Properties");
             RefreshDataGridView("incomeHistoryTable");
 
+            dataGridViewLessons.DataSource = DatabaseUtils.LoadLessonStatus();
+
             initializeGrid();
             initializeLoot();
             initializeStartingProperties();
             initializePrices();
             initializeMarketPrices();
             initializeNewDayTimer();
+            initializeLessons();
 
             numericUpDownAmount.Maximum = 9999999;
 
@@ -74,6 +77,11 @@ namespace bobFinal
                     listViewMarket.Items.Add(new ListViewItem(new[] { conversionRate, resource.getName() }));
                 }
             }
+        }
+
+        private void initializeLessons()
+        {
+
         }
 
         private void initializeGrid()
@@ -628,12 +636,9 @@ namespace bobFinal
         private void btnLesson1_Click_1(object sender, EventArgs e)
         {
             Program.ShowAutoClosingMessageBox("you chose lesson 1", "Lesson 1", 2250);
-        }
 
+            // Get the selected lesson from the DataGridView
 
-        private void btnLesson2_Click(object sender, EventArgs e)
-        {
-            Program.ShowAutoClosingMessageBox("you chose lesson 2", "Lesson 2", 2250);
         }
 
         private void btnSortByGoldIncome_Click(object sender, EventArgs e)
@@ -655,11 +660,20 @@ namespace bobFinal
             Program.ShowAutoClosingMessageBox("THIS DOESNT WORK YET IDIOT", "Sort by ID", 2250);
             // mergeSort.Sort(properties.ToArray(), "ID");
             // RefreshDataGridView("Properties");
+            // temp fix
         }
 
         private void RefreshDataGridView(string tableName)
         {
-            dataGridViewPropertiesList.DataSource = DatabaseUtils.LoadDatabaseData(tableName);
+            switch (tableName)
+            {
+                case "Properties":
+                    dataGridViewPropertiesList.DataSource = DatabaseUtils.LoadDatabaseData(tableName);
+                    break;
+                case "incomeHistoryTable":
+                    dataGridViewIncomeHistory.DataSource = DatabaseUtils.LoadDatabaseData(tableName);
+                    break;
+            }
         }
     }
 }

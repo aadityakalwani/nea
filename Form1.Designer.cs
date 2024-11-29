@@ -856,11 +856,11 @@ namespace bobFinal
             //
             // btnLesson1
             //
-            this.btnLesson1.Location = new System.Drawing.Point(90, 79);
+            this.btnLesson1.Location = new System.Drawing.Point(80, 46);
             this.btnLesson1.Name = "btnLesson1";
-            this.btnLesson1.Size = new System.Drawing.Size(183, 68);
+            this.btnLesson1.Size = new System.Drawing.Size(247, 101);
             this.btnLesson1.TabIndex = 0;
-            this.btnLesson1.Text = "Lesson 1";
+            this.btnLesson1.Text = "Perform Lesson";
             this.btnLesson1.UseVisualStyleBackColor = true;
             this.btnLesson1.Click += new System.EventHandler(this.btnLesson1_Click_1);
             //

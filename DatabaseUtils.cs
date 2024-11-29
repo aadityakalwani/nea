@@ -168,8 +168,11 @@ namespace bobFinal
                 Question TEXT NOT NULL,
                 CorrectAnswerIndex INTEGER NOT NULL,
                 Reward INTEGER NOT NULL,
+                ChoiceOne TEXT NOT NULL,
+                ChoiceTwo TEXT NOT NULL,
+                ChoiceThree TEXT NOT NULL,
+                ChoiceFour TEXT NOT NULL,
                 Completed YESNO DEFAULT FALSE
-
             );";
             ExecuteSqlNonQuery(createLessonsTable);
 
@@ -196,8 +199,7 @@ namespace bobFinal
 
         public static Lesson GetRandomIncompleteLesson()
         {
-            string query = "SELECT TOP 1 LessonId, Topic, Question, Reward FROM lessonsTable WHERE Completed = False ORDER BY RND(LessonId)";
-            //                                                                  ^ this is causing an error (FROM)
+            string query = "SELECT TOP 1 LessonId, Topic, Question, Reward, ChoiceOne, ChoiceTwo, ChoiceThree, ChoiceFour FROM lessonsTable WHERE Completed = False ORDER BY RND(LessonId)";
             Lesson lesson = null;
 
             using (OleDbConnection conn = new OleDbConnection(ConnectionString))
@@ -211,7 +213,7 @@ namespace bobFinal
                         {
                             if (reader.Read())
                             {
-                                lesson = new Lesson(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetInt32(3));
+                                lesson = new Lesson(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetInt32(3), reader.GetString(4), reader.GetString(5), reader.GetString(6), reader.GetString(7));
                             }
                         }
                     }
@@ -290,10 +292,13 @@ namespace bobFinal
         }
 
 
-        public static void AddLesson(string topic, string title, string question, int correctAnswerIndex, int reward, List<string> choices)
+        public static void AddLesson(string topic, string title, string question, int correctAnswerIndex, int reward, string ChoiceOne, string ChoiceTwo, string ChoiceThree, string ChoiceFour)
         {
-            string insertLessonQuery = "INSERT INTO lessonsTable (Topic, Title, Question, CorrectAnswerIndex, Reward) " +
-                                       "VALUES (@Topic, @Title, @Question, @CorrectAnswerIndex, @Reward)";
+
+            string insertLessonQuery = "INSERT INTO lessonsTable (Topic, Title, Question, CorrectAnswerIndex, Reward, Completed, ChoiceOne, ChoiceTwo, ChoiceThree, ChoiceFour) " +
+                                       "VALUES (@Topic, @Title, @Question, @CorrectAnswerIndex, @Reward, False, @ChoiceOne, @ChoiceTwo, @ChoiceThree, @ChoiceFour)";
+
+            List<string> choices = new List<string> { ChoiceOne, ChoiceTwo, ChoiceThree, ChoiceFour };
 
             using (OleDbConnection conn = new OleDbConnection(ConnectionString))
             {
@@ -307,6 +312,12 @@ namespace bobFinal
                         cmd.Parameters.AddWithValue("@Question", question);
                         cmd.Parameters.AddWithValue("@CorrectAnswerIndex", correctAnswerIndex);
                         cmd.Parameters.AddWithValue("@Reward", reward);
+                        cmd.Parameters.AddWithValue("@Completed", false);
+                        cmd.Parameters.AddWithValue("@ChoiceOne", ChoiceOne);
+                        cmd.Parameters.AddWithValue("@ChoiceTwo", ChoiceTwo);
+                        cmd.Parameters.AddWithValue("@ChoiceThree", ChoiceThree);
+                        cmd.Parameters.AddWithValue("@ChoiceFour", ChoiceFour);
+
                         cmd.ExecuteNonQuery();
 
                         // Retrieve the LessonId of the newly inserted lesson

@@ -1,4 +1,8 @@
 current issues:
+
+- the first choice is always 0
+- and it always says your answer is wrong
+
 - sort by ID number for a property
 
 - when sorting, the propertiesArray is being sorted, not the data in the database table itself

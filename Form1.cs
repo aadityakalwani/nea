@@ -45,8 +45,7 @@ namespace bobFinal
             // bind the DataTable to a DataGridView to display the data
             RefreshDataGridView("Properties");
             RefreshDataGridView("incomeHistoryTable");
-
-            dataGridViewLessons.DataSource = DatabaseUtils.LoadLessonStatus();
+            RefreshDataGridViewLessons();
 
             initializeGrid();
             initializeLoot();
@@ -57,9 +56,9 @@ namespace bobFinal
             initializeLessons();
 
             // test data for the first lesson
-            List<string> choices = new List<string> { "10N", "20N", "30N", "40N" };
-            DatabaseUtils.AddLesson("Physics", "Newton's Laws", "What is the force on a 10kg object with 2m/s² acceleration?", 2, 50, choices);
-
+            DatabaseUtils.AddLesson("Physics", "Newton's Laws", "What is the force on a 10kg object with 2m/s² acceleration?", 2, 50, "10N", "20N", "30N", "40N");
+// business/economics questions:
+            DatabaseUtils.AddLesson("Business", "Supply and Demand", "What happens to price when demand increases?", 1, 50, "Increases", "Decreases", "Stays the same", "No effect");
             numericUpDownAmount.Maximum = 9999999;
 
             // open in full screen
@@ -68,6 +67,7 @@ namespace bobFinal
 
             dataGridViewIncomeHistory.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridViewPropertiesList.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridViewLessons.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }
 
         private void initializeMarketPrices()
@@ -320,6 +320,7 @@ namespace bobFinal
             DatabaseUtils.AddNewDayOfIncome(currentDate, totalGoldGain, totalLumberGain, totalDiamondGain, properties.Count);
             RefreshDataGridView("Properties");
             RefreshDataGridView("incomeHistoryTable");
+            RefreshDataGridViewLessons();
 
             currentDate = currentDate.AddDays(1);
             lblDate.Text = "Today's Date: " + currentDate.ToString("dd MMMM yyyy");
@@ -639,28 +640,32 @@ namespace bobFinal
 
         private void btnLesson1_Click_1(object sender, EventArgs e)
         {
-            Program.ShowAutoClosingMessageBox("you chose lesson 1", "Lesson 1", 2250);
+            // Program.ShowAutoClosingMessageBox("you chose lesson 1", "Lesson 1", 2250);
 
             // Get the selected lesson from the DataGridView
 
-            Lesson lesson = DatabaseUtils.GetRandomIncompleteLesson();
-
             currentLesson = DatabaseUtils.GetRandomIncompleteLesson();
+            // this function is not returning a list of choices, hence why the whole choices thing isnt working
 
-            MessageBox.Show($"Lesson ID: {currentLesson.LessonId}\nTopic: {currentLesson.Topic}\nTitle: {currentLesson.Title}\nQuestion: {currentLesson.Question}\nReward: {currentLesson.Reward}", "Lesson Details", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            List<string> choicesForThisQuestion = new List<string> { currentLesson.ChoiceOne, currentLesson.ChoiceTwo, currentLesson.ChoiceThree, currentLesson.ChoiceFour };
 
-            if (lesson != null)
+            MessageBox.Show($"Choices for this question: {choicesForThisQuestion[0]}, {choicesForThisQuestion[1]}, {choicesForThisQuestion[2]}, {choicesForThisQuestion[3]}", "Choices", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            if (currentLesson != null)
             {
                 // Display the question
-                lblQuestion.Text = lesson.Question;
+                lblQuestion.Text = currentLesson.Question;
 
-                // Populate choices (you'll want to populate choices dynamically if needed)
-                radioButton1.Text = lesson.Choices.Count > 0 ? lesson.Choices[0] : "Choice 1";
-                radioButton2.Text = lesson.Choices.Count > 1 ? lesson.Choices[1] : "Choice 2";
-                radioButton3.Text = lesson.Choices.Count > 2 ? lesson.Choices[2] : "Choice 3";
-                radioButton4.Text = lesson.Choices.Count > 3 ? lesson.Choices[3] : "Choice 4";
+                // Populate choices
+                radioButton1.Text = currentLesson.ChoiceOne;
+                radioButton2.Text = currentLesson.ChoiceTwo;
+                radioButton3.Text = currentLesson.ChoiceThree;
+                radioButton4.Text = currentLesson.ChoiceFour;
             }
-
+            else
+            {
+                Program.ShowAutoClosingMessageBox("No lessons found!", "Error", 2500);
+            }
         }
 
         private void btnSortByGoldIncome_Click(object sender, EventArgs e)
@@ -696,6 +701,11 @@ namespace bobFinal
                     dataGridViewIncomeHistory.DataSource = DatabaseUtils.LoadDatabaseData(tableName);
                     break;
             }
+        }
+
+        private void RefreshDataGridViewLessons()
+        {
+            dataGridViewLessons.DataSource = DatabaseUtils.LoadLessonStatus();
         }
 
         private void btnSubmit_Click(object sender, EventArgs e)

@@ -83,7 +83,7 @@ namespace bobFinal
             this.btnSortByLumberIncome = new System.Windows.Forms.Button();
             this.btnSortByGoldIncome = new System.Windows.Forms.Button();
             this.tabControlDatabases = new System.Windows.Forms.TabControl();
-            this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.tabPage500 = new System.Windows.Forms.TabPage();
             this.dataGridViewPropertiesList = new System.Windows.Forms.DataGridView();
             this.tabPage6 = new System.Windows.Forms.TabPage();
             this.dataGridViewIncomeHistory = new System.Windows.Forms.DataGridView();
@@ -107,7 +107,7 @@ namespace bobFinal
             this.tabPage2.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.tabControlDatabases.SuspendLayout();
-            this.tabPage5.SuspendLayout();
+            this.tabPage500.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPropertiesList)).BeginInit();
             this.tabPage6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewIncomeHistory)).BeginInit();
@@ -667,9 +667,9 @@ namespace bobFinal
             //
             // btnSortByID
             //
-            this.btnSortByID.Location = new System.Drawing.Point(897, 3);
+            this.btnSortByID.Location = new System.Drawing.Point(1083, 4);
             this.btnSortByID.Name = "btnSortByID";
-            this.btnSortByID.Size = new System.Drawing.Size(234, 50);
+            this.btnSortByID.Size = new System.Drawing.Size(234, 49);
             this.btnSortByID.TabIndex = 4;
             this.btnSortByID.Text = "Sort by Property ID";
             this.btnSortByID.UseVisualStyleBackColor = true;
@@ -677,9 +677,9 @@ namespace bobFinal
             //
             // btnSortByLumberIncome
             //
-            this.btnSortByLumberIncome.Location = new System.Drawing.Point(585, 0);
+            this.btnSortByLumberIncome.Location = new System.Drawing.Point(771, 1);
             this.btnSortByLumberIncome.Name = "btnSortByLumberIncome";
-            this.btnSortByLumberIncome.Size = new System.Drawing.Size(306, 53);
+            this.btnSortByLumberIncome.Size = new System.Drawing.Size(306, 52);
             this.btnSortByLumberIncome.TabIndex = 3;
             this.btnSortByLumberIncome.Text = "Sort by Total Lumber Income";
             this.btnSortByLumberIncome.UseVisualStyleBackColor = true;
@@ -687,9 +687,9 @@ namespace bobFinal
             //
             // btnSortByGoldIncome
             //
-            this.btnSortByGoldIncome.Location = new System.Drawing.Point(237, -1);
+            this.btnSortByGoldIncome.Location = new System.Drawing.Point(423, 0);
             this.btnSortByGoldIncome.Name = "btnSortByGoldIncome";
-            this.btnSortByGoldIncome.Size = new System.Drawing.Size(342, 54);
+            this.btnSortByGoldIncome.Size = new System.Drawing.Size(342, 53);
             this.btnSortByGoldIncome.TabIndex = 2;
             this.btnSortByGoldIncome.Text = "Sort by Total Gold Income";
             this.btnSortByGoldIncome.UseVisualStyleBackColor = true;
@@ -697,7 +697,7 @@ namespace bobFinal
             //
             // tabControlDatabases
             //
-            this.tabControlDatabases.Controls.Add(this.tabPage5);
+            this.tabControlDatabases.Controls.Add(this.tabPage500);
             this.tabControlDatabases.Controls.Add(this.tabPage6);
             this.tabControlDatabases.Location = new System.Drawing.Point(21, 25);
             this.tabControlDatabases.Name = "tabControlDatabases";
@@ -705,16 +705,16 @@ namespace bobFinal
             this.tabControlDatabases.Size = new System.Drawing.Size(1369, 799);
             this.tabControlDatabases.TabIndex = 1;
             //
-            // tabPage5
+            // tabPage500
             //
-            this.tabPage5.Controls.Add(this.dataGridViewPropertiesList);
-            this.tabPage5.Location = new System.Drawing.Point(4, 34);
-            this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage5.Size = new System.Drawing.Size(1361, 761);
-            this.tabPage5.TabIndex = 0;
-            this.tabPage5.Text = "tabPage5";
-            this.tabPage5.UseVisualStyleBackColor = true;
+            this.tabPage500.Controls.Add(this.dataGridViewPropertiesList);
+            this.tabPage500.Location = new System.Drawing.Point(4, 34);
+            this.tabPage500.Name = "tabPage500";
+            this.tabPage500.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage500.Size = new System.Drawing.Size(1361, 761);
+            this.tabPage500.TabIndex = 0;
+            this.tabPage500.Text = "Properties Tracker";
+            this.tabPage500.UseVisualStyleBackColor = true;
             //
             // dataGridViewPropertiesList
             //
@@ -739,7 +739,7 @@ namespace bobFinal
             this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage6.Size = new System.Drawing.Size(1361, 761);
             this.tabPage6.TabIndex = 1;
-            this.tabPage6.Text = "tabPage6";
+            this.tabPage6.Text = "Daily Income Tracker";
             this.tabPage6.UseVisualStyleBackColor = true;
             //
             // dataGridViewIncomeHistory
@@ -931,7 +931,7 @@ namespace bobFinal
             this.tabPage2.ResumeLayout(false);
             this.tabPage3.ResumeLayout(false);
             this.tabControlDatabases.ResumeLayout(false);
-            this.tabPage5.ResumeLayout(false);
+            this.tabPage500.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPropertiesList)).EndInit();
             this.tabPage6.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewIncomeHistory)).EndInit();
@@ -967,7 +967,7 @@ namespace bobFinal
         private System.Windows.Forms.DataGridView dataGridViewIncomeHistory;
 
         private System.Windows.Forms.TabControl tabControlDatabases;
-        private System.Windows.Forms.TabPage tabPage5;
+        private System.Windows.Forms.TabPage tabPage500;
         private System.Windows.Forms.TabPage tabPage6;
 
         private System.Windows.Forms.Button btnApplyPrims;

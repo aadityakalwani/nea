@@ -699,6 +699,9 @@ namespace bobFinal
                     break;
                 case "incomeHistoryTable":
                     dataGridViewIncomeHistory.DataSource = DatabaseUtils.LoadDatabaseData(tableName);
+                    dataGridViewIncomeHistory.Columns[0].HeaderText = "Date";
+                    dataGridViewIncomeHistory.Columns[1].HeaderText = "Gold Income";
+                    dataGridViewIncomeHistory.Columns[2].HeaderText = "Lumber Income";
                     break;
             }
         }

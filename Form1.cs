@@ -40,14 +40,7 @@ namespace bobFinal
         public Form1()
         {
             InitializeComponent();
-
             DatabaseUtils.InitializeDatabase();
-
-            // bind the DataTable to a DataGridView to display the data
-            RefreshDataGridView("Properties");
-            RefreshDataGridView("incomeHistoryTable");
-            RefreshDataGridViewLessons();
-
             initializeGrid();
             initializeLoot();
             initializeStartingProperties();
@@ -55,6 +48,9 @@ namespace bobFinal
             initializeMarketPrices();
             initializeNewDayTimer();
             initializeLessons();
+
+            // bind the DataTable to a DataGridViews to display the data
+            RefreshAllDataGridViews();
 
             numericUpDownAmount.Maximum = 9999999;
 
@@ -354,9 +350,7 @@ namespace bobFinal
 
             // update databases and their dataGridViews
             DatabaseUtils.AddNewDayOfIncome(currentDate, totalGoldGain, totalLumberGain, totalDiamondGain, properties.Count);
-            RefreshDataGridView("Properties");
-            RefreshDataGridView("incomeHistoryTable");
-            RefreshDataGridViewLessons();
+            RefreshAllDataGridViews();
 
             currentDate = currentDate.AddDays(1);
             lblDate.Text = "Today's Date: " + currentDate.ToString("dd MMMM yyyy");
@@ -742,6 +736,13 @@ namespace bobFinal
         private void RefreshDataGridViewLessons()
         {
             dataGridViewLessons.DataSource = DatabaseUtils.LoadLessonStatus();
+        }
+
+        private void RefreshAllDataGridViews()
+        {
+            RefreshDataGridView("Properties");
+            RefreshDataGridView("incomeHistoryTable");
+            RefreshDataGridViewLessons();
         }
 
         private void btnSubmit_Click(object sender, EventArgs e)

@@ -778,85 +778,85 @@ namespace bobFinal
             this.groupBox.Controls.Add(this.radioButton3);
             this.groupBox.Controls.Add(this.radioButton2);
             this.groupBox.Controls.Add(this.radioButton1);
-            this.groupBox.Location = new System.Drawing.Point(479, 28);
+            this.groupBox.Location = new System.Drawing.Point(24, 174);
             this.groupBox.Name = "groupBox";
-            this.groupBox.Size = new System.Drawing.Size(647, 404);
+            this.groupBox.Size = new System.Drawing.Size(1357, 274);
             this.groupBox.TabIndex = 3;
             this.groupBox.TabStop = false;
             this.groupBox.Text = "Select An Answer And Click \'Submit\'";
-            // 
+            //
             // btnSubmit
-            // 
-            this.btnSubmit.Location = new System.Drawing.Point(172, 345);
+            //
+            this.btnSubmit.Location = new System.Drawing.Point(1137, 101);
             this.btnSubmit.Name = "btnSubmit";
-            this.btnSubmit.Size = new System.Drawing.Size(194, 32);
+            this.btnSubmit.Size = new System.Drawing.Size(194, 103);
             this.btnSubmit.TabIndex = 4;
             this.btnSubmit.Text = "submit";
             this.btnSubmit.UseVisualStyleBackColor = true;
             this.btnSubmit.Click += new System.EventHandler(this.btnSubmit_Click);
-            // 
+            //
             // radioButton4
-            // 
-            this.radioButton4.Location = new System.Drawing.Point(323, 180);
+            //
+            this.radioButton4.Location = new System.Drawing.Point(621, 159);
             this.radioButton4.Name = "radioButton4";
-            this.radioButton4.Size = new System.Drawing.Size(289, 130);
+            this.radioButton4.Size = new System.Drawing.Size(523, 92);
             this.radioButton4.TabIndex = 3;
             this.radioButton4.TabStop = true;
             this.radioButton4.Text = "radioButton4";
             this.radioButton4.UseVisualStyleBackColor = true;
-            // 
+            //
             // radioButton3
-            // 
-            this.radioButton3.Location = new System.Drawing.Point(323, 44);
+            //
+            this.radioButton3.Location = new System.Drawing.Point(621, 34);
             this.radioButton3.Name = "radioButton3";
-            this.radioButton3.Size = new System.Drawing.Size(285, 126);
+            this.radioButton3.Size = new System.Drawing.Size(523, 105);
             this.radioButton3.TabIndex = 2;
             this.radioButton3.TabStop = true;
             this.radioButton3.Text = "radioButton3";
             this.radioButton3.UseVisualStyleBackColor = true;
-            // 
+            //
             // radioButton2
-            // 
-            this.radioButton2.Location = new System.Drawing.Point(21, 180);
+            //
+            this.radioButton2.Location = new System.Drawing.Point(18, 159);
             this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(276, 123);
+            this.radioButton2.Size = new System.Drawing.Size(549, 92);
             this.radioButton2.TabIndex = 1;
             this.radioButton2.TabStop = true;
             this.radioButton2.Text = "radioButton2";
             this.radioButton2.UseVisualStyleBackColor = true;
-            // 
+            //
             // radioButton1
-            // 
-            this.radioButton1.Location = new System.Drawing.Point(21, 44);
+            //
+            this.radioButton1.Location = new System.Drawing.Point(18, 34);
             this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(275, 113);
+            this.radioButton1.Size = new System.Drawing.Size(549, 105);
             this.radioButton1.TabIndex = 0;
             this.radioButton1.TabStop = true;
             this.radioButton1.Text = "radioButton1";
             this.radioButton1.UseVisualStyleBackColor = true;
-            // 
+            //
             // lblQuestion
-            // 
-            this.lblQuestion.Location = new System.Drawing.Point(41, 170);
+            //
+            this.lblQuestion.Location = new System.Drawing.Point(341, 24);
             this.lblQuestion.Name = "lblQuestion";
-            this.lblQuestion.Size = new System.Drawing.Size(254, 132);
+            this.lblQuestion.Size = new System.Drawing.Size(493, 101);
             this.lblQuestion.TabIndex = 2;
-            this.lblQuestion.Text = "Click \'Perform Lesson\' to Load an Incomplete Lesson";
-            // 
+            this.lblQuestion.Text = "Click \'Perform Lesson\' to load an incomplete lesson\r\nThe question will then show " + "up in this box";
+            //
             // dataGridViewLessons
-            // 
+            //
             this.dataGridViewLessons.AllowUserToAddRows = false;
             this.dataGridViewLessons.AllowUserToDeleteRows = false;
             this.dataGridViewLessons.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewLessons.Location = new System.Drawing.Point(26, 462);
+            this.dataGridViewLessons.Location = new System.Drawing.Point(6, 462);
             this.dataGridViewLessons.Name = "dataGridViewLessons";
             this.dataGridViewLessons.ReadOnly = true;
-            this.dataGridViewLessons.Size = new System.Drawing.Size(900, 365);
+            this.dataGridViewLessons.Size = new System.Drawing.Size(1404, 382);
             this.dataGridViewLessons.TabIndex = 1;
-            // 
+            //
             // btnLesson1
-            // 
-            this.btnLesson1.Location = new System.Drawing.Point(41, 28);
+            //
+            this.btnLesson1.Location = new System.Drawing.Point(24, 24);
             this.btnLesson1.Name = "btnLesson1";
             this.btnLesson1.Size = new System.Drawing.Size(254, 101);
             this.btnLesson1.TabIndex = 0;

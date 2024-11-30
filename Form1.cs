@@ -684,8 +684,6 @@ namespace bobFinal
 
             List<string> choicesForThisQuestion = new List<string> { currentLesson.ChoiceOne, currentLesson.ChoiceTwo, currentLesson.ChoiceThree, currentLesson.ChoiceFour };
 
-            Program.ShowAutoClosingMessageBox($"Choices for this question: {choicesForThisQuestion[0]}, {choicesForThisQuestion[1]}, {choicesForThisQuestion[2]}, {choicesForThisQuestion[3]}", "Choices", 2250);
-
             if (currentLesson != null)
             {
                 // Display the question

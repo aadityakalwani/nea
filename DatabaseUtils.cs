@@ -279,59 +279,58 @@ namespace bobFinal
             }
         }
 
-
         public static void AddLesson(Lesson lesson)
         {
-
-            string insertLessonQuery = "INSERT INTO lessonsTable (Topic, Title, Question, CorrectAnswerIndex, Reward, ChoiceOne, ChoiceTwo, ChoiceThree, ChoiceFour, Completed) " +
-                                       "VALUES (@Topic, @Title, @Question, @CorrectAnswerIndex, @Reward, @ChoiceOne, @ChoiceTwo, @ChoiceThree, @ChoiceFour, False)";
-
-            List<string> choices = new List<string> { lesson.ChoiceOne, lesson.ChoiceTwo, lesson.ChoiceThree, lesson.ChoiceFour };
-
-            using (OleDbConnection conn = new OleDbConnection(ConnectionString))
+            try
             {
-                try
-                {
-                    conn.Open();
-                    using (OleDbCommand cmd = new OleDbCommand(insertLessonQuery, conn))
-                    {
-                        cmd.Parameters.AddWithValue("@Topic", lesson.Topic);
-                        cmd.Parameters.AddWithValue("@Title", lesson.Title);
-                        cmd.Parameters.AddWithValue("@Question", lesson.Question);
-                        cmd.Parameters.AddWithValue("@CorrectAnswerIndex", lesson.CorrectAnswerIndex);
-                        cmd.Parameters.AddWithValue("@Reward", lesson.Reward);
-                        cmd.Parameters.AddWithValue("@Completed", false);
-                        cmd.Parameters.AddWithValue("@ChoiceOne", lesson.ChoiceOne);
-                        cmd.Parameters.AddWithValue("@ChoiceTwo", lesson.ChoiceTwo);
-                        cmd.Parameters.AddWithValue("@ChoiceThree", lesson.ChoiceThree);
-                        cmd.Parameters.AddWithValue("@ChoiceFour", lesson.ChoiceFour);
-
-                        cmd.ExecuteNonQuery();
-
-                        // Retrieve the LessonId of the newly inserted lesson
-                        cmd.CommandText = "SELECT @@IDENTITY";
-                        int lessonId = (int)cmd.ExecuteScalar();
-
-                        // Add choices to the Choices table
-                        foreach (var choice in choices)
-                        {
-                            string insertChoiceQuery = "INSERT INTO Choices (LessonId, ChoiceText) VALUES (@LessonId, @ChoiceText)";
-                            using (OleDbCommand choiceCmd = new OleDbCommand(insertChoiceQuery, conn))
-                            {
-                                choiceCmd.Parameters.AddWithValue("@LessonId", lessonId);
-                                choiceCmd.Parameters.AddWithValue("@ChoiceText", choice);
-                                choiceCmd.ExecuteNonQuery();
-                            }
-                        }
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show($@"Error adding lesson: {ex.Message}", @"Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                int lessonId = InsertLesson(lesson);
+                InsertChoices(lessonId, lesson);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($@"Error adding lesson: {ex.Message}", @"Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
+        private static int InsertLesson(Lesson lesson)
+        {
+            string insertLessonQuery = @"
+                INSERT INTO lessonsTable (Topic, Title, Question, CorrectAnswerIndex, Reward, ChoiceOne, ChoiceTwo, ChoiceThree, ChoiceFour, Completed) 
+                VALUES (@Topic, @Title, @Question, @CorrectAnswerIndex, @Reward, @ChoiceOne, @ChoiceTwo, @ChoiceThree, @ChoiceFour, False)";
+
+            using (OleDbConnection conn = new OleDbConnection(ConnectionString))
+            {
+                conn.Open();
+                OleDbCommand cmd = new OleDbCommand(insertLessonQuery, conn);
+                cmd.Parameters.AddWithValue("@Topic", lesson.Topic);
+                cmd.Parameters.AddWithValue("@Title", lesson.Title);
+                cmd.Parameters.AddWithValue("@Question", lesson.Question);
+                cmd.Parameters.AddWithValue("@CorrectAnswerIndex", lesson.CorrectAnswerIndex);
+                cmd.Parameters.AddWithValue("@Reward", lesson.Reward);
+                cmd.Parameters.AddWithValue("@ChoiceOne", lesson.ChoiceOne);
+                cmd.Parameters.AddWithValue("@ChoiceTwo", lesson.ChoiceTwo);
+                cmd.Parameters.AddWithValue("@ChoiceThree", lesson.ChoiceThree);
+                cmd.Parameters.AddWithValue("@ChoiceFour", lesson.ChoiceFour);
+                cmd.ExecuteNonQuery();
+                return (int)new OleDbCommand("SELECT @@IDENTITY", conn).ExecuteScalar();
+            }
+        }
+
+        private static void InsertChoices(int lessonId, Lesson lesson)
+        {
+            string insertChoiceQuery = "INSERT INTO Choices (LessonId, ChoiceText) VALUES (@LessonId, @ChoiceText)";
+            using (OleDbConnection conn = new OleDbConnection(ConnectionString))
+            {
+                conn.Open();
+                foreach (var choice in new List<string> { lesson.ChoiceOne, lesson.ChoiceTwo, lesson.ChoiceThree, lesson.ChoiceFour })
+                {
+                    OleDbCommand choiceCmd = new OleDbCommand(insertChoiceQuery, conn);
+                    choiceCmd.Parameters.AddWithValue("@LessonId", lessonId);
+                    choiceCmd.Parameters.AddWithValue("@ChoiceText", choice);
+                    choiceCmd.ExecuteNonQuery();
+                }
+            }
+        }
 
         public static void AddNewDayOfIncome(DateTime DateInput, float GoldInput, float LumberInput, float DiamondsInput, int NumberOfPropertiesInput)
         {

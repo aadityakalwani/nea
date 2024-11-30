@@ -202,7 +202,7 @@ namespace bobFinal
             string query = "SELECT TOP 1 LessonId, Topic, Title, Question, CorrectAnswerIndex, Reward, ChoiceOne, ChoiceTwo, ChoiceThree, ChoiceFour " +
                            "FROM lessonsTable WHERE Completed = False ORDER BY RND(-Timer() * LessonId)";
 
-            Lesson lesson = null;
+            Lesson lesson = new Lesson();
 
             using (OleDbConnection conn = new OleDbConnection(ConnectionString))
             {
@@ -215,19 +215,17 @@ namespace bobFinal
                         {
                             if (reader.Read())
                             {
-                                lesson = new Lesson
-                                (
-                                    reader.GetInt32(0),
-                                    reader.GetString(1),
-                                    reader.GetString(2),
-                                    reader.GetString(3),
-                                    reader.GetInt32(4),
-                                    reader.GetInt32(5),
-                                    reader.GetString(6),
-                                    reader.GetString(7),
-                                    reader.GetString(8),
-                                    reader.GetString(9)
-                                );
+                                lesson.LessonId = reader.GetInt32(0);
+                                lesson.Topic = reader.GetString(1);
+                                lesson.Title = reader.GetString(2);
+                                lesson.Question = reader.GetString(3);
+                                lesson.CorrectAnswerIndex = reader.GetInt32(4);
+                                lesson.Reward = reader.GetInt32(5);
+                                lesson.ChoiceOne = reader.GetString(6);
+                                lesson.ChoiceTwo = reader.GetString(7);
+                                lesson.ChoiceThree = reader.GetString(8);
+                                lesson.ChoiceFour = reader.GetString(9);
+                                lesson.Completed = false;
                             }
                         }
                     }

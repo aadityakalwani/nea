@@ -56,16 +56,16 @@ namespace bobFinal
             initializeLessons();
 
             // data for lessons
-            Lesson lesson1 = new Lesson(1, "Physics", "Newton's Laws", "What is the force on a 10kg object with 2m/s² acceleration?", 2, 50, "10N", "20N", "30N", "40N");
-            Lesson lesson2 = new Lesson(2, "Business", "Supply and Demand", "What happens to price when demand increases?", 1, 50, "Increases", "Decreases", "Stays the same", "No effect");
-            Lesson lesson3 = new Lesson(3, "Business", "Economics", "What is the main goal of a business?", 0, 50, "Profit", "Charity", "Sustainability", "Growth");
-            Lesson lesson4 = new Lesson(4, "Economics", "Opportunity Cost", "What is the cost of the next best alternative?", 2, 50, "Sunk cost", "Fixed cost", "Opportunity cost", "Variable cost");
-            Lesson lesson5 = new Lesson(5, "Economics", "Scarcity", "What is the fundamental economic problem?", 3, 50, "Scarcity", "Opportunity cost", "Supply and demand", "Inflation");
-            Lesson lesson6 = new Lesson(6, "Economics", "Trade-offs", "What is the concept of giving up one thing for another?", 0, 50, "Trade-off", "Opportunity cost", "Scarcity", "Inflation");
-            Lesson lesson7 = new Lesson(7, "Economics", "Supply and Demand", "What is the law that states price increases as demand increases?", 1, 50, "Law of demand", "Law of supply", "Law of equilibrium", "Law of scarcity");
-            Lesson lesson8 = new Lesson(8, "Economics", "Elasticity", "What is the measure of how responsive quantity demanded is to a change in price?", 2, 50, "Inelastic", "Elastic", "Elasticity", "Demand");
-            Lesson lesson9 = new Lesson(9, "Economics", "Monopoly", "What is the market structure with only one seller?", 0, 50, "Monopoly", "Oligopoly", "Monopolistic competition", "Perfect competition");
-            Lesson lesson10 = new Lesson(10, "Economics", "Oligopoly", "What is the market structure with a few sellers?", 1, 50, "Monopoly", "Oligopoly", "Monopolistic competition", "Perfect competition");
+            Lesson lesson1 = new Lesson(1, "Physics", "Newton's Laws", "What is the force on a 10kg object with 2m/s² acceleration?", 2, 50, "10N", "20N", "30N", "40N", false);
+            Lesson lesson2 = new Lesson(2, "Business", "Supply and Demand", "What happens to price when demand increases?", 1, 50, "Increases", "Decreases", "Stays the same", "No effect", false);
+            Lesson lesson3 = new Lesson(3, "Business", "Economics", "What is the main goal of a business?", 0, 50, "Profit", "Charity", "Sustainability", "Growth", false);
+            Lesson lesson4 = new Lesson(4, "Economics", "Opportunity Cost", "What is the cost of the next best alternative?", 2, 50, "Sunk cost", "Fixed cost", "Opportunity cost", "Variable cost", false);
+            Lesson lesson5 = new Lesson(5, "Economics", "Scarcity", "What is the fundamental economic problem?", 3, 50, "Scarcity", "Opportunity cost", "Supply and demand", "Inflation", false);
+            Lesson lesson6 = new Lesson(6, "Economics", "Trade-offs", "What is the concept of giving up one thing for another?", 0, 50, "Trade-off", "Opportunity cost", "Scarcity", "Inflation", false);
+            Lesson lesson7 = new Lesson(7, "Economics", "Supply and Demand", "What is the law that states price increases as demand increases?", 1, 50, "Law of demand", "Law of supply", "Law of equilibrium", "Law of scarcity", false);
+            Lesson lesson8 = new Lesson(8, "Economics", "Elasticity", "What is the measure of how responsive quantity demanded is to a change in price?", 2, 50, "Inelastic", "Elastic", "Elasticity", "Demand", false);
+            Lesson lesson9 = new Lesson(9, "Economics", "Monopoly", "What is the market structure with only one seller?", 0, 50, "Monopoly", "Oligopoly", "Monopolistic competition", "Perfect competition", false);
+            Lesson lesson10 = new Lesson(10, "Economics", "Oligopoly", "What is the market structure with a few sellers?", 1, 50, "Monopoly", "Oligopoly", "Monopolistic competition", "Perfect competition", false);
 
             DatabaseUtils.AddLesson(lesson1);
             DatabaseUtils.AddLesson(lesson2);

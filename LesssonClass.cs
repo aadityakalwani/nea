@@ -20,7 +20,8 @@ namespace bobFinal
         public Lesson(
             int lessonId, string topic, string title, string question,
             int correctAnswerIndex, int reward,
-            string choiceOne, string choiceTwo, string choiceThree, string choiceFour)
+            string choiceOne, string choiceTwo, string choiceThree, string choiceFour,
+            bool completed)
         {
             LessonId = lessonId;
             Topic = topic;
@@ -32,8 +33,10 @@ namespace bobFinal
             ChoiceTwo = choiceTwo;
             ChoiceThree = choiceThree;
             ChoiceFour = choiceFour;
-            Completed = false;
+            Completed = completed;
         }
+
+        public Lesson() { }
 
         public void MarkAsCompleted()
         {

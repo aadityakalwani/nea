@@ -15,21 +15,16 @@ namespace bobFinal
         private string currentAction;
         private DateTime currentDate = new DateTime(2024, 1, 1);
         private Resource diamond;
-        int diamondStorageUpgradeCost = 5;
-        int goldStorageUpgradeCost = 5;
-        int lumberStorageUpgradeCost = 5;
+        private int diamondStorageUpgradeCost = 5;
+        private int goldStorageUpgradeCost = 5;
+        private int lumberStorageUpgradeCost = 5;
         private Resource dollars;
         private Resource gold;
         private CustomPictureBox[,] grid;
         private MergeSort mergeSort = new MergeSort();
-
-        private List<Property> listOfAllProperties = new List<Property>
-            { new House(0, 0), new Farm(0, 0), new Sawmill(0, 0), new Mine(0, 0), new Cafe(0, 0) };
-
+        private List<Property> listOfAllProperties = new List<Property> { new House(0, 0), new Farm(0, 0), new Sawmill(0, 0), new Mine(0, 0), new Cafe(0, 0) };
         private Resource lumber;
-
         private Timer newDayTimer;
-
         private List<Property> properties = new List<Property>();
         private List<Resource> resources;
         private string selectedBuilding;

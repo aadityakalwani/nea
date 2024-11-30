@@ -62,7 +62,7 @@ namespace bobFinal
             return ExecuteQuery(query);
         }
 
-        private static DataTable ExecuteQuery(string query)
+        private static DataTable ExecuteQuery(string query, Dictionary<string, object> parameters = null)
         {
             using (OleDbConnection conn = new OleDbConnection(ConnectionString))
             {
@@ -70,18 +70,25 @@ namespace bobFinal
                 {
                     conn.Open();
                     OleDbDataAdapter adapter = new OleDbDataAdapter(query, conn);
+                    if (parameters != null)
+                    {
+                        foreach (var param in parameters)
+                        {
+                            adapter.SelectCommand.Parameters.AddWithValue(param.Key, param.Value);
+                        }
+                    }
                     DataTable dataTable = new DataTable();
                     adapter.Fill(dataTable);
                     return dataTable;
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show($@"Error executing query: {ex.Message}", @"Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    Program.ShowAutoClosingMessageBox($@"Error executing query: {ex.Message}", @"Database Error", 2000);
                 }
             }
-
             return null;
         }
+
 
 
         public static DataTable LoadDatabaseData(string whichTable)
@@ -115,22 +122,29 @@ namespace bobFinal
             return null;
         }
 
-        private static void ExecuteSqlNonQuery(string sSqlString)
+        private static void ExecuteSqlNonQuery(string query, Dictionary<string, object> parameters = null)
         {
             try
             {
-                using (OleDbConnection cnn = new OleDbConnection(ConnectionString))
+                using (OleDbConnection conn = new OleDbConnection(ConnectionString))
                 {
-                    cnn.Open();
-                    using (OleDbCommand cmd = new OleDbCommand(sSqlString, cnn))
+                    conn.Open();
+                    using (OleDbCommand cmd = new OleDbCommand(query, conn))
                     {
+                        if (parameters != null)
+                        {
+                            foreach (var param in parameters)
+                            {
+                                cmd.Parameters.AddWithValue(param.Key, param.Value);
+                            }
+                        }
                         cmd.ExecuteNonQuery();
                     }
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($@"Error executing SQL: {ex.Message}", @"Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($@"Error executing SQL query: {query} - {ex.Message}", @"Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

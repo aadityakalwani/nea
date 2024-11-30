@@ -197,68 +197,45 @@ namespace bobFinal
 
         private void initializeLessons()
         {
-            Lesson lesson1 = new Lesson(1, "Business", "Business Ownership", "Which of the following is a characteristic of a sole proprietorship?", 0, 50, "Owner has full control", "Limited liability", "Separate legal entity", "Ownership shared with partners", false);
-            Lesson lesson2 = new Lesson(2, "Business", "Supply and Demand", "What happens to price when demand increases?", 1, 50, "Increases", "Decreases", "Stays the same", "No effect", false);
-            Lesson lesson3 = new Lesson(3, "Business", "Economics", "What is the main goal of a business?", 0, 50, "Profit", "Charity", "Sustainability", "Growth", false);
-            Lesson lesson4 = new Lesson(4, "Economics", "Opportunity Cost", "What is the cost of the next best alternative?", 2, 50, "Sunk cost", "Fixed cost", "Opportunity cost", "Variable cost", false);
-            Lesson lesson5 = new Lesson(5, "Economics", "Scarcity", "What is the fundamental economic problem?", 3, 50, "Scarcity", "Opportunity cost", "Supply and demand", "Inflation", false);
-            Lesson lesson6 = new Lesson(6, "Economics", "Trade-offs", "What is the concept of giving up one thing for another?", 0, 50, "Trade-off", "Opportunity cost", "Scarcity", "Inflation", false);
-            Lesson lesson7 = new Lesson(7, "Economics", "Supply and Demand", "What is the law that states price increases as demand increases?", 1, 50, "Law of demand", "Law of supply", "Law of equilibrium", "Law of scarcity", false);
-            Lesson lesson8 = new Lesson(8, "Economics", "Elasticity", "What is the measure of how responsive quantity demanded is to a change in price?", 2, 50, "Inelastic", "Elastic", "Elasticity", "Demand", false);
-            Lesson lesson9 = new Lesson(9, "Economics", "Monopoly", "What is the market structure with only one seller?", 0, 50, "Monopoly", "Oligopoly", "Monopolistic competition", "Perfect competition", false);
-            Lesson lesson10 = new Lesson(10, "Economics", "Oligopoly", "What is the market structure with a few sellers?", 1, 50, "Monopoly", "Oligopoly", "Monopolistic competition", "Perfect competition", false);
-            Lesson lesson11 = new Lesson(11, "Economics", "Price Discrimination", "What is the practice of charging different prices for the same product?", 2, 50, "Market segmentation", "Economies of scale", "Price discrimination", "Price elasticity", false);
-            Lesson lesson12 = new Lesson(12, "Business", "Entrepreneurship", "Which of the following is most associated with entrepreneurship?", 0, 50, "Innovation", "Risk aversion", "Routine tasks", "Large-scale production", false);
-            Lesson lesson13 = new Lesson(13, "Economics", "Market Failure", "What occurs when the allocation of goods and services is not efficient?", 3, 50, "Public goods", "Externalities", "Monopolies", "Market failure", false);
-            Lesson lesson14 = new Lesson(14, "Business", "Business Objectives", "Which of the following is NOT typically a business objective?", 3, 50, "Maximizing profits", "Market share growth", "Customer satisfaction", "Public welfare", false);
-            Lesson lesson15 = new Lesson(15, "Economics", "Government Intervention", "What is a common form of government intervention to correct market failure?", 1, 50, "Price controls", "Subsidies", "Taxes", "Free market", false);
-            Lesson lesson16 = new Lesson(16, "Business", "Marketing", "What is the main goal of marketing in a business?", 0, 50, "To attract and retain customers", "To increase production", "To lower costs", "To avoid competition", false);
-            Lesson lesson17 = new Lesson(17, "Economics", "Inflation", "What does inflation cause to the purchasing power of money?", 0, 50, "Decrease", "Increase", "Stay the same", "Fluctuate", false);
-            Lesson lesson18 = new Lesson(18, "Business", "Financial Management", "What is the primary purpose of financial management in a business?", 1, 50, "To ensure profitability", "To ensure liquidity", "To manage workforce", "To increase market share", false);
-            Lesson lesson19 = new Lesson(19, "Economics", "GDP", "Which of the following is NOT included in the calculation of GDP?", 2, 50, "Consumer spending", "Government spending", "Exports", "Black market transactions", false);
-            Lesson lesson20 = new Lesson(20, "Economics", "Labour Market", "Which factor primarily affects wages in the labour market?", 3, 50, "Demand for labour", "Supply of capital", "Profit margins", "Technological advancements", false);
-            Lesson lesson21 = new Lesson(21, "Economics", "Unemployment", "What type of unemployment occurs when workers' skills do not match job requirements?", 2, 50, "Frictional unemployment", "Seasonal unemployment", "Structural unemployment", "Cyclical unemployment", false);
-            Lesson lesson22 = new Lesson(22, "Business", "Corporate Social Responsibility", "What is the main focus of Corporate Social Responsibility (CSR)?", 1, 50, "Profit maximization", "Ethical business practices", "Expansion into new markets", "Product innovation", false);
-            Lesson lesson23 = new Lesson(23, "Economics", "Externalities", "What is an example of a negative externality?", 3, 50, "Education", "Healthcare", "Public transportation", "Pollution", false);
-            Lesson lesson24 = new Lesson(24, "Business", "Business Cycle", "What phase of the business cycle is characterized by high levels of unemployment and low consumer spending?", 2, 50, "Expansion", "Recovery", "Recession", "Peak", false);
-            Lesson lesson25 = new Lesson(25, "Economics", "Inflation", "What is the primary cause of demand-pull inflation?", 0, 50, "Increase in aggregate demand", "Increase in aggregate supply", "Reduction in government spending", "Decrease in production costs", false);
-            Lesson lesson26 = new Lesson(26, "Business", "Competition", "What is the result of a perfectly competitive market?", 3, 50, "One large firm dominates the market", "Firms set prices above market equilibrium", "Barriers to entry are very high", "Firms produce at the lowest possible cost", false);
-            Lesson lesson27 = new Lesson(27, "Economics", "Taxes", "What type of tax is levied on a specific good or service?", 1, 50, "Income tax", "Excise tax", "Corporate tax", "Value-added tax (VAT)", false);
-            Lesson lesson28 = new Lesson(28, "Business", "Branding", "What is the primary purpose of branding for a company?", 0, 50, "To distinguish its products from competitors", "To reduce production costs", "To increase supply", "To lower prices", false);
-            Lesson lesson29 = new Lesson(29, "Economics", "Monetary Policy", "What is the goal of expansionary monetary policy?", 2, 50, "Increase taxes", "Decrease government spending", "Increase the money supply", "Decrease interest rates", false);
-            Lesson lesson30 = new Lesson(30, "Business", "E-commerce", "What is the main benefit of e-commerce for businesses?", 1, 50, "Lower overhead costs", "Access to a global market", "Higher product quality", "Increased competition", false);
+            List<Lesson> lessons = new List<Lesson>
+            {
+                new Lesson(1, "Business", "Business Ownership", "Which of the following is a characteristic of a sole proprietorship?", 0, 50, "Owner has full control", "Limited liability", "Separate legal entity", "Ownership shared with partners", false),
+                new Lesson(2, "Business", "Supply and Demand", "What happens to price when demand increases?", 1, 50, "Increases", "Decreases", "Stays the same", "No effect", false),
+                new Lesson(3, "Business", "Economics", "What is the main goal of a business?", 0, 50, "Profit", "Charity", "Sustainability", "Growth", false),
+                new Lesson(4, "Economics", "Opportunity Cost", "What is the cost of the next best alternative?", 2, 50, "Sunk cost", "Fixed cost", "Opportunity cost", "Variable cost", false),
+                new Lesson(5, "Economics", "Scarcity", "What is the fundamental economic problem?", 3, 50, "Scarcity", "Opportunity cost", "Supply and demand", "Inflation", false),
+                new Lesson(6, "Economics", "Trade-offs", "What is the concept of giving up one thing for another?", 0, 50, "Trade-off", "Opportunity cost", "Scarcity", "Inflation", false),
+                new Lesson(7, "Economics", "Supply and Demand", "What is the law that states price increases as demand increases?", 1, 50, "Law of demand", "Law of supply", "Law of equilibrium", "Law of scarcity", false),
+                new Lesson(8, "Economics", "Elasticity", "What is the measure of how responsive quantity demanded is to a change in price?", 2, 50, "Inelastic", "Elastic", "Elasticity", "Demand", false),
+                new Lesson(9, "Economics", "Monopoly", "What is the market structure with only one seller?", 0, 50, "Monopoly", "Oligopoly", "Monopolistic competition", "Perfect competition", false),
+                new Lesson(10, "Economics", "Oligopoly", "What is the market structure with a few sellers?", 1, 50, "Monopoly", "Oligopoly", "Monopolistic competition", "Perfect competition", false),
+                new Lesson(11, "Economics", "Price Discrimination", "What is the practice of charging different prices for the same product?", 2, 50, "Market segmentation", "Economies of scale", "Price discrimination", "Price elasticity", false),
+                new Lesson(12, "Business", "Entrepreneurship", "Which of the following is most associated with entrepreneurship?", 0, 50, "Innovation", "Risk aversion", "Routine tasks", "Large-scale production", false),
+                new Lesson(13, "Economics", "Market Failure", "What occurs when the allocation of goods and services is not efficient?", 3, 50, "Public goods", "Externalities", "Monopolies", "Market failure", false),
+                new Lesson(14, "Business", "Business Objectives", "Which of the following is NOT typically a business objective?", 3, 50, "Maximizing profits", "Market share growth", "Customer satisfaction", "Public welfare", false),
+                new Lesson(15, "Economics", "Government Intervention", "What is a common form of government intervention to correct market failure?", 1, 50, "Price controls", "Subsidies", "Taxes", "Free market", false),
+                new Lesson(16, "Business", "Marketing", "What is the main goal of marketing in a business?", 0, 50, "To attract and retain customers", "To increase production", "To lower costs", "To avoid competition", false),
+                new Lesson(17, "Economics", "Inflation", "What does inflation cause to the purchasing power of money?", 0, 50, "Decrease", "Increase", "Stay the same", "Fluctuate", false),
+                new Lesson(18, "Business", "Financial Management", "What is the primary purpose of financial management in a business?", 1, 50, "To ensure profitability", "To ensure liquidity", "To manage workforce", "To increase market share", false),
+                new Lesson(19, "Economics", "GDP", "Which of the following is NOT included in the calculation of GDP?", 2, 50, "Consumer spending", "Government spending", "Exports", "Black market transactions", false),
+                new Lesson(20, "Economics", "Labour Market", "Which factor primarily affects wages in the labour market?", 3, 50, "Demand for labour", "Supply of capital", "Profit margins", "Technological advancements", false),
+                new Lesson(21, "Economics", "Unemployment", "What type of unemployment occurs when workers' skills do not match job requirements?", 2, 50, "Frictional unemployment", "Seasonal unemployment", "Structural unemployment", "Cyclical unemployment", false),
+                new Lesson(22, "Business", "Corporate Social Responsibility", "What is the main focus of Corporate Social Responsibility (CSR)?", 1, 50, "Profit maximization", "Ethical business practices", "Expansion into new markets", "Product innovation", false),
+                new Lesson(23, "Economics", "Externalities", "What is an example of a negative externality?", 3, 50, "Education", "Healthcare", "Public transportation", "Pollution", false),
+                new Lesson(24, "Business", "Business Cycle", "What phase of the business cycle is characterized by high levels of unemployment and low consumer spending?", 2, 50, "Expansion", "Recovery", "Recession", "Peak", false),
+                new Lesson(25, "Economics", "Inflation", "What is the primary cause of demand-pull inflation?", 0, 50, "Increase in aggregate demand", "Increase in aggregate supply", "Reduction in government spending", "Decrease in production costs", false),
+                new Lesson(26, "Business", "Competition", "What is the result of a perfectly competitive market?", 3, 50, "One large firm dominates the market", "Firms set prices above market equilibrium", "Barriers to entry are very high", "Firms produce at the lowest possible cost", false),
+                new Lesson(27, "Economics", "Taxes", "What type of tax is levied on a specific good or service?", 1, 50, "Income tax", "Excise tax", "Corporate tax", "Value-added tax (VAT)", false),
+                new Lesson(28, "Business", "Branding", "What is the primary purpose of branding for a company?", 0, 50, "To distinguish its products from competitors", "To reduce production costs", "To increase supply", "To lower prices", false),
+                new Lesson(29, "Economics", "Monetary Policy", "What is the goal of expansionary monetary policy?", 2, 50, "Increase taxes", "Decrease government spending", "Increase the money supply", "Decrease interest rates", false),
+                new Lesson(30, "Business", "E-commerce", "What is the main benefit of e-commerce for businesses?", 1, 50, "Lower overhead costs", "Access to a global market", "Higher product quality", "Increased competition", false)
+            };
 
-
-            DatabaseUtils.AddLesson(lesson1);
-            DatabaseUtils.AddLesson(lesson2);
-            DatabaseUtils.AddLesson(lesson3);
-            DatabaseUtils.AddLesson(lesson4);
-            DatabaseUtils.AddLesson(lesson5);
-            DatabaseUtils.AddLesson(lesson6);
-            DatabaseUtils.AddLesson(lesson7);
-            DatabaseUtils.AddLesson(lesson8);
-            DatabaseUtils.AddLesson(lesson9);
-            DatabaseUtils.AddLesson(lesson10);
-            DatabaseUtils.AddLesson(lesson11);
-            DatabaseUtils.AddLesson(lesson12);
-            DatabaseUtils.AddLesson(lesson13);
-            DatabaseUtils.AddLesson(lesson14);
-            DatabaseUtils.AddLesson(lesson15);
-            DatabaseUtils.AddLesson(lesson16);
-            DatabaseUtils.AddLesson(lesson17);
-            DatabaseUtils.AddLesson(lesson18);
-            DatabaseUtils.AddLesson(lesson19);
-            DatabaseUtils.AddLesson(lesson20);
-            DatabaseUtils.AddLesson(lesson21);
-            DatabaseUtils.AddLesson(lesson22);
-            DatabaseUtils.AddLesson(lesson23);
-            DatabaseUtils.AddLesson(lesson24);
-            DatabaseUtils.AddLesson(lesson25);
-            DatabaseUtils.AddLesson(lesson26);
-            DatabaseUtils.AddLesson(lesson27);
-            DatabaseUtils.AddLesson(lesson28);
-            DatabaseUtils.AddLesson(lesson29);
-            DatabaseUtils.AddLesson(lesson30);
+            // Add each lesson to the database
+            foreach (var lesson in lessons)
+            {
+                DatabaseUtils.AddLesson(lesson);
+            }
         }
 
         private void newDayTimer_Tick(object sender, EventArgs e)

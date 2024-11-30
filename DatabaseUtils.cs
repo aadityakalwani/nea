@@ -62,7 +62,7 @@ namespace bobFinal
             return ExecuteQuery(query);
         }
 
-        public static DataTable ExecuteQuery(string query)
+        private static DataTable ExecuteQuery(string query)
         {
             using (OleDbConnection conn = new OleDbConnection(ConnectionString))
             {
@@ -199,38 +199,9 @@ namespace bobFinal
 
         public static Lesson GetRandomIncompleteLesson()
         {
-            string query = "SELECT TOP 1 LessonId, Topic, Question, Reward, ChoiceOne, ChoiceTwo, ChoiceThree, ChoiceFour FROM lessonsTable WHERE Completed = False ORDER BY RND(LessonId)";
-            Lesson lesson = null;
+            string query = "SELECT TOP 1 LessonId, Topic, Title, Question, CorrectAnswerIndex, Reward, ChoiceOne, ChoiceTwo, ChoiceThree, ChoiceFour " +
+                           "FROM lessonsTable WHERE Completed = False ORDER BY RND(-Timer() * LessonId)";
 
-            using (OleDbConnection conn = new OleDbConnection(ConnectionString))
-            {
-                try
-                {
-                    conn.Open();
-                    using (OleDbCommand cmd = new OleDbCommand(query, conn))
-                    {
-                        using (OleDbDataReader reader = cmd.ExecuteReader())
-                        {
-                            if (reader.Read())
-                            {
-                                lesson = new Lesson(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetInt32(3), reader.GetString(4), reader.GetString(5), reader.GetString(6), reader.GetString(7));
-                            }
-                        }
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show($@"Error fetching random lesson: {ex.Message}", @"Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-
-            return lesson;
-        }
-
-        /*
-        public static Lesson GetRandomIncompleteLesson()
-        {
-            string query = "SELECT TOP 1 LessonId, Topic, Title, Question, CorrectAnswerIndex, Reward, Completed FROM Lessons WHERE Completed = False ORDER BY RND(LessonId)";
             Lesson lesson = null;
 
             using (OleDbConnection conn = new OleDbConnection(ConnectionString))
@@ -245,16 +216,18 @@ namespace bobFinal
                             if (reader.Read())
                             {
                                 lesson = new Lesson
-                                {
-                                    LessonId = reader.GetInt32(0),
-                                    Topic = reader.GetString(1),
-                                    Title = reader.GetString(2),
-                                    Question = reader.GetString(3),
-                                    CorrectAnswerIndex = reader.GetInt32(4),
-                                    Reward = reader.GetInt32(5),
-                                    Completed = reader.GetBoolean(6), // Ensure you're fetching Completed field
-                                    Choices = new List<string>(), // Initialize Choices (you may fetch these if needed later)
-                                };
+                                (
+                                    reader.GetInt32(0),
+                                    reader.GetString(1),
+                                    reader.GetString(2),
+                                    reader.GetString(3),
+                                    reader.GetInt32(4),
+                                    reader.GetInt32(5),
+                                    reader.GetString(6),
+                                    reader.GetString(7),
+                                    reader.GetString(8),
+                                    reader.GetString(9)
+                                );
                             }
                         }
                     }
@@ -265,9 +238,11 @@ namespace bobFinal
                 }
             }
 
+
             return lesson;
         }
-*/
+
+
         public static void MarkLessonComplete(int lessonId)
         {
             string insertQuery = "INSERT INTO PlayerProgress (LessonId, CompletionDate) VALUES (@LessonId, @CompletionDate)";
@@ -292,13 +267,13 @@ namespace bobFinal
         }
 
 
-        public static void AddLesson(string topic, string title, string question, int correctAnswerIndex, int reward, string ChoiceOne, string ChoiceTwo, string ChoiceThree, string ChoiceFour)
+        public static void AddLesson(Lesson lesson)
         {
 
-            string insertLessonQuery = "INSERT INTO lessonsTable (Topic, Title, Question, CorrectAnswerIndex, Reward, Completed, ChoiceOne, ChoiceTwo, ChoiceThree, ChoiceFour) " +
-                                       "VALUES (@Topic, @Title, @Question, @CorrectAnswerIndex, @Reward, False, @ChoiceOne, @ChoiceTwo, @ChoiceThree, @ChoiceFour)";
+            string insertLessonQuery = "INSERT INTO lessonsTable (Topic, Title, Question, CorrectAnswerIndex, Reward, ChoiceOne, ChoiceTwo, ChoiceThree, ChoiceFour, Completed) " +
+                                       "VALUES (@Topic, @Title, @Question, @CorrectAnswerIndex, @Reward, @ChoiceOne, @ChoiceTwo, @ChoiceThree, @ChoiceFour, False)";
 
-            List<string> choices = new List<string> { ChoiceOne, ChoiceTwo, ChoiceThree, ChoiceFour };
+            List<string> choices = new List<string> { lesson.ChoiceOne, lesson.ChoiceTwo, lesson.ChoiceThree, lesson.ChoiceFour };
 
             using (OleDbConnection conn = new OleDbConnection(ConnectionString))
             {
@@ -307,16 +282,16 @@ namespace bobFinal
                     conn.Open();
                     using (OleDbCommand cmd = new OleDbCommand(insertLessonQuery, conn))
                     {
-                        cmd.Parameters.AddWithValue("@Topic", topic);
-                        cmd.Parameters.AddWithValue("@Title", title);
-                        cmd.Parameters.AddWithValue("@Question", question);
-                        cmd.Parameters.AddWithValue("@CorrectAnswerIndex", correctAnswerIndex);
-                        cmd.Parameters.AddWithValue("@Reward", reward);
+                        cmd.Parameters.AddWithValue("@Topic", lesson.Topic);
+                        cmd.Parameters.AddWithValue("@Title", lesson.Title);
+                        cmd.Parameters.AddWithValue("@Question", lesson.Question);
+                        cmd.Parameters.AddWithValue("@CorrectAnswerIndex", lesson.CorrectAnswerIndex);
+                        cmd.Parameters.AddWithValue("@Reward", lesson.Reward);
                         cmd.Parameters.AddWithValue("@Completed", false);
-                        cmd.Parameters.AddWithValue("@ChoiceOne", ChoiceOne);
-                        cmd.Parameters.AddWithValue("@ChoiceTwo", ChoiceTwo);
-                        cmd.Parameters.AddWithValue("@ChoiceThree", ChoiceThree);
-                        cmd.Parameters.AddWithValue("@ChoiceFour", ChoiceFour);
+                        cmd.Parameters.AddWithValue("@ChoiceOne", lesson.ChoiceOne);
+                        cmd.Parameters.AddWithValue("@ChoiceTwo", lesson.ChoiceTwo);
+                        cmd.Parameters.AddWithValue("@ChoiceThree", lesson.ChoiceThree);
+                        cmd.Parameters.AddWithValue("@ChoiceFour", lesson.ChoiceFour);
 
                         cmd.ExecuteNonQuery();
 

@@ -17,38 +17,30 @@ namespace bobFinal
         public int Reward { get; set; }
         public bool Completed { get; set; }
 
-        // Constructor (updated to work with fewer parameters)
-        public Lesson(int lessonId, string topic, string question, int reward, string choiceOne, string choiceTwo, string choiceThree, string choiceFour)
+        public Lesson(
+            int lessonId, string topic, string title, string question,
+            int correctAnswerIndex, int reward,
+            string choiceOne, string choiceTwo, string choiceThree, string choiceFour)
         {
             LessonId = lessonId;
             Topic = topic;
+            Title = title;
             Question = question;
+            CorrectAnswerIndex = correctAnswerIndex;
             Reward = reward;
-            Title = ""; // Default value
             ChoiceOne = choiceOne;
             ChoiceTwo = choiceTwo;
             ChoiceThree = choiceThree;
             ChoiceFour = choiceFour;
-
-            CorrectAnswerIndex = -1; // Default value
-            Completed = false; // Default value
+            Completed = false;
         }
 
-        /*
-        public Lesson()
-        {
-            throw new System.NotImplementedException();
-        }
-        */
-
-        // Marks the lesson as completed
         public void MarkAsCompleted()
         {
             Completed = true;
             DatabaseUtils.MarkLessonComplete(LessonId);
         }
 
-        // Checks if the user's answer is correct
         public bool IsCorrectAnswer(int selectedAnswerIndex)
         {
             return selectedAnswerIndex == CorrectAnswerIndex;

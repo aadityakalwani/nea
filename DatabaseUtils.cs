@@ -230,6 +230,7 @@ namespace bobFinal
                         }
                     }
                 }
+
                 catch (Exception ex)
                 {
                     MessageBox.Show($@"Error fetching random lesson: {ex.Message}", @"Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);

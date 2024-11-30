@@ -58,7 +58,7 @@ namespace bobFinal
 
         public static DataTable LoadLessonStatus()
         {
-            string query = "SELECT LessonId, Question, Completed FROM lessonsTable";
+            string query = "SELECT LessonId, Topic, Title, Question, Completed FROM lessonsTable";
             return ExecuteQuery(query);
         }
 
@@ -188,7 +188,6 @@ namespace bobFinal
             );";
             ExecuteSqlNonQuery(createLessonsTable);
 
-
             string createChoicesTable = @"
             CREATE TABLE Choices (
                 ChoiceId AUTOINCREMENT PRIMARY KEY,
@@ -206,7 +205,6 @@ namespace bobFinal
                 FOREIGN KEY (LessonId) REFERENCES lessonsTable(LessonId)
             );";
             ExecuteSqlNonQuery(createPlayerProgressTable);
-
         }
 
         public static Lesson GetRandomIncompleteLesson()

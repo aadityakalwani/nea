@@ -37,7 +37,7 @@ namespace bobFinal
             }
             catch (Exception ex)
             {
-                MessageBox.Show($@"An error occurred: {ex.Message}", @"Database Creation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Program.ShowAutoClosingMessageBox($@"Error creating database: {ex.Message}", @"Database Creation Error", 2000);
             }
         }
 
@@ -52,7 +52,7 @@ namespace bobFinal
             }
             catch (Exception ex)
             {
-                MessageBox.Show($@"Error deleting database: {ex.Message}", @"Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Program.ShowAutoClosingMessageBox($@"Error deleting database: {ex.Message}", @"Error", 2000);
             }
         }
 
@@ -89,8 +89,6 @@ namespace bobFinal
             return null;
         }
 
-
-
         public static DataTable LoadDatabaseData(string whichTable)
         {
 
@@ -115,7 +113,7 @@ namespace bobFinal
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show($@"Error loading data: {ex.Message}", @"Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        Program.ShowAutoClosingMessageBox($@"Error loading data: {ex.Message}", @"Error", 2000);
                     }
                 }
             }
@@ -144,7 +142,7 @@ namespace bobFinal
             }
             catch (Exception ex)
             {
-                MessageBox.Show($@"Error executing SQL query: {query} - {ex.Message}", @"Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Program.ShowAutoClosingMessageBox($@"Error executing SQL query: {query} - {ex.Message}", @"Database Error", 2000);
             }
         }
 
@@ -247,14 +245,13 @@ namespace bobFinal
 
                 catch (Exception ex)
                 {
-                    MessageBox.Show($@"Error fetching random lesson: {ex.Message}", @"Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    Program.ShowAutoClosingMessageBox($@"Error fetching random lesson: {ex.Message}", @"Database Error", 2000);
                 }
             }
 
 
             return lesson;
         }
-
 
         public static void MarkLessonComplete(int lessonId)
         {
@@ -274,7 +271,7 @@ namespace bobFinal
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show($@"Error marking lesson complete: {ex.Message}", @"Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    Program.ShowAutoClosingMessageBox($@"Error marking lesson complete: {ex.Message}", @"Database Error", 2000);
                 }
             }
         }
@@ -288,7 +285,7 @@ namespace bobFinal
             }
             catch (Exception ex)
             {
-                MessageBox.Show($@"Error adding lesson: {ex.Message}", @"Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Program.ShowAutoClosingMessageBox($@"Error adding lesson: {ex.Message}", @"Database Error", 2000);
             }
         }
 
@@ -355,7 +352,7 @@ namespace bobFinal
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show($@"Error adding new day of income: {ex.Message}", @"Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    Program.ShowAutoClosingMessageBox($@"Error adding new day of income: {ex.Message}", @"Database Error", 2000);
                 }
             }
         }
@@ -386,7 +383,7 @@ namespace bobFinal
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show($@"Error adding new property: {ex.Message}", @"Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    Program.ShowAutoClosingMessageBox($@"Error adding new property: {ex.Message}", @"Database Error", 2000);
                 }
             }
         }

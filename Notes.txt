@@ -1,8 +1,5 @@
 current issues:
 
-- the first choice is always 0
-- and it always says your answer is wrong
-
 - sort by ID number for a property
 
 - when sorting, the propertiesArray is being sorted, not the data in the database table itself
@@ -12,8 +9,6 @@ current issues:
 
 - code to delete a property form the database when you sell it
     - alternatively a boolean to state if the property is active/sold or not
-
-- fix the table column title to be "Day's Gold Income" instead of "Gold" on the table that tracks daily income
 
 immediate future ideas:
 

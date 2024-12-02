@@ -144,6 +144,7 @@ namespace bobFinal
                 Id AUTOINCREMENT PRIMARY KEY,
                 [Property Type] TEXT NOT NULL,
                 Coordinate TEXT NOT NULL,
+                Active YESNO DEFAULT TRUE,
                 [Gold Cost] INTEGER NOT NULL,
                 [Lumber Cost] INTEGER NOT NULL,
                 [Daily Gold Gain] INTEGER NOT NULL,
@@ -344,11 +345,11 @@ namespace bobFinal
             }
         }
 
-        public static void AddNewProperty(string propertyType, int xCoordinate, int yCoordinate, int goldCost, int lumberCost, int dailyGoldGain, int dailyLumberGain, int dailyDiamondGain)
+        public static void AddNewProperty(string propertyType, int xCoordinate, int yCoordinate, int goldCost, int lumberCost, int dailyGoldGain, int dailyLumberGain, int dailyDiamondGain, bool propertyActive)
         {
             string coordinate = $"({xCoordinate},{yCoordinate})";
-            string insertQuery = "INSERT INTO Properties ([Property Type], Coordinate, [Gold Cost], [Lumber Cost], [Daily Gold Gain], [Daily Lumber Gain], [Daily Diamond Gain]) " +
-                                 "VALUES (@PropertyType, @coordinate, @GoldCost, @LumberCost, @DailyGoldGain, @DailyLumberGain, @DailyDiamondGain)";
+            string insertQuery = "INSERT INTO Properties ([Property Type], Coordinate, Active, [Gold Cost], [Lumber Cost], [Daily Gold Gain], [Daily Lumber Gain], [Daily Diamond Gain]) " +
+                                 "VALUES (@PropertyType, @coordinate, @Active, @GoldCost, @LumberCost, @DailyGoldGain, @DailyLumberGain, @DailyDiamondGain)";
 
             using (OleDbConnection conn = new OleDbConnection(ConnectionString))
             {
@@ -359,6 +360,7 @@ namespace bobFinal
                     {
                         cmd.Parameters.AddWithValue("@PropertyType", propertyType);
                         cmd.Parameters.AddWithValue("@Coordinate", coordinate);
+                        cmd.Parameters.AddWithValue("@Active", propertyActive);
                         cmd.Parameters.AddWithValue("@GoldCost", goldCost);
                         cmd.Parameters.AddWithValue("@LumberCost", lumberCost);
                         cmd.Parameters.AddWithValue("@DailyGoldGain", dailyGoldGain);
@@ -371,6 +373,30 @@ namespace bobFinal
                 catch (Exception ex)
                 {
                     Program.ShowAutoClosingMessageBox($@"Error adding new property: {ex.Message}", @"Database Error", 2000);
+                }
+            }
+        }
+
+        public static void UpdatePropertyStatus(int xCoord, int yCoord, bool activeOrNot)
+        {
+            string coordinateOfProperty = $"({xCoord},{yCoord})";
+            string updateQuery = "UPDATE Properties SET Active = @Active WHERE Coordinate = coordinateOfProperty";
+
+            using (OleDbConnection conn = new OleDbConnection(ConnectionString))
+            {
+                try
+                {
+                    conn.Open();
+                    using (OleDbCommand cmd = new OleDbCommand(updateQuery, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@Active", activeOrNot);
+                        cmd.Parameters.AddWithValue("@coordinate", coordinateOfProperty);
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Program.ShowAutoClosingMessageBox($@"Error updating property status: {ex.Message}", @"Database Error", 2000);
                 }
             }
         }

@@ -169,14 +169,14 @@ namespace bobFinal
             grid[sawmill.XCoordinate, sawmill.YCoordinate].Image = Image.FromFile(sawmill.ImageFileName);
             grid[sawmill.XCoordinate, sawmill.YCoordinate].BuiltUpon = true;
             properties.Add(sawmill);
-            DatabaseUtils.AddNewProperty(sawmill.GetType().Name, sawmill.XCoordinate, sawmill.YCoordinate, sawmill.GoldCost, sawmill.LumberCost, sawmill.DailyGoldGain, sawmill.DailyLumberGain, sawmill.DailyDiamondGain);
+            DatabaseUtils.AddNewProperty(sawmill.GetType().Name, sawmill.XCoordinate, sawmill.YCoordinate, sawmill.GoldCost, sawmill.LumberCost, sawmill.DailyGoldGain, sawmill.DailyLumberGain, sawmill.DailyDiamondGain, sawmill.active);
 
             // create and place the initial house
             Property house = new House(initialCoordinate + 5, initialCoordinate + 5);
             grid[house.XCoordinate, house.YCoordinate].Image = Image.FromFile(house.ImageFileName);
             grid[house.XCoordinate, house.YCoordinate].BuiltUpon = true;
             properties.Add(house);
-            DatabaseUtils.AddNewProperty(house.GetType().Name, house.XCoordinate, house.YCoordinate, house.GoldCost, house.LumberCost, house.DailyGoldGain, house.DailyLumberGain, house.DailyDiamondGain);
+            DatabaseUtils.AddNewProperty(house.GetType().Name, house.XCoordinate, house.YCoordinate, house.GoldCost, house.LumberCost, house.DailyGoldGain, house.DailyLumberGain, house.DailyDiamondGain, house.active);
         }
 
         private void initializeNewDayTimer()
@@ -344,7 +344,7 @@ namespace bobFinal
                     properties.Add(property);
 
                     // Add the property to the database and update the DataGridView
-                    DatabaseUtils.AddNewProperty(property.GetType().Name, property.XCoordinate, property.YCoordinate, property.GoldCost, property.LumberCost, property.DailyGoldGain, property.DailyLumberGain, property.DailyDiamondGain);
+                    DatabaseUtils.AddNewProperty(property.GetType().Name, property.XCoordinate, property.YCoordinate, property.GoldCost, property.LumberCost, property.DailyGoldGain, property.DailyLumberGain, property.DailyDiamondGain, property.active);
                     RefreshDataGridView("Properties");
                 }
 
@@ -614,7 +614,12 @@ namespace bobFinal
                 gold.ChangeQuantity(sellPriceGold);
                 lumber.ChangeQuantity(sellPriceLumber);
 
+                // change the Active status of the property in the database
+                DatabaseUtils.UpdatePropertyStatus(property.XCoordinate, property.YCoordinate, false);
+
                 Program.ShowAutoClosingMessageBox($"{property.GetType().Name} sold for {sellPriceGold} Gold and {sellPriceLumber} Lumber!", "Success", 2500);
+
+                RefreshDataGridView("Properties");
             }
             else
             {

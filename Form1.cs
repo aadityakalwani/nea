@@ -768,7 +768,6 @@ namespace bobFinal
 
                     currentLesson.Completed = true;
 
-                    // Add 5 diamond to the player's inventory
                     diamond.ChangeQuantity(5);
                 }
                 else

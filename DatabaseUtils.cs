@@ -57,7 +57,7 @@ namespace bobFinal
 
         public static DataTable LoadLessonStatus()
         {
-            string query = "SELECT LessonId, Topic, Title, Question, Completed FROM lessonsTable";
+            string query = "SELECT LessonId, Title, Question, Completed FROM lessonsTable";
             return ExecuteQuery(query);
         }
 
@@ -90,32 +90,24 @@ namespace bobFinal
 
         public static DataTable LoadDatabaseData(string whichTable)
         {
+            string query = $"SELECT * FROM {whichTable}"; // SQL query to fetch all records from the specified table
 
-            if (whichTable == "temp")
+            using (OleDbConnection conn = new OleDbConnection(ConnectionString))
             {
-
-            }
-
-            else
-            {
-                string query = $"SELECT * FROM {whichTable}"; // SQL query to fetch all records from the specified table
-
-                using (OleDbConnection conn = new OleDbConnection(ConnectionString))
+                try
                 {
-                    try
-                    {
-                        conn.Open();
-                        OleDbDataAdapter dataAdapter = new OleDbDataAdapter(query, conn);
-                        DataTable dataTable = new DataTable();
-                        dataAdapter.Fill(dataTable);
-                        return dataTable;
-                    }
-                    catch (Exception ex)
-                    {
-                        Program.ShowAutoClosingMessageBox($@"Error loading data: {ex.Message}", @"Error", 2000);
-                    }
+                    conn.Open();
+                    OleDbDataAdapter dataAdapter = new OleDbDataAdapter(query, conn);
+                    DataTable dataTable = new DataTable();
+                    dataAdapter.Fill(dataTable);
+                    return dataTable;
+                }
+                catch (Exception ex)
+                {
+                    Program.ShowAutoClosingMessageBox($@"Error loading data: {ex.Message}", @"Error", 2000);
                 }
             }
+
             return null;
         }
 

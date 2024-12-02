@@ -2,6 +2,8 @@ current issues:
 
 - sort by ID number for a property
 
+- something to happen when you get the correct answer
+
 - when sorting, the propertiesArray is being sorted, not the data in the database table itself
     - as a result, 'sorting' does nothing (nothing visible to the user)
         - so I need to sort the data in the database table itself

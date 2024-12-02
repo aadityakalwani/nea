@@ -382,5 +382,28 @@ namespace bobFinal
                 }
             }
         }
+
+        public static void UpdateLessonStatus(int lessonID, bool completedOrNot)
+        {
+            string updateQuery = "UPDATE lessonsTable SET Completed = @Completed WHERE LessonId = @LessonId";
+
+            using (OleDbConnection conn = new OleDbConnection(ConnectionString))
+            {
+                try
+                {
+                    conn.Open();
+                    using (OleDbCommand cmd = new OleDbCommand(updateQuery, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@Completed", completedOrNot);
+                        cmd.Parameters.AddWithValue("@LessonId", lessonID);
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Program.ShowAutoClosingMessageBox($@"Error updating lesson status: {ex.Message}", @"Database Error", 2000);
+                }
+            }
+        }
     }
 }

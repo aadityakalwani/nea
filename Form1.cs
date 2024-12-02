@@ -754,14 +754,31 @@ namespace bobFinal
             else if (radioButton4.Checked)
                 selectedAnswerIndex = 3;
 
-            // Check if the answer is correct
-            if (currentLesson.IsCorrectAnswer(selectedAnswerIndex))
+            // Check if the question has already been answered:
+            if (!currentLesson.Completed)
             {
-                Program.ShowAutoClosingMessageBox("Correct Answer!", "Result", 2250);
+                // Check if the answer is correct
+                if (currentLesson.IsCorrectAnswer(selectedAnswerIndex))
+                {
+                    Program.ShowAutoClosingMessageBox("Correct Answer!\nYou gained 5 diamond", "Result", 2250);
+
+                    // Update the lesson status in the database
+                    DatabaseUtils.UpdateLessonStatus(currentLesson.LessonId, true);
+                    RefreshDataGridViewLessons();
+
+                    currentLesson.Completed = true;
+
+                    // Add 5 diamond to the player's inventory
+                    diamond.ChangeQuantity(5);
+                }
+                else
+                {
+                    Program.ShowAutoClosingMessageBox("Incorrect Answer! Try again.", "Result", 2500);
+                }
             }
             else
             {
-                Program.ShowAutoClosingMessageBox("Incorrect Answer! Try again.", "Result", 2500);
+                Program.ShowAutoClosingMessageBox("You have already completed this lesson.\nGo to the next lesson!", "Error", 2500);
             }
         }
     }

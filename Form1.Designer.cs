@@ -653,9 +653,6 @@ namespace bobFinal
             // 
             // tabPage3
             // 
-            this.tabPage3.Controls.Add(this.btnSortByID);
-            this.tabPage3.Controls.Add(this.btnSortByLumberIncome);
-            this.tabPage3.Controls.Add(this.btnSortByGoldIncome);
             this.tabPage3.Controls.Add(this.tabControlDatabases);
             this.tabPage3.Location = new System.Drawing.Point(4, 34);
             this.tabPage3.Name = "tabPage3";
@@ -664,39 +661,39 @@ namespace bobFinal
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Properties";
             this.tabPage3.UseVisualStyleBackColor = true;
-            // 
+            //
             // btnSortByID
-            // 
-            this.btnSortByID.Location = new System.Drawing.Point(1083, 4);
+            //
+            this.btnSortByID.Location = new System.Drawing.Point(919, 27);
             this.btnSortByID.Name = "btnSortByID";
-            this.btnSortByID.Size = new System.Drawing.Size(234, 49);
+            this.btnSortByID.Size = new System.Drawing.Size(296, 49);
             this.btnSortByID.TabIndex = 4;
             this.btnSortByID.Text = "Sort by Property ID";
             this.btnSortByID.UseVisualStyleBackColor = true;
             this.btnSortByID.Click += new System.EventHandler(this.btnSortByID_Click);
-            // 
+            //
             // btnSortByLumberIncome
-            // 
-            this.btnSortByLumberIncome.Location = new System.Drawing.Point(771, 1);
+            //
+            this.btnSortByLumberIncome.Location = new System.Drawing.Point(498, 26);
             this.btnSortByLumberIncome.Name = "btnSortByLumberIncome";
             this.btnSortByLumberIncome.Size = new System.Drawing.Size(306, 52);
             this.btnSortByLumberIncome.TabIndex = 3;
             this.btnSortByLumberIncome.Text = "Sort by Total Lumber Income";
             this.btnSortByLumberIncome.UseVisualStyleBackColor = true;
             this.btnSortByLumberIncome.Click += new System.EventHandler(this.btnSortByLumberIncome_Click);
-            // 
+            //
             // btnSortByGoldIncome
-            // 
-            this.btnSortByGoldIncome.Location = new System.Drawing.Point(423, 0);
+            //
+            this.btnSortByGoldIncome.Location = new System.Drawing.Point(60, 25);
             this.btnSortByGoldIncome.Name = "btnSortByGoldIncome";
             this.btnSortByGoldIncome.Size = new System.Drawing.Size(342, 53);
             this.btnSortByGoldIncome.TabIndex = 2;
             this.btnSortByGoldIncome.Text = "Sort by Total Gold Income";
             this.btnSortByGoldIncome.UseVisualStyleBackColor = true;
             this.btnSortByGoldIncome.Click += new System.EventHandler(this.btnSortByGoldIncome_Click);
-            // 
+            //
             // tabControlDatabases
-            // 
+            //
             this.tabControlDatabases.Controls.Add(this.tabPage500);
             this.tabControlDatabases.Controls.Add(this.tabPage6);
             this.tabControlDatabases.Location = new System.Drawing.Point(21, 25);
@@ -704,10 +701,13 @@ namespace bobFinal
             this.tabControlDatabases.SelectedIndex = 0;
             this.tabControlDatabases.Size = new System.Drawing.Size(1369, 799);
             this.tabControlDatabases.TabIndex = 1;
-            // 
+            //
             // tabPage500
-            // 
+            //
+            this.tabPage500.Controls.Add(this.btnSortByID);
             this.tabPage500.Controls.Add(this.dataGridViewPropertiesList);
+            this.tabPage500.Controls.Add(this.btnSortByLumberIncome);
+            this.tabPage500.Controls.Add(this.btnSortByGoldIncome);
             this.tabPage500.Location = new System.Drawing.Point(4, 34);
             this.tabPage500.Name = "tabPage500";
             this.tabPage500.Padding = new System.Windows.Forms.Padding(3);
@@ -715,24 +715,24 @@ namespace bobFinal
             this.tabPage500.TabIndex = 0;
             this.tabPage500.Text = "Properties Tracker";
             this.tabPage500.UseVisualStyleBackColor = true;
-            // 
+            //
             // dataGridViewPropertiesList
-            // 
+            //
             this.dataGridViewPropertiesList.AllowUserToAddRows = false;
             this.dataGridViewPropertiesList.AllowUserToDeleteRows = false;
             this.dataGridViewPropertiesList.AllowUserToResizeColumns = false;
             this.dataGridViewPropertiesList.AllowUserToResizeRows = false;
             this.dataGridViewPropertiesList.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dataGridViewPropertiesList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewPropertiesList.Location = new System.Drawing.Point(6, 6);
+            this.dataGridViewPropertiesList.Location = new System.Drawing.Point(6, 115);
             this.dataGridViewPropertiesList.Name = "dataGridViewPropertiesList";
             this.dataGridViewPropertiesList.ReadOnly = true;
             this.dataGridViewPropertiesList.RowHeadersWidth = 55;
-            this.dataGridViewPropertiesList.Size = new System.Drawing.Size(1349, 749);
+            this.dataGridViewPropertiesList.Size = new System.Drawing.Size(1349, 638);
             this.dataGridViewPropertiesList.TabIndex = 0;
-            // 
+            //
             // tabPage6
-            // 
+            //
             this.tabPage6.Controls.Add(this.dataGridViewIncomeHistory);
             this.tabPage6.Location = new System.Drawing.Point(4, 34);
             this.tabPage6.Name = "tabPage6";
@@ -741,9 +741,9 @@ namespace bobFinal
             this.tabPage6.TabIndex = 1;
             this.tabPage6.Text = "Daily Income Tracker";
             this.tabPage6.UseVisualStyleBackColor = true;
-            // 
+            //
             // dataGridViewIncomeHistory
-            // 
+            //
             this.dataGridViewIncomeHistory.AllowUserToAddRows = false;
             this.dataGridViewIncomeHistory.AllowUserToDeleteRows = false;
             this.dataGridViewIncomeHistory.AllowUserToResizeColumns = false;
@@ -756,9 +756,9 @@ namespace bobFinal
             this.dataGridViewIncomeHistory.RowHeadersWidth = 55;
             this.dataGridViewIncomeHistory.Size = new System.Drawing.Size(1349, 749);
             this.dataGridViewIncomeHistory.TabIndex = 1;
-            // 
+            //
             // tabPage4
-            // 
+            //
             this.tabPage4.Controls.Add(this.groupBox);
             this.tabPage4.Controls.Add(this.lblQuestion);
             this.tabPage4.Controls.Add(this.dataGridViewLessons);
@@ -770,9 +770,9 @@ namespace bobFinal
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Lessons";
             this.tabPage4.UseVisualStyleBackColor = true;
-            // 
+            //
             // groupBox
-            // 
+            //
             this.groupBox.Controls.Add(this.btnSubmit);
             this.groupBox.Controls.Add(this.radioButton4);
             this.groupBox.Controls.Add(this.radioButton3);

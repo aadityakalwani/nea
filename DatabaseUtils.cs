@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.OleDb;
 using System.IO;
-using System.Windows.Forms;
 using ADOX;
 
 namespace bobFinal
@@ -246,8 +245,6 @@ namespace bobFinal
                     Program.ShowAutoClosingMessageBox($@"Error fetching random lesson: {ex.Message}", @"Database Error", 2000);
                 }
             }
-
-
             return lesson;
         }
 

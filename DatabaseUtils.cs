@@ -57,7 +57,7 @@ namespace bobFinal
 
         public static DataTable LoadLessonStatus()
         {
-            string query = "SELECT LessonId, Title, Question, Completed FROM lessonsTable";
+            string query = "SELECT LessonId, Completed, Title, Question FROM lessonsTable";
             return ExecuteQuery(query);
         }
 

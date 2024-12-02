@@ -16,5 +16,6 @@
         public string ImageFileName { get; protected set; }
         public int XCoordinate { get; private set; }
         public int YCoordinate { get; private set; }
+        public bool active { get; set; }
     }
 }

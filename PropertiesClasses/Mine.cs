@@ -10,6 +10,7 @@
             DailyLumberGain = 0;
             DailyDiamondGain = 0;
             ImageFileName = "Images/MineTile.jpg";
+            active = true;
         }
     }
 }

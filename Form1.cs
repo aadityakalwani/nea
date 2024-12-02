@@ -56,7 +56,8 @@ namespace bobFinal
             // set the size of the tables to the size of the screen
             dataGridViewIncomeHistory.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridViewPropertiesList.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewLessons.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridViewLessons.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            dataGridViewLessons.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
         }
 
         private void initializeMarketPrices()
@@ -190,36 +191,76 @@ namespace bobFinal
         {
             List<Lesson> lessons = new List<Lesson>
             {
-                new Lesson(1, "Business", "Business Ownership", "Which of the following is a characteristic of a sole proprietorship?", 0, 50, "Owner has full control", "Limited liability", "Separate legal entity", "Ownership shared with partners", false),
-                new Lesson(2, "Business", "Supply and Demand", "What happens to price when demand increases?", 1, 50, "Increases", "Decreases", "Stays the same", "No effect", false),
-                new Lesson(3, "Business", "Economics", "What is the main goal of a business?", 0, 50, "Profit", "Charity", "Sustainability", "Growth", false),
-                new Lesson(4, "Economics", "Opportunity Cost", "What is the cost of the next best alternative?", 2, 50, "Sunk cost", "Fixed cost", "Opportunity cost", "Variable cost", false),
-                new Lesson(5, "Economics", "Scarcity", "What is the fundamental economic problem?", 3, 50, "Scarcity", "Opportunity cost", "Supply and demand", "Inflation", false),
-                new Lesson(6, "Economics", "Trade-offs", "What is the concept of giving up one thing for another?", 0, 50, "Trade-off", "Opportunity cost", "Scarcity", "Inflation", false),
-                new Lesson(7, "Economics", "Supply and Demand", "What is the law that states price increases as demand increases?", 1, 50, "Law of demand", "Law of supply", "Law of equilibrium", "Law of scarcity", false),
-                new Lesson(8, "Economics", "Elasticity", "What is the measure of how responsive quantity demanded is to a change in price?", 2, 50, "Inelastic", "Elastic", "Elasticity", "Demand", false),
-                new Lesson(9, "Economics", "Monopoly", "What is the market structure with only one seller?", 0, 50, "Monopoly", "Oligopoly", "Monopolistic competition", "Perfect competition", false),
-                new Lesson(10, "Economics", "Oligopoly", "What is the market structure with a few sellers?", 1, 50, "Monopoly", "Oligopoly", "Monopolistic competition", "Perfect competition", false),
-                new Lesson(11, "Economics", "Price Discrimination", "What is the practice of charging different prices for the same product?", 2, 50, "Market segmentation", "Economies of scale", "Price discrimination", "Price elasticity", false),
-                new Lesson(12, "Business", "Entrepreneurship", "Which of the following is most associated with entrepreneurship?", 0, 50, "Innovation", "Risk aversion", "Routine tasks", "Large-scale production", false),
-                new Lesson(13, "Economics", "Market Failure", "What occurs when the allocation of goods and services is not efficient?", 3, 50, "Public goods", "Externalities", "Monopolies", "Market failure", false),
-                new Lesson(14, "Business", "Business Objectives", "Which of the following is NOT typically a business objective?", 3, 50, "Maximizing profits", "Market share growth", "Customer satisfaction", "Public welfare", false),
-                new Lesson(15, "Economics", "Government Intervention", "What is a common form of government intervention to correct market failure?", 1, 50, "Price controls", "Subsidies", "Taxes", "Free market", false),
-                new Lesson(16, "Business", "Marketing", "What is the main goal of marketing in a business?", 0, 50, "To attract and retain customers", "To increase production", "To lower costs", "To avoid competition", false),
-                new Lesson(17, "Economics", "Inflation", "What does inflation cause to the purchasing power of money?", 0, 50, "Decrease", "Increase", "Stay the same", "Fluctuate", false),
-                new Lesson(18, "Business", "Financial Management", "What is the primary purpose of financial management in a business?", 1, 50, "To ensure profitability", "To ensure liquidity", "To manage workforce", "To increase market share", false),
-                new Lesson(19, "Economics", "GDP", "Which of the following is NOT included in the calculation of GDP?", 2, 50, "Consumer spending", "Government spending", "Exports", "Black market transactions", false),
-                new Lesson(20, "Economics", "Labour Market", "Which factor primarily affects wages in the labour market?", 3, 50, "Demand for labour", "Supply of capital", "Profit margins", "Technological advancements", false),
-                new Lesson(21, "Economics", "Unemployment", "What type of unemployment occurs when workers' skills do not match job requirements?", 2, 50, "Frictional unemployment", "Seasonal unemployment", "Structural unemployment", "Cyclical unemployment", false),
-                new Lesson(22, "Business", "Corporate Social Responsibility", "What is the main focus of Corporate Social Responsibility (CSR)?", 1, 50, "Profit maximization", "Ethical business practices", "Expansion into new markets", "Product innovation", false),
-                new Lesson(23, "Economics", "Externalities", "What is an example of a negative externality?", 3, 50, "Education", "Healthcare", "Public transportation", "Pollution", false),
-                new Lesson(24, "Business", "Business Cycle", "What phase of the business cycle is characterized by high levels of unemployment and low consumer spending?", 2, 50, "Expansion", "Recovery", "Recession", "Peak", false),
-                new Lesson(25, "Economics", "Inflation", "What is the primary cause of demand-pull inflation?", 0, 50, "Increase in aggregate demand", "Increase in aggregate supply", "Reduction in government spending", "Decrease in production costs", false),
-                new Lesson(26, "Business", "Competition", "What is the result of a perfectly competitive market?", 3, 50, "One large firm dominates the market", "Firms set prices above market equilibrium", "Barriers to entry are very high", "Firms produce at the lowest possible cost", false),
-                new Lesson(27, "Economics", "Taxes", "What type of tax is levied on a specific good or service?", 1, 50, "Income tax", "Excise tax", "Corporate tax", "Value-added tax (VAT)", false),
-                new Lesson(28, "Business", "Branding", "What is the primary purpose of branding for a company?", 0, 50, "To distinguish its products from competitors", "To reduce production costs", "To increase supply", "To lower prices", false),
-                new Lesson(29, "Economics", "Monetary Policy", "What is the goal of expansionary monetary policy?", 2, 50, "Increase taxes", "Decrease government spending", "Increase the money supply", "Decrease interest rates", false),
-                new Lesson(30, "Business", "E-commerce", "What is the main benefit of e-commerce for businesses?", 1, 50, "Lower overhead costs", "Access to a global market", "Higher product quality", "Increased competition", false)
+                new Lesson(1, "Business", "Business Ownership", "Which of the following is a key advantage of a sole proprietorship?", 0, 50, "Ease of setup", "Limited liability", "Perpetual succession", "Shared decision-making", false),
+                new Lesson(2, "Business", "Supply and Demand", "How does an increase in consumer income affect the demand for normal goods?", 0, 50, "Increases demand", "Decreases demand", "No effect on demand", "Increases supply", false),
+                new Lesson(3, "Business", "Economics", "What is the primary goal of a not-for-profit organization?", 1, 50, "Profit maximization", "Social welfare", "Market share", "Shareholder value", false),
+                new Lesson(4, "Economics", "Opportunity Cost", "A government decides to increase spending on education. What is the opportunity cost of this decision?", 2, 50, "Increased taxes", "Reduced spending on healthcare", "Increased national debt", "All of the above", false),
+                new Lesson(5, "Economics", "Scarcity", "How does scarcity affect economic decisions?", 3, 50, "It forces choices to be made", "It eliminates the need for trade", "It leads to unlimited resources", "It ensures economic equality", false),
+                new Lesson(6, "Economics", "Trade-offs", "A company decides to invest in new technology. What is the potential trade-off of this decision?", 1, 50, "Increased productivity", "Reduced labor costs", "Lower initial costs", "Delayed profit maximization", false),
+                new Lesson(7, "Economics", "Supply and Demand", "What is the likely impact of a decrease in the price of a complementary good on the demand for a related good?", 0, 50, "Increase in demand", "Decrease in demand", "No effect on demand", "Increase in supply", false),
+                new Lesson(8, "Economics", "Elasticity", "How does price elasticity of demand affect a firm's pricing strategy?", 2, 50, "It determines the optimal price level", "It measures the responsiveness of supply to price changes", "It indicates the degree of competition in the market", "It measures the impact of government regulations on prices", false),
+                new Lesson(9, "Economics", "Monopoly", "What is a key characteristic of a natural monopoly?", 3, 50, "High barriers to entry", "Price-taking behavior", "Homogeneous products", "Perfect information", false),
+                new Lesson(10, "Economics", "Oligopoly", "How do firms in an oligopoly typically compete?", 1, 50, "Price competition", "Non-price competition", "Product differentiation", "All of the above", false),
+                new Lesson(11, "Economics", "Price Discrimination", "What is a common method used by firms to practice price discrimination?", 0, 50, "Student discounts", "Loyalty programs", "Time-of-day pricing", "All of the above", false),
+                new Lesson(12, "Business", "Entrepreneurship", "What is a key risk associated with entrepreneurship?", 2, 50, "Limited liability", "Job security", "Financial loss", "Low income potential", false),
+                new Lesson(13, "Economics", "Market Failure", "How can government intervention address the problem of negative externalities?", 1, 50, "Subsidies", "Taxes", "Price controls", "Deregulation", false),
+                new Lesson(14, "Business", "Business Objectives", "How does a business achieve sustainable growth?", 3, 50, "Maximizing short-term profits", "Ignoring environmental concerns", "Exploiting natural resources", "Balancing financial, social, and environmental goals", false),
+                new Lesson(15, "Economics", "Government Intervention", "What is the purpose of fiscal policy?", 2, 50, "Controlling the money supply", "Influencing interest rates", "Adjusting government spending and taxation", "Regulating market competition", false),
+                new Lesson(16, "Business", "Marketing", "What is the marketing mix, and why is it important?", 3, 50, "A set of marketing tools used to achieve marketing objectives", "A strategy for reducing production costs", "A method for analyzing consumer behavior", "A tool for measuring brand loyalty", false),
+                new Lesson(17, "Economics", "Inflation", "What is the likely impact of high inflation on economic growth?", 1, 50, "Stimulates economic growth", "Reduces uncertainty and encourages investment", "Erodes purchasing power and slows economic activity", "Increases savings and investment", false),
+                new Lesson(18, "Business", "Financial Management", "What is the purpose of a cash flow forecast?", 0, 50, "To predict future cash inflows and outflows", "To analyze past financial performance", "To evaluate long-term investment opportunities", "To measure profitability", false),
+                new Lesson(19, "Economics", "GDP", "Why is GDP an imperfect measure of economic well-being?", 2, 50, "It includes non-market activities", "It accounts for income distribution", "It does not measure quality of life", "It excludes government spending", false),
+                new Lesson(20, "Economics", "Labour Market", "What is the impact of technological advancements on the demand for labor?", 1, 50, "Increases demand for low-skilled labor", "Decreases demand for high-skilled labor", "Increases demand for both low-skilled and high-skilled labor", "Decreases demand for both low-skilled and high-skilled labor", false),
+                new Lesson(21, "Economics", "Unemployment", "What type of unemployment is caused by a recession?", 3, 50, "Frictional unemployment", "Structural unemployment", "Cyclical unemployment", "Seasonal unemployment", false),
+                new Lesson(22, "Business", "Corporate Social Responsibility", "How can CSR benefit a business?", 0, 50, "Improved brand reputation", "Reduced costs", "Increased regulatory compliance", "All of the above", false),
+                new Lesson(23, "Economics", "Externalities", "What is a government policy to address the problem of negative externalities from pollution?", 2, 50, "Subsidies to polluting industries", "Deregulation of environmental standards", "Taxation on pollution", "Reduced government spending on environmental protection", false),
+                new Lesson(24, "Business", "Business Cycle", "What is the role of government during a recession?", 1, 50, "Increase taxes and reduce government spending", "Decrease interest rates and increase government spending", "Increase interest rates and reduce government spending", "No government intervention is necessary", false),
+                new Lesson(25, "Economics", "Inflation", "What is the likely impact of cost-push inflation on economic output?", 2, 50, "Increased economic output", "Reduced unemployment", "Decreased economic output", "No impact on economic output", false),
+                new Lesson(26, "Business", "Competition", "How does perfect competition benefit consumers?", 3, 50, "Higher prices", "Lower quality products", "Reduced consumer choice", "Lower prices and higher quality products", false),
+                new Lesson(27, "Economics", "Taxes", "What is the impact of a regressive tax on income distribution?", 1, 50, "Reduces income inequality", "Increases income inequality", "No impact on income distribution", "Increases economic growth", false),
+                new Lesson(28, "Business", "Branding", "How does branding create value for a business?", 0, 50, "Reduced production costs", "Increased price sensitivity", "Lower customer loyalty", "Increased brand recognition and customer loyalty", false),
+                new Lesson(29, "Economics", "Monetary Policy", "What is the goal of contractionary monetary policy?", 3, 50, "Stimulate economic growth", "Reduce unemployment", "Control inflation", "Increase government spending", false),
+                new Lesson(30, "Business", "E-commerce", "What is a potential disadvantage of e-commerce for businesses?", 2, 50, "Lower costs", "Increased market reach", "Increased competition", "Cybersecurity risks", false),
+                new Lesson(31, "Business", "Marketing Mix", "What are the 4 Ps of the marketing mix?", 3, 50, "Product, Price, Promotion, Place", "Product, Price, People, Process", "Product, Price, Promotion, Profit", "Product, Place, People, Profit", false),
+                new Lesson(32, "Economics", "Fiscal Policy", "What is the impact of increased government spending on aggregate demand?", 0, 50, "Increases aggregate demand", "Decreases aggregate demand", "No effect on aggregate demand", "Increases aggregate supply", false),
+                new Lesson(33, "Business", "Human Resource Management", "What is the primary goal of human resource management?", 1, 50, "Recruiting and selecting employees", "Training and developing employees", "Maximizing employee productivity", "Ensuring legal compliance", false),
+                new Lesson(34, "Economics", "International Trade", "What is the theory of comparative advantage?", 2, 50, "Countries should specialize in producing goods and services they can produce most efficiently", "Countries should protect domestic industries from foreign competition", "Countries should impose tariffs on imported goods", "Countries should limit the number of foreign workers", false),
+                new Lesson(35, "Business", "Business Ethics", "What is the role of corporate social responsibility (CSR)?", 0, 50, "To improve a company's reputation", "To reduce costs", "To increase profits", "To balance economic, social, and environmental concerns", false),
+                new Lesson(36, "Economics", "Inflation", "What is the relationship between inflation and unemployment, as described by the Phillips Curve?", 2, 50, "Inverse relationship", "Direct relationship", "No relationship", "Uncertain relationship", false),
+                new Lesson(37, "Business", "Financial Analysis", "What is the purpose of a balance sheet?", 1, 50, "To measure profitability", "To assess liquidity", "To evaluate solvency", "To track cash flow", false),
+                new Lesson(38, "Economics", "Market Structures", "In which market structure do firms have the most market power?", 0, 50, "Monopoly", "Oligopoly", "Monopolistic competition", "Perfect competition", false),
+                new Lesson(39, "Business", "Operations Management", "What is the purpose of quality control in operations management?", 2, 50, "To reduce costs", "To increase production", "To ensure product quality", "To improve employee morale", false),
+                new Lesson(40, "Economics", "Economic Growth", "What is the role of investment in economic growth?", 0, 50, "Increases productive capacity", "Reduces unemployment", "Increases consumer spending", "Reduces inflation", false),
+                new Lesson(41, "Business", "Marketing Strategy", "What is the purpose of a SWOT analysis?", 3, 50, "To identify a company's strengths, weaknesses, opportunities, and threats", "To measure a company's market share", "To evaluate a company's financial performance", "To assess a company's customer satisfaction", false),
+                new Lesson(42, "Economics", "Exchange Rates", "What is the impact of a depreciation of a country's currency on its exports?", 0, 50, "Increases exports", "Decreases exports", "No effect on exports", "Increases imports", false),
+                new Lesson(43, "Business", "Business Plans", "What is the purpose of a business plan?", 1, 50, "To secure funding", "To guide business operations", "To assess market potential", "All of the above", false),
+                new Lesson(44, "Economics", "Economic Indicators", "What is the Consumer Price Index (CPI) used to measure?", 2, 50, "Economic growth", "Unemployment rate", "Inflation rate", "Interest rates", false),
+                new Lesson(45, "Business", "Innovation", "What is the role of innovation in business success?", 0, 50, "To create new products and services", "To improve efficiency", "To gain a competitive advantage", "All of the above", false),
+                new Lesson(46, "Economics", "Externalities", "What is an example of a positive externality?", 1, 50, "Education", "Pollution", "Congestion", "Noise pollution", false),
+                new Lesson(47, "Business", "Risk Management", "What is the purpose of risk management in business?", 2, 50, "To eliminate all risk", "To maximize profits", "To minimize potential losses", "To increase market share", false),
+                new Lesson(48, "Economics", "Economic Systems", "What is a key characteristic of a command economy?", 3, 50, "Private ownership of resources", "Market forces determine prices", "Government planning and control", "Consumer sovereignty", false),
+                new Lesson(49, "Business", "Marketing Research", "What is the purpose of market research?", 0, 50, "To understand customer needs and preferences", "To identify market opportunities", "To assess market competition", "All of the above", false),
+                new Lesson(50, "Economics", "Economic Growth", "What is the role of technological advancement in economic growth?", 1, 50, "Increases productivity", "Reduces innovation", "Increases unemployment", "Decreases economic efficiency", false),
+                new Lesson(51, "Business", "Marketing Mix", "What are the 4 Ps of the marketing mix?", 3, 50, "Product, Price, Promotion, Place", "Product, Price, People, Process", "Product, Price, Promotion, Profit", "Product, Place, People, Profit", false),
+                new Lesson(52, "Economics", "Fiscal Policy", "What is the impact of increased government spending on aggregate demand?", 0, 50, "Increases aggregate demand", "Decreases aggregate demand", "No effect on aggregate demand", "Increases aggregate supply", false),
+                new Lesson(53, "Business", "Human Resource Management", "What is the primary goal of human resource management?", 1, 50, "Recruiting and selecting employees", "Training and developing employees", "Maximizing employee productivity", "Ensuring legal compliance", false),
+                new Lesson(54, "Economics", "International Trade", "What is the theory of comparative advantage?", 2, 50, "Countries should specialize in producing goods and services they can produce most efficiently", "Countries should protect domestic industries from foreign competition", "Countries should impose tariffs on imported goods", "Countries should limit the number of foreign workers", false),
+                new Lesson(55, "Business", "Business Ethics", "What is the role of corporate social responsibility (CSR)?", 0, 50, "To improve a company's reputation", "To reduce costs", "To increase profits", "To balance economic, social, and environmental concerns", false),
+                new Lesson(56, "Economics", "Inflation", "What is the relationship between inflation and unemployment, as described by the Phillips Curve?", 2, 50, "Inverse relationship", "Direct relationship", "No relationship", "Uncertain relationship", false),
+                new Lesson(57, "Business", "Financial Analysis", "What is the purpose of a balance sheet?", 1, 50, "To measure profitability", "To assess liquidity", "To evaluate solvency", "To track cash flow", false),
+                new Lesson(58, "Economics", "Market Structures", "In which market structure do firms have the most market power?", 0, 50, "Monopoly", "Oligopoly", "Monopolistic competition", "Perfect competition", false),
+                new Lesson(59, "Business", "Operations Management", "What is the purpose of quality control in operations management?", 2, 50, "To reduce costs", "To increase production", "To ensure product quality", "To improve employee morale", false),
+                new Lesson(60, "Economics", "Economic Growth", "What is the role of investment in economic growth?", 0, 50, "Increases productive capacity", "Reduces unemployment", "Increases consumer spending", "Reduces inflation", false),
+                new Lesson(61, "Business", "Marketing Strategy", "What is the purpose of a SWOT analysis?", 3, 50, "To identify a company's strengths, weaknesses, opportunities, and threats", "To measure a company's market share", "To evaluate a company's financial performance", "To assess a company's customer satisfaction", false),
+                new Lesson(62, "Economics", "Exchange Rates", "What is the impact of a depreciation of a country's currency on its exports?", 0, 50, "Increases exports", "Decreases exports", "No effect on exports", "Increases imports", false),
+                new Lesson(63, "Business", "Business Plans", "What is the purpose of a business plan?", 1, 50, "To secure funding", "To guide business operations", "To assess market potential", "All of the above", false),
+                new Lesson(64, "Economics", "Economic Indicators", "What is the Consumer Price Index (CPI) used to measure?", 2, 50, "Economic growth", "Unemployment rate", "Inflation rate", "Interest rates", false),
+                new Lesson(65, "Business", "Innovation", "What is the role of innovation in business success?", 0, 50, "To create new products and services", "To improve efficiency", "To gain a competitive advantage", "All of the above", false),
+                new Lesson(66, "Economics", "Externalities", "What is an example of a positive externality?", 1, 50, "Education", "Pollution", "Congestion", "Noise pollution", false),
+                new Lesson(67, "Business", "Risk Management", "What is the purpose of risk management in business?", 2, 50, "To eliminate all risk", "To maximize profits", "To minimize potential losses", "To increase market share", false),
+                new Lesson(68, "Economics", "Economic Systems", "What is a key characteristic of a command economy?", 3, 50, "Private ownership of resources", "Market forces determine prices", "Government planning and control", "Consumer sovereignty", false),
+                new Lesson(69, "Business", "Marketing Research", "What is the purpose of market research?", 0, 50, "To understand customer needs and preferences", "To identify market opportunities", "To assess market competition", "All of the above", false),
+                new Lesson(70, "Economics", "Economic Growth", "What is the role of technological advancement in economic growth?", 1, 50, "Increases productivity", "Reduces innovation", "Increases unemployment", "Decreases economic efficiency", false)
             };
 
             // Add each lesson to the database
@@ -760,15 +801,25 @@ namespace bobFinal
                 // Check if the answer is correct
                 if (currentLesson.IsCorrectAnswer(selectedAnswerIndex))
                 {
-                    Program.ShowAutoClosingMessageBox("Correct Answer!\nYou gained 5 diamond", "Result", 2250);
+                    Program.ShowAutoClosingMessageBox("Correct Answer!\nYou gained 5 diamond", "Result", 3000);
 
                     // Update the lesson status in the database
                     DatabaseUtils.UpdateLessonStatus(currentLesson.LessonId, true);
                     RefreshDataGridViewLessons();
 
                     currentLesson.Completed = true;
-
                     diamond.ChangeQuantity(5);
+
+                    lblQuestion.Text = "Click 'Perform Lesson' to load an incomplete lesson\nThe question will then show up in this box";
+                    radioButton1.Text = "Choice 1 will show here";
+                    radioButton2.Text = "Choice 2 will show here";
+                    radioButton3.Text = "Choice 3 will show here";
+                    radioButton4.Text = "Choice 4 will show here";
+
+                    radioButton1.Checked = false;
+                    radioButton2.Checked = false;
+                    radioButton3.Checked = false;
+                    radioButton4.Checked = false;
                 }
                 else
                 {

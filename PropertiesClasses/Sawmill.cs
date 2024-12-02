@@ -10,6 +10,7 @@
             DailyLumberGain = 30;
             DailyDiamondGain = 0;
             ImageFileName = "Images/SawmillTile.jpg";
+            active = true;
         }
     }
 }

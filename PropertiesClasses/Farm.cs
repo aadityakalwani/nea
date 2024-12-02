@@ -10,6 +10,7 @@
             DailyLumberGain = 0;
             DailyDiamondGain = 0;
             ImageFileName = "Images/FarmTile.jpg";
+            active = true;
         }
     }
 }

@@ -659,7 +659,7 @@ namespace bobFinal
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage3.Size = new System.Drawing.Size(1416, 850);
             this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "Properties";
+            this.tabPage3.Text = "Properties & Trackers";
             this.tabPage3.UseVisualStyleBackColor = true;
             //
             // tabControlDatabases

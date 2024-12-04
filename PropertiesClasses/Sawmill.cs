@@ -9,6 +9,8 @@
             DailyGoldGain = 0;
             DailyLumberGain = 30;
             DailyDiamondGain = 0;
+            TotalGoldGain = 0;
+            TotalLumberGain = 0;
             ImageFileName = "Images/SawmillTile.jpg";
             active = true;
         }

@@ -149,7 +149,9 @@ namespace bobFinal
                 [Lumber Cost] INTEGER NOT NULL,
                 [Daily Gold Gain] INTEGER NOT NULL,
                 [Daily Lumber Gain] INTEGER NOT NULL,
-                [Daily Diamond Gain] INTEGER NOT NULL
+                [Daily Diamond Gain] INTEGER NOT NULL,
+                [Total Gold Gain] INTEGER NOT NULL,
+                [Total Lumber Gain] INTEGER NOT NULL
             );";
             ExecuteSqlNonQuery(createPropertiesTable);
 
@@ -345,11 +347,11 @@ namespace bobFinal
             }
         }
 
-        public static void AddNewProperty(string propertyType, int xCoordinate, int yCoordinate, int goldCost, int lumberCost, int dailyGoldGain, int dailyLumberGain, int dailyDiamondGain, bool propertyActive)
+        public static void AddNewProperty(string propertyType, int xCoordinate, int yCoordinate, int goldCost, int lumberCost, int dailyGoldGain, int dailyLumberGain, int dailyDiamondGain, int totalGoldGain, int totalLumberGain, bool propertyActive)
         {
             string coordinate = $"({xCoordinate},{yCoordinate})";
-            string insertQuery = "INSERT INTO Properties ([Property Type], Coordinate, Active, [Gold Cost], [Lumber Cost], [Daily Gold Gain], [Daily Lumber Gain], [Daily Diamond Gain]) " +
-                                 "VALUES (@PropertyType, @coordinate, @Active, @GoldCost, @LumberCost, @DailyGoldGain, @DailyLumberGain, @DailyDiamondGain)";
+            string insertQuery = "INSERT INTO Properties ([Property Type], Coordinate, Active, [Gold Cost], [Lumber Cost], [Daily Gold Gain], [Daily Lumber Gain], [Daily Diamond Gain], [Total Gold Gain], [Total Lumber Gain]) " +
+                                 "VALUES (@PropertyType, @coordinate, @Active, @GoldCost, @LumberCost, @DailyGoldGain, @DailyLumberGain, @DailyDiamondGain, @TotalGoldGain, @TotalLumberGain)";
 
             using (OleDbConnection conn = new OleDbConnection(ConnectionString))
             {
@@ -366,6 +368,8 @@ namespace bobFinal
                         cmd.Parameters.AddWithValue("@DailyGoldGain", dailyGoldGain);
                         cmd.Parameters.AddWithValue("@DailyLumberGain", dailyLumberGain);
                         cmd.Parameters.AddWithValue("@DailyDiamondGain", dailyDiamondGain);
+                        cmd.Parameters.AddWithValue("@TotalGoldGain", totalGoldGain);
+                        cmd.Parameters.AddWithValue("@TotalLumberGain", totalLumberGain);
 
                         cmd.ExecuteNonQuery();
                     }
@@ -380,7 +384,7 @@ namespace bobFinal
         public static void UpdatePropertyStatus(int xCoord, int yCoord, bool activeOrNot)
         {
             string coordinateOfProperty = $"({xCoord},{yCoord})";
-            string updateQuery = "UPDATE Properties SET Active = @Active WHERE Coordinate = coordinateOfProperty";
+            string updateQuery = "UPDATE Properties SET Active = @Active WHERE Coordinate = @Coordinate";
 
             using (OleDbConnection conn = new OleDbConnection(ConnectionString))
             {
@@ -390,7 +394,7 @@ namespace bobFinal
                     using (OleDbCommand cmd = new OleDbCommand(updateQuery, conn))
                     {
                         cmd.Parameters.AddWithValue("@Active", activeOrNot);
-                        cmd.Parameters.AddWithValue("@coordinate", coordinateOfProperty);
+                        cmd.Parameters.AddWithValue("@Coordinate", coordinateOfProperty);
                         cmd.ExecuteNonQuery();
                     }
                 }
@@ -420,6 +424,43 @@ namespace bobFinal
                 catch (Exception ex)
                 {
                     Program.ShowAutoClosingMessageBox($@"Error updating lesson status: {ex.Message}", @"Database Error", 2000);
+                }
+            }
+        }
+
+        public static void UpdateDatabaseWithSortedProperties(List<Property> sortedProperties)
+        {
+
+            string deleteQuery = "DELETE FROM Properties";
+            ExecuteSqlNonQuery(deleteQuery);
+
+            foreach (Property property in sortedProperties)
+            {
+                AddNewProperty(property.GetType().ToString() , property.XCoordinate, property.YCoordinate, property.GoldCost, property.LumberCost, property.DailyGoldGain, property.DailyLumberGain, property.DailyDiamondGain, property.TotalGoldGain, property.TotalLumberGain, property.active);
+            }
+        }
+
+        public static void UpdatePropertyTotalIncome(int propertyXCoordinate, int propertyYCoordinate, int propertyTotalGoldGain, int propertyTotalLumberGain)
+        {
+            string coordinateOfProperty = $"({propertyXCoordinate},{propertyYCoordinate})";
+            string updateQuery = "UPDATE Properties SET [Total Gold Gain] = @TotalGoldGain, [Total Lumber Gain] = @TotalLumberGain WHERE Coordinate = @coordinateOfProperty";
+
+            using (OleDbConnection conn = new OleDbConnection(ConnectionString))
+            {
+                try
+                {
+                    conn.Open();
+                    using (OleDbCommand cmd = new OleDbCommand(updateQuery, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@TotalGoldGain", propertyTotalGoldGain);
+                        cmd.Parameters.AddWithValue("@TotalLumberGain", propertyTotalLumberGain);
+                        cmd.Parameters.AddWithValue("@Coordinate", coordinateOfProperty);
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Program.ShowAutoClosingMessageBox($@"Error updating property status: {ex.Message}", @"Database Error", 2000);
                 }
             }
         }

@@ -9,6 +9,8 @@
             DailyGoldGain = 200;
             DailyLumberGain = 0;
             DailyDiamondGain = 0;
+            TotalGoldGain = 0;
+            TotalLumberGain = 0;
             ImageFileName = "Images/MineTile.jpg";
             active = true;
         }

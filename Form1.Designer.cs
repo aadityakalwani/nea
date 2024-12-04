@@ -717,7 +717,7 @@ namespace bobFinal
             this.btnSortByLumberIncome.Name = "btnSortByLumberIncome";
             this.btnSortByLumberIncome.Size = new System.Drawing.Size(306, 52);
             this.btnSortByLumberIncome.TabIndex = 3;
-            this.btnSortByLumberIncome.Text = "Sort by Total Lumber Income";
+            this.btnSortByLumberIncome.Text = "Sort by total lumber income";
             this.btnSortByLumberIncome.UseVisualStyleBackColor = true;
             this.btnSortByLumberIncome.Click += new System.EventHandler(this.btnSortByLumberIncome_Click);
             //
@@ -727,7 +727,7 @@ namespace bobFinal
             this.btnSortByGoldIncome.Name = "btnSortByGoldIncome";
             this.btnSortByGoldIncome.Size = new System.Drawing.Size(342, 53);
             this.btnSortByGoldIncome.TabIndex = 2;
-            this.btnSortByGoldIncome.Text = "Sort by Total Gold Income";
+            this.btnSortByGoldIncome.Text = "Sort by total gold gain";
             this.btnSortByGoldIncome.UseVisualStyleBackColor = true;
             this.btnSortByGoldIncome.Click += new System.EventHandler(this.btnSortByGoldIncome_Click);
             //

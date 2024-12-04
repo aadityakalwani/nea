@@ -1,32 +1,21 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace bobFinal
 {
     public class MergeSort
     {
-        /*
-        example usage:
-
-        int[] array = { 38, 27, 43, 3, 9, 82, 10 };
-
-        Console.WriteLine("Original Array:");
-        Console.WriteLine(string.Join(", ", array));
-
-        MergeSort mergeSort = new MergeSort();
-        mergeSort.Sort(array);
-
-        Console.WriteLine("Sorted Array:");
-        Console.WriteLine(string.Join(", ", array));
-        */
-
-        // public method to sort an array
-        public void Sort(Property[] array, string sortByWhat)
+        // Public method to sort a list and return the sorted list
+        public List<Property> Sort(List<Property> list, string sortByWhat)
         {
-            if (array.Length <= 1)
-                return;
+            if (list.Count <= 1)
+                return list;
 
+            Property[] array = list.ToArray();
             Property[] temp = new Property[array.Length];
             MergeSortRecursive(array, temp, 0, array.Length - 1, sortByWhat);
+
+            return new List<Property>(array);
         }
 
         // Recursive merge sort logic
@@ -57,37 +46,20 @@ namespace bobFinal
             // Copy both halves into a temporary array in sorted order
             while (left <= middle && right <= rightEnd)
             {
-
                 int propertyOneValue = 0;
                 int propertyTwoValue = 0;
 
                 switch (sortByWhat)
                 {
                     case "Gold":
-                    {
-                        propertyOneValue = array[left].DailyGoldGain;
-                        propertyTwoValue = array[right].DailyGoldGain;
+                        propertyOneValue = array[left].TotalGoldGain;
+                        propertyTwoValue = array[right].TotalGoldGain;
                         break;
-                    }
-
                     case "Lumber":
-                    {
-                        propertyOneValue = array[left].DailyLumberGain;
-                        propertyTwoValue = array[right].DailyLumberGain;
+                        propertyOneValue = array[left].TotalLumberGain;
+                        propertyTwoValue = array[right].TotalLumberGain;
                         break;
-                    }
-
-                    /*
-                    case "ID":
-                    {
-                        propertyOneValue = array[left].ID;
-                        propertyTwoValue = array[right].ID;
-                        break;
-                    }
-                    */
-
                 }
-
 
                 if (propertyOneValue <= propertyTwoValue)
                 {

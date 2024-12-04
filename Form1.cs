@@ -53,9 +53,11 @@ namespace bobFinal
             this.WindowState = FormWindowState.Maximized;
             this.FormBorderStyle = FormBorderStyle.None;
 
-            // set the size of the tables to the size of the screen
-            dataGridViewIncomeHistory.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            // set the size of the tables to take up the minmum width required per column
+            dataGridViewIncomeHistory.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            dataGridViewIncomeHistory.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             dataGridViewPropertiesList.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridViewPropertiesList.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             dataGridViewLessons.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             dataGridViewLessons.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
         }
@@ -169,14 +171,14 @@ namespace bobFinal
             grid[sawmill.XCoordinate, sawmill.YCoordinate].Image = Image.FromFile(sawmill.ImageFileName);
             grid[sawmill.XCoordinate, sawmill.YCoordinate].BuiltUpon = true;
             properties.Add(sawmill);
-            DatabaseUtils.AddNewProperty(sawmill.GetType().Name, sawmill.XCoordinate, sawmill.YCoordinate, sawmill.GoldCost, sawmill.LumberCost, sawmill.DailyGoldGain, sawmill.DailyLumberGain, sawmill.DailyDiamondGain, sawmill.active);
+            DatabaseUtils.AddNewProperty(sawmill.GetType().Name, sawmill.XCoordinate, sawmill.YCoordinate, sawmill.GoldCost, sawmill.LumberCost, sawmill.DailyGoldGain, sawmill.DailyLumberGain, sawmill.DailyDiamondGain, sawmill.TotalGoldGain, sawmill.TotalLumberGain, sawmill.active);
 
             // create and place the initial house
             Property house = new House(initialCoordinate + 5, initialCoordinate + 5);
             grid[house.XCoordinate, house.YCoordinate].Image = Image.FromFile(house.ImageFileName);
             grid[house.XCoordinate, house.YCoordinate].BuiltUpon = true;
             properties.Add(house);
-            DatabaseUtils.AddNewProperty(house.GetType().Name, house.XCoordinate, house.YCoordinate, house.GoldCost, house.LumberCost, house.DailyGoldGain, house.DailyLumberGain, house.DailyDiamondGain, house.active);
+            DatabaseUtils.AddNewProperty(house.GetType().Name, house.XCoordinate, house.YCoordinate, house.GoldCost, house.LumberCost, house.DailyGoldGain, house.DailyLumberGain, house.DailyDiamondGain, house.TotalGoldGain, house.TotalLumberGain, house.active);
         }
 
         private void initializeNewDayTimer()
@@ -344,7 +346,7 @@ namespace bobFinal
                     properties.Add(property);
 
                     // Add the property to the database and update the DataGridView
-                    DatabaseUtils.AddNewProperty(property.GetType().Name, property.XCoordinate, property.YCoordinate, property.GoldCost, property.LumberCost, property.DailyGoldGain, property.DailyLumberGain, property.DailyDiamondGain, property.active);
+                    DatabaseUtils.AddNewProperty(property.GetType().Name, property.XCoordinate, property.YCoordinate, property.GoldCost, property.LumberCost, property.DailyGoldGain, property.DailyLumberGain, property.DailyDiamondGain, property.TotalGoldGain, property.TotalLumberGain, property.active);
                     RefreshDataGridView("Properties");
                 }
 
@@ -372,6 +374,14 @@ namespace bobFinal
                 totalGoldGain += property.DailyGoldGain;
                 totalLumberGain += property.DailyLumberGain;
                 totalDiamondGain += property.DailyDiamondGain;
+
+                property.TotalGoldGain += property.DailyGoldGain;
+                property.TotalLumberGain += property.DailyLumberGain;
+
+
+                // update the property in the database
+                DatabaseUtils.UpdatePropertyTotalIncome(property.XCoordinate, property.YCoordinate, property.TotalGoldGain, property.TotalLumberGain);
+                RefreshDataGridView("Properties");
             }
 
             // update the resource quantities with the total gains
@@ -738,22 +748,36 @@ namespace bobFinal
 
         private void btnSortByGoldIncome_Click(object sender, EventArgs e)
         {
-            Program.ShowAutoClosingMessageBox("you chose to sort by gold income", "Sort by Gold Income", 2250);
-            mergeSort.Sort(properties.ToArray(), "Gold");
+            List<Property> sortedProperties = mergeSort.Sort(properties, "Gold");
+            string sortedPropertiesString = "";
+            foreach (Property property in sortedProperties)
+            {
+                sortedPropertiesString += property.TotalGoldGain + "\n";
+            }
+            MessageBox.Show($"Properties sorted by Gold Income:\n{sortedPropertiesString}");
+
+            DatabaseUtils.UpdateDatabaseWithSortedProperties(sortedProperties);
             RefreshDataGridView("Properties");
         }
 
         private void btnSortByLumberIncome_Click(object sender, EventArgs e)
         {
-            Program.ShowAutoClosingMessageBox("you chose to sort by lumber income", "Sort by Lumber Income", 2250);
-            mergeSort.Sort(properties.ToArray(), "Lumber");
+            List<Property> sortedProperties = mergeSort.Sort(properties, "Lumber");
+            string sortedPropertiesString = "";
+            foreach (Property property in sortedProperties)
+            {
+                sortedPropertiesString += property.TotalLumberGain + "\n";
+            }
+            MessageBox.Show($"Properties sorted by Lumber Income:\n{sortedPropertiesString}");
+            DatabaseUtils.UpdateDatabaseWithSortedProperties(sortedProperties);
             RefreshDataGridView("Properties");
         }
 
         private void btnSortByID_Click(object sender, EventArgs e)
         {
             Program.ShowAutoClosingMessageBox("THIS DOESNT WORK YET IDIOT", "Sort by ID", 2250);
-            // mergeSort.Sort(properties.ToArray(), "ID");
+            // List<Property> sortedProperties = mergeSort.Sort(properties.ToArray(), "ID");
+            // DatabaseUtils.UpdateDatabaseWithSortedProperties(sortedProperties);
             // RefreshDataGridView("Properties");
             // temp fix
         }

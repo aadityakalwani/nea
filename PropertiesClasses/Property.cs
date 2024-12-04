@@ -13,6 +13,8 @@
         public int DailyGoldGain { get; protected set; }
         public int DailyLumberGain { get; protected set; }
         public int DailyDiamondGain { get; protected set; }
+        public int TotalGoldGain { get; set; }
+        public int TotalLumberGain { get; set; }
         public string ImageFileName { get; protected set; }
         public int XCoordinate { get; private set; }
         public int YCoordinate { get; private set; }

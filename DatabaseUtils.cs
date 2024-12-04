@@ -437,7 +437,7 @@ namespace bobFinal
 
             foreach (Property property in sortedProperties)
             {
-                AddNewProperty(property.PropertyID, property.GetType().ToString() , property.XCoordinate, property.YCoordinate, property.GoldCost, property.LumberCost, property.DailyGoldGain, property.DailyLumberGain, property.DailyDiamondGain, property.TotalGoldGain, property.TotalLumberGain, property.active);
+                AddNewProperty(property.PropertyID, property.GetType().Name , property.XCoordinate, property.YCoordinate, property.GoldCost, property.LumberCost, property.DailyGoldGain, property.DailyLumberGain, property.DailyDiamondGain, property.TotalGoldGain, property.TotalLumberGain, property.active);
             }
         }
 

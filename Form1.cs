@@ -752,21 +752,21 @@ namespace bobFinal
 
         private void btnSortByGoldIncome_Click(object sender, EventArgs e)
         {
-            List<Property> sortedProperties = mergeSort.Sort(properties, "Gold");
+            List<Property> sortedProperties = mergeSort.Sort(properties, "Gold", "descending");
             DatabaseUtils.UpdateDatabaseWithSortedProperties(sortedProperties);
             RefreshDataGridView("Properties");
         }
 
         private void btnSortByLumberIncome_Click(object sender, EventArgs e)
         {
-            List<Property> sortedProperties = mergeSort.Sort(properties, "Lumber");
+            List<Property> sortedProperties = mergeSort.Sort(properties, "Lumber", "descending");
             DatabaseUtils.UpdateDatabaseWithSortedProperties(sortedProperties);
             RefreshDataGridView("Properties");
         }
 
         private void btnSortByID_Click(object sender, EventArgs e)
         {
-            List<Property> sortedProperties = mergeSort.Sort(properties, "ID");
+            List<Property> sortedProperties = mergeSort.Sort(properties, "ID", "ascending");
             DatabaseUtils.UpdateDatabaseWithSortedProperties(sortedProperties);
             RefreshDataGridView("Properties");
         }

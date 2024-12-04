@@ -1,15 +1,11 @@
 current issues:
 
-- reformat the initializePrices so that it doesn't need the listOfAllProperties
-
-- reverse the sort of the sortedProperties lol i want it to sort by most income, not least
-
 immediate future ideas:
 
     - proper gets and sets on line 347 in form1.cs
 
     - create a path tile to connect properties to the town hall
-        - if a property is not connected to the town hall then it cannot provide income (bool connected = false)
+        - if a property is not connected to the town hall then it provides half of the income (bool connected = false)
     - allow the Apply Prims to auto-put-in path tiles
 
     - fluctuating prices for the cost of building properties
@@ -24,5 +20,6 @@ future ideas:
     - commission / charge for converting resources
     - path tiles to connect properties to the town hall
     - upgradable town hall
+    - reformat the initializePrices so that it doesn't need the listOfAllProperties
     - tutorial / introduction to the game upon start
     - events that affect the market prices such as stock market crashes or booms

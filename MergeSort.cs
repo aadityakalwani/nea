@@ -6,20 +6,20 @@ namespace bobFinal
     public class MergeSort
     {
         // Public method to sort a list and return the sorted list
-        public List<Property> Sort(List<Property> list, string sortByWhat)
+        public List<Property> Sort(List<Property> list, string sortByWhat, string sortOrder)
         {
             if (list.Count <= 1)
                 return list;
 
             Property[] array = list.ToArray();
             Property[] temp = new Property[array.Length];
-            MergeSortRecursive(array, temp, 0, array.Length - 1, sortByWhat);
+            MergeSortRecursive(array, temp, 0, array.Length - 1, sortByWhat, sortOrder);
 
             return new List<Property>(array);
         }
 
         // Recursive merge sort logic
-        private void MergeSortRecursive(Property[] array, Property[] temp, int leftStart, int rightEnd, string sortByWhat)
+        private void MergeSortRecursive(Property[] array, Property[] temp, int leftStart, int rightEnd, string sortByWhat, string sortOrder)
         {
             if (leftStart >= rightEnd)
                 return;
@@ -27,23 +27,23 @@ namespace bobFinal
             int middle = (leftStart + rightEnd) / 2;
 
             // Sort the left half
-            MergeSortRecursive(array, temp, leftStart, middle, sortByWhat);
+            MergeSortRecursive(array, temp, leftStart, middle, sortByWhat, sortOrder);
 
             // Sort the right half
-            MergeSortRecursive(array, temp, middle + 1, rightEnd, sortByWhat);
+            MergeSortRecursive(array, temp, middle + 1, rightEnd, sortByWhat, sortOrder);
 
             // Merge the sorted halves
-            Merge(array, temp, leftStart, middle, rightEnd, sortByWhat);
+            Merge(array, temp, leftStart, middle, rightEnd, sortByWhat, sortOrder);
         }
 
         // Merge two sorted halves
-        private void Merge(Property[] array, Property[] temp, int leftStart, int middle, int rightEnd, string sortByWhat)
+        private void Merge(Property[] array, Property[] temp, int leftStart, int middle, int rightEnd, string sortByWhat, string sortOrder)
         {
             int left = leftStart;
             int right = middle + 1;
             int index = leftStart;
 
-            // Copy both halves into a temporary array in sorted order
+            // Copy both halves into a temporary array
             while (left <= middle && right <= rightEnd)
             {
                 int propertyOneValue = 0;
@@ -65,16 +65,36 @@ namespace bobFinal
                         break;
                 }
 
-                if (propertyOneValue <= propertyTwoValue)
+                // ascending order
+                if (sortOrder == "ascending")
                 {
-                    temp[index] = array[left];
-                    left++;
+                    if (propertyOneValue <= propertyTwoValue)
+                    {
+                        temp[index] = array[left];
+                        left++;
+                    }
+                    else
+                    {
+                        temp[index] = array[right];
+                        right++;
+                    }
                 }
-                else
+
+                // descending order
+                else if (sortOrder == "descending")
                 {
-                    temp[index] = array[right];
-                    right++;
+                    if (propertyOneValue >= propertyTwoValue)
+                    {
+                        temp[index] = array[left];
+                        left++;
+                    }
+                    else
+                    {
+                        temp[index] = array[right];
+                        right++;
+                    }
                 }
+
                 index++;
             }
 

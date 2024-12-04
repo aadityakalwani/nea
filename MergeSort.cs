@@ -59,6 +59,10 @@ namespace bobFinal
                         propertyOneValue = array[left].TotalLumberGain;
                         propertyTwoValue = array[right].TotalLumberGain;
                         break;
+                    case "ID":
+                        propertyOneValue = array[left].PropertyID;
+                        propertyTwoValue = array[right].PropertyID;
+                        break;
                 }
 
                 if (propertyOneValue <= propertyTwoValue)

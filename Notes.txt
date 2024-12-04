@@ -1,26 +1,10 @@
 current issues:
 
-- sort by ID number for a property
-
 - reformat the initializePrices so that it doesn't need the listOfAllProperties
 
 - reverse the sort of the sortedProperties lol i want it to sort by most income, not least
 
-- because of the way you re-make the database table after sorting properties, the ID number data is lost
-    - so I need to manually add in the propertyID instead of having it as an AUTOINCREMENT
-
-- when sorting, the propertiesArray is being sorted, not the data in the database table itself
-    - as a result, 'sorting' does nothing (nothing visible to the user)
-        - so I need to sort the data in the database table itself
-        - or overwrite the database data with the sorted array?
-
 immediate future ideas:
-
-    - 'lessons' where the player can learn about business and economics
-        - lessons give:
-            - a 'multiplier' to the player's income
-            - increased storage capacity
-            - diamonds
 
     - proper gets and sets on line 347 in form1.cs
 
@@ -28,12 +12,12 @@ immediate future ideas:
         - if a property is not connected to the town hall then it cannot provide income (bool connected = false)
     - allow the Apply Prims to auto-put-in path tiles
 
-    - history of properties upon click
+    - fluctuating prices for the cost of building properties
+    - fluctuating income for each property
 
 future ideas:
     - more resources to buy and sell
         - quarry to mine stone
-    - upgradable properties
     - idea of villagers or visitors to the town that effect the market prices
     - storage buildings like in COC to store resources
     - weather that affects the market prices / village visitors

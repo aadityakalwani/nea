@@ -753,13 +753,6 @@ namespace bobFinal
         private void btnSortByGoldIncome_Click(object sender, EventArgs e)
         {
             List<Property> sortedProperties = mergeSort.Sort(properties, "Gold");
-            string sortedPropertiesString = "";
-            foreach (Property property in sortedProperties)
-            {
-                sortedPropertiesString += property.TotalGoldGain + "\n";
-            }
-            MessageBox.Show($"Properties sorted by Gold Income:\n{sortedPropertiesString}");
-
             DatabaseUtils.UpdateDatabaseWithSortedProperties(sortedProperties);
             RefreshDataGridView("Properties");
         }
@@ -767,23 +760,15 @@ namespace bobFinal
         private void btnSortByLumberIncome_Click(object sender, EventArgs e)
         {
             List<Property> sortedProperties = mergeSort.Sort(properties, "Lumber");
-            string sortedPropertiesString = "";
-            foreach (Property property in sortedProperties)
-            {
-                sortedPropertiesString += property.TotalLumberGain + "\n";
-            }
-            MessageBox.Show($"Properties sorted by Lumber Income:\n{sortedPropertiesString}");
             DatabaseUtils.UpdateDatabaseWithSortedProperties(sortedProperties);
             RefreshDataGridView("Properties");
         }
 
         private void btnSortByID_Click(object sender, EventArgs e)
         {
-            Program.ShowAutoClosingMessageBox("THIS DOESNT WORK YET IDIOT", "Sort by ID", 2250);
-            // List<Property> sortedProperties = mergeSort.Sort(properties.ToArray(), "ID");
-            // DatabaseUtils.UpdateDatabaseWithSortedProperties(sortedProperties);
-            // RefreshDataGridView("Properties");
-            // temp fix
+            List<Property> sortedProperties = mergeSort.Sort(properties, "ID");
+            DatabaseUtils.UpdateDatabaseWithSortedProperties(sortedProperties);
+            RefreshDataGridView("Properties");
         }
 
         private void RefreshDataGridView(string tableName)

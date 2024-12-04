@@ -8,6 +8,7 @@
             YCoordinate = y;
         }
 
+        public int PropertyID { get; protected set; }
         public int GoldCost { get; protected set; }
         public int LumberCost { get; protected set; }
         public int DailyGoldGain { get; protected set; }

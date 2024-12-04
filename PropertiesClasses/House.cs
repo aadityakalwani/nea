@@ -2,8 +2,9 @@
 {
     public class House : Property
     {
-        public House(int x, int y) : base(x, y)
+        public House(int id, int x, int y) : base(x, y)
         {
+            PropertyID = id;
             GoldCost = 100;
             LumberCost = 50;
             DailyGoldGain = 30;

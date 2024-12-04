@@ -22,7 +22,7 @@ namespace bobFinal
         private Resource gold;
         private CustomPictureBox[,] grid;
         private MergeSort mergeSort = new MergeSort();
-        private List<Property> listOfAllProperties = new List<Property> { new House(0, 0), new Farm(0, 0), new Sawmill(0, 0), new Mine(0, 0), new Cafe(0, 0) };
+        private List<Property> listOfAllProperties = new List<Property> { new House(0, 0, 0), new Farm(0, 0, 0), new Sawmill(0, 0, 0), new Mine(0, 0, 0), new Cafe(0, 0, 0) };
         private Resource lumber;
         private Timer newDayTimer;
         private List<Property> properties = new List<Property>();
@@ -31,6 +31,7 @@ namespace bobFinal
         private Point selectedPosition;
         private Resource selectedResource;
         private Lesson currentLesson;
+        private int currentPropertyIdIndex = 0;
 
         public Form1()
         {
@@ -167,18 +168,20 @@ namespace bobFinal
             grid[initialCoordinate + 2, initialCoordinate + 2].BuiltUpon = true;
 
             // create and place the initial sawmill
-            Property sawmill = new Sawmill(initialCoordinate + 4, initialCoordinate + 4);
+            Property sawmill = new Sawmill(currentPropertyIdIndex, initialCoordinate + 4, initialCoordinate + 4);
             grid[sawmill.XCoordinate, sawmill.YCoordinate].Image = Image.FromFile(sawmill.ImageFileName);
             grid[sawmill.XCoordinate, sawmill.YCoordinate].BuiltUpon = true;
             properties.Add(sawmill);
-            DatabaseUtils.AddNewProperty(sawmill.GetType().Name, sawmill.XCoordinate, sawmill.YCoordinate, sawmill.GoldCost, sawmill.LumberCost, sawmill.DailyGoldGain, sawmill.DailyLumberGain, sawmill.DailyDiamondGain, sawmill.TotalGoldGain, sawmill.TotalLumberGain, sawmill.active);
+            currentPropertyIdIndex++;
+            DatabaseUtils.AddNewProperty(sawmill.PropertyID, sawmill.GetType().Name, sawmill.XCoordinate, sawmill.YCoordinate, sawmill.GoldCost, sawmill.LumberCost, sawmill.DailyGoldGain, sawmill.DailyLumberGain, sawmill.DailyDiamondGain, sawmill.TotalGoldGain, sawmill.TotalLumberGain, sawmill.active);
 
             // create and place the initial house
-            Property house = new House(initialCoordinate + 5, initialCoordinate + 5);
+            Property house = new House(currentPropertyIdIndex, initialCoordinate + 5, initialCoordinate + 5);
             grid[house.XCoordinate, house.YCoordinate].Image = Image.FromFile(house.ImageFileName);
             grid[house.XCoordinate, house.YCoordinate].BuiltUpon = true;
             properties.Add(house);
-            DatabaseUtils.AddNewProperty(house.GetType().Name, house.XCoordinate, house.YCoordinate, house.GoldCost, house.LumberCost, house.DailyGoldGain, house.DailyLumberGain, house.DailyDiamondGain, house.TotalGoldGain, house.TotalLumberGain, house.active);
+            currentPropertyIdIndex++;
+            DatabaseUtils.AddNewProperty(house.PropertyID, house.GetType().Name, house.XCoordinate, house.YCoordinate, house.GoldCost, house.LumberCost, house.DailyGoldGain, house.DailyLumberGain, house.DailyDiamondGain, house.TotalGoldGain, house.TotalLumberGain, house.active);
         }
 
         private void initializeNewDayTimer()
@@ -306,19 +309,19 @@ namespace bobFinal
             switch (selectedBuilding)
             {
                 case "House":
-                    property = new House(selectedPosition.X, selectedPosition.Y);
+                    property = new House(currentPropertyIdIndex, selectedPosition.X, selectedPosition.Y);
                     break;
                 case "Farm":
-                    property = new Farm(selectedPosition.X, selectedPosition.Y);
+                    property = new Farm(currentPropertyIdIndex, selectedPosition.X, selectedPosition.Y);
                     break;
                 case "Sawmill":
-                    property = new Sawmill(selectedPosition.X, selectedPosition.Y);
+                    property = new Sawmill(currentPropertyIdIndex, selectedPosition.X, selectedPosition.Y);
                     break;
                 case "Mine":
-                    property = new Mine(selectedPosition.X, selectedPosition.Y);
+                    property = new Mine(currentPropertyIdIndex, selectedPosition.X, selectedPosition.Y);
                     break;
                 case "Cafe":
-                    property = new Cafe(selectedPosition.X, selectedPosition.Y);
+                    property = new Cafe(currentPropertyIdIndex, selectedPosition.X, selectedPosition.Y);
                     break;
             }
 
@@ -346,7 +349,8 @@ namespace bobFinal
                     properties.Add(property);
 
                     // Add the property to the database and update the DataGridView
-                    DatabaseUtils.AddNewProperty(property.GetType().Name, property.XCoordinate, property.YCoordinate, property.GoldCost, property.LumberCost, property.DailyGoldGain, property.DailyLumberGain, property.DailyDiamondGain, property.TotalGoldGain, property.TotalLumberGain, property.active);
+                    DatabaseUtils.AddNewProperty(currentPropertyIdIndex, property.GetType().Name, property.XCoordinate, property.YCoordinate, property.GoldCost, property.LumberCost, property.DailyGoldGain, property.DailyLumberGain, property.DailyDiamondGain, property.TotalGoldGain, property.TotalLumberGain, property.active);
+                    currentPropertyIdIndex++;
                     RefreshDataGridView("Properties");
                 }
 

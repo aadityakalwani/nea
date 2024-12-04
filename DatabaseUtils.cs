@@ -141,7 +141,7 @@ namespace bobFinal
         {
             string createPropertiesTable = @"
             CREATE TABLE Properties (
-                Id AUTOINCREMENT PRIMARY KEY,
+                Id INTEGER PRIMARY KEY,
                 [Property Type] TEXT NOT NULL,
                 Coordinate TEXT NOT NULL,
                 Active YESNO DEFAULT TRUE,
@@ -347,11 +347,11 @@ namespace bobFinal
             }
         }
 
-        public static void AddNewProperty(string propertyType, int xCoordinate, int yCoordinate, int goldCost, int lumberCost, int dailyGoldGain, int dailyLumberGain, int dailyDiamondGain, int totalGoldGain, int totalLumberGain, bool propertyActive)
+        public static void AddNewProperty(int propertyID, string propertyType, int xCoordinate, int yCoordinate, int goldCost, int lumberCost, int dailyGoldGain, int dailyLumberGain, int dailyDiamondGain, int totalGoldGain, int totalLumberGain, bool propertyActive)
         {
             string coordinate = $"({xCoordinate},{yCoordinate})";
-            string insertQuery = "INSERT INTO Properties ([Property Type], Coordinate, Active, [Gold Cost], [Lumber Cost], [Daily Gold Gain], [Daily Lumber Gain], [Daily Diamond Gain], [Total Gold Gain], [Total Lumber Gain]) " +
-                                 "VALUES (@PropertyType, @coordinate, @Active, @GoldCost, @LumberCost, @DailyGoldGain, @DailyLumberGain, @DailyDiamondGain, @TotalGoldGain, @TotalLumberGain)";
+            string insertQuery = "INSERT INTO Properties (Id, [Property Type], Coordinate, Active, [Gold Cost], [Lumber Cost], [Daily Gold Gain], [Daily Lumber Gain], [Daily Diamond Gain], [Total Gold Gain], [Total Lumber Gain]) " +
+                                 "VALUES (@propertyID, @PropertyType, @coordinate, @Active, @GoldCost, @LumberCost, @DailyGoldGain, @DailyLumberGain, @DailyDiamondGain, @TotalGoldGain, @TotalLumberGain)";
 
             using (OleDbConnection conn = new OleDbConnection(ConnectionString))
             {
@@ -360,6 +360,7 @@ namespace bobFinal
                     conn.Open();
                     using (OleDbCommand cmd = new OleDbCommand(insertQuery, conn))
                     {
+                        cmd.Parameters.AddWithValue("@propertyID", propertyID);
                         cmd.Parameters.AddWithValue("@PropertyType", propertyType);
                         cmd.Parameters.AddWithValue("@Coordinate", coordinate);
                         cmd.Parameters.AddWithValue("@Active", propertyActive);
@@ -436,7 +437,7 @@ namespace bobFinal
 
             foreach (Property property in sortedProperties)
             {
-                AddNewProperty(property.GetType().ToString() , property.XCoordinate, property.YCoordinate, property.GoldCost, property.LumberCost, property.DailyGoldGain, property.DailyLumberGain, property.DailyDiamondGain, property.TotalGoldGain, property.TotalLumberGain, property.active);
+                AddNewProperty(property.PropertyID, property.GetType().ToString() , property.XCoordinate, property.YCoordinate, property.GoldCost, property.LumberCost, property.DailyGoldGain, property.DailyLumberGain, property.DailyDiamondGain, property.TotalGoldGain, property.TotalLumberGain, property.active);
             }
         }
 

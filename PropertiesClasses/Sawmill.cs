@@ -2,8 +2,9 @@
 {
     public class Sawmill : Property
     {
-        public Sawmill(int x, int y) : base(x, y)
+        public Sawmill(int id, int x, int y) : base(x, y)
         {
+            PropertyID = id;
             GoldCost = 200;
             LumberCost = 100;
             DailyGoldGain = 0;

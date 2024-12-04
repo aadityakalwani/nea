@@ -2,6 +2,8 @@ current issues:
 
 - sort by ID number for a property
 
+- reformat the initializePrices so that it doesn't need the listOfAllProperties
+
 - reverse the sort of the sortedProperties lol i want it to sort by most income, not least
 
 - because of the way you re-make the database table after sorting properties, the ID number data is lost

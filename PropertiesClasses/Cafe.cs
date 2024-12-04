@@ -2,8 +2,9 @@
 {
     public class Cafe : Property
     {
-        public Cafe(int x, int y) : base(x, y)
+        public Cafe(int id, int x, int y) : base(x, y)
         {
+            PropertyID = id;
             GoldCost = 200;
             LumberCost = 100;
             DailyGoldGain = 100;

@@ -2,8 +2,9 @@
 {
     public class Mine : Property
     {
-        public Mine(int x, int y) : base(x, y)
+        public Mine(int id, int x, int y) : base(x, y)
         {
+            PropertyID = id;
             GoldCost = 400;
             LumberCost = 200;
             DailyGoldGain = 200;

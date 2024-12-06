@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using bobFinal.PropertiesClasses;
 
 namespace bobFinal
 {
@@ -52,16 +53,16 @@ namespace bobFinal
                 switch (sortByWhat)
                 {
                     case "Gold":
-                        propertyOneValue = array[left].TotalGoldGain;
-                        propertyTwoValue = array[right].TotalGoldGain;
+                        propertyOneValue = array[left].getTotalGoldGain();
+                        propertyTwoValue = array[right].getTotalGoldGain();
                         break;
                     case "Lumber":
-                        propertyOneValue = array[left].TotalLumberGain;
-                        propertyTwoValue = array[right].TotalLumberGain;
+                        propertyOneValue = array[left].getTotalLumberGain();
+                        propertyTwoValue = array[right].getTotalLumberGain();
                         break;
                     case "ID":
-                        propertyOneValue = array[left].PropertyID;
-                        propertyTwoValue = array[right].PropertyID;
+                        propertyOneValue = array[left].getPropertyID();
+                        propertyTwoValue = array[right].getPropertyID();
                         break;
                 }
 

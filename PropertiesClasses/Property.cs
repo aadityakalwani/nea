@@ -1,4 +1,4 @@
-﻿namespace bobFinal
+﻿namespace bobFinal.PropertiesClasses
 {
     public abstract class Property
     {
@@ -8,17 +8,93 @@
             YCoordinate = y;
         }
 
-        public int PropertyID { get; protected set; }
-        public int GoldCost { get; protected set; }
-        public int LumberCost { get; protected set; }
-        public int DailyGoldGain { get; protected set; }
-        public int DailyLumberGain { get; protected set; }
-        public int DailyDiamondGain { get; protected set; }
-        public int TotalGoldGain { get; set; }
-        public int TotalLumberGain { get; set; }
-        public string ImageFileName { get; protected set; }
-        public int XCoordinate { get; private set; }
-        public int YCoordinate { get; private set; }
-        public bool active { get; set; }
+        protected int PropertyID;
+        protected int GoldCost;
+        protected int LumberCost;
+        protected int DailyGoldGain;
+        protected int DailyLumberGain;
+        protected int DailyDiamondGain;
+        protected int TotalGoldGain;
+        protected int TotalLumberGain;
+        protected string ImageFileName;
+        protected readonly int XCoordinate;
+        protected readonly int YCoordinate;
+        protected bool active;
+
+        public int getPropertyID()
+        {
+            return PropertyID;
+        }
+
+        public int getGoldCost()
+        {
+            return GoldCost;
+        }
+
+        public int getLumberCost()
+        {
+            return LumberCost;
+        }
+
+        public int getDailyGoldGain()
+        {
+            return DailyGoldGain;
+        }
+
+        public int getDailyLumberGain()
+        {
+            return DailyLumberGain;
+        }
+
+        public int getDailyDiamondGain()
+        {
+            return DailyDiamondGain;
+        }
+
+        public int getTotalGoldGain()
+        {
+            return TotalGoldGain;
+        }
+
+        public void increaseTotalGoldGain(int amount)
+        {
+            TotalGoldGain += amount;
+        }
+
+        public int getTotalLumberGain()
+        {
+            return TotalLumberGain;
+        }
+
+        public void increaseTotalLumberGain(int amount)
+        {
+            TotalGoldGain += amount;
+        }
+
+        public string getImageFileName()
+        {
+            return ImageFileName;
+        }
+
+        public int getXCoordinate()
+        {
+            return XCoordinate;
+        }
+
+        public int getYCoordinate()
+        {
+            return YCoordinate;
+        }
+
+        public bool getActive()
+        {
+            return active;
+        }
+
+        public void setActive(bool newCondition)
+        {
+            active = newCondition;
+        }
+
     }
 }

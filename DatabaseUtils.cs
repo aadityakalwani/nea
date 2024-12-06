@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.OleDb;
 using System.IO;
 using ADOX;
+using Property = bobFinal.PropertiesClasses.Property;
 
 namespace bobFinal
 {
@@ -437,7 +438,7 @@ namespace bobFinal
 
             foreach (Property property in sortedProperties)
             {
-                AddNewProperty(property.PropertyID, property.GetType().Name , property.XCoordinate, property.YCoordinate, property.GoldCost, property.LumberCost, property.DailyGoldGain, property.DailyLumberGain, property.DailyDiamondGain, property.TotalGoldGain, property.TotalLumberGain, property.active);
+                AddNewProperty(property.getPropertyID(), property.GetType().Name , property.getXCoordinate(), property.getYCoordinate(), property.getGoldCost(), property.getLumberCost(), property.getDailyGoldGain(), property.getDailyLumberGain(), property.getDailyDiamondGain(), property.getTotalGoldGain(), property.getTotalLumberGain(), property.getActive());
             }
         }
 

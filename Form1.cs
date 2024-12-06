@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
+using bobFinal.PropertiesClasses;
 
 // ReSharper disable All
 
@@ -125,22 +126,22 @@ namespace bobFinal
             listViewPrices.Items.Clear();
             foreach (Property property in listOfAllProperties)
             {
-                string cost = $"{property.GoldCost} Gold, {property.LumberCost} Lumber";
+                string cost = $"{property.getGoldCost()} Gold, {property.getLumberCost()} Lumber";
                 string gain = "";
 
-                if (property.DailyGoldGain > 0)
+                if (property.getDailyGoldGain() > 0)
                 {
-                    gain += $"{property.DailyGoldGain} Gold, ";
+                    gain += $"{property.getDailyGoldGain()} Gold, ";
                 }
 
-                if (property.DailyLumberGain > 0)
+                if (property.getDailyLumberGain() > 0)
                 {
-                    gain += $"{property.DailyLumberGain} Lumber, ";
+                    gain += $"{property.getDailyLumberGain()} Lumber, ";
                 }
 
-                if (property.DailyDiamondGain > 0)
+                if (property.getDailyDiamondGain() > 0)
                 {
-                    gain += $"{property.DailyDiamondGain} Diamond, ";
+                    gain += $"{property.getDailyDiamondGain()} Diamond, ";
                 }
 
                 // remove the trailing comma and space (if any)
@@ -169,19 +170,19 @@ namespace bobFinal
 
             // create and place the initial sawmill
             Property sawmill = new Sawmill(currentPropertyIdIndex, initialCoordinate + 4, initialCoordinate + 4);
-            grid[sawmill.XCoordinate, sawmill.YCoordinate].Image = Image.FromFile(sawmill.ImageFileName);
-            grid[sawmill.XCoordinate, sawmill.YCoordinate].BuiltUpon = true;
+            grid[sawmill.getXCoordinate(), sawmill.getYCoordinate()].Image = Image.FromFile(sawmill.getImageFileName());
+            grid[sawmill.getXCoordinate(), sawmill.getYCoordinate()].BuiltUpon = true;
             properties.Add(sawmill);
             currentPropertyIdIndex++;
-            DatabaseUtils.AddNewProperty(sawmill.PropertyID, sawmill.GetType().Name, sawmill.XCoordinate, sawmill.YCoordinate, sawmill.GoldCost, sawmill.LumberCost, sawmill.DailyGoldGain, sawmill.DailyLumberGain, sawmill.DailyDiamondGain, sawmill.TotalGoldGain, sawmill.TotalLumberGain, sawmill.active);
+            DatabaseUtils.AddNewProperty(sawmill.getPropertyID(), sawmill.GetType().Name, sawmill.getXCoordinate(), sawmill.getYCoordinate(), sawmill.getGoldCost(), sawmill.getLumberCost(), sawmill.getDailyGoldGain(), sawmill.getDailyLumberGain(), sawmill.getDailyDiamondGain(), sawmill.getTotalGoldGain(), sawmill.getTotalLumberGain(), sawmill.getActive());
 
             // create and place the initial house
             Property house = new House(currentPropertyIdIndex, initialCoordinate + 5, initialCoordinate + 5);
-            grid[house.XCoordinate, house.YCoordinate].Image = Image.FromFile(house.ImageFileName);
-            grid[house.XCoordinate, house.YCoordinate].BuiltUpon = true;
+            grid[house.getXCoordinate(), house.getYCoordinate()].Image = Image.FromFile(house.getImageFileName());
+            grid[house.getXCoordinate(), house.getYCoordinate()].BuiltUpon = true;
             properties.Add(house);
             currentPropertyIdIndex++;
-            DatabaseUtils.AddNewProperty(house.PropertyID, house.GetType().Name, house.XCoordinate, house.YCoordinate, house.GoldCost, house.LumberCost, house.DailyGoldGain, house.DailyLumberGain, house.DailyDiamondGain, house.TotalGoldGain, house.TotalLumberGain, house.active);
+            DatabaseUtils.AddNewProperty(house.getPropertyID(), house.GetType().Name, house.getXCoordinate(), house.getYCoordinate(), house.getGoldCost(), house.getLumberCost(), house.getDailyGoldGain(), house.getDailyLumberGain(), house.getDailyDiamondGain(), house.getTotalGoldGain(), house.getTotalLumberGain(), house.getActive());
         }
 
         private void initializeNewDayTimer()
@@ -337,19 +338,19 @@ namespace bobFinal
                 }
 
                 // Check if there are enough resources to build the property
-                if (gold.getValue() >= property.GoldCost && lumber.getValue() >= property.LumberCost)
+                if (gold.getValue() >= property.getGoldCost() && lumber.getValue() >= property.getLumberCost())
                 {
                     // Deduct the cost of the property from the resources
-                    gold.ChangeQuantity(-property.GoldCost);
-                    lumber.ChangeQuantity(-property.LumberCost);
+                    gold.ChangeQuantity(-property.getGoldCost());
+                    lumber.ChangeQuantity(-property.getLumberCost());
 
                     // Set the image of the selected grid position to the property image
-                    selectedTile.Image = Image.FromFile(property.ImageFileName);
+                    selectedTile.Image = Image.FromFile(property.getImageFileName());
                     selectedTile.BuiltUpon = true;
                     properties.Add(property);
 
                     // Add the property to the database and update the DataGridView
-                    DatabaseUtils.AddNewProperty(currentPropertyIdIndex, property.GetType().Name, property.XCoordinate, property.YCoordinate, property.GoldCost, property.LumberCost, property.DailyGoldGain, property.DailyLumberGain, property.DailyDiamondGain, property.TotalGoldGain, property.TotalLumberGain, property.active);
+                    DatabaseUtils.AddNewProperty(currentPropertyIdIndex, property.GetType().Name, property.getXCoordinate(), property.getYCoordinate(), property.getGoldCost(), property.getLumberCost(), property.getDailyGoldGain(), property.getDailyLumberGain(), property.getDailyDiamondGain(), property.getTotalGoldGain(), property.getTotalLumberGain(), property.getActive());
                     currentPropertyIdIndex++;
                     RefreshDataGridView("Properties");
                 }
@@ -375,16 +376,15 @@ namespace bobFinal
             // calculate the total resource gain from all properties
             foreach (Property property in properties)
             {
-                totalGoldGain += property.DailyGoldGain;
-                totalLumberGain += property.DailyLumberGain;
-                totalDiamondGain += property.DailyDiamondGain;
+                totalGoldGain += property.getDailyGoldGain();
+                totalLumberGain += property.getDailyLumberGain();
+                totalDiamondGain += property.getDailyDiamondGain();
 
-                property.TotalGoldGain += property.DailyGoldGain;
-                property.TotalLumberGain += property.DailyLumberGain;
-
+                property.increaseTotalGoldGain(property.getDailyGoldGain());
+                property.increaseTotalLumberGain(property.getDailyLumberGain());
 
                 // update the property in the database
-                DatabaseUtils.UpdatePropertyTotalIncome(property.XCoordinate, property.YCoordinate, property.TotalGoldGain, property.TotalLumberGain);
+                DatabaseUtils.UpdatePropertyTotalIncome(property.getXCoordinate(), property.getYCoordinate(), property.getTotalGoldGain(), property.getTotalLumberGain());
                 RefreshDataGridView("Properties");
             }
 
@@ -611,13 +611,13 @@ namespace bobFinal
         private void btnSellBuilding_Click(object sender, EventArgs e)
         {
             CustomPictureBox selectedTile = grid[selectedPosition.X, selectedPosition.Y];
-            Property property = properties.Find(p => p.XCoordinate == selectedPosition.X && p.YCoordinate == selectedPosition.Y);
+            Property property = properties.Find(p => p.getXCoordinate() == selectedPosition.X && p.getYCoordinate() == selectedPosition.Y);
 
             if (property != null)
             {
                 // calculate the sell price (80% of the original cost)
-                int sellPriceGold = (int)(property.GoldCost * 0.8);
-                int sellPriceLumber = (int)(property.LumberCost * 0.8);
+                int sellPriceGold = (int)(property.getGoldCost() * 0.8);
+                int sellPriceLumber = (int)(property.getLumberCost() * 0.8);
 
                 // remove the property from the list and update the grid
                 properties.Remove(property);
@@ -629,7 +629,7 @@ namespace bobFinal
                 lumber.ChangeQuantity(sellPriceLumber);
 
                 // change the Active status of the property in the database
-                DatabaseUtils.UpdatePropertyStatus(property.XCoordinate, property.YCoordinate, false);
+                DatabaseUtils.UpdatePropertyStatus(property.getXCoordinate(), property.getYCoordinate(), false);
 
                 Program.ShowAutoClosingMessageBox($"{property.GetType().Name} sold for {sellPriceGold} Gold and {sellPriceLumber} Lumber!", "Success", 2500);
 
@@ -703,8 +703,8 @@ namespace bobFinal
 
         private double CalculateDistance(Property a, Property b)
         {
-            int deltaX = a.XCoordinate - b.XCoordinate;
-            int deltaY = a.YCoordinate - b.YCoordinate;
+            int deltaX = a.getXCoordinate() - b.getXCoordinate();
+            int deltaY = a.getYCoordinate() - b.getYCoordinate();
             return Math.Sqrt(deltaX * deltaX + deltaY * deltaY);
         }
 
@@ -716,7 +716,7 @@ namespace bobFinal
             string message = "Edges in the Minimum Spanning Tree (MST):\n";
             foreach ((Property, Property) edge in mstEdges)
             {
-                message += $"({edge.Item1.XCoordinate}, {edge.Item1.YCoordinate}) -> ({edge.Item2.XCoordinate}, {edge.Item2.YCoordinate})\n";
+                message += $"({edge.Item1.getXCoordinate()}, {edge.Item1.getYCoordinate()}) -> ({edge.Item2.getXCoordinate()}, {edge.Item2.getYCoordinate()})\n";
             }
 
             Program.ShowAutoClosingMessageBox(message, "MST Edges", 5000);
@@ -724,12 +724,8 @@ namespace bobFinal
 
         private void btnLesson1_Click_1(object sender, EventArgs e)
         {
-            // Program.ShowAutoClosingMessageBox("you chose lesson 1", "Lesson 1", 2250);
-
             // Get the selected lesson from the DataGridView
-
             currentLesson = DatabaseUtils.GetRandomIncompleteLesson();
-            // this function is not returning a list of choices, hence why the whole choices thing isnt working
 
             List<string> choicesForThisQuestion = new List<string> { currentLesson.ChoiceOne, currentLesson.ChoiceTwo, currentLesson.ChoiceThree, currentLesson.ChoiceFour };
 
@@ -780,6 +776,7 @@ namespace bobFinal
                     break;
                 case "incomeHistoryTable":
                     dataGridViewIncomeHistory.DataSource = DatabaseUtils.LoadDatabaseData(tableName);
+                    // rename the column titles to make more sense to the user
                     dataGridViewIncomeHistory.Columns[0].HeaderText = "Date";
                     dataGridViewIncomeHistory.Columns[1].HeaderText = "Gold Income";
                     dataGridViewIncomeHistory.Columns[2].HeaderText = "Lumber Income";

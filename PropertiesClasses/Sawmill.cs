@@ -1,4 +1,4 @@
-﻿namespace bobFinal
+﻿namespace bobFinal.PropertiesClasses
 {
     public class Sawmill : Property
     {

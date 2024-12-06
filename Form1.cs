@@ -444,13 +444,14 @@ namespace bobFinal
             int amount = (int)numericUpDownAmount.Value;
             float cost = amount * selectedResource.GetConversionRate();
 
-            if (buyOrSell == "buy")
+            switch (buyOrSell)
             {
-                lblCost.Text = $@"Cost: {Math.Round(cost, 2)} dollars";
-            }
-            else
-            {
-                lblCost.Text = $@"Value: {Math.Round(cost, 2)} dollars";
+                case "buy":
+                    lblCost.Text = $@"Cost: {Math.Round(cost, 2)} dollars";
+                    break;
+                default:
+                    lblCost.Text = $@"Value: {Math.Round(cost, 2)} dollars";
+                    break;
             }
         }
 

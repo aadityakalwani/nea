@@ -5,8 +5,8 @@
         public Mine(int id, int x, int y) : base(x, y)
         {
             PropertyID = id;
-            GoldCost = 400;
-            LumberCost = 200;
+            GoldCost = 350;
+            LumberCost = 250;
             DailyGoldGain = 200;
             DailyLumberGain = 0;
             DailyDiamondGain = 0;

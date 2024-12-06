@@ -2,7 +2,7 @@ current issues:
 
 immediate future ideas:
 
-    - proper gets and sets on line 347 in form1.cs
+    - proper gets and sets for property when I add a new property
 
     - create a path tile to connect properties to the town hall
         - if a property is not connected to the town hall then it provides half of the income (bool connected = false)

@@ -5,7 +5,7 @@
         public Sawmill(int id, int x, int y) : base(x, y)
         {
             PropertyID = id;
-            GoldCost = 200;
+            GoldCost = 100;
             LumberCost = 100;
             DailyGoldGain = 0;
             DailyLumberGain = 30;

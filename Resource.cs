@@ -23,17 +23,17 @@ namespace bobFinal
         private TextBox TextBox { get; }
         public float ConversionRate { get; set; }
 
-        public float getValue()
+        public float GetValue()
         {
             return Value;
         }
 
-        public float getConversionRate()
+        public float GetConversionRate()
         {
             return ConversionRate;
         }
 
-        public string getName()
+        public string GetName()
         {
             return Name;
         }

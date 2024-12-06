@@ -4,7 +4,7 @@
     {
         public Mine(int id, int x, int y) : base(x, y)
         {
-            PropertyID = id;
+            PropertyId = id;
             GoldCost = 350;
             LumberCost = 250;
             DailyGoldGain = 200;
@@ -13,7 +13,7 @@
             TotalGoldGain = 0;
             TotalLumberGain = 0;
             ImageFileName = "Images/MineTile.jpg";
-            active = true;
+            Active = true;
         }
     }
 }

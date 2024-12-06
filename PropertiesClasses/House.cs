@@ -4,7 +4,7 @@
     {
         public House(int id, int x, int y) : base(x, y)
         {
-            PropertyID = id;
+            PropertyId = id;
             GoldCost = 100;
             LumberCost = 50;
             DailyGoldGain = 30;
@@ -13,7 +13,7 @@
             TotalGoldGain = 0;
             TotalLumberGain = 0;
             ImageFileName = "Images/HouseTile.jpg";
-            active = true;
+            Active = true;
         }
     }
 }

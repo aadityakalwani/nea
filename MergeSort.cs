@@ -53,16 +53,16 @@ namespace bobFinal
                 switch (sortByWhat)
                 {
                     case "Gold":
-                        propertyOneValue = array[left].getTotalGoldGain();
-                        propertyTwoValue = array[right].getTotalGoldGain();
+                        propertyOneValue = array[left].GetTotalGoldGain();
+                        propertyTwoValue = array[right].GetTotalGoldGain();
                         break;
                     case "Lumber":
-                        propertyOneValue = array[left].getTotalLumberGain();
-                        propertyTwoValue = array[right].getTotalLumberGain();
+                        propertyOneValue = array[left].GetTotalLumberGain();
+                        propertyTwoValue = array[right].GetTotalLumberGain();
                         break;
                     case "ID":
-                        propertyOneValue = array[left].getPropertyID();
-                        propertyTwoValue = array[right].getPropertyID();
+                        propertyOneValue = array[left].GetPropertyId();
+                        propertyTwoValue = array[right].GetPropertyId();
                         break;
                 }
 

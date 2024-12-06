@@ -4,14 +4,14 @@ namespace bobFinal
 {
     public static class Market
     {
-        private static readonly customRandom customRandom = new customRandom();
+        private static readonly CustomRandom CustomRandom = new CustomRandom();
 
         public static void UpdateConversionRates(List<Resource> resources)
         {
             foreach (Resource resource in resources)
             {
                 // fluctuate the conversion rate by upto +/- 10%
-                int fluctuation = customRandom.Next(-10, 11);
+                int fluctuation = CustomRandom.Next(-10, 11);
                 resource.ConversionRate += resource.ConversionRate * fluctuation / 100;
 
                 // ensure the conversion rate is at least 1

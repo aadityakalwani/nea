@@ -4,7 +4,7 @@
     {
         public Cafe(int id, int x, int y) : base(x, y)
         {
-            PropertyID = id;
+            PropertyId = id;
             GoldCost = 200;
             LumberCost = 100;
             DailyGoldGain = 100;
@@ -13,7 +13,7 @@
             TotalGoldGain = 0;
             TotalLumberGain = 0;
             ImageFileName = "Images/CafeTile.jpg";
-            active = true;
+            Active = true;
         }
     }
 }

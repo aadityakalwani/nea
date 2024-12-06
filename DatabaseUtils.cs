@@ -320,7 +320,7 @@ namespace bobFinal
             }
         }
 
-        public static void AddNewDayOfIncome(DateTime DateInput, float GoldInput, float LumberInput, float DiamondsInput, int NumberOfPropertiesInput)
+        public static void AddNewDayOfIncome(DateTime dateInput, float goldInput, float lumberInput, float diamondsInput, int numberOfPropertiesInput)
         {
             string insertQuery = "INSERT INTO incomeHistoryTable ([Date], Gold, Lumber, Diamonds, [Number Of Properties]) " +
                                  "VALUES (@DateInput, @GoldInput, @LumberInput, @DiamondsInput, @NumberOfPropertiesInput)";
@@ -332,11 +332,11 @@ namespace bobFinal
                     command.Open();
                     using (OleDbCommand cmd = new OleDbCommand(insertQuery, command))
                     {
-                        cmd.Parameters.AddWithValue("@DateInput", DateInput.ToShortDateString());
-                        cmd.Parameters.AddWithValue("@GoldInput", GoldInput);
-                        cmd.Parameters.AddWithValue("@LumberInput", LumberInput);
-                        cmd.Parameters.AddWithValue("@DiamondsInput", DiamondsInput);
-                        cmd.Parameters.AddWithValue("@NumberOfPropertiesInput", NumberOfPropertiesInput);
+                        cmd.Parameters.AddWithValue("@DateInput", dateInput.ToShortDateString());
+                        cmd.Parameters.AddWithValue("@GoldInput", goldInput);
+                        cmd.Parameters.AddWithValue("@LumberInput", lumberInput);
+                        cmd.Parameters.AddWithValue("@DiamondsInput", diamondsInput);
+                        cmd.Parameters.AddWithValue("@NumberOfPropertiesInput", numberOfPropertiesInput);
 
                         cmd.ExecuteNonQuery();
                     }
@@ -348,7 +348,7 @@ namespace bobFinal
             }
         }
 
-        public static void AddNewProperty(int propertyID, string propertyType, int xCoordinate, int yCoordinate, int goldCost, int lumberCost, int dailyGoldGain, int dailyLumberGain, int dailyDiamondGain, int totalGoldGain, int totalLumberGain, bool propertyActive)
+        public static void AddNewProperty(int propertyId, string propertyType, int xCoordinate, int yCoordinate, int goldCost, int lumberCost, int dailyGoldGain, int dailyLumberGain, int dailyDiamondGain, int totalGoldGain, int totalLumberGain, bool propertyActive)
         {
             string coordinate = $"({xCoordinate},{yCoordinate})";
             string insertQuery = "INSERT INTO Properties (Id, [Property Type], Coordinate, Active, [Gold Cost], [Lumber Cost], [Daily Gold Gain], [Daily Lumber Gain], [Daily Diamond Gain], [Total Gold Gain], [Total Lumber Gain]) " +
@@ -361,7 +361,7 @@ namespace bobFinal
                     conn.Open();
                     using (OleDbCommand cmd = new OleDbCommand(insertQuery, conn))
                     {
-                        cmd.Parameters.AddWithValue("@propertyID", propertyID);
+                        cmd.Parameters.AddWithValue("@propertyID", propertyId);
                         cmd.Parameters.AddWithValue("@PropertyType", propertyType);
                         cmd.Parameters.AddWithValue("@Coordinate", coordinate);
                         cmd.Parameters.AddWithValue("@Active", propertyActive);
@@ -407,7 +407,7 @@ namespace bobFinal
             }
         }
 
-        public static void UpdateLessonStatus(int lessonID, bool completedOrNot)
+        public static void UpdateLessonStatus(int lessonId, bool completedOrNot)
         {
             string updateQuery = "UPDATE lessonsTable SET Completed = @Completed WHERE LessonId = @LessonId";
 
@@ -419,7 +419,7 @@ namespace bobFinal
                     using (OleDbCommand cmd = new OleDbCommand(updateQuery, conn))
                     {
                         cmd.Parameters.AddWithValue("@Completed", completedOrNot);
-                        cmd.Parameters.AddWithValue("@LessonId", lessonID);
+                        cmd.Parameters.AddWithValue("@LessonId", lessonId);
                         cmd.ExecuteNonQuery();
                     }
                 }
@@ -438,7 +438,7 @@ namespace bobFinal
 
             foreach (Property property in sortedProperties)
             {
-                AddNewProperty(property.getPropertyID(), property.GetType().Name , property.getXCoordinate(), property.getYCoordinate(), property.getGoldCost(), property.getLumberCost(), property.getDailyGoldGain(), property.getDailyLumberGain(), property.getDailyDiamondGain(), property.getTotalGoldGain(), property.getTotalLumberGain(), property.getActive());
+                AddNewProperty(property.GetPropertyId(), property.GetType().Name , property.GetXCoordinate(), property.GetYCoordinate(), property.GetGoldCost(), property.GetLumberCost(), property.GetDailyGoldGain(), property.GetDailyLumberGain(), property.GetDailyDiamondGain(), property.GetTotalGoldGain(), property.GetTotalLumberGain(), property.GetActive());
             }
         }
 

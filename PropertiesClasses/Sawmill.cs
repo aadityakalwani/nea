@@ -4,7 +4,7 @@
     {
         public Sawmill(int id, int x, int y) : base(x, y)
         {
-            PropertyID = id;
+            PropertyId = id;
             GoldCost = 100;
             LumberCost = 100;
             DailyGoldGain = 0;
@@ -13,7 +13,7 @@
             TotalGoldGain = 0;
             TotalLumberGain = 0;
             ImageFileName = "Images/SawmillTile.jpg";
-            active = true;
+            Active = true;
         }
     }
 }

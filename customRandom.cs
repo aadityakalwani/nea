@@ -2,9 +2,9 @@
 
 namespace bobFinal
 {
-    public class customRandom
+    public class CustomRandom
     {
-        public customRandom() { }
+        public CustomRandom() { }
 
         // Method to generate the next random number in the range [min, max)
         public int Next(int min, int max)

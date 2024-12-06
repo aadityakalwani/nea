@@ -4,7 +4,7 @@
     {
         public Farm(int id, int x, int y) : base(x, y)
         {
-            PropertyID = id;
+            PropertyId = id;
             GoldCost = 120;
             LumberCost = 100;
             DailyGoldGain = 50;
@@ -13,7 +13,7 @@
             TotalGoldGain = 0;
             TotalLumberGain = 0;
             ImageFileName = "Images/FarmTile.jpg";
-            active = true;
+            Active = true;
         }
     }
 }

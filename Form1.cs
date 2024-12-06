@@ -69,10 +69,10 @@ namespace bobFinal
             listViewMarket.Items.Clear();
             foreach (Resource resource in resources)
             {
-                if (resource.getName() != "Dollars")
+                if (resource.GetName() != "Dollars")
                 {
-                    string conversionRate = $"{Math.Round(resource.getConversionRate(), 2)} dollars";
-                    listViewMarket.Items.Add(new ListViewItem(new[] { conversionRate, resource.getName() }));
+                    string conversionRate = $"{Math.Round(resource.GetConversionRate(), 2)} dollars";
+                    listViewMarket.Items.Add(new ListViewItem(new[] { conversionRate, resource.GetName() }));
                 }
             }
         }
@@ -126,22 +126,22 @@ namespace bobFinal
             listViewPrices.Items.Clear();
             foreach (Property property in listOfAllProperties)
             {
-                string cost = $"{property.getGoldCost()} Gold, {property.getLumberCost()} Lumber";
+                string cost = $"{property.GetGoldCost()} Gold, {property.GetLumberCost()} Lumber";
                 string gain = "";
 
-                if (property.getDailyGoldGain() > 0)
+                if (property.GetDailyGoldGain() > 0)
                 {
-                    gain += $"{property.getDailyGoldGain()} Gold, ";
+                    gain += $"{property.GetDailyGoldGain()} Gold, ";
                 }
 
-                if (property.getDailyLumberGain() > 0)
+                if (property.GetDailyLumberGain() > 0)
                 {
-                    gain += $"{property.getDailyLumberGain()} Lumber, ";
+                    gain += $"{property.GetDailyLumberGain()} Lumber, ";
                 }
 
-                if (property.getDailyDiamondGain() > 0)
+                if (property.GetDailyDiamondGain() > 0)
                 {
-                    gain += $"{property.getDailyDiamondGain()} Diamond, ";
+                    gain += $"{property.GetDailyDiamondGain()} Diamond, ";
                 }
 
                 // remove the trailing comma and space (if any)
@@ -170,19 +170,19 @@ namespace bobFinal
 
             // create and place the initial sawmill
             Property sawmill = new Sawmill(currentPropertyIdIndex, initialCoordinate + 4, initialCoordinate + 4);
-            grid[sawmill.getXCoordinate(), sawmill.getYCoordinate()].Image = Image.FromFile(sawmill.getImageFileName());
-            grid[sawmill.getXCoordinate(), sawmill.getYCoordinate()].BuiltUpon = true;
+            grid[sawmill.GetXCoordinate(), sawmill.GetYCoordinate()].Image = Image.FromFile(sawmill.GetImageFileName());
+            grid[sawmill.GetXCoordinate(), sawmill.GetYCoordinate()].BuiltUpon = true;
             properties.Add(sawmill);
             currentPropertyIdIndex++;
-            DatabaseUtils.AddNewProperty(sawmill.getPropertyID(), sawmill.GetType().Name, sawmill.getXCoordinate(), sawmill.getYCoordinate(), sawmill.getGoldCost(), sawmill.getLumberCost(), sawmill.getDailyGoldGain(), sawmill.getDailyLumberGain(), sawmill.getDailyDiamondGain(), sawmill.getTotalGoldGain(), sawmill.getTotalLumberGain(), sawmill.getActive());
+            DatabaseUtils.AddNewProperty(sawmill.GetPropertyId(), sawmill.GetType().Name, sawmill.GetXCoordinate(), sawmill.GetYCoordinate(), sawmill.GetGoldCost(), sawmill.GetLumberCost(), sawmill.GetDailyGoldGain(), sawmill.GetDailyLumberGain(), sawmill.GetDailyDiamondGain(), sawmill.GetTotalGoldGain(), sawmill.GetTotalLumberGain(), sawmill.GetActive());
 
             // create and place the initial house
             Property house = new House(currentPropertyIdIndex, initialCoordinate + 5, initialCoordinate + 5);
-            grid[house.getXCoordinate(), house.getYCoordinate()].Image = Image.FromFile(house.getImageFileName());
-            grid[house.getXCoordinate(), house.getYCoordinate()].BuiltUpon = true;
+            grid[house.GetXCoordinate(), house.GetYCoordinate()].Image = Image.FromFile(house.GetImageFileName());
+            grid[house.GetXCoordinate(), house.GetYCoordinate()].BuiltUpon = true;
             properties.Add(house);
             currentPropertyIdIndex++;
-            DatabaseUtils.AddNewProperty(house.getPropertyID(), house.GetType().Name, house.getXCoordinate(), house.getYCoordinate(), house.getGoldCost(), house.getLumberCost(), house.getDailyGoldGain(), house.getDailyLumberGain(), house.getDailyDiamondGain(), house.getTotalGoldGain(), house.getTotalLumberGain(), house.getActive());
+            DatabaseUtils.AddNewProperty(house.GetPropertyId(), house.GetType().Name, house.GetXCoordinate(), house.GetYCoordinate(), house.GetGoldCost(), house.GetLumberCost(), house.GetDailyGoldGain(), house.GetDailyLumberGain(), house.GetDailyDiamondGain(), house.GetTotalGoldGain(), house.GetTotalLumberGain(), house.GetActive());
         }
 
         private void initializeNewDayTimer()
@@ -338,19 +338,19 @@ namespace bobFinal
                 }
 
                 // Check if there are enough resources to build the property
-                if (gold.getValue() >= property.getGoldCost() && lumber.getValue() >= property.getLumberCost())
+                if (gold.GetValue() >= property.GetGoldCost() && lumber.GetValue() >= property.GetLumberCost())
                 {
                     // Deduct the cost of the property from the resources
-                    gold.ChangeQuantity(-property.getGoldCost());
-                    lumber.ChangeQuantity(-property.getLumberCost());
+                    gold.ChangeQuantity(-property.GetGoldCost());
+                    lumber.ChangeQuantity(-property.GetLumberCost());
 
                     // Set the image of the selected grid position to the property image
-                    selectedTile.Image = Image.FromFile(property.getImageFileName());
+                    selectedTile.Image = Image.FromFile(property.GetImageFileName());
                     selectedTile.BuiltUpon = true;
                     properties.Add(property);
 
                     // Add the property to the database and update the DataGridView
-                    DatabaseUtils.AddNewProperty(currentPropertyIdIndex, property.GetType().Name, property.getXCoordinate(), property.getYCoordinate(), property.getGoldCost(), property.getLumberCost(), property.getDailyGoldGain(), property.getDailyLumberGain(), property.getDailyDiamondGain(), property.getTotalGoldGain(), property.getTotalLumberGain(), property.getActive());
+                    DatabaseUtils.AddNewProperty(currentPropertyIdIndex, property.GetType().Name, property.GetXCoordinate(), property.GetYCoordinate(), property.GetGoldCost(), property.GetLumberCost(), property.GetDailyGoldGain(), property.GetDailyLumberGain(), property.GetDailyDiamondGain(), property.GetTotalGoldGain(), property.GetTotalLumberGain(), property.GetActive());
                     currentPropertyIdIndex++;
                     RefreshDataGridView("Properties");
                 }
@@ -376,15 +376,15 @@ namespace bobFinal
             // calculate the total resource gain from all properties
             foreach (Property property in properties)
             {
-                totalGoldGain += property.getDailyGoldGain();
-                totalLumberGain += property.getDailyLumberGain();
-                totalDiamondGain += property.getDailyDiamondGain();
+                totalGoldGain += property.GetDailyGoldGain();
+                totalLumberGain += property.GetDailyLumberGain();
+                totalDiamondGain += property.GetDailyDiamondGain();
 
-                property.increaseTotalGoldGain(property.getDailyGoldGain());
-                property.increaseTotalLumberGain(property.getDailyLumberGain());
+                property.IncreaseTotalGoldGain(property.GetDailyGoldGain());
+                property.IncreaseTotalLumberGain(property.GetDailyLumberGain());
 
                 // update the property in the database
-                DatabaseUtils.UpdatePropertyTotalIncome(property.getXCoordinate(), property.getYCoordinate(), property.getTotalGoldGain(), property.getTotalLumberGain());
+                DatabaseUtils.UpdatePropertyTotalIncome(property.GetXCoordinate(), property.GetYCoordinate(), property.GetTotalGoldGain(), property.GetTotalLumberGain());
                 RefreshDataGridView("Properties");
             }
 
@@ -411,10 +411,10 @@ namespace bobFinal
             listViewMarket.Items.Clear();
             foreach (Resource resource in resources)
             {
-                if (resource.getName() != "Dollars")
+                if (resource.GetName() != "Dollars")
                 {
-                    string conversionRate = $"{Math.Round(resource.getConversionRate(), 2)} dollars";
-                    listViewMarket.Items.Add(new ListViewItem(new[] { conversionRate, resource.getName() }));
+                    string conversionRate = $"{Math.Round(resource.GetConversionRate(), 2)} dollars";
+                    listViewMarket.Items.Add(new ListViewItem(new[] { conversionRate, resource.GetName() }));
                 }
             }
         }
@@ -424,16 +424,16 @@ namespace bobFinal
             if (selectedResource != null)
             {
                 int amount = (int)numericUpDownAmount.Value;
-                float cost = amount * selectedResource.getConversionRate();
+                float cost = amount * selectedResource.GetConversionRate();
 
                 if (currentAction == "buy")
                 {
-                    label1.Text = $"Enter amount of {selectedResource.getName().ToLower()} to buy";
+                    label1.Text = $"Enter amount of {selectedResource.GetName().ToLower()} to buy";
                     lblCost.Text = $"Cost: {Math.Round(cost, 2)} dollars";
                 }
                 else
                 {
-                    label1.Text = $"Enter amount of {selectedResource.getName().ToLower()} to sell";
+                    label1.Text = $"Enter amount of {selectedResource.GetName().ToLower()} to sell";
                     lblCost.Text = $"Value: {Math.Round(cost, 2)} dollars";
                 }
             }
@@ -442,7 +442,7 @@ namespace bobFinal
         private void UpdateCost(string buyOrSell)
         {
             int amount = (int)numericUpDownAmount.Value;
-            float cost = amount * selectedResource.getConversionRate();
+            float cost = amount * selectedResource.GetConversionRate();
 
             if (buyOrSell == "buy")
             {
@@ -501,13 +501,13 @@ namespace bobFinal
         private void btnConfirmMarketAction_Click(object sender, EventArgs e)
         {
             int amount = (int)numericUpDownAmount.Value;
-            float cost = amount * selectedResource.getConversionRate();
+            float cost = amount * selectedResource.GetConversionRate();
 
             if (selectedResource != null)
             {
                 if (currentAction == "buy")
                 {
-                    if (dollars.getValue() >= cost)
+                    if (dollars.GetValue() >= cost)
                     {
                         dollars.ChangeQuantity(-cost);
                         selectedResource.ChangeQuantity(amount);
@@ -519,7 +519,7 @@ namespace bobFinal
                 }
                 else
                 {
-                    if (selectedResource.getValue() >= amount)
+                    if (selectedResource.GetValue() >= amount)
                     {
                         dollars.ChangeQuantity(cost);
                         selectedResource.ChangeQuantity(-amount);
@@ -562,11 +562,11 @@ namespace bobFinal
 
         private void UpgradeStorage(Resource resource, int cost)
         {
-            if (diamond.getValue() >= cost)
+            if (diamond.GetValue() >= cost)
             {
                 diamond.ChangeQuantity(-cost);
                 resource.IncreaseCapacity(100);
-                Program.ShowAutoClosingMessageBox($"{resource.getName()} storage upgraded!", "Success", 2500);
+                Program.ShowAutoClosingMessageBox($"{resource.GetName()} storage upgraded!", "Success", 2500);
             }
             else
             {
@@ -598,7 +598,7 @@ namespace bobFinal
         {
             if (selectedResource != null)
             {
-                numericUpDownAmount.Value = (decimal)(selectedResource.getValue() * percentage);
+                numericUpDownAmount.Value = (decimal)(selectedResource.GetValue() * percentage);
 
                 UpdateMarketPanel();
             }
@@ -611,13 +611,13 @@ namespace bobFinal
         private void btnSellBuilding_Click(object sender, EventArgs e)
         {
             CustomPictureBox selectedTile = grid[selectedPosition.X, selectedPosition.Y];
-            Property property = properties.Find(p => p.getXCoordinate() == selectedPosition.X && p.getYCoordinate() == selectedPosition.Y);
+            Property property = properties.Find(p => p.GetXCoordinate() == selectedPosition.X && p.GetYCoordinate() == selectedPosition.Y);
 
             if (property != null)
             {
                 // calculate the sell price (80% of the original cost)
-                int sellPriceGold = (int)(property.getGoldCost() * 0.8);
-                int sellPriceLumber = (int)(property.getLumberCost() * 0.8);
+                int sellPriceGold = (int)(property.GetGoldCost() * 0.8);
+                int sellPriceLumber = (int)(property.GetLumberCost() * 0.8);
 
                 // remove the property from the list and update the grid
                 properties.Remove(property);
@@ -629,7 +629,7 @@ namespace bobFinal
                 lumber.ChangeQuantity(sellPriceLumber);
 
                 // change the Active status of the property in the database
-                DatabaseUtils.UpdatePropertyStatus(property.getXCoordinate(), property.getYCoordinate(), false);
+                DatabaseUtils.UpdatePropertyStatus(property.GetXCoordinate(), property.GetYCoordinate(), false);
 
                 Program.ShowAutoClosingMessageBox($"{property.GetType().Name} sold for {sellPriceGold} Gold and {sellPriceLumber} Lumber!", "Success", 2500);
 
@@ -703,8 +703,8 @@ namespace bobFinal
 
         private double CalculateDistance(Property a, Property b)
         {
-            int deltaX = a.getXCoordinate() - b.getXCoordinate();
-            int deltaY = a.getYCoordinate() - b.getYCoordinate();
+            int deltaX = a.GetXCoordinate() - b.GetXCoordinate();
+            int deltaY = a.GetYCoordinate() - b.GetYCoordinate();
             return Math.Sqrt(deltaX * deltaX + deltaY * deltaY);
         }
 
@@ -716,7 +716,7 @@ namespace bobFinal
             string message = "Edges in the Minimum Spanning Tree (MST):\n";
             foreach ((Property, Property) edge in mstEdges)
             {
-                message += $"({edge.Item1.getXCoordinate()}, {edge.Item1.getYCoordinate()}) -> ({edge.Item2.getXCoordinate()}, {edge.Item2.getYCoordinate()})\n";
+                message += $"({edge.Item1.GetXCoordinate()}, {edge.Item1.GetYCoordinate()}) -> ({edge.Item2.GetXCoordinate()}, {edge.Item2.GetYCoordinate()})\n";
             }
 
             Program.ShowAutoClosingMessageBox(message, "MST Edges", 5000);

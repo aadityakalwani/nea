@@ -8,7 +8,7 @@
             YCoordinate = y;
         }
 
-        protected int PropertyID;
+        protected int PropertyId;
         protected int GoldCost;
         protected int LumberCost;
         protected int DailyGoldGain;
@@ -19,81 +19,81 @@
         protected string ImageFileName;
         protected readonly int XCoordinate;
         protected readonly int YCoordinate;
-        protected bool active;
+        protected bool Active;
 
-        public int getPropertyID()
+        public int GetPropertyId()
         {
-            return PropertyID;
+            return PropertyId;
         }
 
-        public int getGoldCost()
+        public int GetGoldCost()
         {
             return GoldCost;
         }
 
-        public int getLumberCost()
+        public int GetLumberCost()
         {
             return LumberCost;
         }
 
-        public int getDailyGoldGain()
+        public int GetDailyGoldGain()
         {
             return DailyGoldGain;
         }
 
-        public int getDailyLumberGain()
+        public int GetDailyLumberGain()
         {
             return DailyLumberGain;
         }
 
-        public int getDailyDiamondGain()
+        public int GetDailyDiamondGain()
         {
             return DailyDiamondGain;
         }
 
-        public int getTotalGoldGain()
+        public int GetTotalGoldGain()
         {
             return TotalGoldGain;
         }
 
-        public void increaseTotalGoldGain(int amount)
+        public void IncreaseTotalGoldGain(int amount)
         {
             TotalGoldGain += amount;
         }
 
-        public int getTotalLumberGain()
+        public int GetTotalLumberGain()
         {
             return TotalLumberGain;
         }
 
-        public void increaseTotalLumberGain(int amount)
+        public void IncreaseTotalLumberGain(int amount)
         {
             TotalGoldGain += amount;
         }
 
-        public string getImageFileName()
+        public string GetImageFileName()
         {
             return ImageFileName;
         }
 
-        public int getXCoordinate()
+        public int GetXCoordinate()
         {
             return XCoordinate;
         }
 
-        public int getYCoordinate()
+        public int GetYCoordinate()
         {
             return YCoordinate;
         }
 
-        public bool getActive()
+        public bool GetActive()
         {
-            return active;
+            return Active;
         }
 
-        public void setActive(bool newCondition)
+        public void SetActive(bool newCondition)
         {
-            active = newCondition;
+            Active = newCondition;
         }
 
     }

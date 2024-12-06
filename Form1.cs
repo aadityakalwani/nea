@@ -22,11 +22,11 @@ namespace bobFinal
         private Resource dollars;
         private Resource gold;
         private CustomPictureBox[,] grid;
-        private MergeSort mergeSort = new MergeSort();
-        private List<Property> listOfAllProperties = new List<Property> { new House(0, 0, 0), new Farm(0, 0, 0), new Sawmill(0, 0, 0), new Mine(0, 0, 0), new Cafe(0, 0, 0) };
+        private readonly MergeSort mergeSort = new MergeSort();
+        private readonly List<Property> listOfAllProperties = new List<Property> { new House(0, 0, 0), new Farm(0, 0, 0), new Sawmill(0, 0, 0), new Mine(0, 0, 0), new Cafe(0, 0, 0) };
         private Resource lumber;
         private Timer newDayTimer;
-        private List<Property> properties = new List<Property>();
+        private readonly List<Property> properties = new List<Property>();
         private List<Resource> resources;
         private string selectedBuilding;
         private Point selectedPosition;

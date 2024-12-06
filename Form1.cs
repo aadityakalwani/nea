@@ -32,7 +32,7 @@ namespace bobFinal
         private Point selectedPosition;
         private Resource selectedResource;
         private Lesson currentLesson;
-        private int currentPropertyIdIndex = 0;
+        private int currentPropertyIdIndex;
 
         public Form1()
         {
@@ -55,7 +55,7 @@ namespace bobFinal
             this.WindowState = FormWindowState.Maximized;
             this.FormBorderStyle = FormBorderStyle.None;
 
-            // set the size of the tables to take up the minmum width required per column
+            // set the size of the tables to take up the minimum width required per column
             dataGridViewIncomeHistory.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             dataGridViewIncomeHistory.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             dataGridViewPropertiesList.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
@@ -298,7 +298,7 @@ namespace bobFinal
             if (sender is PictureBox pictureBox)
             {
                 selectedPosition = (Point)pictureBox.Tag;
-                lblSelectedPosition.Text = $"Selected Tile: ({selectedPosition.X}, {selectedPosition.Y})";
+                lblSelectedPosition.Text = $@"Selected Tile: ({selectedPosition.X}, {selectedPosition.Y})";
             }
         }
 
@@ -365,7 +365,7 @@ namespace bobFinal
         private void btnNextDay_Click(object sender, EventArgs e)
         {
             // Disable the button and start the timer
-            lblNextDayTimer.Text = "Next day available in 2 seconds...";
+            lblNextDayTimer.Text = @"Next day available in 2 seconds...";
             btnNextDay.Enabled = false;
             newDayTimer.Start();
 
@@ -403,7 +403,7 @@ namespace bobFinal
             RefreshAllDataGridViews();
 
             currentDate = currentDate.AddDays(1);
-            lblDate.Text = "Today's Date: " + currentDate.ToString("dd MMMM yyyy");
+            lblDate.Text = @"Today's Date: " + currentDate.ToString("dd MMMM yyyy");
         }
 
         private void UpdateMarketPrices()
@@ -428,13 +428,13 @@ namespace bobFinal
 
                 if (currentAction == "buy")
                 {
-                    label1.Text = $"Enter amount of {selectedResource.GetName().ToLower()} to buy";
-                    lblCost.Text = $"Cost: {Math.Round(cost, 2)} dollars";
+                    label1.Text = $@"Enter amount of {selectedResource.GetName().ToLower()} to buy";
+                    lblCost.Text = $@"Cost: {Math.Round(cost, 2)} dollars";
                 }
                 else
                 {
-                    label1.Text = $"Enter amount of {selectedResource.GetName().ToLower()} to sell";
-                    lblCost.Text = $"Value: {Math.Round(cost, 2)} dollars";
+                    label1.Text = $@"Enter amount of {selectedResource.GetName().ToLower()} to sell";
+                    lblCost.Text = $@"Value: {Math.Round(cost, 2)} dollars";
                 }
             }
         }
@@ -446,11 +446,11 @@ namespace bobFinal
 
             if (buyOrSell == "buy")
             {
-                lblCost.Text = $"Cost: {Math.Round(cost, 2)} dollars";
+                lblCost.Text = $@"Cost: {Math.Round(cost, 2)} dollars";
             }
             else
             {
-                lblCost.Text = $"Value: {Math.Round(cost, 2)} dollars";
+                lblCost.Text = $@"Value: {Math.Round(cost, 2)} dollars";
             }
         }
 
@@ -535,29 +535,29 @@ namespace bobFinal
         private void btnCancelMarketAction_Click(object sender, EventArgs e)
         {
             selectedResource = null;
-            lblCost.Text = "Buy / Sell Panel";
-            label1.Text = "Select a resource to buy or sell";
+            lblCost.Text = @"Buy / Sell Panel";
+            label1.Text = @"Select a resource to buy or sell";
         }
 
         private void btnUpgradeLumberStorage_Click_1(object sender, EventArgs e)
         {
             UpgradeStorage(lumber, lumberStorageUpgradeCost);
             lumberStorageUpgradeCost *= 2;
-            btnUpgradeLumberStorage.Text = $"Upgrade Lumber Storage (Cost: {lumberStorageUpgradeCost} diamonds)";
+            btnUpgradeLumberStorage.Text = $@"Upgrade Lumber Storage (Cost: {lumberStorageUpgradeCost} diamonds)";
         }
 
         private void btnUpgradeGoldStorage_Click(object sender, EventArgs e)
         {
             UpgradeStorage(gold, goldStorageUpgradeCost);
             goldStorageUpgradeCost *= 2;
-            btnUpgradeGoldStorage.Text = $"Upgrade Gold Storage (Cost: {goldStorageUpgradeCost} diamonds)";
+            btnUpgradeGoldStorage.Text = $@"Upgrade Gold Storage (Cost: {goldStorageUpgradeCost} diamonds)";
         }
 
         private void btnUpgradeDiamondStorage_Click(object sender, EventArgs e)
         {
             UpgradeStorage(diamond, diamondStorageUpgradeCost);
             diamondStorageUpgradeCost *= 2;
-            btnUpgradeDiamondStorage.Text = $"Upgrade Diamond Storage (Cost: {diamondStorageUpgradeCost} diamonds)";
+            btnUpgradeDiamondStorage.Text = $@"Upgrade Diamond Storage (Cost: {diamondStorageUpgradeCost} diamonds)";
         }
 
         private void UpgradeStorage(Resource resource, int cost)
@@ -647,13 +647,13 @@ namespace bobFinal
             Application.Exit();
         }
 
-        private List<(Property, Property)> FindMst(List<Property> properties)
+        private List<(Property, Property)> FindMst(List<Property> propertiesToFindMSTOf)
         {
             // List to store the edges of the MST
             List<(Property, Property)> mstEdges = new List<(Property, Property)>();
 
             // If there are no properties, return an empty list
-            if (properties == null || properties.Count == 0)
+            if (propertiesToFindMSTOf == null || propertiesToFindMSTOf.Count == 0)
             {
                 return mstEdges;
             }
@@ -662,11 +662,11 @@ namespace bobFinal
             List<Property> visited = new List<Property>();
 
             // Start with the first property
-            Property start = properties[0];
+            Property start = propertiesToFindMSTOf[0];
             visited.Add(start);
 
             // While not all properties are visited
-            while (visited.Count < properties.Count)
+            while (visited.Count < propertiesToFindMSTOf.Count)
             {
                 double minDistance = double.MaxValue;
                 Property minProperty1 = null;
@@ -675,7 +675,7 @@ namespace bobFinal
                 // Find the smallest edge connecting a visited property to an unvisited property
                 foreach (Property property1 in visited)
                 {
-                    foreach (Property property2 in properties)
+                    foreach (Property property2 in propertiesToFindMSTOf)
                     {
                         if (!visited.Contains(property2)) // property2 is unvisited
                         {
@@ -727,8 +727,6 @@ namespace bobFinal
             // Get the selected lesson from the DataGridView
             currentLesson = DatabaseUtils.GetRandomIncompleteLesson();
 
-            List<string> choicesForThisQuestion = new List<string> { currentLesson.ChoiceOne, currentLesson.ChoiceTwo, currentLesson.ChoiceThree, currentLesson.ChoiceFour };
-
             if (currentLesson != null)
             {
                 // Display the question
@@ -777,9 +775,9 @@ namespace bobFinal
                 case "incomeHistoryTable":
                     dataGridViewIncomeHistory.DataSource = DatabaseUtils.LoadDatabaseData(tableName);
                     // rename the column titles to make more sense to the user
-                    dataGridViewIncomeHistory.Columns[0].HeaderText = "Date";
-                    dataGridViewIncomeHistory.Columns[1].HeaderText = "Gold Income";
-                    dataGridViewIncomeHistory.Columns[2].HeaderText = "Lumber Income";
+                    dataGridViewIncomeHistory.Columns[0].HeaderText = @"Date";
+                    dataGridViewIncomeHistory.Columns[1].HeaderText = @"Gold Income";
+                    dataGridViewIncomeHistory.Columns[2].HeaderText = @"Lumber Income";
                     break;
             }
         }
@@ -825,11 +823,11 @@ namespace bobFinal
                     currentLesson.Completed = true;
                     diamond.ChangeQuantity(5);
 
-                    lblQuestion.Text = "Click 'Perform Lesson' to load an incomplete lesson\nThe question will then show up in this box";
-                    radioButton1.Text = "Choice 1 will show here";
-                    radioButton2.Text = "Choice 2 will show here";
-                    radioButton3.Text = "Choice 3 will show here";
-                    radioButton4.Text = "Choice 4 will show here";
+                    lblQuestion.Text = @"Click 'Perform Lesson' to load an incomplete lesson\nThe question will then show up in this box";
+                    radioButton1.Text = @"Choice 1 will show here";
+                    radioButton2.Text = @"Choice 2 will show here";
+                    radioButton3.Text = @"Choice 3 will show here";
+                    radioButton4.Text = @"Choice 4 will show here";
 
                     radioButton1.Checked = false;
                     radioButton2.Checked = false;

@@ -4,8 +4,6 @@ namespace bobFinal
 {
     public class CustomRandom
     {
-        public CustomRandom() { }
-
         // Method to generate the next random number in the range [min, max)
         public int Next(int min, int max)
         {

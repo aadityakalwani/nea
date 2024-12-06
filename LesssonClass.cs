@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace bobFinal
+﻿namespace bobFinal
 {
     public class Lesson
     {

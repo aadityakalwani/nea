@@ -50,8 +50,8 @@ namespace bobFinal
             numericUpDownAmount.Maximum = 9999999;
 
             // open in full screen
-            this.WindowState = FormWindowState.Maximized;
-            this.FormBorderStyle = FormBorderStyle.None;
+            WindowState = FormWindowState.Maximized;
+            FormBorderStyle = FormBorderStyle.None;
 
             // set the size of the tables to take up the minimum width required per column
             dataGridViewIncomeHistory.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;

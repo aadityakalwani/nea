@@ -4,15 +4,15 @@ using System.Drawing;
 using System.Windows.Forms;
 using bobFinal.PropertiesClasses;
 
-// ReSharper disable All
+
 
 namespace bobFinal
 {
     public partial class Form1 : Form
     {
-        private const int gridSize = 15;
-        private const int tileSize = 40;
-        private const int newDayInterval = 2000;
+        private const int GridSize = 15;
+        private const int TileSize = 40;
+        private const int NewDayInterval = 2000;
         private string currentAction;
         private DateTime currentDate = new DateTime(2024, 1, 1);
         private Resource diamond;
@@ -38,13 +38,13 @@ namespace bobFinal
         {
             InitializeComponent();
             DatabaseUtils.InitializeDatabase();
-            initializeGrid();
-            initializeLoot();
-            initializeStartingProperties();
-            initializePrices();
-            initializeMarketPrices();
-            initializeNewDayTimer();
-            initializeLessons();
+            InitializeGrid();
+            InitializeLoot();
+            InitializeStartingProperties();
+            InitializePrices();
+            InitializeMarketPrices();
+            InitializeNewDayTimer();
+            InitializeLessons();
 
             // bind the DataTable to a DataGridViews to display the data
             RefreshAllDataGridViews();
@@ -64,7 +64,7 @@ namespace bobFinal
             dataGridViewLessons.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
         }
 
-        private void initializeMarketPrices()
+        private void InitializeMarketPrices()
         {
             listViewMarket.Items.Clear();
             foreach (Resource resource in resources)
@@ -77,26 +77,26 @@ namespace bobFinal
             }
         }
 
-        private void initializeGrid()
+        private void InitializeGrid()
         {
             // create a new grid of PictureBox objects
-            grid = new CustomPictureBox[gridSize, gridSize];
-            int panelWidth = gridSize * tileSize;
-            int panelHeight = gridSize * tileSize;
+            grid = new CustomPictureBox[GridSize, GridSize];
+            int panelWidth = GridSize * TileSize;
+            int panelHeight = GridSize * TileSize;
 
             // set the size of the grid panel
             gridPanel.Size = new Size(panelWidth, panelHeight);
 
-            for (int i = 0; i < gridSize; i++)
+            for (int i = 0; i < GridSize; i++)
             {
-                for (int j = 0; j < gridSize; j++)
+                for (int j = 0; j < GridSize; j++)
                 {
                     // initialize each PictureBox in the grid
                     grid[i, j] = new CustomPictureBox
                     {
-                        Width = tileSize,
-                        Height = tileSize,
-                        Location = new Point(i * tileSize, j * tileSize),
+                        Width = TileSize,
+                        Height = TileSize,
+                        Location = new Point(i * TileSize, j * TileSize),
                         BorderStyle = BorderStyle.FixedSingle,
                         Image = Image.FromFile("Images/empty.jpg"),
                         SizeMode = PictureBoxSizeMode.StretchImage,
@@ -111,7 +111,7 @@ namespace bobFinal
             }
         }
 
-        private void initializeLoot()
+        private void InitializeLoot()
         {
             dollars = new Resource("Dollars", 100, 10000, progressBarDollars, textBoxDollarsAmount, 1);
             lumber = new Resource("Lumber", 100, 200, progressBarLumber, textBoxLumberAmount, 3);
@@ -121,7 +121,7 @@ namespace bobFinal
             resources = new List<Resource> { dollars, lumber, gold, diamond };
         }
 
-        private void initializePrices()
+        private void InitializePrices()
         {
             listViewPrices.Items.Clear();
             foreach (Property property in listOfAllProperties)
@@ -154,7 +154,7 @@ namespace bobFinal
             }
         }
 
-        private void initializeStartingProperties()
+        private void InitializeStartingProperties()
         {
             int initialCoordinate = 1;
 
@@ -185,15 +185,15 @@ namespace bobFinal
             DatabaseUtils.AddNewProperty(house.GetPropertyId(), house.GetType().Name, house.GetXCoordinate(), house.GetYCoordinate(), house.GetGoldCost(), house.GetLumberCost(), house.GetDailyGoldGain(), house.GetDailyLumberGain(), house.GetDailyDiamondGain(), house.GetTotalGoldGain(), house.GetTotalLumberGain(), house.GetActive());
         }
 
-        private void initializeNewDayTimer()
+        private void InitializeNewDayTimer()
         {
             lblNextDayTimer.Text = "";
             newDayTimer = new Timer();
-            newDayTimer.Interval = newDayInterval; // set the interval to 2 seconds
+            newDayTimer.Interval = NewDayInterval; // set the interval to 2 seconds
             newDayTimer.Tick += newDayTimer_Tick;
         }
 
-        private void initializeLessons()
+        private void InitializeLessons()
         {
             List<Lesson> lessons = new List<Lesson>
             {
@@ -395,7 +395,7 @@ namespace bobFinal
 
             // update market prices
             Market.UpdateConversionRates(resources);
-            updateMarketPrices();
+            UpdateMarketPrices();
             UpdateMarketPanel();
 
             // update databases and their dataGridViews
@@ -406,7 +406,7 @@ namespace bobFinal
             lblDate.Text = "Today's Date: " + currentDate.ToString("dd MMMM yyyy");
         }
 
-        private void updateMarketPrices()
+        private void UpdateMarketPrices()
         {
             listViewMarket.Items.Clear();
             foreach (Resource resource in resources)
@@ -456,15 +456,15 @@ namespace bobFinal
 
         private void btnBuy_Click(object sender, EventArgs e)
         {
-            performMarketAction("buy");
+            PerformMarketAction("buy");
         }
 
         private void btnSell_Click(object sender, EventArgs e)
         {
-            performMarketAction("sell");
+            PerformMarketAction("sell");
         }
 
-        private void performMarketAction(string buyOrSell)
+        private void PerformMarketAction(string buyOrSell)
         {
             currentAction = buyOrSell;
 
@@ -647,7 +647,7 @@ namespace bobFinal
             Application.Exit();
         }
 
-        private List<(Property, Property)> FindMST(List<Property> properties)
+        private List<(Property, Property)> FindMst(List<Property> properties)
         {
             // List to store the edges of the MST
             List<(Property, Property)> mstEdges = new List<(Property, Property)>();
@@ -710,7 +710,7 @@ namespace bobFinal
 
         private void button1_Click(object sender, EventArgs e)
         {
-            List<(Property, Property)> mstEdges = FindMST(properties);
+            List<(Property, Property)> mstEdges = FindMst(properties);
 
             // display the edges of the MST in a message box
             string message = "Edges in the Minimum Spanning Tree (MST):\n";

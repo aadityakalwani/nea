@@ -4,8 +4,6 @@ using System.Drawing;
 using System.Windows.Forms;
 using bobFinal.PropertiesClasses;
 
-
-
 namespace bobFinal
 {
     public partial class Form1 : Form
@@ -444,13 +442,14 @@ namespace bobFinal
             int amount = (int)numericUpDownAmount.Value;
             float cost = amount * selectedResource.GetConversionRate();
 
-            if (buyOrSell == "buy")
+            switch (buyOrSell)
             {
-                lblCost.Text = $@"Cost: {Math.Round(cost, 2)} dollars";
-            }
-            else
-            {
-                lblCost.Text = $@"Value: {Math.Round(cost, 2)} dollars";
+                case "buy":
+                    lblCost.Text = $@"Cost: {Math.Round(cost, 2)} dollars";
+                    break;
+                default:
+                    lblCost.Text = $@"Value: {Math.Round(cost, 2)} dollars";
+                    break;
             }
         }
 

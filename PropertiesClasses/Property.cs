@@ -68,7 +68,7 @@
 
         public void IncreaseTotalLumberGain(int amount)
         {
-            TotalGoldGain += amount;
+            TotalLumberGain += amount;
         }
 
         public string GetImageFileName()

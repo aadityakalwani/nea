@@ -35,6 +35,7 @@ namespace bobFinal
         public Form1()
         {
             InitializeComponent();
+            
             DatabaseUtils.InitializeDatabase();
             InitializeGrid();
             InitializeLoot();

@@ -346,7 +346,7 @@ namespace bobFinal
             }
         }
 
-        public static void AddNewProperty(int propertyId, string propertyType, int xCoordinate, int yCoordinate, int goldCost, int lumberCost, int dailyGoldGain, int dailyLumberGain, int dailyDiamondGain, int totalGoldGain, int totalLumberGain, bool propertyActive)
+        public static void AddNewProperty(int propertyId, string propertyType, int xCoordinate, int yCoordinate, float goldCost, float lumberCost, float dailyGoldGain, float dailyLumberGain, float dailyDiamondGain, float totalGoldGain, float totalLumberGain, bool propertyActive)
         {
             string coordinate = $"({xCoordinate},{yCoordinate})";
             const string insertQuery = "INSERT INTO Properties (Id, [Property Type], Coordinate, Active, [Gold Cost], [Lumber Cost], [Daily Gold Gain], [Daily Lumber Gain], [Daily Diamond Gain], [Total Gold Gain], [Total Lumber Gain]) " +
@@ -440,7 +440,7 @@ namespace bobFinal
             }
         }
 
-        public static void UpdatePropertyTotalIncome(int propertyXCoordinate, int propertyYCoordinate, int propertyTotalGoldGain, int propertyTotalLumberGain)
+        public static void UpdatePropertyTotalIncome(int propertyXCoordinate, int propertyYCoordinate, float propertyTotalGoldGain, float propertyTotalLumberGain)
         {
             string coordinateOfProperty = $"({propertyXCoordinate},{propertyYCoordinate})";
             const string updateQuery = "UPDATE Properties SET [Total Gold Gain] = @TotalGoldGain, [Total Lumber Gain] = @TotalLumberGain WHERE Coordinate = @coordinateOfProperty";
@@ -461,6 +461,32 @@ namespace bobFinal
                 catch (Exception ex)
                 {
                     Program.ShowAutoClosingMessageBox($@"Error updating property status: {ex.Message}", @"Database Error", 2000);
+                }
+            }
+        }
+
+        public static void UpdatePropertyIncomes(int getXCoordinate, int getYCoordinate, float getDailyGoldGain, float getDailyLumberGain, float getDailyDiamondGain)
+        {
+            string coordinateOfProperty = $"({getXCoordinate},{getYCoordinate})";
+            const string updateQuery = "UPDATE Properties SET [Daily Gold Gain] = @DailyGoldGain, [Daily Lumber Gain] = @DailyLumberGain, [Daily Diamond Gain] = @DailyDiamondGain WHERE Coordinate = @Coordinate";
+
+            using (OleDbConnection conn = new OleDbConnection(ConnectionString))
+            {
+                try
+                {
+                    conn.Open();
+                    using (OleDbCommand cmd = new OleDbCommand(updateQuery, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@DailyGoldGain", getDailyGoldGain);
+                        cmd.Parameters.AddWithValue("@DailyLumberGain", getDailyLumberGain);
+                        cmd.Parameters.AddWithValue("@DailyDiamondGain", getDailyDiamondGain);
+                        cmd.Parameters.AddWithValue("@Coordinate", coordinateOfProperty);
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Program.ShowAutoClosingMessageBox($@"Error updating property costs and incomes: {ex.Message}", @"Database Error", 2000);
                 }
             }
         }

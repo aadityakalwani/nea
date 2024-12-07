@@ -1,24 +1,26 @@
-﻿namespace bobFinal.PropertiesClasses
+﻿using System.Windows.Forms;
+
+namespace bobFinal.PropertiesClasses
 {
     public abstract class Property
     {
         protected Property(int x, int y)
         {
-            XCoordinate = x;
-            YCoordinate = y;
+            xCoordinate = x;
+            yCoordinate = y;
         }
 
         protected int PropertyId;
-        protected int GoldCost;
-        protected int LumberCost;
-        protected int DailyGoldGain;
-        protected int DailyLumberGain;
-        protected int DailyDiamondGain;
-        protected int TotalGoldGain;
-        protected int TotalLumberGain;
+        protected float GoldCost;
+        protected float LumberCost;
+        protected float DailyGoldGain;
+        protected float DailyLumberGain;
+        protected float DailyDiamondGain;
+        protected float TotalGoldGain;
+        protected float TotalLumberGain;
         protected string ImageFileName;
-        protected readonly int XCoordinate;
-        protected readonly int YCoordinate;
+        private readonly int xCoordinate;
+        private readonly int yCoordinate;
         protected bool Active;
 
         public int GetPropertyId()
@@ -26,47 +28,72 @@
             return PropertyId;
         }
 
-        public int GetGoldCost()
+        public float GetGoldCost()
         {
             return GoldCost;
         }
 
-        public int GetLumberCost()
+        public float GetLumberCost()
         {
             return LumberCost;
         }
 
-        public int GetDailyGoldGain()
+        public void SetGoldCost(float newGoldCost)
+        {
+            GoldCost = newGoldCost;
+        }
+
+        public void SetLumberCost(float newLumberCost)
+        {
+            LumberCost = newLumberCost;
+        }
+
+        public float GetDailyGoldGain()
         {
             return DailyGoldGain;
         }
 
-        public int GetDailyLumberGain()
+        public float GetDailyLumberGain()
         {
             return DailyLumberGain;
         }
 
-        public int GetDailyDiamondGain()
+        public float GetDailyDiamondGain()
         {
             return DailyDiamondGain;
         }
 
-        public int GetTotalGoldGain()
+        public void SetDailyGoldGain(float newDailyGoldAmount)
+        {
+            DailyGoldGain = newDailyGoldAmount;
+        }
+
+        public void SetDailyLumberGain(float newDailyLumberAmount)
+        {
+            DailyLumberGain = newDailyLumberAmount;
+        }
+
+        public void SetDailyDiamondGain(float newDailyDiamondAmount)
+        {
+            DailyDiamondGain = newDailyDiamondAmount;
+        }
+
+        public float GetTotalGoldGain()
         {
             return TotalGoldGain;
         }
 
-        public void IncreaseTotalGoldGain(int amount)
+        public void IncreaseTotalGoldGain(float amount)
         {
             TotalGoldGain += amount;
         }
 
-        public int GetTotalLumberGain()
+        public float GetTotalLumberGain()
         {
             return TotalLumberGain;
         }
 
-        public void IncreaseTotalLumberGain(int amount)
+        public void IncreaseTotalLumberGain(float amount)
         {
             TotalLumberGain += amount;
         }
@@ -78,12 +105,12 @@
 
         public int GetXCoordinate()
         {
-            return XCoordinate;
+            return xCoordinate;
         }
 
         public int GetYCoordinate()
         {
-            return YCoordinate;
+            return yCoordinate;
         }
 
         public bool GetActive()
@@ -95,6 +122,5 @@
         {
             Active = newCondition;
         }
-
     }
 }

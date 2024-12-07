@@ -46,8 +46,8 @@ namespace bobFinal
             // Copy both halves into a temporary array
             while (left <= middle && right <= rightEnd)
             {
-                int propertyOneValue = 0;
-                int propertyTwoValue = 0;
+                float propertyOneValue = 0;
+                float propertyTwoValue = 0;
 
                 switch (sortByWhat)
                 {

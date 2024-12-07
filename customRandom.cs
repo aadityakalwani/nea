@@ -5,16 +5,15 @@ namespace bobFinal
     public class CustomRandom
     {
         // Method to generate the next random number in the range [min, max)
-        public static int Next(int min, int max)
+        public float Next(float min, float max)
         {
-            // use the current time's ticks and some operations
-            // 1 tick = 1 x 10^-7 seconds
-            long currentTicks = DateTime.Now.Ticks;
+            // use the current time's milliseconds and some operations to generate a random number
+            float currentTicks = DateTime.Now.Millisecond;
 
             // increase variability and ensure the result is within the range
-            long value = currentTicks % (max - min) + min;
+            float value = currentTicks % (max - min) + min;
 
-            return (int)value;
+            return value;
         }
     }
 }

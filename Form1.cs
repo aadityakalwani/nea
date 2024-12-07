@@ -31,6 +31,7 @@ namespace bobFinal
         private Resource selectedResource;
         private Lesson currentLesson;
         private int currentPropertyIdIndex;
+        private int numberOfDaysPassed = 0;
 
         public Form1()
         {
@@ -40,7 +41,7 @@ namespace bobFinal
             InitializeGrid();
             InitializeLoot();
             InitializeStartingProperties();
-            InitializePrices();
+            InitializePropertyPrices();
             InitializeMarketPrices();
             InitializeNewDayTimer();
             InitializeLessons();
@@ -55,7 +56,7 @@ namespace bobFinal
             FormBorderStyle = FormBorderStyle.None;
 
             // set the size of the tables to take up the minimum width required per column
-            dataGridViewIncomeHistory.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            dataGridViewIncomeHistory.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridViewIncomeHistory.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             dataGridViewPropertiesList.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridViewPropertiesList.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
@@ -120,27 +121,27 @@ namespace bobFinal
             resources = new List<Resource> { dollars, lumber, gold, diamond };
         }
 
-        private void InitializePrices()
+        private void InitializePropertyPrices()
         {
             listViewPrices.Items.Clear();
             foreach (Property property in listOfAllProperties)
             {
-                string cost = $"{property.GetGoldCost()} Gold, {property.GetLumberCost()} Lumber";
+                string cost = $"{Math.Round(property.GetGoldCost(), 1)} Gold, {Math.Round(property.GetLumberCost(), 1)} Lumber";
                 string gain = "";
 
                 if (property.GetDailyGoldGain() > 0)
                 {
-                    gain += $"{property.GetDailyGoldGain()} Gold, ";
+                    gain += $"{Math.Round(property.GetDailyGoldGain(), 1)} Gold, ";
                 }
 
                 if (property.GetDailyLumberGain() > 0)
                 {
-                    gain += $"{property.GetDailyLumberGain()} Lumber, ";
+                    gain += $"{Math.Round(property.GetDailyLumberGain(), 1)} Lumber, ";
                 }
 
                 if (property.GetDailyDiamondGain() > 0)
                 {
-                    gain += $"{property.GetDailyDiamondGain()} Diamond, ";
+                    gain += $"{Math.Round(property.GetDailyDiamondGain(), 1)} Diamond, ";
                 }
 
                 // remove the trailing comma and space (if any)
@@ -363,14 +364,15 @@ namespace bobFinal
 
         private void btnNextDay_Click(object sender, EventArgs e)
         {
+            numberOfDaysPassed++;
             // Disable the button and start the timer
             lblNextDayTimer.Text = @"Next day available in 2 seconds...";
             btnNextDay.Enabled = false;
             newDayTimer.Start();
 
-            int totalGoldGain = 0;
-            int totalLumberGain = 0;
-            int totalDiamondGain = 0;
+            float totalGoldGain = 0;
+            float totalLumberGain = 0;
+            float totalDiamondGain = 0;
 
             // calculate the total resource gain from all properties
             foreach (Property property in properties)
@@ -397,12 +399,64 @@ namespace bobFinal
             UpdateMarketPrices();
             UpdateMarketPanel();
 
+            // update cost of building properties
+            RefreshPropertyIncomes();
+            InitializePropertyPrices();
+
             // update databases and their dataGridViews
             DatabaseUtils.AddNewDayOfIncome(currentDate, totalGoldGain, totalLumberGain, totalDiamondGain, properties.Count);
             RefreshAllDataGridViews();
 
             currentDate = currentDate.AddDays(1);
             lblDate.Text = @"Today's Date: " + currentDate.ToString("dd MMMM yyyy");
+        }
+
+        private void RefreshPropertyIncomes()
+        {
+            CustomRandom CustomRandom = new CustomRandom();
+
+            // for the box that shows incomes and prices of properties
+            foreach (Property property in listOfAllProperties)
+            {
+                // fluctuate the cost by upto +/- 10%
+                // as this random number is based upon the time in milliseconds, it will be different each time
+
+                float fluctuation = CustomRandom.Next(-10, 10);
+
+                float tempGoldGain = property.GetDailyGoldGain() + property.GetDailyGoldGain() * fluctuation / 100;
+                fluctuation = CustomRandom.Next(-10, 10);
+                float tempLumberGain = property.GetDailyLumberGain() + property.GetDailyLumberGain() * fluctuation / 100;
+                fluctuation = CustomRandom.Next(-10, 10);
+                float tempDiamondGain = property.GetDailyDiamondGain() + property.GetDailyDiamondGain() * fluctuation / 100;
+
+                property.SetDailyGoldGain(tempGoldGain);
+                property.SetDailyLumberGain(tempLumberGain);
+                property.SetDailyDiamondGain(tempDiamondGain);
+            }
+
+            // for the properties in existence right now
+            foreach (Property property in properties)
+            {
+                // fluctuate the cost by upto +/- 10%
+                // as this random number is based upon the time (in 'ticks'), it will be different each time
+                float fluctuation = CustomRandom.Next(-10, 10);
+
+                float tempGoldGain = property.GetDailyGoldGain() + property.GetDailyGoldGain() * fluctuation / 100;
+                fluctuation = CustomRandom.Next(-10, 10);
+                float tempLumberGain = property.GetDailyLumberGain() + property.GetDailyLumberGain() * fluctuation / 100;
+                fluctuation = CustomRandom.Next(-10, 10);
+                float tempDiamondGain = property.GetDailyDiamondGain() + property.GetDailyDiamondGain() * fluctuation / 100;
+
+                property.SetDailyGoldGain(tempGoldGain);
+                property.SetDailyLumberGain(tempLumberGain);
+                property.SetDailyDiamondGain(tempDiamondGain);
+            }
+
+            // update the database with the new costs and incomes for current properties
+            foreach (Property property in properties)
+            {
+                DatabaseUtils.UpdatePropertyIncomes(property.GetXCoordinate(), property.GetYCoordinate(), property.GetDailyGoldGain(), property.GetDailyLumberGain(), property.GetDailyDiamondGain());
+            }
         }
 
         private void UpdateMarketPrices()
@@ -647,13 +701,13 @@ namespace bobFinal
             Application.Exit();
         }
 
-        private List<(Property, Property)> FindMst(List<Property> propertiesToFindMSTOf)
+        private List<(Property, Property)> FindMst(List<Property> propertiesToFindMstOf)
         {
             // List to store the edges of the MST
             List<(Property, Property)> mstEdges = new List<(Property, Property)>();
 
             // If there are no properties, return an empty list
-            if (propertiesToFindMSTOf == null || propertiesToFindMSTOf.Count == 0)
+            if (propertiesToFindMstOf == null || propertiesToFindMstOf.Count == 0)
             {
                 return mstEdges;
             }
@@ -662,11 +716,11 @@ namespace bobFinal
             List<Property> visited = new List<Property>();
 
             // Start with the first property
-            Property start = propertiesToFindMSTOf[0];
+            Property start = propertiesToFindMstOf[0];
             visited.Add(start);
 
             // While not all properties are visited
-            while (visited.Count < propertiesToFindMSTOf.Count)
+            while (visited.Count < propertiesToFindMstOf.Count)
             {
                 double minDistance = double.MaxValue;
                 Property minProperty1 = null;
@@ -675,7 +729,7 @@ namespace bobFinal
                 // Find the smallest edge connecting a visited property to an unvisited property
                 foreach (Property property1 in visited)
                 {
-                    foreach (Property property2 in propertiesToFindMSTOf)
+                    foreach (Property property2 in propertiesToFindMstOf)
                     {
                         if (!visited.Contains(property2)) // property2 is unvisited
                         {
@@ -774,10 +828,12 @@ namespace bobFinal
                     break;
                 case "incomeHistoryTable":
                     dataGridViewIncomeHistory.DataSource = DatabaseUtils.LoadDatabaseData(tableName);
+
                     // rename the column titles to make more sense to the user
                     dataGridViewIncomeHistory.Columns[0].HeaderText = @"Date";
                     dataGridViewIncomeHistory.Columns[1].HeaderText = @"Gold Income";
                     dataGridViewIncomeHistory.Columns[2].HeaderText = @"Lumber Income";
+                    dataGridViewIncomeHistory.Columns[3].HeaderText = @"Diamond Income";
                     break;
             }
         }

@@ -11,7 +11,7 @@ namespace bobFinal
             foreach (Resource resource in resources)
             {
                 // fluctuate the conversion rate by upto +/- 10%
-                int fluctuation = CustomRandom.Next(-10, 11);
+                float fluctuation = CustomRandom.Next(-10, 11);
                 resource.ConversionRate += resource.ConversionRate * fluctuation / 100;
 
                 // ensure the conversion rate is at least 1

@@ -2,16 +2,14 @@ current issues:
 
 immediate future ideas:
 
-    - create a path tile to connect properties to the town hall
-        - if a property is not connected to the town hall then it provides half of the income (bool connected = false)
-    - allow the Apply Prims to auto-put-in path tiles
-
-    - fluctuating prices for the cost of building properties
-    - fluctuating income for each property
-
 future ideas:
+
     - more resources to buy and sell
         - quarry to mine stone
+
+    - create a path tile to connect properties to the town hall
+        - if a property is not connected to the town hall then it provides half of the income (bool connected = false)
+        - allow the Apply Prims to auto-put-in path tiles
     - idea of villagers or visitors to the town that effect the market prices
     - storage buildings like in COC to store resources
     - weather that affects the market prices / village visitors

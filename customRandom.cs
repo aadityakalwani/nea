@@ -5,7 +5,7 @@ namespace bobFinal
     public class CustomRandom
     {
         // Method to generate the next random number in the range [min, max)
-        public int Next(int min, int max)
+        public static int Next(int min, int max)
         {
             // use the current time's ticks and some operations
             // 1 tick = 1 x 10^-7 seconds

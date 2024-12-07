@@ -26,14 +26,12 @@ namespace bobFinal
             try
             {
                 // Check if the database exists
-                if (!File.Exists(Database))
-                {
-                    // Create a catalog object
-                    Catalog cat = new Catalog();
+                if (File.Exists(Database)) return;
+                // Create a catalog object
+                Catalog cat = new Catalog();
 
-                    // Create the database
-                    cat.Create(ConnectionString);
-                }
+                // Create the database
+                cat.Create(ConnectionString);
             }
             catch (Exception ex)
             {
@@ -58,7 +56,7 @@ namespace bobFinal
 
         public static DataTable LoadLessonStatus()
         {
-            string query = "SELECT LessonId, Completed, Title, Question FROM lessonsTable";
+            const string query = "SELECT LessonId, Completed, Title, Question FROM lessonsTable";
             return ExecuteQuery(query);
         }
 
@@ -140,7 +138,7 @@ namespace bobFinal
 
         private static void CreateTables()
         {
-            string createPropertiesTable = @"
+            const string createPropertiesTable = @"
             CREATE TABLE Properties (
                 Id INTEGER PRIMARY KEY,
                 [Property Type] TEXT NOT NULL,
@@ -156,7 +154,7 @@ namespace bobFinal
             );";
             ExecuteSqlNonQuery(createPropertiesTable);
 
-            string createIncomeHistoryTable = @"
+            const string createIncomeHistoryTable = @"
             CREATE TABLE incomeHistoryTable (
                 [Date] DATETIME NOT NULL PRIMARY KEY,
                 Gold INTEGER NOT NULL,
@@ -167,7 +165,7 @@ namespace bobFinal
 
             ExecuteSqlNonQuery(createIncomeHistoryTable);
 
-            string createLessonsTable = @"
+            const string createLessonsTable = @"
             CREATE TABLE lessonsTable (
                 LessonId AUTOINCREMENT PRIMARY KEY,
                 Topic TEXT NOT NULL,
@@ -183,7 +181,7 @@ namespace bobFinal
             );";
             ExecuteSqlNonQuery(createLessonsTable);
 
-            string createChoicesTable = @"
+            const string createChoicesTable = @"
             CREATE TABLE Choices (
                 ChoiceId AUTOINCREMENT PRIMARY KEY,
                 LessonId INTEGER NOT NULL,
@@ -192,7 +190,7 @@ namespace bobFinal
             );";
             ExecuteSqlNonQuery(createChoicesTable);
 
-            string createPlayerProgressTable = @"
+            const string createPlayerProgressTable = @"
             CREATE TABLE PlayerProgress (
                 PlayerId AUTOINCREMENT PRIMARY KEY,
                 LessonId INTEGER NOT NULL,
@@ -204,8 +202,8 @@ namespace bobFinal
 
         public static Lesson GetRandomIncompleteLesson()
         {
-            string query = "SELECT TOP 1 LessonId, Topic, Title, Question, CorrectAnswerIndex, Reward, ChoiceOne, ChoiceTwo, ChoiceThree, ChoiceFour " +
-                           "FROM lessonsTable WHERE Completed = False ORDER BY RND(-Timer() * LessonId)";
+            const string query = "SELECT TOP 1 LessonId, Topic, Title, Question, CorrectAnswerIndex, Reward, ChoiceOne, ChoiceTwo, ChoiceThree, ChoiceFour " +
+                                 "FROM lessonsTable WHERE Completed = False ORDER BY RND(-Timer() * LessonId)";
 
             Lesson lesson = new Lesson();
 
@@ -246,7 +244,7 @@ namespace bobFinal
 
         public static void MarkLessonComplete(int lessonId)
         {
-            string insertQuery = "INSERT INTO PlayerProgress (LessonId, CompletionDate) VALUES (@LessonId, @CompletionDate)";
+            const string insertQuery = "INSERT INTO PlayerProgress (LessonId, CompletionDate) VALUES (@LessonId, @CompletionDate)";
 
             using (OleDbConnection conn = new OleDbConnection(ConnectionString))
             {
@@ -282,7 +280,7 @@ namespace bobFinal
 
         private static int InsertLesson(Lesson lesson)
         {
-            string insertLessonQuery = @"
+            const string insertLessonQuery = @"
                 INSERT INTO lessonsTable (Topic, Title, Question, CorrectAnswerIndex, Reward, ChoiceOne, ChoiceTwo, ChoiceThree, ChoiceFour, Completed) 
                 VALUES (@Topic, @Title, @Question, @CorrectAnswerIndex, @Reward, @ChoiceOne, @ChoiceTwo, @ChoiceThree, @ChoiceFour, False)";
 
@@ -306,7 +304,7 @@ namespace bobFinal
 
         private static void InsertChoices(int lessonId, Lesson lesson)
         {
-            string insertChoiceQuery = "INSERT INTO Choices (LessonId, ChoiceText) VALUES (@LessonId, @ChoiceText)";
+            const string insertChoiceQuery = "INSERT INTO Choices (LessonId, ChoiceText) VALUES (@LessonId, @ChoiceText)";
             using (OleDbConnection conn = new OleDbConnection(ConnectionString))
             {
                 conn.Open();
@@ -322,8 +320,8 @@ namespace bobFinal
 
         public static void AddNewDayOfIncome(DateTime dateInput, float goldInput, float lumberInput, float diamondsInput, int numberOfPropertiesInput)
         {
-            string insertQuery = "INSERT INTO incomeHistoryTable ([Date], Gold, Lumber, Diamonds, [Number Of Properties]) " +
-                                 "VALUES (@DateInput, @GoldInput, @LumberInput, @DiamondsInput, @NumberOfPropertiesInput)";
+            const string insertQuery = "INSERT INTO incomeHistoryTable ([Date], Gold, Lumber, Diamonds, [Number Of Properties]) " +
+                                       "VALUES (@DateInput, @GoldInput, @LumberInput, @DiamondsInput, @NumberOfPropertiesInput)";
 
             using (OleDbConnection command = new OleDbConnection(ConnectionString))
             {
@@ -351,8 +349,8 @@ namespace bobFinal
         public static void AddNewProperty(int propertyId, string propertyType, int xCoordinate, int yCoordinate, int goldCost, int lumberCost, int dailyGoldGain, int dailyLumberGain, int dailyDiamondGain, int totalGoldGain, int totalLumberGain, bool propertyActive)
         {
             string coordinate = $"({xCoordinate},{yCoordinate})";
-            string insertQuery = "INSERT INTO Properties (Id, [Property Type], Coordinate, Active, [Gold Cost], [Lumber Cost], [Daily Gold Gain], [Daily Lumber Gain], [Daily Diamond Gain], [Total Gold Gain], [Total Lumber Gain]) " +
-                                 "VALUES (@propertyID, @PropertyType, @coordinate, @Active, @GoldCost, @LumberCost, @DailyGoldGain, @DailyLumberGain, @DailyDiamondGain, @TotalGoldGain, @TotalLumberGain)";
+            const string insertQuery = "INSERT INTO Properties (Id, [Property Type], Coordinate, Active, [Gold Cost], [Lumber Cost], [Daily Gold Gain], [Daily Lumber Gain], [Daily Diamond Gain], [Total Gold Gain], [Total Lumber Gain]) " +
+                                       "VALUES (@propertyID, @PropertyType, @coordinate, @Active, @GoldCost, @LumberCost, @DailyGoldGain, @DailyLumberGain, @DailyDiamondGain, @TotalGoldGain, @TotalLumberGain)";
 
             using (OleDbConnection conn = new OleDbConnection(ConnectionString))
             {
@@ -386,7 +384,7 @@ namespace bobFinal
         public static void UpdatePropertyStatus(int xCoord, int yCoord, bool activeOrNot)
         {
             string coordinateOfProperty = $"({xCoord},{yCoord})";
-            string updateQuery = "UPDATE Properties SET Active = @Active WHERE Coordinate = @Coordinate";
+            const string updateQuery = "UPDATE Properties SET Active = @Active WHERE Coordinate = @Coordinate";
 
             using (OleDbConnection conn = new OleDbConnection(ConnectionString))
             {
@@ -409,7 +407,7 @@ namespace bobFinal
 
         public static void UpdateLessonStatus(int lessonId, bool completedOrNot)
         {
-            string updateQuery = "UPDATE lessonsTable SET Completed = @Completed WHERE LessonId = @LessonId";
+            const string updateQuery = "UPDATE lessonsTable SET Completed = @Completed WHERE LessonId = @LessonId";
 
             using (OleDbConnection conn = new OleDbConnection(ConnectionString))
             {
@@ -433,7 +431,7 @@ namespace bobFinal
         public static void UpdateDatabaseWithSortedProperties(List<Property> sortedProperties)
         {
 
-            string deleteQuery = "DELETE FROM Properties";
+            const string deleteQuery = "DELETE FROM Properties";
             ExecuteSqlNonQuery(deleteQuery);
 
             foreach (Property property in sortedProperties)
@@ -445,7 +443,7 @@ namespace bobFinal
         public static void UpdatePropertyTotalIncome(int propertyXCoordinate, int propertyYCoordinate, int propertyTotalGoldGain, int propertyTotalLumberGain)
         {
             string coordinateOfProperty = $"({propertyXCoordinate},{propertyYCoordinate})";
-            string updateQuery = "UPDATE Properties SET [Total Gold Gain] = @TotalGoldGain, [Total Lumber Gain] = @TotalLumberGain WHERE Coordinate = @coordinateOfProperty";
+            const string updateQuery = "UPDATE Properties SET [Total Gold Gain] = @TotalGoldGain, [Total Lumber Gain] = @TotalLumberGain WHERE Coordinate = @coordinateOfProperty";
 
             using (OleDbConnection conn = new OleDbConnection(ConnectionString))
             {

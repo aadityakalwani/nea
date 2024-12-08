@@ -17,7 +17,7 @@
 
         public Lesson(
             int lessonId, string topic, string title, string question,
-            int correctAnswerIndex, int reward,
+            int correctAnswerIndex,
             string choiceOne, string choiceTwo, string choiceThree, string choiceFour,
             bool completed)
         {
@@ -26,7 +26,6 @@
             Title = title;
             Question = question;
             CorrectAnswerIndex = correctAnswerIndex;
-            Reward = reward;
             ChoiceOne = choiceOne;
             ChoiceTwo = choiceTwo;
             ChoiceThree = choiceThree;

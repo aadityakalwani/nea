@@ -31,7 +31,7 @@ namespace bobFinal
         private Resource selectedResource;
         private Lesson currentLesson;
         private int currentPropertyIdIndex;
-        private int numberOfDaysPassed = 0;
+        private int numberOfDaysPassed;
 
         public Form1()
         {
@@ -909,6 +909,7 @@ namespace bobFinal
                     currentLesson.Completed = true;
                     diamond.ChangeQuantity(5);
 
+                    // ReSharper disable once LocalizableElement -> to make it shut up about verbatim strings
                     lblQuestion.Text = "Click 'Perform Lesson' to load an incomplete lesson\nThe question will then show up in this box";
                     radioButton1.Text = @"Choice 1 will show here";
                     radioButton2.Text = @"Choice 2 will show here";

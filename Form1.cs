@@ -193,7 +193,7 @@ namespace bobFinal
             newDayTimer.Tick += newDayTimer_Tick;
         }
 
-        private void InitializeLessons()
+        private static void InitializeLessons()
         {
             List<Lesson> lessons = new List<Lesson>
             {

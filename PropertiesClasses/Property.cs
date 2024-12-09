@@ -1,6 +1,4 @@
-﻿using System.Windows.Forms;
-
-namespace bobFinal.PropertiesClasses
+﻿namespace bobFinal.PropertiesClasses
 {
     public abstract class Property
     {

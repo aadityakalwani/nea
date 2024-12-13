@@ -797,13 +797,12 @@ namespace bobFinal
             List<(Property, Property)> mstEdges = FindMst(properties);
 
             // display the edges of the MST in a message box
-            string message = "Edges in the Minimum Spanning Tree (MST):\n";
             foreach ((Property, Property) edge in mstEdges)
             {
-                message += $"({edge.Item1.GetXCoordinate()}, {edge.Item1.GetYCoordinate()}) -> ({edge.Item2.GetXCoordinate()}, {edge.Item2.GetYCoordinate()})\n";
+                _ = $"({edge.Item1.GetXCoordinate()}, {edge.Item1.GetYCoordinate()}) -> ({edge.Item2.GetXCoordinate()}, {edge.Item2.GetYCoordinate()})\n";
             }
 
-            Program.ShowAutoClosingMessageBox(message, "MST Edges", 5000);
+            MessageBox.Show("MST edges displayed in the message box", "MST Edges", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void btnLesson1_Click_1(object sender, EventArgs e)
@@ -871,6 +870,18 @@ namespace bobFinal
         private void RefreshDataGridViewLessons()
         {
             dataGridViewLessons.DataSource = DatabaseUtils.LoadLessonStatus();
+
+            // ReSharper disable once LocalizableElement -> to make it shut up about verbatim strings
+            lblQuestion.Text = "Click 'Perform Lesson' to load an incomplete lesson\nThe question will then show up in this box";
+            radioButton1.Text = @"Choice 1 will show here";
+            radioButton2.Text = @"Choice 2 will show here";
+            radioButton3.Text = @"Choice 3 will show here";
+            radioButton4.Text = @"Choice 4 will show here";
+
+            radioButton1.Checked = false;
+            radioButton2.Checked = false;
+            radioButton3.Checked = false;
+            radioButton4.Checked = false;
         }
 
         private void RefreshAllDataGridViews()
@@ -908,18 +919,6 @@ namespace bobFinal
 
                     currentLesson.Completed = true;
                     diamond.ChangeQuantity(5);
-
-                    // ReSharper disable once LocalizableElement -> to make it shut up about verbatim strings
-                    lblQuestion.Text = "Click 'Perform Lesson' to load an incomplete lesson\nThe question will then show up in this box";
-                    radioButton1.Text = @"Choice 1 will show here";
-                    radioButton2.Text = @"Choice 2 will show here";
-                    radioButton3.Text = @"Choice 3 will show here";
-                    radioButton4.Text = @"Choice 4 will show here";
-
-                    radioButton1.Checked = false;
-                    radioButton2.Checked = false;
-                    radioButton3.Checked = false;
-                    radioButton4.Checked = false;
                 }
                 else
                 {

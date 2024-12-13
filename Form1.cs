@@ -781,7 +781,7 @@ namespace bobFinal
             return mstEdges;
         }
 
-        private double CalculateDistance(Property a, Property b)
+        private static double CalculateDistance(Property a, Property b)
         {
             int deltaX = a.GetXCoordinate() - b.GetXCoordinate();
             int deltaY = a.GetYCoordinate() - b.GetYCoordinate();
@@ -792,13 +792,14 @@ namespace bobFinal
         {
             List<(Property, Property)> mstEdges = FindMst(properties);
 
+            string message = "";
             // display the edges of the MST in a message box
             foreach ((Property, Property) edge in mstEdges)
             {
-                _ = $"({edge.Item1.GetXCoordinate()}, {edge.Item1.GetYCoordinate()}) -> ({edge.Item2.GetXCoordinate()}, {edge.Item2.GetYCoordinate()})\n";
+                message += $"({edge.Item1.GetXCoordinate()}, {edge.Item1.GetYCoordinate()}) -> ({edge.Item2.GetXCoordinate()}, {edge.Item2.GetYCoordinate()})\n";
             }
 
-            MessageBox.Show(@"MST edges displayed in the message box", @"MST Edges", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            Program.ShowAutoClosingMessageBox($"Edges in the MST:\n{message}", "Minimum Spanning Tree", 10000);
         }
 
         private void btnLesson1_Click_1(object sender, EventArgs e)

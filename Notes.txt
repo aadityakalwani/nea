@@ -2,19 +2,24 @@ current issues:
 
 immediate future ideas:
 
-    - commission / charge for converting resources
-    - more resources to buy and sell
-        - quarry to mine stone
+    - add a way to see the current lesson ID when performing a lesson
 
-future ideas:
+    - create a text file that has all 100 lessons in it and then pull data from the text file into the database rather than having to manually input all 100 lessons
 
     - create a path tile to connect properties to the town hall
-        - if a property is not connected to the town hall then it provides half of the income (bool connected = false)
-        - allow the Apply Prims to auto-put-in path tiles
+            - if a property is not connected to the town hall then it provides half of the income (bool connected = false)
+            - allow the Apply Prims to auto-put-in path tiles
+
+    - commission / charge for converting resources that fluctuates
+
+future ideas:
 
     - weather that affects the market prices / village visitors
 
 way-far-future ideas:
+
+    - more resources to buy and sell
+        - quarry to mine stone
     - idea of villagers or visitors to the town that effect the market prices
     - storage buildings like in COC to store resources
     - upgradable town hall

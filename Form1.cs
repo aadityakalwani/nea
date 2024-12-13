@@ -31,7 +31,6 @@ namespace bobFinal
         private Resource selectedResource;
         private Lesson currentLesson;
         private int currentPropertyIdIndex;
-        private int numberOfDaysPassed;
 
         public Form1()
         {
@@ -394,7 +393,6 @@ namespace bobFinal
 
         private void btnNextDay_Click(object sender, EventArgs e)
         {
-            numberOfDaysPassed++;
             // Disable the button and start the timer
             lblNextDayTimer.Text = @"Next day available in 2 seconds...";
             btnNextDay.Enabled = false;
@@ -443,8 +441,6 @@ namespace bobFinal
 
         private void RefreshPropertyIncomes()
         {
-            CustomRandom CustomRandom = new CustomRandom();
-
             // for the box that shows incomes and prices of properties
             foreach (Property property in listOfAllProperties)
             {
@@ -802,7 +798,7 @@ namespace bobFinal
                 _ = $"({edge.Item1.GetXCoordinate()}, {edge.Item1.GetYCoordinate()}) -> ({edge.Item2.GetXCoordinate()}, {edge.Item2.GetYCoordinate()})\n";
             }
 
-            MessageBox.Show("MST edges displayed in the message box", "MST Edges", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show(@"MST edges displayed in the message box", @"MST Edges", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void btnLesson1_Click_1(object sender, EventArgs e)

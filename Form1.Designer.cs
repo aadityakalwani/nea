@@ -539,7 +539,7 @@ namespace bobFinal
             this.tabControl1.Location = new System.Drawing.Point(12, 51);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1424, 888);
+            this.tabControl1.Size = new System.Drawing.Size(1424, 903);
             this.tabControl1.TabIndex = 25;
             // 
             // tabPage1
@@ -555,7 +555,7 @@ namespace bobFinal
             this.tabPage1.Location = new System.Drawing.Point(4, 34);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1416, 850);
+            this.tabPage1.Size = new System.Drawing.Size(1416, 865);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Village Grid";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -596,7 +596,7 @@ namespace bobFinal
             this.tabPage2.Location = new System.Drawing.Point(4, 34);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1416, 850);
+            this.tabPage2.Size = new System.Drawing.Size(1416, 865);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Market";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -657,7 +657,7 @@ namespace bobFinal
             this.tabPage3.Location = new System.Drawing.Point(4, 34);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(1416, 850);
+            this.tabPage3.Size = new System.Drawing.Size(1416, 865);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Properties & Trackers";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -669,7 +669,7 @@ namespace bobFinal
             this.tabControlDatabases.Location = new System.Drawing.Point(21, 25);
             this.tabControlDatabases.Name = "tabControlDatabases";
             this.tabControlDatabases.SelectedIndex = 0;
-            this.tabControlDatabases.Size = new System.Drawing.Size(1369, 799);
+            this.tabControlDatabases.Size = new System.Drawing.Size(1369, 834);
             this.tabControlDatabases.TabIndex = 1;
             // 
             // tabPage500
@@ -681,7 +681,7 @@ namespace bobFinal
             this.tabPage500.Location = new System.Drawing.Point(4, 34);
             this.tabPage500.Name = "tabPage500";
             this.tabPage500.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage500.Size = new System.Drawing.Size(1361, 761);
+            this.tabPage500.Size = new System.Drawing.Size(1361, 796);
             this.tabPage500.TabIndex = 0;
             this.tabPage500.Text = "Properties Tracker";
             this.tabPage500.UseVisualStyleBackColor = true;
@@ -708,7 +708,7 @@ namespace bobFinal
             this.dataGridViewPropertiesList.Name = "dataGridViewPropertiesList";
             this.dataGridViewPropertiesList.ReadOnly = true;
             this.dataGridViewPropertiesList.RowHeadersWidth = 55;
-            this.dataGridViewPropertiesList.Size = new System.Drawing.Size(1349, 638);
+            this.dataGridViewPropertiesList.Size = new System.Drawing.Size(1349, 675);
             this.dataGridViewPropertiesList.TabIndex = 0;
             // 
             // btnSortByLumberIncome
@@ -737,7 +737,7 @@ namespace bobFinal
             this.tabPage6.Location = new System.Drawing.Point(4, 34);
             this.tabPage6.Name = "tabPage6";
             this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage6.Size = new System.Drawing.Size(1361, 761);
+            this.tabPage6.Size = new System.Drawing.Size(1361, 796);
             this.tabPage6.TabIndex = 1;
             this.tabPage6.Text = "Daily Income Tracker";
             this.tabPage6.UseVisualStyleBackColor = true;
@@ -754,7 +754,7 @@ namespace bobFinal
             this.dataGridViewIncomeHistory.Name = "dataGridViewIncomeHistory";
             this.dataGridViewIncomeHistory.ReadOnly = true;
             this.dataGridViewIncomeHistory.RowHeadersWidth = 55;
-            this.dataGridViewIncomeHistory.Size = new System.Drawing.Size(1349, 749);
+            this.dataGridViewIncomeHistory.Size = new System.Drawing.Size(1349, 784);
             this.dataGridViewIncomeHistory.TabIndex = 1;
             // 
             // tabPage4
@@ -766,7 +766,7 @@ namespace bobFinal
             this.tabPage4.Location = new System.Drawing.Point(4, 34);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(1416, 850);
+            this.tabPage4.Size = new System.Drawing.Size(1416, 865);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Lessons";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -851,7 +851,7 @@ namespace bobFinal
             this.dataGridViewLessons.Location = new System.Drawing.Point(6, 462);
             this.dataGridViewLessons.Name = "dataGridViewLessons";
             this.dataGridViewLessons.ReadOnly = true;
-            this.dataGridViewLessons.Size = new System.Drawing.Size(1404, 382);
+            this.dataGridViewLessons.Size = new System.Drawing.Size(1404, 397);
             this.dataGridViewLessons.TabIndex = 1;
             // 
             // btnLesson1

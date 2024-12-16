@@ -314,20 +314,16 @@ namespace bobFinal
 
         private void listViewPrices_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (listViewPrices.SelectedItems.Count > 0)
-            {
-                string selectedItem = listViewPrices.SelectedItems[0].Text;
-                selectedBuilding = selectedItem.Split(':')[0].Trim();
-            }
+            if (listViewPrices.SelectedItems.Count <= 0) return;
+            string selectedItem = listViewPrices.SelectedItems[0].Text;
+            selectedBuilding = selectedItem.Split(':')[0].Trim();
         }
 
         private void GridPictureBox_Click(object sender, EventArgs e)
         {
-            if (sender is PictureBox pictureBox)
-            {
-                selectedPosition = (Point)pictureBox.Tag;
-                lblSelectedPosition.Text = $@"Selected Tile: ({selectedPosition.X}, {selectedPosition.Y})";
-            }
+            if (!(sender is PictureBox pictureBox)) return;
+            selectedPosition = (Point)pictureBox.Tag;
+            lblSelectedPosition.Text = $@"Selected Tile: ({selectedPosition.X}, {selectedPosition.Y})";
         }
 
         private void btnBuild_Click(object sender, EventArgs e)
@@ -354,39 +350,37 @@ namespace bobFinal
                     break;
             }
 
-            if (property != null)
+            if (property == null) return;
+            CustomPictureBox selectedTile = grid[selectedPosition.X, selectedPosition.Y];
+
+            // Check if the selected tile is empty by verifying the image and BuiltUpon status
+            if (selectedTile.BuiltUpon || (selectedTile.ImageLocation != null && !selectedTile.ImageLocation.Contains("empty.jpg")))
             {
-                CustomPictureBox selectedTile = grid[selectedPosition.X, selectedPosition.Y];
+                Program.ShowAutoClosingMessageBox("You can only build on an empty tile!", "Error", 2500);
+                return;
+            }
 
-                // Check if the selected tile is empty by verifying the image and BuiltUpon status
-                if (selectedTile.BuiltUpon || (selectedTile.ImageLocation != null && !selectedTile.ImageLocation.Contains("empty.jpg")))
-                {
-                    Program.ShowAutoClosingMessageBox("You can only build on an empty tile!", "Error", 2500);
-                    return;
-                }
+            // Check if there are enough resources to build the property
+            if (gold.GetValue() >= property.GetGoldCost() && lumber.GetValue() >= property.GetLumberCost())
+            {
+                // Deduct the cost of the property from the resources
+                gold.ChangeQuantity(-property.GetGoldCost());
+                lumber.ChangeQuantity(-property.GetLumberCost());
 
-                // Check if there are enough resources to build the property
-                if (gold.GetValue() >= property.GetGoldCost() && lumber.GetValue() >= property.GetLumberCost())
-                {
-                    // Deduct the cost of the property from the resources
-                    gold.ChangeQuantity(-property.GetGoldCost());
-                    lumber.ChangeQuantity(-property.GetLumberCost());
+                // Set the image of the selected grid position to the property image
+                selectedTile.Image = Image.FromFile(property.GetImageFileName());
+                selectedTile.BuiltUpon = true;
+                properties.Add(property);
 
-                    // Set the image of the selected grid position to the property image
-                    selectedTile.Image = Image.FromFile(property.GetImageFileName());
-                    selectedTile.BuiltUpon = true;
-                    properties.Add(property);
+                // Add the property to the database and update the DataGridView
+                DatabaseUtils.AddNewProperty(currentPropertyIdIndex, property.GetType().Name, property.GetXCoordinate(), property.GetYCoordinate(), property.GetGoldCost(), property.GetLumberCost(), property.GetDailyGoldGain(), property.GetDailyLumberGain(), property.GetDailyDiamondGain(), property.GetTotalGoldGain(), property.GetTotalLumberGain(), property.GetActive());
+                currentPropertyIdIndex++;
+                RefreshDataGridView("Properties");
+            }
 
-                    // Add the property to the database and update the DataGridView
-                    DatabaseUtils.AddNewProperty(currentPropertyIdIndex, property.GetType().Name, property.GetXCoordinate(), property.GetYCoordinate(), property.GetGoldCost(), property.GetLumberCost(), property.GetDailyGoldGain(), property.GetDailyLumberGain(), property.GetDailyDiamondGain(), property.GetTotalGoldGain(), property.GetTotalLumberGain(), property.GetActive());
-                    currentPropertyIdIndex++;
-                    RefreshDataGridView("Properties");
-                }
-
-                else
-                {
-                    Program.ShowAutoClosingMessageBox("Not enough resources!", "Error", 2500);
-                }
+            else
+            {
+                Program.ShowAutoClosingMessageBox("Not enough resources!", "Error", 2500);
             }
         }
 
@@ -499,21 +493,19 @@ namespace bobFinal
 
         private void UpdateMarketPanel()
         {
-            if (selectedResource != null)
-            {
-                int amount = (int)numericUpDownAmount.Value;
-                float cost = amount * selectedResource.GetConversionRate();
+            if (selectedResource == null) return;
+            int amount = (int)numericUpDownAmount.Value;
+            float cost = amount * selectedResource.GetConversionRate();
 
-                if (currentAction == "buy")
-                {
-                    label1.Text = $@"Enter amount of {selectedResource.GetName().ToLower()} to buy";
-                    lblCost.Text = $@"Cost: {Math.Round(cost, 2)} dollars";
-                }
-                else
-                {
-                    label1.Text = $@"Enter amount of {selectedResource.GetName().ToLower()} to sell";
-                    lblCost.Text = $@"Value: {Math.Round(cost, 2)} dollars";
-                }
+            if (currentAction == "buy")
+            {
+                label1.Text = $@"Enter amount of {selectedResource.GetName().ToLower()} to buy";
+                lblCost.Text = $@"Cost: {Math.Round(cost, 2)} dollars";
+            }
+            else
+            {
+                label1.Text = $@"Enter amount of {selectedResource.GetName().ToLower()} to sell";
+                lblCost.Text = $@"Value: {Math.Round(cost, 2)} dollars";
             }
         }
 
@@ -582,31 +574,29 @@ namespace bobFinal
             int amount = (int)numericUpDownAmount.Value;
             float cost = amount * selectedResource.GetConversionRate();
 
-            if (selectedResource != null)
+            if (selectedResource == null) return;
+            if (currentAction == "buy")
             {
-                if (currentAction == "buy")
+                if (dollars.GetValue() >= cost)
                 {
-                    if (dollars.GetValue() >= cost)
-                    {
-                        dollars.ChangeQuantity(-cost);
-                        selectedResource.ChangeQuantity(amount);
-                    }
-                    else
-                    {
-                        Program.ShowAutoClosingMessageBox("Not enough dollars!", "Error", 2500);
-                    }
+                    dollars.ChangeQuantity(-cost);
+                    selectedResource.ChangeQuantity(amount);
                 }
                 else
                 {
-                    if (selectedResource.GetValue() >= amount)
-                    {
-                        dollars.ChangeQuantity(cost);
-                        selectedResource.ChangeQuantity(-amount);
-                    }
-                    else
-                    {
-                        Program.ShowAutoClosingMessageBox("Not enough resources!", "Error", 2500);
-                    }
+                    Program.ShowAutoClosingMessageBox("Not enough dollars!", "Error", 2500);
+                }
+            }
+            else
+            {
+                if (selectedResource.GetValue() >= amount)
+                {
+                    dollars.ChangeQuantity(cost);
+                    selectedResource.ChangeQuantity(-amount);
+                }
+                else
+                {
+                    Program.ShowAutoClosingMessageBox("Not enough resources!", "Error", 2500);
                 }
             }
         }

@@ -31,6 +31,7 @@ namespace bobFinal
         private Resource selectedResource;
         private Lesson currentLesson;
         private int currentPropertyIdIndex;
+        private const int InitialCoordinate = 1;
 
         public Form1()
         {
@@ -155,20 +156,18 @@ namespace bobFinal
 
         private void InitializeStartingProperties()
         {
-            int initialCoordinate = 1;
-
             // create and place the initial Town Hall
-            grid[initialCoordinate + 1, initialCoordinate + 1].Image = Image.FromFile("Images/TownHallTopLeft.jpg");
-            grid[initialCoordinate + 1, initialCoordinate + 1].BuiltUpon = true;
-            grid[initialCoordinate + 1, initialCoordinate + 2].Image = Image.FromFile("Images/TownHallBottomLeft.jpg");
-            grid[initialCoordinate + 2, initialCoordinate + 2].BuiltUpon = true;
-            grid[initialCoordinate + 2, initialCoordinate + 1].Image = Image.FromFile("Images/TownHallTopRight.jpg");
-            grid[initialCoordinate + 2, initialCoordinate + 1].BuiltUpon = true;
-            grid[initialCoordinate + 2, initialCoordinate + 2].Image = Image.FromFile("Images/TownHallBottomRight.jpg");
-            grid[initialCoordinate + 2, initialCoordinate + 2].BuiltUpon = true;
+            grid[InitialCoordinate + 1, InitialCoordinate + 1].Image = Image.FromFile("Images/TownHallTopLeft.jpg");
+            grid[InitialCoordinate + 1, InitialCoordinate + 1].BuiltUpon = true;
+            grid[InitialCoordinate + 1, InitialCoordinate + 2].Image = Image.FromFile("Images/TownHallBottomLeft.jpg");
+            grid[InitialCoordinate + 2, InitialCoordinate + 2].BuiltUpon = true;
+            grid[InitialCoordinate + 2, InitialCoordinate + 1].Image = Image.FromFile("Images/TownHallTopRight.jpg");
+            grid[InitialCoordinate + 2, InitialCoordinate + 1].BuiltUpon = true;
+            grid[InitialCoordinate + 2, InitialCoordinate + 2].Image = Image.FromFile("Images/TownHallBottomRight.jpg");
+            grid[InitialCoordinate + 2, InitialCoordinate + 2].BuiltUpon = true;
 
             // create and place the initial sawmill
-            Property sawmill = new Sawmill(currentPropertyIdIndex, initialCoordinate + 4, initialCoordinate + 4);
+            Property sawmill = new Sawmill(currentPropertyIdIndex, InitialCoordinate + 4, InitialCoordinate + 4);
             grid[sawmill.GetXCoordinate(), sawmill.GetYCoordinate()].Image = Image.FromFile(sawmill.GetImageFileName());
             grid[sawmill.GetXCoordinate(), sawmill.GetYCoordinate()].BuiltUpon = true;
             properties.Add(sawmill);
@@ -176,7 +175,7 @@ namespace bobFinal
             DatabaseUtils.AddNewProperty(sawmill.GetPropertyId(), sawmill.GetType().Name, sawmill.GetXCoordinate(), sawmill.GetYCoordinate(), sawmill.GetGoldCost(), sawmill.GetLumberCost(), sawmill.GetDailyGoldGain(), sawmill.GetDailyLumberGain(), sawmill.GetDailyDiamondGain(), sawmill.GetTotalGoldGain(), sawmill.GetTotalLumberGain(), sawmill.GetActive());
 
             // create and place the initial house
-            Property house = new House(currentPropertyIdIndex, initialCoordinate + 5, initialCoordinate + 5);
+            Property house = new House(currentPropertyIdIndex, InitialCoordinate + 5, InitialCoordinate + 5);
             grid[house.GetXCoordinate(), house.GetYCoordinate()].Image = Image.FromFile(house.GetImageFileName());
             grid[house.GetXCoordinate(), house.GetYCoordinate()].BuiltUpon = true;
             properties.Add(house);
@@ -727,7 +726,7 @@ namespace bobFinal
             Application.Exit();
         }
 
-        private List<(Property, Property)> FindMst(List<Property> propertiesToFindMstOf)
+        private static List<(Property, Property)> FindMst(List<Property> propertiesToFindMstOf)
         {
             // List to store the edges of the MST
             List<(Property, Property)> mstEdges = new List<(Property, Property)>();

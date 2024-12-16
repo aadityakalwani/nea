@@ -799,7 +799,7 @@ namespace bobFinal
             if (currentLesson != null)
             {
                 // Display the question
-                lblQuestion.Text = currentLesson.Question;
+                lblQuestion.Text = $"Lesson ID: {currentLesson.LessonId}\n{currentLesson.Question}";
 
                 // Populate choices
                 radioButton1.Text = currentLesson.ChoiceOne;

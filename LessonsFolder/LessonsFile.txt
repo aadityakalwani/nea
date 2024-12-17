@@ -1,0 +1,100 @@
+1,Business,Business Ownership,Which of the following is a key advantage of a sole proprietorship?,0,Ease of setup,Limited liability,Perpetual succession,Shared decision making
+2,Business,Supply and Demand,How does an increase in consumer income affect the demand for normal goods?,0,Increases demand,Decreases demand,No effect on demand,Increases supply
+3,Business,Economics,What is the primary goal of a not-for-profit organization?,1,Profit maximization,Social welfare,Market share,Shareholder value
+4,Economics,Opportunity Cost,A government decides to increase spending on education. What is the opportunity cost of this decision?,2,Increased taxes,Reduced spending on healthcare,Increased national debt,All of the above
+5,Economics,Scarcity,How does scarcity affect economic decisions?,3,It forces choices to be made,It eliminates the need for trade,It leads to unlimited resources,It ensures economic equality
+6,Economics,Trade-offs,A company decides to invest in new technology. What is the potential trade-off of this decision?,1,Increased productivity,Reduced labor costs,Lower initial costs,Delayed profit maximization
+7,Economics,Supply and Demand,What is the likely impact of a decrease in the price of a complementary good on the demand for a related good?,0,Increase in demand,Decrease in demand,No effect on demand,Increase in supply
+8,Economics,Elasticity,How does price elasticity of demand affect a firm's pricing strategy?,2,It determines the optimal price level,It measures the responsiveness of supply to price changes,It indicates the degree of competition in the market,It measures the impact of government regulations on prices
+9,Economics,Monopoly,What is a key characteristic of a natural monopoly?,3,High barriers to entry,Price-taking behavior,Homogeneous products,Perfect information
+10,Economics,Oligopoly,How do firms in an oligopoly typically compete?,1,Price competition,Non-price competition,Product differentiation,All of the above
+11,Economics,Price Discrimination,What is a common method used by firms to practice price discrimination?,0,Student discounts,Loyalty programs,Time of day pricing,All of the above
+12,Business,Entrepreneurship,What is a key risk associated with entrepreneurship?,2,Limited liability,Job security,Financial loss,Low income potential
+13,Economics,Market Failure,How can government intervention address the problem of negative externalities?,1,Subsidies,Taxes,Price controls,Deregulation
+14,Business,Business Objectives,How does a business achieve sustainable growth?,3,Maximizing short term profits,Ignoring environmental concerns,Exploiting natural resources,Balancing financial, social, and environmental goals
+15,Economics,Government Intervention,What is the purpose of fiscal policy?,2,Controlling the money supply,Influencing interest rates,Adjusting government spending and taxation,Regulating market competition
+16,Business,Marketing,What is the marketing mix and why is it important?,3,A set of marketing tools used to achieve marketing objectives,A strategy for reducing production costs,A method for analyzing consumer behavior,A tool for measuring brand loyalty
+17,Economics,Inflation,What is the likely impact of high inflation on economic growth?,1,Stimulates economic growth,Reduces uncertainty and encourages investment,Erodes purchasing power and slows economic activity,Increases savings and investment
+18,Business,Financial Management,What is the purpose of a cash flow forecast?,0,To predict future cash inflows and outflows,To analyze past financial performance,To evaluate long-term investment opportunities,To measure profitability
+19,Economics,GDP,Why is GDP an imperfect measure of economic well-being?,2,It includes non-market activities,It accounts for income distribution,It does not measure quality of life,It excludes government spending
+20,Economics,Labour Market,What is the impact of technological advancements on the demand for labor?,1,Increases demand for low-skilled labor,Decreases demand for high skilled labor,Increases demand for both low-skilled and high-skilled labor,Decreases demand for both low-skilled and high-skilled labor
+21,Economics,Unemployment,What type of unemployment is caused by a recession?,3,Frictional unemployment,Structural unemployment,Cyclical unemployment,Seasonal unemployment
+22,Business,Corporate Social Responsibility,How can CSR benefit a business?,0,Improved brand reputation,Reduced costs,Increased regulatory compliance,All of the above
+23,Economics,Externalities,What is a government policy to address the problem of negative externalities from pollution?,2,Subsidies to polluting industries,Deregulation of environmental standards,Taxation on pollution,Reduced government spending on environmental protection
+24,Business,Business Cycle,What is the role of government during a recession?,1,Increase taxes and reduce government spending,Decrease interest rates and increase government spending,Increase interest rates and reduce government spending,No government intervention is necessary
+25,Economics,Inflation,What is the likely impact of cost-push inflation on economic output?,2,Increased economic output,Reduced unemployment,Decreased economic output,No impact on economic output
+26,Business,Competition,How does perfect competition benefit consumers?,3,Higher prices,Lower quality products,Reduced consumer choice,Lower prices and higher quality products
+27,Economics,Taxes,What is the impact of a regressive tax on income distribution?,1,Reduces income inequality,Increases income inequality,No impact on income distribution,Increases economic growth
+28,Business,Branding,How does branding create value for a business?,0,Reduced production costs,Increased price sensitivity,Lower customer loyalty,Increased brand recognition and customer loyalty
+29,Economics,Monetary Policy,What is the goal of contractionary monetary policy?,3,Stimulate economic growth,Reduce unemployment,Control inflation,Increase government spending
+30,Business,E-commerce,What is a potential disadvantage of e-commerce for businesses?,2,Lower costs,Increased market reach,Increased competition,Cybersecurity risks
+31,Business,Marketing Mix,What are the 4 Ps of the marketing mix?,3,Product, Price, Promotion, Place
+32,Economics,Fiscal Policy,What is the impact of increased government spending on aggregate demand?,0,Increases aggregate demand,Decreases aggregate demand,No effect on aggregate demand,Increases aggregate supply
+33,Business,Human Resource Management,What is the primary goal of human resource management?,1,Recruiting and selecting employees,Training and developing employees,Maximizing employee productivity,Ensuring legal compliance
+34,Economics,International Trade,What is the theory of comparative advantage?,2,Countries should specialize in producing goods and services they can produce most efficiently,Countries should protect domestic industries from foreign competition,Countries should impose tariffs on imported goods,Countries should limit the number of foreign workers
+35,Business,Business Ethics,What is the role of corporate social responsibility (CSR)?,0,To improve a company's reputation,To reduce costs,To increase profits,To balance economic, social, and environmental concerns
+36,Economics,Inflation,What is the relationship between inflation and unemployment as described by the Phillips Curve?,2,Inverse relationship,Direct relationship,No relationship,Uncertain relationship
+37,Business,Financial Analysis,What is the purpose of a balance sheet?,1,To measure profitability,To assess liquidity,To evaluate solvency,To track cash flow
+38,Economics,Market Structures,In which market structure do firms have the most market power?,0,Monopoly,Oligopoly,Monopolistic competition,Perfect competition
+39,Business,Operations Management,What is the purpose of quality control in operations management?,2,To reduce costs,To increase production,To ensure product quality,To improve employee morale
+40,Economics,Economic Growth,What is the role of investment in economic growth?,0,Increases productive capacity,Reduces unemployment,Increases consumer spending,Reduces inflation
+41,Business,Marketing Strategy,What is the purpose of a SWOT analysis?,3,To identify a company's strengths, weaknesses, opportunities, and threats,To measure a company's market share,To evaluate a company's financial performance,To assess a company's customer satisfaction
+42,Economics,Exchange Rates,What is the impact of a depreciation of a country's currency on its exports?,0,Increases exports,Decreases exports,No effect on exports,Increases imports
+43,Business,Business Plans,What is the purpose of a business plan?,1,To secure funding,To guide business operations,To assess market potential,All of the above
+44,Economics,Economic Indicators,What is the Consumer Price Index (CPI) used to measure?,2,Economic growth,Unemployment rate,Inflation rate,Interest rates
+45,Business,Innovation,What is the role of innovation in business success?,0,To create new products and services,To improve efficiency,To gain a competitive advantage,All of the above
+46,Economics,Externalities,What is an example of a positive externality?,1,Education,Pollution,Congestion,Noise pollution
+47,Business,Risk Management,What is the purpose of risk management in business?,2,To eliminate all risk,To maximize profits,To minimize potential losses,To increase market share
+48,Economics,Economic Systems,What is a key characteristic of a command economy?,3,Private ownership of resources,Market forces determine prices,Government planning and control,Consumer sovereignty
+49,Business,Marketing Research,What is the purpose of market research?,0,To understand customer needs and preferences,To identify market opportunities,To assess market competition,All of the above
+50,Economics,Economic Growth,What is the role of technological advancement in economic growth?,1,Increases productivity,Reduces innovation,Increases unemployment,Decreases economic efficiency
+51,Business,Marketing Mix,What are the 4 Ps of the marketing mix?,3,Product, Price, Promotion, Place
+52,Economics,Fiscal Policy,What is the impact of increased government spending on aggregate demand?,0,Increases aggregate demand,Decreases aggregate demand,No effect on aggregate demand,Increases aggregate supply
+53,Business,Human Resource Management,What is the primary goal of human resource management?,1,Recruiting and selecting employees,Training and developing employees,Maximizing employee productivity,Ensuring legal compliance
+54,Economics,International Trade,What is the theory of comparative advantage?,2,Countries should specialize in producing goods and services they can produce most efficiently,Countries should protect domestic industries from foreign competition,Countries should impose tariffs on imported goods,Countries should limit the number of foreign workers
+55,Business,Business Ethics,What is the role of corporate social responsibility (CSR)?,0,To improve a company's reputation,To reduce costs,To increase profits,To balance economic, social, and environmental concerns
+56,Economics,Inflation,What is the relationship between inflation and unemployment as described by the Phillips Curve?,2,Inverse relationship,Direct relationship,No relationship,Uncertain relationship
+57,Business,Financial Analysis,What is the purpose of a balance sheet?,1,To measure profitability,To assess liquidity,To evaluate solvency,To track cash flow
+58,Economics,Market Structures,In which market structure do firms have the most market power?,0,Monopoly,Oligopoly,Monopolistic competition,Perfect competition
+59,Business,Operations Management,What is the purpose of quality control in operations management?,2,To reduce costs,To increase production,To ensure product quality,To improve employee morale
+60,Economics,Economic Growth,What is the role of investment in economic growth?,0,Increases productive capacity,Reduces unemployment,Increases consumer spending,Reduces inflation
+61,Business,Marketing Strategy,What is the purpose of a SWOT analysis?,3,To identify a company's strengths, weaknesses, opportunities, and threats,To measure a company's market share,To evaluate a company's financial performance,To assess a company's customer satisfaction
+62,Economics,Exchange Rates,What is the impact of a depreciation of a country's currency on its exports?,0,Increases exports,Decreases exports,No effect on exports,Increases imports
+63,Business,Business Plans,What is the purpose of a business plan?,1,To secure funding,To guide business operations,To assess market potential,All of the above
+64,Economics,Economic Indicators,What is the Consumer Price Index (CPI) used to measure?,2,Economic growth,Unemployment rate,Inflation rate,Interest rates
+65,Business,Innovation,What is the role of innovation in business success?,0,To create new products and services,To improve efficiency,To gain a competitive advantage,All of the above
+66,Economics,Externalities,What is an example of a positive externality?,1,Education,Pollution,Congestion,Noise pollution
+67,Business,Risk Management,What is the purpose of risk management in business?,2,To eliminate all risk,To maximize profits,To minimize potential losses,To increase market share
+68,Economics,Economic Systems,What is a key characteristic of a command economy?,3,Private ownership of resources,Market forces determine prices,Government planning and control,Consumer sovereignty
+69,Business,Marketing Research,What is the purpose of market research?,0,To understand customer needs and preferences,To identify market opportunities,To assess market competition,All of the above
+70,Economics,Economic Growth,What is the role of technological advancement in economic growth?,1,Increases productivity,Reduces innovation,Increases unemployment,Decreases economic efficiency
+71,Economics,Price Elasticity,What happens when demand is perfectly inelastic?,0,Quantity demanded does not change regardless of price,Demand decreases with a price increase,Demand increases with a price increase,Price has no impact on supply
+72,Business,Leadership Styles,Which leadership style involves employees in decision-making?,2,Autocratic,Laissez-faire,Democratic,Transformational
+73,Economics,Fiscal Policy,What is the effect of reduced government spending on the economy?,1,Increases aggregate demand,Decreases aggregate demand,No effect,Increases inflation
+74,Business,Stakeholders,What is the primary concern of shareholders?,0,Profitability and dividends,Employee satisfaction,Customer loyalty,Corporate social responsibility
+75,Economics,Trade Barriers,What is the purpose of a tariff?,3,Increase imports,Encourage foreign investment,Eliminate subsidies,Protect domestic industries
+76,Business,Pricing Strategies,What is penetration pricing?,1,Setting high prices initially,Setting low prices to attract customers,Charging different prices to different segments,Matching competitor prices
+77,Economics,Circular Flow,In the circular flow model what do households provide to firms?,0,Factors of production,Goods and services,Taxes,Investment capital
+78,Business,Human Resources,What is workforce planning?,2,Hiring temporary staff,Measuring employee performance,Forecasting future staff requirements,Analyzing HR costs
+79,Economics,Externalities,Which of the following is a positive externality?,1,Traffic congestion,Education leading to a skilled workforce,Pollution from factories,Deforestation
+80,Business,Market Segmentation,What is the purpose of market segmentation?,3,To reduce costs,To increase prices,To improve supply chain efficiency,To target specific consumer groups effectively
+81,Economics,Opportunity Cost,What is the opportunity cost of attending university full-time?,0,The income foregone by not working,The tuition fees paid,The cost of textbooks,The time spent studying
+82,Business,Investment,What is the payback period?,1,The total profit from an investment,The time it takes to recover the initial investment,The annual return on an investment,The net present value of an investment
+83,Economics,Market Failure,What causes market failure?,2,Efficient allocation of resources,Perfect competition,Externalities and public goods,High consumer satisfaction
+84,Business,Corporate Culture,What is corporate culture?,3,The physical office environment,The company’s financial performance,The organizational hierarchy,The shared values and practices of employees
+85,Economics,Taxation,What is the main purpose of progressive taxation?,0,To reduce income inequality,To encourage savings,To increase government debt,To support high-income earners
+86,Business,Financial Ratios,What does the current ratio measure?,1,Profitability,Liquidity,Efficiency,Leverage
+87,Economics,Monetary Policy,What tool is commonly used in monetary policy?,2,Government spending,Taxation,Interest rates,Exchange rates
+88,Business,Customer Relationship Management,What is the goal of CRM?,3,To attract new customers,To lower production costs,To improve brand recognition,To build long-term relationships with customers
+89,Economics,Demand,What factor can shift the demand curve to the right?,0,Increase in consumer income,Increase in production costs,Higher taxes,Reduced advertising
+90,Business,E-commerce,What is the main advantage of e-commerce for consumers?,1,Higher prices,Convenience and wider choice,Limited accessibility,Complex payment methods
+91,Economics,Exchange Rates,What is the impact of a strong domestic currency on exports?,2,Increases exports,No impact on exports,Reduces exports,Encourages inflation
+92,Business,Entrepreneurship,What is the primary characteristic of an entrepreneur?,3,Risk aversion,Preference for stability,Focus on routine tasks,Innovation and risk-taking
+93,Economics,Productivity,How does increased productivity benefit the economy?,0,Lowers production costs,Increases unemployment,Decreases GDP,Reduces consumer spending
+94,Business,Supply Chain Management,What is the purpose of supply chain management?,1,To increase prices,To ensure efficient flow of goods and services,To focus on marketing,To manage employee relationships
+95,Economics,Labour Market,What is a characteristic of a tight labour market?,2,High unemployment,Low wages,High demand for workers,Excess supply of labor
+96,Business,Branding,How does strong branding benefit a business?,3,Higher production costs,Reduced customer loyalty,Lower product differentiation,Improved market recognition and customer loyalty
+97,Economics,Subsidies,What is the purpose of government subsidies to producers?,0,To lower production costs and encourage supply,To increase tax revenue,To reduce market competition,To discourage exports
+98,Business,Decision Making,What is the first step in the decision-making process?,1,Evaluating alternatives,Identifying the problem,Implementing the solution,Measuring outcomes
+99,Economics,Trade,What is the primary benefit of free trade?,2,Increases government control,Limits consumer choice,Promotes specialization and economic efficiency,Encourages trade barriers
+100,Business,Ethics,What is the impact of ethical behavior on business success?,3,Increases costs,Reduces employee satisfaction,Limits growth opportunities,Enhances reputation and customer trust

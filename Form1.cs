@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Windows.Forms;
 using bobFinal.PropertiesClasses;
+using static System.Int32;
 
 namespace bobFinal
 {
@@ -194,13 +196,29 @@ namespace bobFinal
         private static void InitializeLessons()
         {
             List<Lesson> lessons = new List<Lesson>();
-
-
-
-            // Add each lesson to the database
-            foreach (var lesson in lessons)
+           string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..", "..", "LessonsFolder", "LessonsFile.txt");
+            // Add lessons to the list
+            using (StreamReader reader = new StreamReader(filePath))
             {
-                DatabaseUtils.AddLesson(lesson);
+
+                string line;
+                while ((line = reader.ReadLine()) != null)
+                {
+                    string[] parts = line.Split(',');
+
+                    // for debugging
+                    if (Convert.ToInt32(parts[0]) > 35)
+                    {
+                        MessageBox.Show("Line: " + line);
+                    }
+
+                    Lesson tempLesson = new Lesson(Convert.ToInt32(parts[0]), parts[1], parts[2], parts[3], Convert.ToInt32(parts[4]), parts[5], parts[6], parts[7], parts[8], false);
+                    lessons.Add(tempLesson);
+                    DatabaseUtils.AddLesson(tempLesson);
+
+                    // Create a new lesson object
+                    //lessons.Add(new Lesson(id, category, topic, question, correctAnswerIndex, option1, option2, option3, option4, isAnswered));
+                }
             }
         }
 

@@ -2,8 +2,6 @@ current issues:
 
 immediate future ideas:
 
-    - create a text file that has all 100 lessons in it and then pull data from the text file into the database rather than having to manually input all 100 lessons
-
     - create a path tile to connect properties to the town hall
             - if a property is not connected to the town hall then it provides half of the income (bool connected = false)
             - allow the Apply Prims to auto-put-in path tiles

@@ -4,7 +4,7 @@ using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 using bobFinal.PropertiesClasses;
-using static System.Int32;
+// ReSharper disable All
 
 namespace bobFinal
 {
@@ -196,12 +196,12 @@ namespace bobFinal
 
         private static void InitializeLessons()
         {
+            // ReSharper disable once CollectionNeverQueried.Local
             List<Lesson> lessons = new List<Lesson>();
            string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..", "..", "LessonsFolder", "LessonsFile.txt");
             // Add lessons to the list
             using (StreamReader reader = new StreamReader(filePath))
             {
-
                 string line;
                 while ((line = reader.ReadLine()) != null)
                 {
@@ -708,17 +708,19 @@ namespace bobFinal
 
             if (currentLesson != null)
             {
-                // Display the question
-                if (previousLessonID != 0)
-                {
-                    lblQuestion.Text = $"Previous Lesson ID: {previousLessonID}\nCurrent Lesson ID: {currentLesson.LessonId}\n{currentLesson.Question}";
-                }
-                else
+                // display the question
+                // ReSharper disable twice LocalizableElement
+                // ReSharper disable once ConvertIfStatementToConditionalTernaryExpression
+                if (previousLessonID == 0)
                 {
                     lblQuestion.Text = $"Current Lesson ID: {currentLesson.LessonId}\n{currentLesson.Question}";
                 }
+                else
+                {
+                    lblQuestion.Text = $"Previous Lesson ID: {previousLessonID}\nCurrent Lesson ID: {currentLesson.LessonId}\n{currentLesson.Question}";
+                }
 
-                // Populate choices
+                // populate choices
                 radioButton1.Text = currentLesson.ChoiceOne;
                 radioButton2.Text = currentLesson.ChoiceTwo;
                 radioButton3.Text = currentLesson.ChoiceThree;

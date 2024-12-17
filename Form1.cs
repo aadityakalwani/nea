@@ -4,7 +4,6 @@ using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 using bobFinal.PropertiesClasses;
-// ReSharper disable All
 
 namespace bobFinal
 {
@@ -84,8 +83,8 @@ namespace bobFinal
         {
             // create a new grid of PictureBox objects
             grid = new CustomPictureBox[GridSize, GridSize];
-            int panelWidth = GridSize * TileSize;
-            int panelHeight = GridSize * TileSize;
+            const int panelWidth = GridSize * TileSize;
+            const int panelHeight = GridSize * TileSize;
 
             // set the size of the grid panel
             gridPanel.Size = new Size(panelWidth, panelHeight);
@@ -424,15 +423,10 @@ namespace bobFinal
             int amount = (int)numericUpDownAmount.Value;
             float cost = amount * selectedResource.GetConversionRate();
 
-            switch (buyOrSell)
-            {
-                case "buy":
-                    lblCost.Text = $@"Cost: {Math.Round(cost, 2)} dollars";
-                    break;
-                default:
-                    lblCost.Text = $@"Value: {Math.Round(cost, 2)} dollars";
-                    break;
-            }
+            if (buyOrSell == "buy")
+                lblCost.Text = $@"Cost: {Math.Round(cost, 2)} dollars";
+            else
+                lblCost.Text = $@"Value: {Math.Round(cost, 2)} dollars";
         }
 
         private void btnBuy_Click(object sender, EventArgs e)
@@ -755,20 +749,19 @@ namespace bobFinal
 
         private void RefreshDataGridView(string tableName)
         {
-            switch (tableName)
+            if (tableName == "Properties")
             {
-                case "Properties":
-                    dataGridViewPropertiesList.DataSource = DatabaseUtils.LoadDatabaseData(tableName);
-                    break;
-                case "incomeHistoryTable":
-                    dataGridViewIncomeHistory.DataSource = DatabaseUtils.LoadDatabaseData(tableName);
+                dataGridViewPropertiesList.DataSource = DatabaseUtils.LoadDatabaseData(tableName);
+            }
+            else if (tableName == "incomeHistoryTable")
+            {
+                dataGridViewIncomeHistory.DataSource = DatabaseUtils.LoadDatabaseData(tableName);
 
-                    // rename the column titles to make more sense to the user
-                    dataGridViewIncomeHistory.Columns[0].HeaderText = @"Date";
-                    dataGridViewIncomeHistory.Columns[1].HeaderText = @"Gold Income";
-                    dataGridViewIncomeHistory.Columns[2].HeaderText = @"Lumber Income";
-                    dataGridViewIncomeHistory.Columns[3].HeaderText = @"Diamond Income";
-                    break;
+                // rename the column titles to make more sense to the user
+                dataGridViewIncomeHistory.Columns[0].HeaderText = @"Date";
+                dataGridViewIncomeHistory.Columns[1].HeaderText = @"Gold Income";
+                dataGridViewIncomeHistory.Columns[2].HeaderText = @"Lumber Income";
+                dataGridViewIncomeHistory.Columns[3].HeaderText = @"Diamond Income";
             }
         }
 

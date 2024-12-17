@@ -150,7 +150,7 @@ namespace bobFinal
             this.listViewPrices.Location = new System.Drawing.Point(784, 257);
             this.listViewPrices.Margin = new System.Windows.Forms.Padding(2);
             this.listViewPrices.Name = "listViewPrices";
-            this.listViewPrices.Size = new System.Drawing.Size(610, 201);
+            this.listViewPrices.Size = new System.Drawing.Size(610, 248);
             this.listViewPrices.TabIndex = 2;
             this.listViewPrices.UseCompatibleStateImageBehavior = false;
             this.listViewPrices.View = System.Windows.Forms.View.Details;

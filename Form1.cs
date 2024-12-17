@@ -423,6 +423,7 @@ namespace bobFinal
             int amount = (int)numericUpDownAmount.Value;
             float cost = amount * selectedResource.GetConversionRate();
 
+            // ReSharper disable once ConvertIfStatementToConditionalTernaryExpression
             if (buyOrSell == "buy")
                 lblCost.Text = $@"Cost: {Math.Round(cost, 2)} dollars";
             else

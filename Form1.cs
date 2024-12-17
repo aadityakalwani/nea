@@ -34,6 +34,7 @@ namespace bobFinal
         private Lesson currentLesson;
         private int currentPropertyIdIndex;
         private const int InitialCoordinate = 1;
+        private int previousLessonID;
 
         public Form1()
         {
@@ -206,18 +207,9 @@ namespace bobFinal
                 {
                     string[] parts = line.Split(',');
 
-                    // for debugging
-                    if (Convert.ToInt32(parts[0]) > 35)
-                    {
-                        MessageBox.Show("Line: " + line);
-                    }
-
                     Lesson tempLesson = new Lesson(Convert.ToInt32(parts[0]), parts[1], parts[2], parts[3], Convert.ToInt32(parts[4]), parts[5], parts[6], parts[7], parts[8], false);
                     lessons.Add(tempLesson);
                     DatabaseUtils.AddLesson(tempLesson);
-
-                    // Create a new lesson object
-                    //lessons.Add(new Lesson(id, category, topic, question, correctAnswerIndex, option1, option2, option3, option4, isAnswered));
                 }
             }
         }
@@ -717,7 +709,14 @@ namespace bobFinal
             if (currentLesson != null)
             {
                 // Display the question
-                lblQuestion.Text = $"Lesson ID: {currentLesson.LessonId}\n{currentLesson.Question}";
+                if (previousLessonID != 0)
+                {
+                    lblQuestion.Text = $"Previous Lesson ID: {previousLessonID}\nCurrent Lesson ID: {currentLesson.LessonId}\n{currentLesson.Question}";
+                }
+                else
+                {
+                    lblQuestion.Text = $"Current Lesson ID: {currentLesson.LessonId}\n{currentLesson.Question}";
+                }
 
                 // Populate choices
                 radioButton1.Text = currentLesson.ChoiceOne;
@@ -776,7 +775,7 @@ namespace bobFinal
             dataGridViewLessons.DataSource = DatabaseUtils.LoadLessonStatus();
 
             // ReSharper disable once LocalizableElement -> to make it shut up about verbatim strings
-            lblQuestion.Text = "Click 'Perform Lesson' to load an incomplete lesson\nThe question will then show up in this box";
+            lblQuestion.Text = $"Click 'Perform Lesson' to load an incomplete lesson\nThe question will then show up in this box";
             radioButton1.Text = @"Choice 1 will show here";
             radioButton2.Text = @"Choice 2 will show here";
             radioButton3.Text = @"Choice 3 will show here";
@@ -815,12 +814,13 @@ namespace bobFinal
                 // Check if the answer is correct
                 if (currentLesson.IsCorrectAnswer(selectedAnswerIndex))
                 {
-                    Program.ShowAutoClosingMessageBox("Correct Answer!\nYou gained 5 diamond", "Result", 3000);
+                    Program.ShowAutoClosingMessageBox("Correct Answer!\nYou gained 5 diamond", "Result", 5000);
 
                     // Update the lesson status in the database
                     DatabaseUtils.UpdateLessonStatus(currentLesson.LessonId, true);
                     RefreshDataGridViewLessons();
 
+                    previousLessonID = currentLesson.LessonId;
                     currentLesson.Completed = true;
                     diamond.ChangeQuantity(5);
                 }

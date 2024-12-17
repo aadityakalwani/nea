@@ -28,7 +28,7 @@
 28,Business,Branding,How does branding create value for a business?,0,Reduced production costs,Increased price sensitivity,Lower customer loyalty,Increased brand recognition and customer loyalty
 29,Economics,Monetary Policy,What is the goal of contractionary monetary policy?,3,Stimulate economic growth,Reduce unemployment,Control inflation,Increase government spending
 30,Business,E-commerce,What is a potential disadvantage of e-commerce for businesses?,2,Lower costs,Increased market reach,Increased competition,Cybersecurity risks
-31,Business,Marketing Mix,What are the 4 Ps of the marketing mix?,3,Product, Price, Promotion, Place
+31,Business,Leadership Styles,What is a key characteristic of transformational leadership?,0,Inspires and motivates employees,Dictates tasks and decisions,Focuses on short-term goals,Minimizes employee input
 32,Economics,Fiscal Policy,What is the impact of increased government spending on aggregate demand?,0,Increases aggregate demand,Decreases aggregate demand,No effect on aggregate demand,Increases aggregate supply
 33,Business,Human Resource Management,What is the primary goal of human resource management?,1,Recruiting and selecting employees,Training and developing employees,Maximizing employee productivity,Ensuring legal compliance
 34,Economics,International Trade,What is the theory of comparative advantage?,2,Countries should specialize in producing goods and services they can produce most efficiently,Countries should protect domestic industries from foreign competition,Countries should impose tariffs on imported goods,Countries should limit the number of foreign workers

@@ -693,7 +693,7 @@ namespace bobFinal
                 message += $"({edge.Item1.GetXCoordinate()}, {edge.Item1.GetYCoordinate()}) -> ({edge.Item2.GetXCoordinate()}, {edge.Item2.GetYCoordinate()})\n";
             }
 
-            Program.ShowAutoClosingMessageBox($"Edges in the MST:\n{message}", "Minimum Spanning Tree", 10000);
+            MessageBox.Show($@"Edges in the MST: {message}", @"Minimum Spanning Tree", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void btnLesson1_Click_1(object sender, EventArgs e)

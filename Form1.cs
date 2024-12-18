@@ -4,6 +4,7 @@ using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 using bobFinal.PropertiesClasses;
+using Path = System.IO.Path;
 
 namespace bobFinal
 {
@@ -26,6 +27,7 @@ namespace bobFinal
         private Resource lumber;
         private Timer newDayTimer;
         private readonly List<Property> properties = new List<Property>();
+        private List<PathTile> pathTilesList = new List<PathTile>();
         private List<Resource> resources;
         private string selectedBuilding;
         private Point selectedPosition;
@@ -33,7 +35,7 @@ namespace bobFinal
         private Lesson currentLesson;
         private int currentPropertyIdIndex;
         private const int InitialCoordinate = 1;
-        private int previousLessonID;
+        private int previousLessonId;
 
         public Form1()
         {
@@ -183,6 +185,12 @@ namespace bobFinal
             properties.Add(house);
             currentPropertyIdIndex++;
             DatabaseUtils.AddNewProperty(house.GetPropertyId(), house.GetType().Name, house.GetXCoordinate(), house.GetYCoordinate(), house.GetGoldCost(), house.GetLumberCost(), house.GetDailyGoldGain(), house.GetDailyLumberGain(), house.GetDailyDiamondGain(), house.GetTotalGoldGain(), house.GetTotalLumberGain(), house.GetActive());
+
+            // create and place the initial path tile
+            PathTile pathTile = new PathTile(InitialCoordinate + 3, InitialCoordinate + 3);
+            pathTilesList.Add(pathTile);
+            grid[pathTile.GetXCoordinate(), pathTile.GetYCoordinate()].Image = Image.FromFile(pathTile.imageFileName);
+            grid[pathTile.GetXCoordinate(), pathTile.GetYCoordinate()].BuiltUpon = true;
         }
 
         private void InitializeNewDayTimer()
@@ -706,13 +714,13 @@ namespace bobFinal
                 // display the question
                 // ReSharper disable twice LocalizableElement
                 // ReSharper disable once ConvertIfStatementToConditionalTernaryExpression
-                if (previousLessonID == 0)
+                if (previousLessonId == 0)
                 {
                     lblQuestion.Text = $"Current Lesson ID: {currentLesson.LessonId}\n{currentLesson.Question}";
                 }
                 else
                 {
-                    lblQuestion.Text = $"Previous Lesson ID: {previousLessonID}\nCurrent Lesson ID: {currentLesson.LessonId}\n{currentLesson.Question}";
+                    lblQuestion.Text = $"Previous Lesson ID: {previousLessonId}\nCurrent Lesson ID: {currentLesson.LessonId}\n{currentLesson.Question}";
                 }
 
                 // populate choices
@@ -814,7 +822,7 @@ namespace bobFinal
 
                     DatabaseUtils.UpdateLessonStatus(currentLesson.LessonId, true);
 
-                    previousLessonID = currentLesson.LessonId;
+                    previousLessonId = currentLesson.LessonId;
                     currentLesson.Completed = true;
                     diamond.ChangeQuantity(5);
 

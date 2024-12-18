@@ -6,6 +6,8 @@ using System.Windows.Forms;
 using bobFinal.PropertiesClasses;
 using Path = System.IO.Path;
 
+// ReSharper disable InvertIf
+
 namespace bobFinal
 {
     public partial class Form1 : Form
@@ -298,12 +300,58 @@ namespace bobFinal
             }
         }
 
+        private void CheckIfPropertiesAreConnected()
+        {
+            foreach (var property in properties)
+                if (!property.GetConnected())
+                {
+                    // check if any of the neighbouring tiles are built upon or if there is a path tile
+                    int currentX = property.GetXCoordinate();
+                    int currentY = property.GetYCoordinate();
+                    bool isConnected = false;
+
+                    // Check all neighbors in a 3x3 grid around (currentX, currentY)
+                    for (int offsetX = -1; offsetX <= 1; offsetX++)
+                    {
+                        for (int offsetY = -1; offsetY <= 1; offsetY++)
+                            // Skip the current property itself
+                            if (!((offsetX == 0) && (offsetY == 0)))
+                            {
+                                int neighborX = currentX + offsetX;
+                                int neighborY = currentY + offsetY;
+
+                                // Check bounds to handle edge properties and corner properties
+                                if ((neighborX >= 0) && (neighborX < GridSize) && (neighborY >= 0) && (neighborY < GridSize))
+                                    if (grid[neighborX, neighborY].BuiltUpon)
+                                    {
+                                        isConnected = true;
+                                        break;
+                                    }
+                            }
+
+                        // Exit outer loop early if connected
+                        if (isConnected) break;
+                    }
+
+                    property.SetConnected(isConnected);
+
+                    int newGoldGain = (int)(1.3 * property.GetDailyGoldGain());
+                    int newLumberGain = (int)(1.3 * property.GetDailyLumberGain());
+                    int newDiamondGain = (int)(1.3 * property.GetDailyDiamondGain());
+                    property.SetDailyGoldGain(newGoldGain);
+                    property.SetDailyLumberGain(newLumberGain);
+                    property.SetDailyDiamondGain(newDiamondGain);
+                }
+        }
+
         private void btnNextDay_Click(object sender, EventArgs e)
         {
             // Disable the button and start the timer
             lblNextDayTimer.Text = @"Next day available in 2 seconds...";
             btnNextDay.Enabled = false;
             newDayTimer.Start();
+
+            CheckIfPropertiesAreConnected();
 
             float totalGoldGain = 0;
             float totalLumberGain = 0;
@@ -763,7 +811,7 @@ namespace bobFinal
                 message += $"({edge.Item1.GetXCoordinate()}, {edge.Item1.GetYCoordinate()}) -> ({edge.Item2.GetXCoordinate()}, {edge.Item2.GetYCoordinate()})\n";
             }
 
-            MessageBox.Show($@"Edges in the MST: {message}\nAdding these in now", @"Minimum Spanning Tree", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            Program.ShowAutoClosingMessageBox($"Edges in the MST: {message}\nAdding these path tiles in place now", "Minimum Spanning Tree", 5000);
             PlacePathTiles(pathTilesList, mstEdges, grid);
         }
 

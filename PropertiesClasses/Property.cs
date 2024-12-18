@@ -5,13 +5,13 @@
         private readonly int xCoordinate;
         private readonly int yCoordinate;
         protected bool Active;
+        protected bool Connected;
         protected float DailyDiamondGain;
         protected float DailyGoldGain;
         protected float DailyLumberGain;
         protected float GoldCost;
         protected string ImageFileName;
         protected float LumberCost;
-
         protected int PropertyId;
         protected float TotalGoldGain;
         protected float TotalLumberGain;
@@ -110,6 +110,16 @@
         public void SetActive(bool newCondition)
         {
             Active = newCondition;
+        }
+
+        public bool GetConnected()
+        {
+            return Connected;
+        }
+
+        public void SetConnected(bool newCondition)
+        {
+            Connected = newCondition;
         }
     }
 }

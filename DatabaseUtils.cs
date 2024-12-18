@@ -75,6 +75,7 @@ namespace bobFinal
                             adapter.SelectCommand.Parameters.AddWithValue(param.Key, param.Value);
                         }
                     }
+
                     DataTable dataTable = new DataTable();
                     adapter.Fill(dataTable);
                     return dataTable;
@@ -84,6 +85,7 @@ namespace bobFinal
                     Program.ShowAutoClosingMessageBox($@"Error executing query: {ex.Message}", @"Database Error", 2000);
                 }
             }
+
             return null;
         }
 
@@ -126,6 +128,7 @@ namespace bobFinal
                                 cmd.Parameters.AddWithValue(param.Key, param.Value);
                             }
                         }
+
                         cmd.ExecuteNonQuery();
                     }
                 }
@@ -144,6 +147,7 @@ namespace bobFinal
                 [Property Type] TEXT NOT NULL,
                 Coordinate TEXT NOT NULL,
                 Active YESNO DEFAULT TRUE,
+                Connected YESNO DEFAULT FALSE,
                 [Gold Cost] INTEGER NOT NULL,
                 [Lumber Cost] INTEGER NOT NULL,
                 [Daily Gold Gain] INTEGER NOT NULL,
@@ -239,6 +243,7 @@ namespace bobFinal
                     Program.ShowAutoClosingMessageBox($@"Error fetching random lesson: {ex.Message}", @"Database Error", 2000);
                 }
             }
+
             return lesson;
         }
 
@@ -381,10 +386,10 @@ namespace bobFinal
             }
         }
 
-        public static void UpdatePropertyStatus(int xCoord, int yCoord, bool activeOrNot)
+        public static void UpdatePropertyActiveStatus(int xCoord, int yCoord, bool activeOrNot)
         {
             string coordinateOfProperty = $"({xCoord},{yCoord})";
-            const string updateQuery = "UPDATE Properties SET Active = @Active WHERE Coordinate = @Coordinate";
+            const string updateQuery = "UPDATE Properties SET Active = @Active WHERE Coordinate = @Coordinate ";
 
             using (OleDbConnection conn = new OleDbConnection(ConnectionString))
             {
@@ -394,6 +399,30 @@ namespace bobFinal
                     using (OleDbCommand cmd = new OleDbCommand(updateQuery, conn))
                     {
                         cmd.Parameters.AddWithValue("@Active", activeOrNot);
+                        cmd.Parameters.AddWithValue("@Coordinate", coordinateOfProperty);
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Program.ShowAutoClosingMessageBox($@"Error updating property status: {ex.Message}", @"Database Error", 2000);
+                }
+            }
+        }
+
+        public static void UpdatePropertyConnectedStatus(int xCoord, int yCoord, bool connectedOrNot)
+        {
+            string coordinateOfProperty = $"({xCoord},{yCoord})";
+            const string updateQuery = "UPDATE Properties SET Connected = @Connected WHERE Coordinate = @Coordinate";
+
+            using (var conn = new OleDbConnection(ConnectionString))
+            {
+                try
+                {
+                    conn.Open();
+                    using (var cmd = new OleDbCommand(updateQuery, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@Connected", connectedOrNot);
                         cmd.Parameters.AddWithValue("@Coordinate", coordinateOfProperty);
                         cmd.ExecuteNonQuery();
                     }
@@ -430,13 +459,12 @@ namespace bobFinal
 
         public static void UpdateDatabaseWithSortedProperties(List<Property> sortedProperties)
         {
-
             const string deleteQuery = "DELETE FROM Properties";
             ExecuteSqlNonQuery(deleteQuery);
 
             foreach (Property property in sortedProperties)
             {
-                AddNewProperty(property.GetPropertyId(), property.GetType().Name , property.GetXCoordinate(), property.GetYCoordinate(), property.GetGoldCost(), property.GetLumberCost(), property.GetDailyGoldGain(), property.GetDailyLumberGain(), property.GetDailyDiamondGain(), property.GetTotalGoldGain(), property.GetTotalLumberGain(), property.GetActive());
+                AddNewProperty(property.GetPropertyId(), property.GetType().Name, property.GetXCoordinate(), property.GetYCoordinate(), property.GetGoldCost(), property.GetLumberCost(), property.GetDailyGoldGain(), property.GetDailyLumberGain(), property.GetDailyDiamondGain(), property.GetTotalGoldGain(), property.GetTotalLumberGain(), property.GetActive());
             }
         }
 

@@ -107,6 +107,7 @@ namespace bobFinal
                         Image = Image.FromFile("Images/empty.jpg"),
                         SizeMode = PictureBoxSizeMode.StretchImage,
                         BuiltUpon = false,
+                        ConnectedViaPathOrProperty = false,
                         Tag = new Point(i, j) // store the position in the tag property
                     };
                     // add click event handler to each PictureBox
@@ -165,17 +166,22 @@ namespace bobFinal
             // create and place the Town Hall
             grid[InitialCoordinate + 1, InitialCoordinate + 1].Image = Image.FromFile("Images/TownHallTopLeft.jpg");
             grid[InitialCoordinate + 1, InitialCoordinate + 1].BuiltUpon = true;
+            grid[InitialCoordinate + 1, InitialCoordinate + 1].ConnectedViaPathOrProperty = true;
             grid[InitialCoordinate + 1, InitialCoordinate + 2].Image = Image.FromFile("Images/TownHallBottomLeft.jpg");
             grid[InitialCoordinate + 2, InitialCoordinate + 2].BuiltUpon = true;
+            grid[InitialCoordinate + 2, InitialCoordinate + 2].ConnectedViaPathOrProperty = true;
             grid[InitialCoordinate + 2, InitialCoordinate + 1].Image = Image.FromFile("Images/TownHallTopRight.jpg");
             grid[InitialCoordinate + 2, InitialCoordinate + 1].BuiltUpon = true;
+            grid[InitialCoordinate + 2, InitialCoordinate + 1].ConnectedViaPathOrProperty = true;
             grid[InitialCoordinate + 2, InitialCoordinate + 2].Image = Image.FromFile("Images/TownHallBottomRight.jpg");
             grid[InitialCoordinate + 2, InitialCoordinate + 2].BuiltUpon = true;
+            grid[InitialCoordinate + 2, InitialCoordinate + 2].ConnectedViaPathOrProperty = true;
 
             // create and place the initial sawmill
             Property sawmill = new Sawmill(currentPropertyIdIndex, InitialCoordinate + 4, InitialCoordinate + 4);
             grid[sawmill.GetXCoordinate(), sawmill.GetYCoordinate()].Image = Image.FromFile(sawmill.GetImageFileName());
             grid[sawmill.GetXCoordinate(), sawmill.GetYCoordinate()].BuiltUpon = true;
+            grid[sawmill.GetXCoordinate(), sawmill.GetYCoordinate()].ConnectedViaPathOrProperty = true;
             properties.Add(sawmill);
             currentPropertyIdIndex++;
             DatabaseUtils.AddNewProperty(sawmill.GetPropertyId(), sawmill.GetType().Name, sawmill.GetXCoordinate(), sawmill.GetYCoordinate(), sawmill.GetGoldCost(), sawmill.GetLumberCost(), sawmill.GetDailyGoldGain(), sawmill.GetDailyLumberGain(), sawmill.GetDailyDiamondGain(), sawmill.GetTotalGoldGain(), sawmill.GetTotalLumberGain(), sawmill.GetActive());
@@ -184,6 +190,7 @@ namespace bobFinal
             Property house = new House(currentPropertyIdIndex, InitialCoordinate + 5, InitialCoordinate + 5);
             grid[house.GetXCoordinate(), house.GetYCoordinate()].Image = Image.FromFile(house.GetImageFileName());
             grid[house.GetXCoordinate(), house.GetYCoordinate()].BuiltUpon = true;
+            grid[house.GetXCoordinate(), house.GetYCoordinate()].ConnectedViaPathOrProperty = true;
             properties.Add(house);
             currentPropertyIdIndex++;
             DatabaseUtils.AddNewProperty(house.GetPropertyId(), house.GetType().Name, house.GetXCoordinate(), house.GetYCoordinate(), house.GetGoldCost(), house.GetLumberCost(), house.GetDailyGoldGain(), house.GetDailyLumberGain(), house.GetDailyDiamondGain(), house.GetTotalGoldGain(), house.GetTotalLumberGain(), house.GetActive());
@@ -286,6 +293,7 @@ namespace bobFinal
                 // Set the image of the selected grid position to the property image
                 selectedTile.Image = Image.FromFile(property.GetImageFileName());
                 selectedTile.BuiltUpon = true;
+                selectedTile.ConnectedViaPathOrProperty = true;
                 properties.Add(property);
 
                 // Add the property to the database and update the DataGridView
@@ -303,6 +311,7 @@ namespace bobFinal
         private void CheckIfPropertiesAreConnected()
         {
             foreach (var property in properties)
+            {
                 if (!property.GetConnected())
                 {
                     // check if any of the neighbouring tiles are built upon or if there is a path tile
@@ -322,26 +331,35 @@ namespace bobFinal
 
                                 // Check bounds to handle edge properties and corner properties
                                 if ((neighborX >= 0) && (neighborX < GridSize) && (neighborY >= 0) && (neighborY < GridSize))
-                                    if (grid[neighborX, neighborY].BuiltUpon)
+                                {
+                                    if (grid[neighborX, neighborY].ConnectedViaPathOrProperty)
                                     {
                                         isConnected = true;
                                         break;
                                     }
+                                }
                             }
 
-                        // Exit outer loop early if connected
+                        // exit loop early if connected for efficiency
                         if (isConnected) break;
                     }
 
-                    property.SetConnected(isConnected);
+                    if (isConnected && !property.GetConnected())
+                    {
+                        // then this property has newly been connected
+                        property.SetConnected(true);
+                        // update the database with the fact that this property is or is not connected
+                        DatabaseUtils.UpdatePropertyConnectedStatus(property.GetXCoordinate(), property.GetYCoordinate(), true);
 
-                    int newGoldGain = (int)(1.3 * property.GetDailyGoldGain());
-                    int newLumberGain = (int)(1.3 * property.GetDailyLumberGain());
-                    int newDiamondGain = (int)(1.3 * property.GetDailyDiamondGain());
-                    property.SetDailyGoldGain(newGoldGain);
-                    property.SetDailyLumberGain(newLumberGain);
-                    property.SetDailyDiamondGain(newDiamondGain);
+                        int newGoldGain = (int)(1.3 * property.GetDailyGoldGain());
+                        int newLumberGain = (int)(1.3 * property.GetDailyLumberGain());
+                        int newDiamondGain = (int)(1.3 * property.GetDailyDiamondGain());
+                        property.SetDailyGoldGain(newGoldGain);
+                        property.SetDailyLumberGain(newLumberGain);
+                        property.SetDailyDiamondGain(newDiamondGain);
+                    }
                 }
+            }
         }
 
         private void btnNextDay_Click(object sender, EventArgs e)
@@ -650,13 +668,14 @@ namespace bobFinal
                 properties.Remove(property);
                 selectedTile.Image = Image.FromFile("Images/empty.jpg");
                 selectedTile.BuiltUpon = false;
+                selectedTile.ConnectedViaPathOrProperty = false;
 
                 // Add the sell price to the resources
                 gold.ChangeQuantity(sellPriceGold);
                 lumber.ChangeQuantity(sellPriceLumber);
 
                 // change the Active status of the property in the database
-                DatabaseUtils.UpdatePropertyStatus(property.GetXCoordinate(), property.GetYCoordinate(), false);
+                DatabaseUtils.UpdatePropertyActiveStatus(property.GetXCoordinate(), property.GetYCoordinate(), false);
 
                 Program.ShowAutoClosingMessageBox($"{property.GetType().Name} sold for {sellPriceGold} Gold and {sellPriceLumber} Lumber!", "Success", 2500);
 
@@ -748,6 +767,7 @@ namespace bobFinal
 
             // place the initial path tile
             grid[InitialCoordinate + 3, InitialCoordinate + 3].Image = Image.FromFile("Images/PathTile.jpg");
+            pathTilesList.Add(new PathTile(InitialCoordinate + 3, InitialCoordinate + 3));
         }
 
         private static void PlacePathTiles(List<PathTile> pathTiles, List<(Property, Property)> mstEdges, CustomPictureBox[,] grid)
@@ -794,6 +814,7 @@ namespace bobFinal
                     if (!grid[currentX, currentY].BuiltUpon)
                     {
                         grid[currentX, currentY].Image = Image.FromFile("Images/PathTile.jpg");
+                        grid[currentX, currentY].ConnectedViaPathOrProperty = true;
                         pathTiles.Add(new PathTile(currentX, currentY));
                     }
                 }

@@ -2,15 +2,15 @@
 {
     public class PathTile
     {
+        private readonly string imageFileName;
         private readonly int xCoordinate;
         private readonly int yCoordinate;
-        public string imageFileName;
 
         public PathTile(int x, int y)
         {
             xCoordinate = x;
             yCoordinate = y;
-            imageFileName = "Images/pathTile.jpg";
+            imageFileName = "Images/PathTile.jpg";
         }
 
         public int GetXCoordinate()

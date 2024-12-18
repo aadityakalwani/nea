@@ -13,34 +13,34 @@ namespace bobFinal
         private const int GridSize = 15;
         private const int TileSize = 40;
         private const int NewDayInterval = 2000;
+        private const int InitialCoordinate = 1;
+        private readonly List<Property> listOfAllProperties = new List<Property> { new House(0, 0, 0), new Farm(0, 0, 0), new Sawmill(0, 0, 0), new Mine(0, 0, 0), new Cafe(0, 0, 0) };
+        private readonly MergeSort mergeSort = new MergeSort();
+        private readonly List<Property> properties = new List<Property>();
         private string currentAction;
         private DateTime currentDate = new DateTime(2024, 1, 1);
+        private Lesson currentLesson;
+        private int currentPropertyIdIndex;
         private Resource diamond;
         private int diamondStorageUpgradeCost = 5;
-        private int goldStorageUpgradeCost = 5;
-        private int lumberStorageUpgradeCost = 5;
         private Resource dollars;
         private Resource gold;
+        private int goldStorageUpgradeCost = 5;
         private CustomPictureBox[,] grid;
-        private readonly MergeSort mergeSort = new MergeSort();
-        private readonly List<Property> listOfAllProperties = new List<Property> { new House(0, 0, 0), new Farm(0, 0, 0), new Sawmill(0, 0, 0), new Mine(0, 0, 0), new Cafe(0, 0, 0) };
         private Resource lumber;
+        private int lumberStorageUpgradeCost = 5;
         private Timer newDayTimer;
-        private readonly List<Property> properties = new List<Property>();
         private List<PathTile> pathTilesList = new List<PathTile>();
+        private int previousLessonId;
         private List<Resource> resources;
         private string selectedBuilding;
         private Point selectedPosition;
         private Resource selectedResource;
-        private Lesson currentLesson;
-        private int currentPropertyIdIndex;
-        private const int InitialCoordinate = 1;
-        private int previousLessonId;
 
         public Form1()
         {
             InitializeComponent();
-            
+
             DatabaseUtils.InitializeDatabase();
             InitializeGrid();
             InitializeLoot();
@@ -189,7 +189,7 @@ namespace bobFinal
             // create and place the initial path tile
             PathTile pathTile = new PathTile(InitialCoordinate + 3, InitialCoordinate + 3);
             pathTilesList.Add(pathTile);
-            grid[pathTile.GetXCoordinate(), pathTile.GetYCoordinate()].Image = Image.FromFile(pathTile.imageFileName);
+            grid[pathTile.GetXCoordinate(), pathTile.GetYCoordinate()].Image = Image.FromFile(pathTile.GetImageFileName());
             grid[pathTile.GetXCoordinate(), pathTile.GetYCoordinate()].BuiltUpon = true;
         }
 
@@ -205,7 +205,7 @@ namespace bobFinal
         {
             // ReSharper disable once CollectionNeverQueried.Local
             List<Lesson> lessons = new List<Lesson>();
-           string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..", "..", "LessonsFolder", "LessonsFile.txt");
+            string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..", "..", "LessonsFolder", "LessonsFile.txt");
             // Add lessons to the list
             using (StreamReader reader = new StreamReader(filePath))
             {

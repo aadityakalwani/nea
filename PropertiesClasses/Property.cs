@@ -2,24 +2,25 @@
 {
     public abstract class Property
     {
+        private readonly int xCoordinate;
+        private readonly int yCoordinate;
+        protected bool Active;
+        protected float DailyDiamondGain;
+        protected float DailyGoldGain;
+        protected float DailyLumberGain;
+        protected float GoldCost;
+        protected string ImageFileName;
+        protected float LumberCost;
+
+        protected int PropertyId;
+        protected float TotalGoldGain;
+        protected float TotalLumberGain;
+
         protected Property(int x, int y)
         {
             xCoordinate = x;
             yCoordinate = y;
         }
-
-        protected int PropertyId;
-        protected float GoldCost;
-        protected float LumberCost;
-        protected float DailyGoldGain;
-        protected float DailyLumberGain;
-        protected float DailyDiamondGain;
-        protected float TotalGoldGain;
-        protected float TotalLumberGain;
-        protected string ImageFileName;
-        private readonly int xCoordinate;
-        private readonly int yCoordinate;
-        protected bool Active;
 
         public int GetPropertyId()
         {
@@ -34,16 +35,6 @@
         public float GetLumberCost()
         {
             return LumberCost;
-        }
-
-        public void SetGoldCost(float newGoldCost)
-        {
-            GoldCost = newGoldCost;
-        }
-
-        public void SetLumberCost(float newLumberCost)
-        {
-            LumberCost = newLumberCost;
         }
 
         public float GetDailyGoldGain()

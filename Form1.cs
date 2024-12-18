@@ -16,6 +16,7 @@ namespace bobFinal
         private const int InitialCoordinate = 1;
         private readonly List<Property> listOfAllProperties = new List<Property> { new House(0, 0, 0), new Farm(0, 0, 0), new Sawmill(0, 0, 0), new Mine(0, 0, 0), new Cafe(0, 0, 0) };
         private readonly MergeSort mergeSort = new MergeSort();
+        private readonly List<PathTile> pathTilesList = new List<PathTile>();
         private readonly List<Property> properties = new List<Property>();
         private string currentAction;
         private DateTime currentDate = new DateTime(2024, 1, 1);
@@ -30,7 +31,6 @@ namespace bobFinal
         private Resource lumber;
         private int lumberStorageUpgradeCost = 5;
         private Timer newDayTimer;
-        private List<PathTile> pathTilesList = new List<PathTile>();
         private int previousLessonId;
         private List<Resource> resources;
         private string selectedBuilding;
@@ -160,7 +160,7 @@ namespace bobFinal
 
         private void InitializeStartingProperties()
         {
-            // create and place the initial Town Hall
+            // create and place the Town Hall
             grid[InitialCoordinate + 1, InitialCoordinate + 1].Image = Image.FromFile("Images/TownHallTopLeft.jpg");
             grid[InitialCoordinate + 1, InitialCoordinate + 1].BuiltUpon = true;
             grid[InitialCoordinate + 1, InitialCoordinate + 2].Image = Image.FromFile("Images/TownHallBottomLeft.jpg");
@@ -187,10 +187,7 @@ namespace bobFinal
             DatabaseUtils.AddNewProperty(house.GetPropertyId(), house.GetType().Name, house.GetXCoordinate(), house.GetYCoordinate(), house.GetGoldCost(), house.GetLumberCost(), house.GetDailyGoldGain(), house.GetDailyLumberGain(), house.GetDailyDiamondGain(), house.GetTotalGoldGain(), house.GetTotalLumberGain(), house.GetActive());
 
             // create and place the initial path tile
-            PathTile pathTile = new PathTile(InitialCoordinate + 3, InitialCoordinate + 3);
-            pathTilesList.Add(pathTile);
-            grid[pathTile.GetXCoordinate(), pathTile.GetYCoordinate()].Image = Image.FromFile(pathTile.GetImageFileName());
-            grid[pathTile.GetXCoordinate(), pathTile.GetYCoordinate()].BuiltUpon = true;
+            ClearAndResetPathTiles(grid, pathTilesList);
         }
 
         private void InitializeNewDayTimer()
@@ -690,6 +687,71 @@ namespace bobFinal
             return Math.Sqrt(deltaX * deltaX + deltaY * deltaY);
         }
 
+        private static void ClearAndResetPathTiles(CustomPictureBox[,] grid, List<PathTile> pathTilesList)
+        {
+            // swap out all path tiles for empty tiles
+            foreach (PathTile pathTile in pathTilesList)
+            {
+                grid[pathTile.GetXCoordinate(), pathTile.GetYCoordinate()].Image = Image.FromFile("Images/empty.jpg");
+            }
+
+            // empty out the list
+            pathTilesList.Clear();
+
+            // place the initial path tile
+            grid[InitialCoordinate + 3, InitialCoordinate + 3].Image = Image.FromFile("Images/PathTile.jpg");
+        }
+
+        private static void PlacePathTiles(List<PathTile> pathTiles, List<(Property, Property)> mstEdges, CustomPictureBox[,] grid)
+        {
+            ClearAndResetPathTiles(grid, pathTiles);
+
+            foreach ((Property, Property) edge in mstEdges)
+            {
+                int startX = edge.Item1.GetXCoordinate();
+                int startY = edge.Item1.GetYCoordinate();
+                int endX = edge.Item2.GetXCoordinate();
+                int endY = edge.Item2.GetYCoordinate();
+
+                int currentX = startX;
+                int currentY = startY;
+
+                // while not at the end coordinates
+                while (currentX != endX || currentY != endY)
+                {
+                    if (currentX != endX)
+                    {
+                        if (currentX < endX)
+                        {
+                            currentX++;
+                        }
+                        else
+                        {
+                            currentX--;
+                        }
+                    }
+
+                    if (currentY != endY)
+                    {
+                        if (currentY < endY)
+                        {
+                            currentY++;
+                        }
+                        else
+                        {
+                            currentY--;
+                        }
+                    }
+
+                    if (!grid[currentX, currentY].BuiltUpon)
+                    {
+                        grid[currentX, currentY].Image = Image.FromFile("Images/PathTile.jpg");
+                        pathTiles.Add(new PathTile(currentX, currentY));
+                    }
+                }
+            }
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
             List<(Property, Property)> mstEdges = FindMst(properties);
@@ -701,7 +763,8 @@ namespace bobFinal
                 message += $"({edge.Item1.GetXCoordinate()}, {edge.Item1.GetYCoordinate()}) -> ({edge.Item2.GetXCoordinate()}, {edge.Item2.GetYCoordinate()})\n";
             }
 
-            MessageBox.Show($@"Edges in the MST: {message}", @"Minimum Spanning Tree", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show($@"Edges in the MST: {message}\nAdding these in now", @"Minimum Spanning Tree", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            PlacePathTiles(pathTilesList, mstEdges, grid);
         }
 
         private void btnLesson1_Click_1(object sender, EventArgs e)

@@ -52,7 +52,6 @@ namespace bobFinal
             InitializeNewDayTimer();
             InitializeLessons();
 
-            // bind the DataTable to a DataGridViews to display the data
             RefreshAllDataGridViews();
 
             numericUpDownAmount.Maximum = 9999999;
@@ -310,7 +309,7 @@ namespace bobFinal
 
         private void CheckIfPropertiesAreConnected()
         {
-            foreach (var property in properties)
+            foreach (Property property in properties)
             {
                 if (!property.GetConnected())
                 {
@@ -925,6 +924,7 @@ namespace bobFinal
 
         private void RefreshAllDataGridViews()
         {
+            // bind the DataTable to a DataGridViews to display the data
             RefreshDataGridView("Properties");
             RefreshDataGridView("incomeHistoryTable");
             RefreshDataGridViewLessons();
@@ -934,7 +934,7 @@ namespace bobFinal
         {
             int selectedAnswerIndex = -1;
 
-            // Determine which answer was selected
+            // determine which answer was selected
             if (radioButton1.Checked)
                 selectedAnswerIndex = 0;
             else if (radioButton2.Checked)

@@ -832,7 +832,7 @@ namespace bobFinal
                 message += $"({edge.Item1.GetXCoordinate()}, {edge.Item1.GetYCoordinate()}) -> ({edge.Item2.GetXCoordinate()}, {edge.Item2.GetYCoordinate()})\n";
             }
 
-            Program.ShowAutoClosingMessageBox($"Edges in the MST: {message}\nAdding these path tiles in place now", "Minimum Spanning Tree", 5000);
+            Program.ShowAutoClosingMessageBox($"Edges in the MST: {message}\nPath tiles will be automatically placed to reflect the new MST\nAll properties connected to the MST experience a 1.3x boost in income", "Minimum Spanning Tree", 5000);
             PlacePathTiles(pathTilesList, mstEdges, grid);
         }
 

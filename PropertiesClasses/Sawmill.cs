@@ -8,7 +8,7 @@
             GoldCost = 100;
             LumberCost = 100;
             DailyGoldGain = 0;
-            DailyLumberGain = 30;
+            DailyLumberGain = 40;
             DailyDiamondGain = 0;
             TotalGoldGain = 0;
             TotalLumberGain = 0;

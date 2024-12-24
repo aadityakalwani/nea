@@ -121,8 +121,8 @@ namespace bobFinal
         private void InitializeLoot()
         {
             dollars = new Resource("Dollars", 100, 10000, progressBarDollars, textBoxDollarsAmount, 1);
-            lumber = new Resource("Lumber", 100, 200, progressBarLumber, textBoxLumberAmount, 3);
-            gold = new Resource("Gold", 100, 200, progressBarGold, textBoxGoldAmount, 2);
+            lumber = new Resource("Lumber", 100, 300, progressBarLumber, textBoxLumberAmount, 3);
+            gold = new Resource("Gold", 100, 300, progressBarGold, textBoxGoldAmount, 2);
             diamond = new Resource("Diamond", 5, 50, progressBarDiamond, textBoxDiamondAmount, 10);
 
             resources = new List<Resource> { dollars, lumber, gold, diamond };
@@ -577,7 +577,10 @@ namespace bobFinal
                 }
                 else
                 {
-                    Program.ShowAutoClosingMessageBox("Not enough resources!", "Error", 2500);
+                    if (selectedResource.GetName() != "Diamond")
+                        Program.ShowAutoClosingMessageBox($"Not enough {selectedResource.GetName()}!", "Error", 2500);
+                    else
+                        Program.ShowAutoClosingMessageBox("Not enough diamonds!\nEarn diamond by completing lessons", "Error", 2500);
                 }
             }
         }
@@ -620,7 +623,7 @@ namespace bobFinal
             }
             else
             {
-                Program.ShowAutoClosingMessageBox("Not enough diamonds to upgrade storage!", "Error", 2500);
+                Program.ShowAutoClosingMessageBox("Not enough diamonds to upgrade storage!\nEarn diamond by completing lessons", "Error", 2500);
             }
         }
 
@@ -845,7 +848,7 @@ namespace bobFinal
             }
             else
             {
-                Program.ShowAutoClosingMessageBox("Not enough diamonds to apply Prim's algorithm!", "Error", 2500);
+                Program.ShowAutoClosingMessageBox("Not enough diamonds to apply Prim's algorithm!\nEarn diamond by completing lessons", "Error", 2500);
             }
         }
 

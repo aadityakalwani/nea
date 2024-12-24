@@ -7,8 +7,8 @@
             PropertyId = id;
             GoldCost = 120;
             LumberCost = 100;
-            DailyGoldGain = 50;
-            DailyLumberGain = 0;
+            DailyGoldGain = 40;
+            DailyLumberGain = 10;
             DailyDiamondGain = 0;
             TotalGoldGain = 0;
             TotalLumberGain = 0;

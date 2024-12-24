@@ -826,19 +826,27 @@ namespace bobFinal
             }
         }
 
+        // btnApplyPrims click event handler
         private void button1_Click(object sender, EventArgs e)
         {
-            List<(Property, Property)> mstEdges = FindMst(properties);
-
-            string message = "";
-            // display the edges of the MST in a message box
-            foreach ((Property, Property) edge in mstEdges)
+            // charge 5 diamonds to do this:
+            if (diamond.GetValue() >= 5)
             {
-                message += $"({edge.Item1.GetXCoordinate()}, {edge.Item1.GetYCoordinate()}) -> ({edge.Item2.GetXCoordinate()}, {edge.Item2.GetYCoordinate()})\n";
-            }
+                diamond.ChangeQuantity(-5);
 
-            Program.ShowAutoClosingMessageBox($"Edges in the MST: {message}\nPath tiles will be automatically placed to reflect the new MST\nAll properties connected to the MST experience a 1.3x boost in income", "Minimum Spanning Tree", 5000);
-            PlacePathTiles(pathTilesList, mstEdges, grid);
+                List<(Property, Property)> mstEdges = FindMst(properties);
+
+                string message = "";
+                // display the edges of the MST in a message box
+                foreach ((Property, Property) edge in mstEdges) message += $"({edge.Item1.GetXCoordinate()}, {edge.Item1.GetYCoordinate()}) -> ({edge.Item2.GetXCoordinate()}, {edge.Item2.GetYCoordinate()})\n";
+
+                Program.ShowAutoClosingMessageBox($"Edges in the MST: {message}\nPath tiles will be automatically placed to reflect the new MST\nAll properties connected to the MST experience a 1.3x boost in income", "Minimum Spanning Tree", 5000);
+                PlacePathTiles(pathTilesList, mstEdges, grid);
+            }
+            else
+            {
+                Program.ShowAutoClosingMessageBox("Not enough diamonds to apply Prim's algorithm!", "Error", 2500);
+            }
         }
 
         private void btnLesson1_Click_1(object sender, EventArgs e)

@@ -883,7 +883,7 @@ namespace bobFinal
             this.btnApplyPrims.Name = "btnApplyPrims";
             this.btnApplyPrims.Size = new System.Drawing.Size(312, 63);
             this.btnApplyPrims.TabIndex = 28;
-            this.btnApplyPrims.Text = "Apply Prim\'s";
+            this.btnApplyPrims.Text = "Apply Prim\'s\r\nCost: 5 diamonds";
             this.btnApplyPrims.UseVisualStyleBackColor = true;
             this.btnApplyPrims.Click += new System.EventHandler(this.button1_Click);
             // 

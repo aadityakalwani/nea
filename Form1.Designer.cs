@@ -129,12 +129,12 @@ namespace bobFinal
             // columnHeaderBuilding
             // 
             this.columnHeaderBuilding.Text = "Building";
-            this.columnHeaderBuilding.Width = 173;
+            this.columnHeaderBuilding.Width = 140;
             // 
             // columnHeaderCost
             // 
             this.columnHeaderCost.Text = "Cost";
-            this.columnHeaderCost.Width = 262;
+            this.columnHeaderCost.Width = 233;
             // 
             // columnHeaderGain
             // 

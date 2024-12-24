@@ -101,6 +101,7 @@ namespace bobFinal
             this.btnApplyPrims = new System.Windows.Forms.Button();
             this.lblTabs = new System.Windows.Forms.Label();
             this.btnApplicationExit = new System.Windows.Forms.Button();
+            this.lblPrimsInfo = new System.Windows.Forms.Label();
             this.pnlBuy.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownAmount)).BeginInit();
             this.tabControl1.SuspendLayout();
@@ -879,7 +880,7 @@ namespace bobFinal
             // 
             this.btnApplyPrims.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnApplyPrims.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
-            this.btnApplyPrims.Location = new System.Drawing.Point(1455, 470);
+            this.btnApplyPrims.Location = new System.Drawing.Point(1455, 527);
             this.btnApplyPrims.Name = "btnApplyPrims";
             this.btnApplyPrims.Size = new System.Drawing.Size(312, 63);
             this.btnApplyPrims.TabIndex = 28;
@@ -900,7 +901,7 @@ namespace bobFinal
             // 
             this.btnApplicationExit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnApplicationExit.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnApplicationExit.Location = new System.Drawing.Point(1455, 591);
+            this.btnApplicationExit.Location = new System.Drawing.Point(1455, 656);
             this.btnApplicationExit.Name = "btnApplicationExit";
             this.btnApplicationExit.Size = new System.Drawing.Size(312, 65);
             this.btnApplicationExit.TabIndex = 27;
@@ -908,12 +909,22 @@ namespace bobFinal
             this.btnApplicationExit.UseVisualStyleBackColor = true;
             this.btnApplicationExit.Click += new System.EventHandler(this.btnApplicationExit_Click_1);
             // 
+            // lblPrimsInfo
+            // 
+            this.lblPrimsInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
+            this.lblPrimsInfo.Location = new System.Drawing.Point(1455, 480);
+            this.lblPrimsInfo.Name = "lblPrimsInfo";
+            this.lblPrimsInfo.Size = new System.Drawing.Size(312, 44);
+            this.lblPrimsInfo.TabIndex = 29;
+            this.lblPrimsInfo.Text = "All properties connected to the Town Hall via Prim\'s have their income boosted by" + " 30%";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(1804, 966);
+            this.Controls.Add(this.lblPrimsInfo);
             this.Controls.Add(this.btnApplyPrims);
             this.Controls.Add(this.btnApplicationExit);
             this.Controls.Add(this.lblTabs);
@@ -952,6 +963,8 @@ namespace bobFinal
             this.ResumeLayout(false);
             this.PerformLayout();
         }
+
+        private System.Windows.Forms.Label lblPrimsInfo;
 
         private System.Windows.Forms.Label lblCommission;
 

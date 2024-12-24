@@ -73,6 +73,7 @@ namespace bobFinal
             this.btnSellBuilding = new System.Windows.Forms.Button();
             this.lblNextDayTimer = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.lblCommission = new System.Windows.Forms.Label();
             this.btnUpgradeDiamondStorage = new System.Windows.Forms.Button();
             this.btnUpgradeGoldStorage = new System.Windows.Forms.Button();
             this.btnUpgradeLumberStorage = new System.Windows.Forms.Button();
@@ -330,7 +331,7 @@ namespace bobFinal
             // 
             this.btnSell.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSell.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSell.Location = new System.Drawing.Point(552, 340);
+            this.btnSell.Location = new System.Drawing.Point(552, 367);
             this.btnSell.Margin = new System.Windows.Forms.Padding(2);
             this.btnSell.Name = "btnSell";
             this.btnSell.Size = new System.Drawing.Size(180, 75);
@@ -583,6 +584,7 @@ namespace bobFinal
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.lblCommission);
             this.tabPage2.Controls.Add(this.btnUpgradeDiamondStorage);
             this.tabPage2.Controls.Add(this.btnUpgradeGoldStorage);
             this.tabPage2.Controls.Add(this.btnUpgradeLumberStorage);
@@ -600,6 +602,15 @@ namespace bobFinal
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Market";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // lblCommission
+            // 
+            this.lblCommission.Location = new System.Drawing.Point(553, 313);
+            this.lblCommission.Name = "lblCommission";
+            this.lblCommission.Size = new System.Drawing.Size(179, 36);
+            this.lblCommission.TabIndex = 29;
+            this.lblCommission.Text = "Commission: 4%";
+            this.lblCommission.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // btnUpgradeDiamondStorage
             // 
@@ -941,6 +952,8 @@ namespace bobFinal
             this.ResumeLayout(false);
             this.PerformLayout();
         }
+
+        private System.Windows.Forms.Label lblCommission;
 
         private System.Windows.Forms.Button btnSubmit;
 

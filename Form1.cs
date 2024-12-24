@@ -20,6 +20,7 @@ namespace bobFinal
         private readonly MergeSort mergeSort = new MergeSort();
         private readonly List<PathTile> pathTilesList = new List<PathTile>();
         private readonly List<Property> properties = new List<Property>();
+        public float commissionFluctuation;
         private string currentAction;
         private DateTime currentDate = new DateTime(2024, 1, 1);
         private Lesson currentLesson;
@@ -399,6 +400,10 @@ namespace bobFinal
             UpdateMarketPrices();
             UpdateMarketPanel();
 
+            // fluctuate the commission amount to be within 0-10%
+            commissionFluctuation = CustomRandom.Next(0, 11);
+            lblCommission.Text = $@"Commission: {commissionFluctuation}%";
+
             // update cost of building properties
             RefreshPropertyIncomes();
             InitializePropertyPrices();
@@ -474,7 +479,8 @@ namespace bobFinal
         {
             if (selectedResource == null) return;
             int amount = (int)numericUpDownAmount.Value;
-            float cost = amount * selectedResource.GetConversionRate();
+            float cost = amount * selectedResource.GetConversionRate() - commissionFluctuation / 100;
+            if (cost <= 0) cost = 0;
 
             if (currentAction == "buy")
             {

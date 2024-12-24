@@ -4,8 +4,6 @@ namespace bobFinal
 {
     public static class Market
     {
-        private static readonly CustomRandom CustomRandom = new CustomRandom();
-
         public static void UpdateConversionRates(List<Resource> resources)
         {
             foreach (Resource resource in resources)

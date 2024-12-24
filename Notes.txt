@@ -5,7 +5,7 @@ immediate future ideas:
 future ideas:
 
     - weather that affects the market prices / village visitors
-    - commission / charge for converting resources that fluctuates with the market
+    - Charge five or 10 diamonds to apply Prim's algorithm
 
 way-far-future ideas:
 

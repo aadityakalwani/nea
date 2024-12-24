@@ -5,7 +5,7 @@
         public Farm(int id, int x, int y) : base(x, y)
         {
             PropertyId = id;
-            GoldCost = 120;
+            GoldCost = 150;
             LumberCost = 100;
             DailyGoldGain = 40;
             DailyLumberGain = 10;

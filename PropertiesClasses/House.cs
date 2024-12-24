@@ -5,8 +5,8 @@
         public House(int id, int x, int y) : base(x, y)
         {
             PropertyId = id;
-            GoldCost = 100;
-            LumberCost = 50;
+            GoldCost = 110;
+            LumberCost = 75;
             DailyGoldGain = 30;
             DailyLumberGain = 0;
             DailyDiamondGain = 0;

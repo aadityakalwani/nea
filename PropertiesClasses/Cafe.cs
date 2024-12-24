@@ -5,8 +5,8 @@
         public Cafe(int id, int x, int y) : base(x, y)
         {
             PropertyId = id;
-            GoldCost = 200;
-            LumberCost = 100;
+            GoldCost = 250;
+            LumberCost = 150;
             DailyGoldGain = 100;
             DailyLumberGain = 0;
             DailyDiamondGain = 0;

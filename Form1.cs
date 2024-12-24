@@ -16,25 +16,31 @@ namespace bobFinal
         private const int TileSize = 40;
         private const int NewDayInterval = 2000;
         private const int InitialCoordinate = 1;
+
         private readonly List<Property> listOfAllProperties = new List<Property> { new House(0, 0, 0), new Sawmill(0, 0, 0), new Farm(0, 0, 0), new Cafe(0, 0, 0), new Mine(0, 0, 0) };
         private readonly MergeSort mergeSort = new MergeSort();
         private readonly List<PathTile> pathTilesList = new List<PathTile>();
         private readonly List<Property> properties = new List<Property>();
+
         private float commissionFluctuation;
         private string currentAction;
+
         private DateTime currentDate = new DateTime(2024, 1, 1);
         private Lesson currentLesson;
         private int currentPropertyIdIndex;
         private Resource diamond;
+
         private int diamondStorageUpgradeCost = 5;
         private Resource dollars;
         private Resource gold;
         private int goldStorageUpgradeCost = 5;
+
         private CustomPictureBox[,] grid;
         private Resource lumber;
         private int lumberStorageUpgradeCost = 5;
         private Timer newDayTimer;
         private int previousLessonId;
+
         private List<Resource> resources;
         private string selectedBuilding;
         private Point selectedPosition;

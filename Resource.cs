@@ -53,11 +53,17 @@ namespace bobFinal
         private void UpdateUi()
         {
             if (Value >= MaxValue)
+            {
                 ProgressBar.Value = ProgressBar.Maximum;
+            }
             else if (Value == 0)
+            {
                 ProgressBar.Value = ProgressBar.Minimum;
+            }
             else
+            {
                 ProgressBar.Value = (int)(Value * ProgressBar.Maximum / MaxValue);
+            }
 
             TextBox.Text = $@"{Math.Round(Value, 2)} / {MaxValue}";
         }

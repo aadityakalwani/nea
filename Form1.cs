@@ -244,6 +244,7 @@ namespace bobFinal
         private void listViewPrices_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (listViewPrices.SelectedItems.Count <= 0) return;
+
             string selectedItem = listViewPrices.SelectedItems[0].Text;
             selectedBuilding = selectedItem.Split(':')[0].Trim();
         }
@@ -251,6 +252,7 @@ namespace bobFinal
         private void GridPictureBox_Click(object sender, EventArgs e)
         {
             if (!(sender is PictureBox pictureBox)) return;
+
             selectedPosition = (Point)pictureBox.Tag;
             lblSelectedPosition.Text = $@"Selected Tile: ({selectedPosition.X}, {selectedPosition.Y})";
         }
@@ -280,6 +282,7 @@ namespace bobFinal
             }
 
             if (property == null) return;
+
             CustomPictureBox selectedTile = grid[selectedPosition.X, selectedPosition.Y];
 
             // Check if the selected tile is empty by verifying the image and BuiltUpon status
@@ -484,6 +487,7 @@ namespace bobFinal
         private void UpdateMarketPanel()
         {
             if (selectedResource == null) return;
+
             int amount = (int)numericUpDownAmount.Value;
             float cost = amount * selectedResource.GetConversionRate() - commissionFluctuation / 100;
             if (cost <= 0) cost = 0;
@@ -507,9 +511,13 @@ namespace bobFinal
 
             // ReSharper disable once ConvertIfStatementToConditionalTernaryExpression
             if (buyOrSell == "buy")
+            {
                 lblCost.Text = $@"Cost: {Math.Round(cost, 2)} dollars";
+            }
             else
+            {
                 lblCost.Text = $@"Value: {Math.Round(cost, 2)} dollars";
+            }
         }
 
         private void btnBuy_Click(object sender, EventArgs e)
@@ -562,6 +570,7 @@ namespace bobFinal
             float cost = amount * selectedResource.GetConversionRate();
 
             if (selectedResource == null) return;
+
             if (currentAction == "buy")
             {
                 if (dollars.GetValue() >= cost)
@@ -584,9 +593,13 @@ namespace bobFinal
                 else
                 {
                     if (selectedResource.GetName() != "Diamond")
+                    {
                         Program.ShowAutoClosingMessageBox($"Not enough {selectedResource.GetName()}!", "Error", 2500);
+                    }
                     else
+                    {
                         Program.ShowAutoClosingMessageBox("Not enough diamonds!\nEarn diamond by completing lessons", "Error", 2500);
+                    }
                 }
             }
         }
@@ -959,13 +972,21 @@ namespace bobFinal
 
             // determine which answer was selected
             if (radioButton1.Checked)
+            {
                 selectedAnswerIndex = 0;
+            }
             else if (radioButton2.Checked)
+            {
                 selectedAnswerIndex = 1;
+            }
             else if (radioButton3.Checked)
+            {
                 selectedAnswerIndex = 2;
+            }
             else if (radioButton4.Checked)
+            {
                 selectedAnswerIndex = 3;
+            }
 
             // if not already answered
             if (!currentLesson.Completed)

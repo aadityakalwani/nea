@@ -27,6 +27,7 @@ namespace bobFinal
             {
                 // Check if the database exists
                 if (File.Exists(Database)) return;
+
                 // Create a catalog object
                 Catalog cat = new Catalog();
 

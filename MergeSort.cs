@@ -9,7 +9,9 @@ namespace bobFinal
         public List<Property> Sort(List<Property> list, string sortByWhat, string sortOrder)
         {
             if (list.Count <= 1)
+            {
                 return list;
+            }
 
             Property[] array = list.ToArray();
             Property[] temp = new Property[array.Length];
@@ -22,7 +24,9 @@ namespace bobFinal
         private void MergeSortRecursive(Property[] array, Property[] temp, int leftStart, int rightEnd, string sortByWhat, string sortOrder)
         {
             if (leftStart >= rightEnd)
+            {
                 return;
+            }
 
             int middle = (leftStart + rightEnd) / 2;
 

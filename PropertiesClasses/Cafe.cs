@@ -15,5 +15,10 @@
             ImageFileName = "Images/CafeTile.jpg";
             Active = true;
         }
+
+        public override string GetPropertyDetails()
+        {
+            return base.GetPropertyDetails() + $", Gold Cost: {GetGoldCost()}, Lumber Cost: {GetLumberCost()}, Daily Gold Gain: {DailyGoldGain}, Daily Lumber Gain: {DailyLumberGain}";
+        }
     }
 }

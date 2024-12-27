@@ -592,6 +592,7 @@ namespace bobFinal
                 }
                 else
                 {
+                    // ReSharper disable once ConvertIfStatementToConditionalTernaryExpression
                     if (selectedResource.GetName() != "Diamond")
                     {
                         Program.ShowAutoClosingMessageBox($"Not enough {selectedResource.GetName()}!", "Error", 2500);

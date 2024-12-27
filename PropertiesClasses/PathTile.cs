@@ -27,5 +27,10 @@
         {
             return imageFileName;
         }
+
+        public override string ToString()
+        {
+            return $"Path Tile at ({xCoordinate}, {yCoordinate})";
+        }
     }
 }

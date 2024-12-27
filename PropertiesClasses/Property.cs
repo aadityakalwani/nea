@@ -1,11 +1,11 @@
 ﻿namespace bobFinal.PropertiesClasses
 {
-    public abstract class Property
+    public abstract class Property : IPropertyInterface
     {
         private readonly int xCoordinate;
         private readonly int yCoordinate;
         protected bool Active;
-        protected bool Connected;
+        private bool connected;
         protected float DailyDiamondGain;
         protected float DailyGoldGain;
         protected float DailyLumberGain;
@@ -114,12 +114,18 @@
 
         public bool GetConnected()
         {
-            return Connected;
+            return connected;
         }
 
         public void SetConnected(bool newCondition)
         {
-            Connected = newCondition;
+            connected = newCondition;
+        }
+
+        // virtual method to be overridden by subclasses to allow for unique property details
+        public virtual string GetPropertyDetails()
+        {
+            return $"Property ID: {PropertyId}, Coordinates: ({xCoordinate}, {yCoordinate})";
         }
     }
 }

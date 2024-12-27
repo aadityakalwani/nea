@@ -387,25 +387,15 @@ namespace bobFinal
             string coordinateOfProperty = $"({getXCoordinate},{getYCoordinate})";
             const string updateQuery = "UPDATE Properties SET [Daily Gold Gain] = @DailyGoldGain, [Daily Lumber Gain] = @DailyLumberGain, [Daily Diamond Gain] = @DailyDiamondGain WHERE Coordinate = @Coordinate";
 
-            using (OleDbConnection conn = new OleDbConnection(ConnectionString))
+            Dictionary<string, object> parameters = new Dictionary<string, object>
             {
-                try
-                {
-                    conn.Open();
-                    using (OleDbCommand cmd = new OleDbCommand(updateQuery, conn))
-                    {
-                        cmd.Parameters.AddWithValue("@DailyGoldGain", getDailyGoldGain);
-                        cmd.Parameters.AddWithValue("@DailyLumberGain", getDailyLumberGain);
-                        cmd.Parameters.AddWithValue("@DailyDiamondGain", getDailyDiamondGain);
-                        cmd.Parameters.AddWithValue("@Coordinate", coordinateOfProperty);
-                        cmd.ExecuteNonQuery();
-                    }
-                }
-                catch (Exception ex)
-                {
-                    Program.ShowAutoClosingMessageBox($@"Error updating property costs and incomes: {ex.Message}", @"Database Error", 2000);
-                }
-            }
+                { "@DailyGoldGain", getDailyGoldGain },
+                { "@DailyLumberGain", getDailyLumberGain },
+                { "@DailyDiamondGain", getDailyDiamondGain },
+                { "@Coordinate", coordinateOfProperty }
+            };
+
+            ExecuteDatabaseCommand(updateQuery, parameters);
         }
 
         private static void ExecuteDatabaseCommand(string query, Dictionary<string, object> parameters)

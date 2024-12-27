@@ -329,27 +329,16 @@ namespace bobFinal
             const string insertQuery = "INSERT INTO incomeHistoryTable ([Date], Gold, Lumber, Diamonds, [Number Of Properties]) " +
                                        "VALUES (@DateInput, @GoldInput, @LumberInput, @DiamondsInput, @NumberOfPropertiesInput)";
 
-            using (OleDbConnection command = new OleDbConnection(ConnectionString))
+            Dictionary<string, object> parameters = new Dictionary<string, object>
             {
-                try
-                {
-                    command.Open();
-                    using (OleDbCommand cmd = new OleDbCommand(insertQuery, command))
-                    {
-                        cmd.Parameters.AddWithValue("@DateInput", dateInput.ToShortDateString());
-                        cmd.Parameters.AddWithValue("@GoldInput", goldInput);
-                        cmd.Parameters.AddWithValue("@LumberInput", lumberInput);
-                        cmd.Parameters.AddWithValue("@DiamondsInput", diamondsInput);
-                        cmd.Parameters.AddWithValue("@NumberOfPropertiesInput", numberOfPropertiesInput);
+                { "@DateInput", dateInput.ToShortDateString() },
+                { "@GoldInput", goldInput },
+                { "@LumberInput", lumberInput },
+                { "@DiamondsInput", diamondsInput },
+                { "@NumberOfPropertiesInput", numberOfPropertiesInput }
+            };
 
-                        cmd.ExecuteNonQuery();
-                    }
-                }
-                catch (Exception ex)
-                {
-                    Program.ShowAutoClosingMessageBox($@"Error adding new day of income: {ex.Message}", @"Database Error", 2000);
-                }
-            }
+            ExecuteCommand(insertQuery, parameters);
         }
 
         public static void AddNewProperty(int propertyId, string propertyType, int xCoordinate, int yCoordinate, float goldCost, float lumberCost, float dailyGoldGain, float dailyLumberGain, float dailyDiamondGain, float totalGoldGain, float totalLumberGain, bool propertyActive)
@@ -358,33 +347,22 @@ namespace bobFinal
             const string insertQuery = "INSERT INTO Properties (Id, [Property Type], Coordinate, Active, [Gold Cost], [Lumber Cost], [Daily Gold Gain], [Daily Lumber Gain], [Daily Diamond Gain], [Total Gold Gain], [Total Lumber Gain]) " +
                                        "VALUES (@propertyID, @PropertyType, @coordinate, @Active, @GoldCost, @LumberCost, @DailyGoldGain, @DailyLumberGain, @DailyDiamondGain, @TotalGoldGain, @TotalLumberGain)";
 
-            using (OleDbConnection conn = new OleDbConnection(ConnectionString))
+            Dictionary<string, object> parameters = new Dictionary<string, object>
             {
-                try
-                {
-                    conn.Open();
-                    using (OleDbCommand cmd = new OleDbCommand(insertQuery, conn))
-                    {
-                        cmd.Parameters.AddWithValue("@propertyID", propertyId);
-                        cmd.Parameters.AddWithValue("@PropertyType", propertyType);
-                        cmd.Parameters.AddWithValue("@Coordinate", coordinate);
-                        cmd.Parameters.AddWithValue("@Active", propertyActive);
-                        cmd.Parameters.AddWithValue("@GoldCost", goldCost);
-                        cmd.Parameters.AddWithValue("@LumberCost", lumberCost);
-                        cmd.Parameters.AddWithValue("@DailyGoldGain", dailyGoldGain);
-                        cmd.Parameters.AddWithValue("@DailyLumberGain", dailyLumberGain);
-                        cmd.Parameters.AddWithValue("@DailyDiamondGain", dailyDiamondGain);
-                        cmd.Parameters.AddWithValue("@TotalGoldGain", totalGoldGain);
-                        cmd.Parameters.AddWithValue("@TotalLumberGain", totalLumberGain);
+                { "@propertyID", propertyId },
+                { "@PropertyType", propertyType },
+                { "@Coordinate", coordinate },
+                { "@Active", propertyActive },
+                { "@GoldCost", goldCost },
+                { "@LumberCost", lumberCost },
+                { "@DailyGoldGain", dailyGoldGain },
+                { "@DailyLumberGain", dailyLumberGain },
+                { "@DailyDiamondGain", dailyDiamondGain },
+                { "@TotalGoldGain", totalGoldGain },
+                { "@TotalLumberGain", totalLumberGain }
+            };
 
-                        cmd.ExecuteNonQuery();
-                    }
-                }
-                catch (Exception ex)
-                {
-                    Program.ShowAutoClosingMessageBox($@"Error adding new property: {ex.Message}", @"Database Error", 2000);
-                }
-            }
+            ExecuteCommand(insertQuery, parameters);
         }
 
         public static void UpdatePropertyActiveStatus(int xCoord, int yCoord, bool activeOrNot)
@@ -392,23 +370,13 @@ namespace bobFinal
             string coordinateOfProperty = $"({xCoord},{yCoord})";
             const string updateQuery = "UPDATE Properties SET Active = @Active WHERE Coordinate = @Coordinate ";
 
-            using (OleDbConnection conn = new OleDbConnection(ConnectionString))
+            Dictionary<string, object> parameters = new Dictionary<string, object>
             {
-                try
-                {
-                    conn.Open();
-                    using (OleDbCommand cmd = new OleDbCommand(updateQuery, conn))
-                    {
-                        cmd.Parameters.AddWithValue("@Active", activeOrNot);
-                        cmd.Parameters.AddWithValue("@Coordinate", coordinateOfProperty);
-                        cmd.ExecuteNonQuery();
-                    }
-                }
-                catch (Exception ex)
-                {
-                    Program.ShowAutoClosingMessageBox($@"Error updating property status: {ex.Message}", @"Database Error", 2000);
-                }
-            }
+                { "@Active", activeOrNot },
+                { "@Coordinate", coordinateOfProperty }
+            };
+
+            ExecuteCommand(updateQuery, parameters);
         }
 
         public static void UpdatePropertyConnectedStatus(int xCoord, int yCoord, bool connectedOrNot)
@@ -516,6 +484,29 @@ namespace bobFinal
                 catch (Exception ex)
                 {
                     Program.ShowAutoClosingMessageBox($@"Error updating property costs and incomes: {ex.Message}", @"Database Error", 2000);
+                }
+            }
+        }
+
+        private static void ExecuteCommand(string query, Dictionary<string, object> parameters = null)
+        {
+            using (OleDbConnection conn = new OleDbConnection(ConnectionString))
+            {
+                try
+                {
+                    conn.Open();
+                    using (OleDbCommand cmd = new OleDbCommand(query, conn))
+                    {
+                        if (parameters != null)
+                            foreach (KeyValuePair<string, object> param in parameters)
+                                cmd.Parameters.AddWithValue(param.Key, param.Value);
+
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Program.ShowAutoClosingMessageBox($@"Error executing command: {ex.Message}", @"Database Error", 2000);
                 }
             }
         }

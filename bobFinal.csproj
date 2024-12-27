@@ -65,7 +65,7 @@
         <Compile Include="PropertiesClasses\Mine.cs" />
         <Compile Include="PropertiesClasses\PathTile.cs" />
         <Compile Include="PropertiesClasses\Property.cs" />
-        <Compile Include="PropertiesClasses\PropertyInterface.cs"/>
+        <Compile Include="PropertiesClasses\IProperty.cs"/>
         <Compile Include="PropertiesClasses\Sawmill.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
         <Compile Include="Resource.cs" />

@@ -123,9 +123,11 @@
         }
 
         // virtual method to be overridden by subclasses to allow for unique property details
-        public virtual string GetPropertyDetails()
+        protected virtual string GetPropertyDetails()
         {
             return $"Property ID: {PropertyId}, Coordinates: ({xCoordinate}, {yCoordinate})";
         }
+
+        public abstract void SetPropertyCosts(float goldCost, float lumberCost);
     }
 }

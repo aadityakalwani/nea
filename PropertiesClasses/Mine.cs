@@ -16,9 +16,15 @@
             Active = true;
         }
 
-        public override string GetPropertyDetails()
+        protected override string GetPropertyDetails()
         {
             return base.GetPropertyDetails() + $", Gold Cost: {GetGoldCost()}, Lumber Cost: {GetLumberCost()}, Daily Gold Gain: {DailyGoldGain}, Daily Lumber Gain: {DailyLumberGain}";
+        }
+
+        public override void SetPropertyCosts(float goldCost, float lumberCost)
+        {
+            GoldCost = goldCost;
+            LumberCost = lumberCost;
         }
     }
 }

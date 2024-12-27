@@ -71,7 +71,7 @@ namespace bobFinal
                     OleDbDataAdapter adapter = new OleDbDataAdapter(query, conn);
                     if (parameters != null)
                     {
-                        foreach (var param in parameters)
+                        foreach (KeyValuePair<string, object> param in parameters)
                         {
                             adapter.SelectCommand.Parameters.AddWithValue(param.Key, param.Value);
                         }
@@ -124,7 +124,7 @@ namespace bobFinal
                     {
                         if (parameters != null)
                         {
-                            foreach (var param in parameters)
+                            foreach (KeyValuePair<string, object> param in parameters)
                             {
                                 cmd.Parameters.AddWithValue(param.Key, param.Value);
                             }
@@ -314,7 +314,7 @@ namespace bobFinal
             using (OleDbConnection conn = new OleDbConnection(ConnectionString))
             {
                 conn.Open();
-                foreach (var choice in new List<string> { lesson.ChoiceOne, lesson.ChoiceTwo, lesson.ChoiceThree, lesson.ChoiceFour })
+                foreach (string choice in new List<string> { lesson.ChoiceOne, lesson.ChoiceTwo, lesson.ChoiceThree, lesson.ChoiceFour })
                 {
                     OleDbCommand choiceCmd = new OleDbCommand(insertChoiceQuery, conn);
                     choiceCmd.Parameters.AddWithValue("@LessonId", lessonId);
@@ -416,12 +416,12 @@ namespace bobFinal
             string coordinateOfProperty = $"({xCoord},{yCoord})";
             const string updateQuery = "UPDATE Properties SET Connected = @Connected WHERE Coordinate = @Coordinate";
 
-            using (var conn = new OleDbConnection(ConnectionString))
+            using (OleDbConnection conn = new OleDbConnection(ConnectionString))
             {
                 try
                 {
                     conn.Open();
-                    using (var cmd = new OleDbCommand(updateQuery, conn))
+                    using (OleDbCommand cmd = new OleDbCommand(updateQuery, conn))
                     {
                         cmd.Parameters.AddWithValue("@Connected", connectedOrNot);
                         cmd.Parameters.AddWithValue("@Coordinate", coordinateOfProperty);

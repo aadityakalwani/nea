@@ -347,23 +347,13 @@ namespace bobFinal
         {
             const string updateQuery = "UPDATE lessonsTable SET Completed = @Completed WHERE LessonId = @LessonId";
 
-            using (OleDbConnection conn = new OleDbConnection(ConnectionString))
+            Dictionary<string, object> parameters = new Dictionary<string, object>
             {
-                try
-                {
-                    conn.Open();
-                    using (OleDbCommand cmd = new OleDbCommand(updateQuery, conn))
-                    {
-                        cmd.Parameters.AddWithValue("@Completed", completedOrNot);
-                        cmd.Parameters.AddWithValue("@LessonId", lessonId);
-                        cmd.ExecuteNonQuery();
-                    }
-                }
-                catch (Exception ex)
-                {
-                    Program.ShowAutoClosingMessageBox($@"Error updating lesson status: {ex.Message}", @"Database Error", 2000);
-                }
-            }
+                { "@Completed", completedOrNot },
+                { "@LessonId", lessonId }
+            };
+
+            ExecuteDatabaseCommand(updateQuery, parameters);
         }
 
         public static void UpdateDatabaseWithSortedProperties(List<Property> sortedProperties)
@@ -380,26 +370,16 @@ namespace bobFinal
         public static void UpdatePropertyTotalIncome(int propertyXCoordinate, int propertyYCoordinate, float propertyTotalGoldGain, float propertyTotalLumberGain)
         {
             string coordinateOfProperty = $"({propertyXCoordinate},{propertyYCoordinate})";
-            const string updateQuery = "UPDATE Properties SET [Total Gold Gain] = @TotalGoldGain, [Total Lumber Gain] = @TotalLumberGain WHERE Coordinate = @coordinateOfProperty";
+            const string updateQuery = "UPDATE Properties SET [Total Gold Gain] = @TotalGoldGain, [Total Lumber Gain] = @TotalLumberGain WHERE Coordinate = @Coordinate";
 
-            using (OleDbConnection conn = new OleDbConnection(ConnectionString))
+            Dictionary<string, object> parameters = new Dictionary<string, object>
             {
-                try
-                {
-                    conn.Open();
-                    using (OleDbCommand cmd = new OleDbCommand(updateQuery, conn))
-                    {
-                        cmd.Parameters.AddWithValue("@TotalGoldGain", propertyTotalGoldGain);
-                        cmd.Parameters.AddWithValue("@TotalLumberGain", propertyTotalLumberGain);
-                        cmd.Parameters.AddWithValue("@Coordinate", coordinateOfProperty);
-                        cmd.ExecuteNonQuery();
-                    }
-                }
-                catch (Exception ex)
-                {
-                    Program.ShowAutoClosingMessageBox($@"Error updating property status: {ex.Message}", @"Database Error", 2000);
-                }
-            }
+                { "@TotalGoldGain", propertyTotalGoldGain },
+                { "@TotalLumberGain", propertyTotalLumberGain },
+                { "@Coordinate", coordinateOfProperty }
+            };
+
+            ExecuteDatabaseCommand(updateQuery, parameters);
         }
 
         public static void UpdatePropertyIncomes(int getXCoordinate, int getYCoordinate, float getDailyGoldGain, float getDailyLumberGain, float getDailyDiamondGain)

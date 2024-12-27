@@ -409,7 +409,9 @@ namespace bobFinal
                         // dynamically add parameters
                         if (parameters != null)
                             foreach (KeyValuePair<string, object> param in parameters)
+                            {
                                 cmd.Parameters.AddWithValue(param.Key, param.Value);
+                            }
 
                         cmd.ExecuteNonQuery();
                     }

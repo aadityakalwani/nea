@@ -299,7 +299,7 @@ namespace bobFinal
                 { "@NumberOfPropertiesInput", numberOfPropertiesInput }
             };
 
-            ExecuteCommand(insertQuery, parameters);
+            ExecuteDatabaseCommand(insertQuery, parameters);
         }
 
         public static void AddNewProperty(int propertyId, string propertyType, int xCoordinate, int yCoordinate, float goldCost, float lumberCost, float dailyGoldGain, float dailyLumberGain, float dailyDiamondGain, float totalGoldGain, float totalLumberGain, bool propertyActive)
@@ -323,7 +323,7 @@ namespace bobFinal
                 { "@TotalLumberGain", totalLumberGain }
             };
 
-            ExecuteCommand(insertQuery, parameters);
+            ExecuteDatabaseCommand(insertQuery, parameters);
         }
 
         public static void UpdatePropertyActiveStatus(int xCoord, int yCoord, bool activeOrNot)
@@ -337,7 +337,7 @@ namespace bobFinal
                 { "@Coordinate", coordinateOfProperty }
             };
 
-            ExecuteCommand(updateQuery, parameters);
+            ExecuteDatabaseCommand(updateQuery, parameters);
         }
 
         public static void UpdatePropertyConnectedStatus(int xCoord, int yCoord, bool connectedOrNot)
@@ -345,24 +345,15 @@ namespace bobFinal
             string coordinateOfProperty = $"({xCoord},{yCoord})";
             const string updateQuery = "UPDATE Properties SET Connected = @Connected WHERE Coordinate = @Coordinate";
 
-            using (OleDbConnection conn = new OleDbConnection(ConnectionString))
+            Dictionary<string, object> parameters = new Dictionary<string, object>
             {
-                try
-                {
-                    conn.Open();
-                    using (OleDbCommand cmd = new OleDbCommand(updateQuery, conn))
-                    {
-                        cmd.Parameters.AddWithValue("@Connected", connectedOrNot);
-                        cmd.Parameters.AddWithValue("@Coordinate", coordinateOfProperty);
-                        cmd.ExecuteNonQuery();
-                    }
-                }
-                catch (Exception ex)
-                {
-                    Program.ShowAutoClosingMessageBox($@"Error updating property status: {ex.Message}", @"Database Error", 2000);
-                }
-            }
+                { "@Connected", connectedOrNot },
+                { "@Coordinate", coordinateOfProperty }
+            };
+
+            ExecuteDatabaseCommand(updateQuery, parameters);
         }
+
 
         public static void UpdateLessonStatus(int lessonId, bool completedOrNot)
         {
@@ -449,7 +440,7 @@ namespace bobFinal
             }
         }
 
-        private static void ExecuteCommand(string query, Dictionary<string, object> parameters = null)
+        private static void ExecuteDatabaseCommand(string query, Dictionary<string, object> parameters)
         {
             using (OleDbConnection conn = new OleDbConnection(ConnectionString))
             {
@@ -458,16 +449,14 @@ namespace bobFinal
                     conn.Open();
                     using (OleDbCommand cmd = new OleDbCommand(query, conn))
                     {
-                        if (parameters != null)
-                            foreach (KeyValuePair<string, object> param in parameters)
-                                cmd.Parameters.AddWithValue(param.Key, param.Value);
+                        foreach (KeyValuePair<string, object> param in parameters) cmd.Parameters.AddWithValue(param.Key, param.Value);
 
                         cmd.ExecuteNonQuery();
                     }
                 }
                 catch (Exception ex)
                 {
-                    Program.ShowAutoClosingMessageBox($@"Error executing command: {ex.Message}", @"Database Error", 2000);
+                    Program.ShowAutoClosingMessageBox($@"Error executing database command: {ex.Message}", @"Database Error", 2000);
                 }
             }
         }
@@ -482,8 +471,12 @@ namespace bobFinal
                     using (OleDbCommand cmd = new OleDbCommand(query, conn))
                     {
                         if (parameters != null)
+                        {
                             foreach (KeyValuePair<string, object> param in parameters)
+                            {
                                 cmd.Parameters.AddWithValue(param.Key, param.Value);
+                            }
+                        }
 
                         commandAction?.Invoke(cmd);
                     }

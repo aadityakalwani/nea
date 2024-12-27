@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
-using bobFinal.PropertiesClasses;
+using bobFinal.PropertiesFolder;
 using Path = System.IO.Path;
 
 // ReSharper disable InvertIf

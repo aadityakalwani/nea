@@ -1,18 +1,18 @@
-﻿namespace bobFinal.PropertiesClasses
+﻿namespace bobFinal.PropertiesFolder
 {
-    public class Mine : Property
+    public class Farm : Property
     {
-        public Mine(int id, int x, int y) : base(x, y)
+        public Farm(int id, int x, int y) : base(x, y)
         {
             PropertyId = id;
-            GoldCost = 350;
-            LumberCost = 250;
-            DailyGoldGain = 150;
-            DailyLumberGain = 0;
+            GoldCost = 150;
+            LumberCost = 100;
+            DailyGoldGain = 40;
+            DailyLumberGain = 10;
             DailyDiamondGain = 0;
             TotalGoldGain = 0;
             TotalLumberGain = 0;
-            ImageFileName = "Images/MineTile.jpg";
+            ImageFileName = "Images/FarmTile.jpg";
             Active = true;
         }
 

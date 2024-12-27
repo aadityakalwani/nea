@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using bobFinal.PropertiesClasses;
+using bobFinal.PropertiesFolder;
 
 namespace bobFinal
 {

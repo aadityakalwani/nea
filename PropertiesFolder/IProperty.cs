@@ -1,6 +1,6 @@
-﻿namespace bobFinal.PropertiesClasses
+﻿namespace bobFinal.PropertiesFolder
 {
-    public interface IPropertyInterface
+    public interface IProperty
     {
         int GetPropertyId();
         float GetGoldCost();
@@ -16,11 +16,7 @@
         float GetTotalLumberGain();
         void IncreaseTotalLumberGain(float amount);
         string GetImageFileName();
-        int GetXCoordinate();
-        int GetYCoordinate();
         bool GetActive();
         void SetActive(bool newCondition);
-        bool GetConnected();
-        void SetConnected(bool newCondition);
     }
 }

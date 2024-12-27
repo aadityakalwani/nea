@@ -4,7 +4,7 @@ using System.Data;
 using System.Data.OleDb;
 using System.IO;
 using ADOX;
-using Property = bobFinal.PropertiesClasses.Property;
+using Property = bobFinal.PropertiesFolder.Property;
 
 namespace bobFinal
 {

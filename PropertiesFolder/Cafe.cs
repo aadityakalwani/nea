@@ -1,4 +1,4 @@
-﻿namespace bobFinal.PropertiesClasses
+﻿namespace bobFinal.PropertiesFolder
 {
     public class Cafe : Property
     {

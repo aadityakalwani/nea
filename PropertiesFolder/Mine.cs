@@ -1,18 +1,18 @@
-﻿namespace bobFinal.PropertiesClasses
+﻿namespace bobFinal.PropertiesFolder
 {
-    public class Sawmill : Property
+    public class Mine : Property
     {
-        public Sawmill(int id, int x, int y) : base(x, y)
+        public Mine(int id, int x, int y) : base(x, y)
         {
             PropertyId = id;
-            GoldCost = 100;
-            LumberCost = 100;
-            DailyGoldGain = 0;
-            DailyLumberGain = 40;
+            GoldCost = 350;
+            LumberCost = 250;
+            DailyGoldGain = 150;
+            DailyLumberGain = 0;
             DailyDiamondGain = 0;
             TotalGoldGain = 0;
             TotalLumberGain = 0;
-            ImageFileName = "Images/SawmillTile.jpg";
+            ImageFileName = "Images/MineTile.jpg";
             Active = true;
         }
 

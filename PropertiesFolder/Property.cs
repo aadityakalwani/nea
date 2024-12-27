@@ -1,6 +1,6 @@
-﻿namespace bobFinal.PropertiesClasses
+﻿namespace bobFinal.PropertiesFolder
 {
-    public abstract class Property : IPropertyInterface
+    public abstract class Property : IProperty, IGridEntity
     {
         private readonly int xCoordinate;
         private readonly int yCoordinate;
@@ -22,6 +22,29 @@
             yCoordinate = y;
         }
 
+
+        // IGridEntity Implementation
+        public int GetXCoordinate()
+        {
+            return xCoordinate;
+        }
+
+        public int GetYCoordinate()
+        {
+            return yCoordinate;
+        }
+
+        public bool GetConnected()
+        {
+            return connected;
+        }
+
+        public void SetConnected(bool newCondition)
+        {
+            connected = newCondition;
+        }
+
+        // IProperty Implementation
         public int GetPropertyId()
         {
             return PropertyId;
@@ -92,16 +115,6 @@
             return ImageFileName;
         }
 
-        public int GetXCoordinate()
-        {
-            return xCoordinate;
-        }
-
-        public int GetYCoordinate()
-        {
-            return yCoordinate;
-        }
-
         public bool GetActive()
         {
             return Active;
@@ -110,16 +123,6 @@
         public void SetActive(bool newCondition)
         {
             Active = newCondition;
-        }
-
-        public bool GetConnected()
-        {
-            return connected;
-        }
-
-        public void SetConnected(bool newCondition)
-        {
-            connected = newCondition;
         }
 
         // virtual method to be overridden by subclasses to allow for unique property details

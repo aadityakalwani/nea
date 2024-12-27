@@ -63,32 +63,20 @@ namespace bobFinal
 
         private static DataTable ExecuteQuery(string query, Dictionary<string, object> parameters = null)
         {
-            using (OleDbConnection conn = new OleDbConnection(ConnectionString))
+            DataTable dataTable = new DataTable();
+            ExecuteDatabaseOperation(query, parameters, cmd =>
             {
-                try
-                {
-                    conn.Open();
-                    OleDbDataAdapter adapter = new OleDbDataAdapter(query, conn);
-                    if (parameters != null)
-                    {
-                        foreach (KeyValuePair<string, object> param in parameters)
-                        {
-                            adapter.SelectCommand.Parameters.AddWithValue(param.Key, param.Value);
-                        }
-                    }
-
-                    DataTable dataTable = new DataTable();
-                    adapter.Fill(dataTable);
-                    return dataTable;
-                }
-                catch (Exception ex)
-                {
-                    Program.ShowAutoClosingMessageBox($@"Error executing query: {ex.Message}", @"Database Error", 2000);
-                }
-            }
-
-            return null;
+                OleDbDataAdapter adapter = new OleDbDataAdapter(cmd);
+                adapter.Fill(dataTable);
+            });
+            return dataTable;
         }
+
+        private static void ExecuteSqlNonQuery(string query, Dictionary<string, object> parameters = null)
+        {
+            ExecuteDatabaseOperation(query, parameters, cmd => { cmd.ExecuteNonQuery(); });
+        }
+
 
         public static DataTable LoadDatabaseData(string whichTable)
         {
@@ -111,33 +99,6 @@ namespace bobFinal
             }
 
             return null;
-        }
-
-        private static void ExecuteSqlNonQuery(string query, Dictionary<string, object> parameters = null)
-        {
-            try
-            {
-                using (OleDbConnection conn = new OleDbConnection(ConnectionString))
-                {
-                    conn.Open();
-                    using (OleDbCommand cmd = new OleDbCommand(query, conn))
-                    {
-                        if (parameters != null)
-                        {
-                            foreach (KeyValuePair<string, object> param in parameters)
-                            {
-                                cmd.Parameters.AddWithValue(param.Key, param.Value);
-                            }
-                        }
-
-                        cmd.ExecuteNonQuery();
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Program.ShowAutoClosingMessageBox($@"Error executing SQL query: {query} - {ex.Message}", @"Database Error", 2000);
-            }
         }
 
         private static void CreateTables()
@@ -507,6 +468,29 @@ namespace bobFinal
                 catch (Exception ex)
                 {
                     Program.ShowAutoClosingMessageBox($@"Error executing command: {ex.Message}", @"Database Error", 2000);
+                }
+            }
+        }
+
+        private static void ExecuteDatabaseOperation(string query, Dictionary<string, object> parameters = null, Action<OleDbCommand> commandAction = null)
+        {
+            using (OleDbConnection conn = new OleDbConnection(ConnectionString))
+            {
+                try
+                {
+                    conn.Open();
+                    using (OleDbCommand cmd = new OleDbCommand(query, conn))
+                    {
+                        if (parameters != null)
+                            foreach (KeyValuePair<string, object> param in parameters)
+                                cmd.Parameters.AddWithValue(param.Key, param.Value);
+
+                        commandAction?.Invoke(cmd);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Program.ShowAutoClosingMessageBox($@"Error executing database operation: {ex.Message}", @"Database Error", 2000);
                 }
             }
         }

@@ -212,24 +212,12 @@ namespace bobFinal
         public static void MarkLessonComplete(int lessonId)
         {
             const string insertQuery = "INSERT INTO PlayerProgress (LessonId, CompletionDate) VALUES (@LessonId, @CompletionDate)";
-
-            using (OleDbConnection conn = new OleDbConnection(ConnectionString))
+            Dictionary<string, object> parameters = new Dictionary<string, object>
             {
-                try
-                {
-                    conn.Open();
-                    using (OleDbCommand cmd = new OleDbCommand(insertQuery, conn))
-                    {
-                        cmd.Parameters.AddWithValue("@LessonId", lessonId);
-                        cmd.Parameters.AddWithValue("@CompletionDate", DateTime.Now);
-                        cmd.ExecuteNonQuery();
-                    }
-                }
-                catch (Exception ex)
-                {
-                    Program.ShowAutoClosingMessageBox($@"Error marking lesson complete: {ex.Message}", @"Database Error", 2000);
-                }
-            }
+                { "@LessonId", lessonId },
+                { "@CompletionDate", DateTime.Now }
+            };
+            ExecuteDatabaseCommand(insertQuery, parameters);
         }
 
         public static void AddLesson(Lesson lesson)
@@ -449,7 +437,10 @@ namespace bobFinal
                     conn.Open();
                     using (OleDbCommand cmd = new OleDbCommand(query, conn))
                     {
-                        foreach (KeyValuePair<string, object> param in parameters) cmd.Parameters.AddWithValue(param.Key, param.Value);
+                        // dynamically add parameters
+                        if (parameters != null)
+                            foreach (KeyValuePair<string, object> param in parameters)
+                                cmd.Parameters.AddWithValue(param.Key, param.Value);
 
                         cmd.ExecuteNonQuery();
                     }

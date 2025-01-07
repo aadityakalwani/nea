@@ -2,35 +2,35 @@
 {
     public class PathTile
     {
-        private readonly string imageFileName;
-        private readonly int xCoordinate;
-        private readonly int yCoordinate;
+        private readonly string _imageFileName;
+        private readonly int _xCoordinate;
+        private readonly int _yCoordinate;
 
         public PathTile(int x, int y)
         {
-            xCoordinate = x;
-            yCoordinate = y;
-            imageFileName = "Images/PathTile.jpg";
+            _xCoordinate = x;
+            _yCoordinate = y;
+            _imageFileName = "Images/PathTile.jpg";
         }
 
         public int GetXCoordinate()
         {
-            return xCoordinate;
+            return _xCoordinate;
         }
 
         public int GetYCoordinate()
         {
-            return yCoordinate;
+            return _yCoordinate;
         }
 
         public string GetImageFileName()
         {
-            return imageFileName;
+            return _imageFileName;
         }
 
         public override string ToString()
         {
-            return $"Path Tile at ({xCoordinate}, {yCoordinate})";
+            return $"Path Tile at ({_xCoordinate}, {_yCoordinate})";
         }
     }
 }

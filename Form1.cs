@@ -17,34 +17,34 @@ namespace bobFinal
         private const int NewDayInterval = 2000;
         private const int InitialCoordinate = 1;
 
-        private readonly List<Property> listOfAllProperties = new List<Property> { new House(0, 0, 0), new Sawmill(0, 0, 0), new Farm(0, 0, 0), new Cafe(0, 0, 0), new Mine(0, 0, 0) };
-        private readonly MergeSort mergeSort = new MergeSort();
-        private readonly List<PathTile> pathTilesList = new List<PathTile>();
-        private readonly List<Property> properties = new List<Property>();
+        private readonly List<Property> _listOfAllProperties = new List<Property> { new House(0, 0, 0), new Sawmill(0, 0, 0), new Farm(0, 0, 0), new Cafe(0, 0, 0), new Mine(0, 0, 0) };
+        private readonly MergeSort _mergeSort = new MergeSort();
+        private readonly List<PathTile> _pathTilesList = new List<PathTile>();
+        private readonly List<Property> _properties = new List<Property>();
 
-        private float commissionFluctuation;
-        private string currentAction;
+        private float _commissionFluctuation;
+        private string _currentAction;
 
-        private DateTime currentDate = new DateTime(2024, 1, 1);
-        private Lesson currentLesson;
-        private int currentPropertyIdIndex;
-        private Resource diamond;
+        private DateTime _currentDate = new DateTime(2024, 1, 1);
+        private Lesson _currentLesson;
+        private int _currentPropertyIdIndex;
+        private Resource _diamond;
 
-        private int diamondStorageUpgradeCost = 5;
-        private Resource dollars;
-        private Resource gold;
-        private int goldStorageUpgradeCost = 5;
+        private int _diamondStorageUpgradeCost = 5;
+        private Resource _dollars;
+        private Resource _gold;
+        private int _goldStorageUpgradeCost = 5;
 
-        private CustomPictureBox[,] grid;
-        private Resource lumber;
-        private int lumberStorageUpgradeCost = 5;
-        private Timer newDayTimer;
-        private int previousLessonId;
+        private CustomPictureBox[,] _grid;
+        private Resource _lumber;
+        private int _lumberStorageUpgradeCost = 5;
+        private Timer _newDayTimer;
+        private int _previousLessonId;
 
-        private List<Resource> resources;
-        private string selectedBuilding;
-        private Point selectedPosition;
-        private Resource selectedResource;
+        private List<Resource> _resources;
+        private string _selectedBuilding;
+        private Point _selectedPosition;
+        private Resource _selectedResource;
 
         public Form1()
         {
@@ -79,7 +79,7 @@ namespace bobFinal
         private void InitializeMarketPrices()
         {
             listViewMarket.Items.Clear();
-            foreach (Resource resource in resources)
+            foreach (Resource resource in _resources)
             {
                 if (resource.GetName() != "Dollars")
                 {
@@ -92,7 +92,7 @@ namespace bobFinal
         private void InitializeGrid()
         {
             // create a new grid of PictureBox objects
-            grid = new CustomPictureBox[GridSize, GridSize];
+            _grid = new CustomPictureBox[GridSize, GridSize];
             const int panelWidth = GridSize * TileSize;
             const int panelHeight = GridSize * TileSize;
 
@@ -104,7 +104,7 @@ namespace bobFinal
                 for (int j = 0; j < GridSize; j++)
                 {
                     // initialize each PictureBox in the grid
-                    grid[i, j] = new CustomPictureBox
+                    _grid[i, j] = new CustomPictureBox
                     {
                         Width = TileSize,
                         Height = TileSize,
@@ -117,27 +117,27 @@ namespace bobFinal
                         Tag = new Point(i, j) // store the position in the tag property
                     };
                     // add click event handler to each PictureBox
-                    grid[i, j].Click += GridPictureBox_Click;
+                    _grid[i, j].Click += GridPictureBox_Click;
                     // add the PictureBox to the grid panel
-                    gridPanel.Controls.Add(grid[i, j]);
+                    gridPanel.Controls.Add(_grid[i, j]);
                 }
             }
         }
 
         private void InitializeLoot()
         {
-            dollars = new Resource("Dollars", 100, 10000, progressBarDollars, textBoxDollarsAmount, 1);
-            lumber = new Resource("Lumber", 100, 300, progressBarLumber, textBoxLumberAmount, 3);
-            gold = new Resource("Gold", 100, 300, progressBarGold, textBoxGoldAmount, 2);
-            diamond = new Resource("Diamond", 5, 50, progressBarDiamond, textBoxDiamondAmount, 10);
+            _dollars = new Resource("Dollars", 100, 10000, progressBarDollars, textBoxDollarsAmount, 1);
+            _lumber = new Resource("Lumber", 100, 300, progressBarLumber, textBoxLumberAmount, 3);
+            _gold = new Resource("Gold", 100, 300, progressBarGold, textBoxGoldAmount, 2);
+            _diamond = new Resource("Diamond", 5, 50, progressBarDiamond, textBoxDiamondAmount, 10);
 
-            resources = new List<Resource> { dollars, lumber, gold, diamond };
+            _resources = new List<Resource> { _dollars, _lumber, _gold, _diamond };
         }
 
         private void InitializePropertyPrices()
         {
             listViewPrices.Items.Clear();
-            foreach (Property property in listOfAllProperties)
+            foreach (Property property in _listOfAllProperties)
             {
                 string cost = $"{Math.Round(property.GetGoldCost(), 1)} Gold, {Math.Round(property.GetLumberCost(), 1)} Lumber";
                 string gain = "";
@@ -170,47 +170,47 @@ namespace bobFinal
         private void InitializeStartingProperties()
         {
             // create and place the Town Hall
-            grid[InitialCoordinate + 1, InitialCoordinate + 1].Image = Image.FromFile("Images/TownHallTopLeft.jpg");
-            grid[InitialCoordinate + 1, InitialCoordinate + 1].BuiltUpon = true;
-            grid[InitialCoordinate + 1, InitialCoordinate + 1].ConnectedViaPathOrProperty = true;
-            grid[InitialCoordinate + 1, InitialCoordinate + 2].Image = Image.FromFile("Images/TownHallBottomLeft.jpg");
-            grid[InitialCoordinate + 2, InitialCoordinate + 2].BuiltUpon = true;
-            grid[InitialCoordinate + 2, InitialCoordinate + 2].ConnectedViaPathOrProperty = true;
-            grid[InitialCoordinate + 2, InitialCoordinate + 1].Image = Image.FromFile("Images/TownHallTopRight.jpg");
-            grid[InitialCoordinate + 2, InitialCoordinate + 1].BuiltUpon = true;
-            grid[InitialCoordinate + 2, InitialCoordinate + 1].ConnectedViaPathOrProperty = true;
-            grid[InitialCoordinate + 2, InitialCoordinate + 2].Image = Image.FromFile("Images/TownHallBottomRight.jpg");
-            grid[InitialCoordinate + 2, InitialCoordinate + 2].BuiltUpon = true;
-            grid[InitialCoordinate + 2, InitialCoordinate + 2].ConnectedViaPathOrProperty = true;
+            _grid[InitialCoordinate + 1, InitialCoordinate + 1].Image = Image.FromFile("Images/TownHallTopLeft.jpg");
+            _grid[InitialCoordinate + 1, InitialCoordinate + 1].BuiltUpon = true;
+            _grid[InitialCoordinate + 1, InitialCoordinate + 1].ConnectedViaPathOrProperty = true;
+            _grid[InitialCoordinate + 1, InitialCoordinate + 2].Image = Image.FromFile("Images/TownHallBottomLeft.jpg");
+            _grid[InitialCoordinate + 2, InitialCoordinate + 2].BuiltUpon = true;
+            _grid[InitialCoordinate + 2, InitialCoordinate + 2].ConnectedViaPathOrProperty = true;
+            _grid[InitialCoordinate + 2, InitialCoordinate + 1].Image = Image.FromFile("Images/TownHallTopRight.jpg");
+            _grid[InitialCoordinate + 2, InitialCoordinate + 1].BuiltUpon = true;
+            _grid[InitialCoordinate + 2, InitialCoordinate + 1].ConnectedViaPathOrProperty = true;
+            _grid[InitialCoordinate + 2, InitialCoordinate + 2].Image = Image.FromFile("Images/TownHallBottomRight.jpg");
+            _grid[InitialCoordinate + 2, InitialCoordinate + 2].BuiltUpon = true;
+            _grid[InitialCoordinate + 2, InitialCoordinate + 2].ConnectedViaPathOrProperty = true;
 
             // create and place the initial sawmill
-            Property sawmill = new Sawmill(currentPropertyIdIndex, InitialCoordinate + 4, InitialCoordinate + 4);
-            grid[sawmill.GetXCoordinate(), sawmill.GetYCoordinate()].Image = Image.FromFile(sawmill.GetImageFileName());
-            grid[sawmill.GetXCoordinate(), sawmill.GetYCoordinate()].BuiltUpon = true;
-            grid[sawmill.GetXCoordinate(), sawmill.GetYCoordinate()].ConnectedViaPathOrProperty = true;
-            properties.Add(sawmill);
-            currentPropertyIdIndex++;
+            Property sawmill = new Sawmill(_currentPropertyIdIndex, InitialCoordinate + 4, InitialCoordinate + 4);
+            _grid[sawmill.GetXCoordinate(), sawmill.GetYCoordinate()].Image = Image.FromFile(sawmill.GetImageFileName());
+            _grid[sawmill.GetXCoordinate(), sawmill.GetYCoordinate()].BuiltUpon = true;
+            _grid[sawmill.GetXCoordinate(), sawmill.GetYCoordinate()].ConnectedViaPathOrProperty = true;
+            _properties.Add(sawmill);
+            _currentPropertyIdIndex++;
             DatabaseUtils.AddNewProperty(sawmill.GetPropertyId(), sawmill.GetType().Name, sawmill.GetXCoordinate(), sawmill.GetYCoordinate(), sawmill.GetGoldCost(), sawmill.GetLumberCost(), sawmill.GetDailyGoldGain(), sawmill.GetDailyLumberGain(), sawmill.GetDailyDiamondGain(), sawmill.GetTotalGoldGain(), sawmill.GetTotalLumberGain(), sawmill.GetActive());
 
             // create and place the initial house
-            Property house = new House(currentPropertyIdIndex, InitialCoordinate + 5, InitialCoordinate + 5);
-            grid[house.GetXCoordinate(), house.GetYCoordinate()].Image = Image.FromFile(house.GetImageFileName());
-            grid[house.GetXCoordinate(), house.GetYCoordinate()].BuiltUpon = true;
-            grid[house.GetXCoordinate(), house.GetYCoordinate()].ConnectedViaPathOrProperty = true;
-            properties.Add(house);
-            currentPropertyIdIndex++;
+            Property house = new House(_currentPropertyIdIndex, InitialCoordinate + 5, InitialCoordinate + 5);
+            _grid[house.GetXCoordinate(), house.GetYCoordinate()].Image = Image.FromFile(house.GetImageFileName());
+            _grid[house.GetXCoordinate(), house.GetYCoordinate()].BuiltUpon = true;
+            _grid[house.GetXCoordinate(), house.GetYCoordinate()].ConnectedViaPathOrProperty = true;
+            _properties.Add(house);
+            _currentPropertyIdIndex++;
             DatabaseUtils.AddNewProperty(house.GetPropertyId(), house.GetType().Name, house.GetXCoordinate(), house.GetYCoordinate(), house.GetGoldCost(), house.GetLumberCost(), house.GetDailyGoldGain(), house.GetDailyLumberGain(), house.GetDailyDiamondGain(), house.GetTotalGoldGain(), house.GetTotalLumberGain(), house.GetActive());
 
             // create and place the initial path tile
-            ClearAndResetPathTiles(grid, pathTilesList);
+            ClearAndResetPathTiles(_grid, _pathTilesList);
         }
 
         private void InitializeNewDayTimer()
         {
             lblNextDayTimer.Text = "";
-            newDayTimer = new Timer();
-            newDayTimer.Interval = NewDayInterval; // set the interval to 2 seconds
-            newDayTimer.Tick += newDayTimer_Tick;
+            _newDayTimer = new Timer();
+            _newDayTimer.Interval = NewDayInterval; // set the interval to 2 seconds
+            _newDayTimer.Tick += newDayTimer_Tick;
         }
 
         private static void InitializeLessons()
@@ -238,7 +238,7 @@ namespace bobFinal
             // enable the button and stop the timer
             lblNextDayTimer.Text = "";
             btnNextDay.Enabled = true;
-            newDayTimer.Stop();
+            _newDayTimer.Stop();
         }
 
         private void listViewPrices_SelectedIndexChanged(object sender, EventArgs e)
@@ -246,15 +246,15 @@ namespace bobFinal
             if (listViewPrices.SelectedItems.Count <= 0) return;
 
             string selectedItem = listViewPrices.SelectedItems[0].Text;
-            selectedBuilding = selectedItem.Split(':')[0].Trim();
+            _selectedBuilding = selectedItem.Split(':')[0].Trim();
         }
 
         private void GridPictureBox_Click(object sender, EventArgs e)
         {
             if (!(sender is PictureBox pictureBox)) return;
 
-            selectedPosition = (Point)pictureBox.Tag;
-            lblSelectedPosition.Text = $@"Selected Tile: ({selectedPosition.X}, {selectedPosition.Y})";
+            _selectedPosition = (Point)pictureBox.Tag;
+            lblSelectedPosition.Text = $@"Selected Tile: ({_selectedPosition.X}, {_selectedPosition.Y})";
         }
 
         private void btnBuild_Click(object sender, EventArgs e)
@@ -262,28 +262,28 @@ namespace bobFinal
             Property property = null;
 
             // Determine the type of property to build based on selectedBuilding
-            switch (selectedBuilding)
+            switch (_selectedBuilding)
             {
                 case "House":
-                    property = new House(currentPropertyIdIndex, selectedPosition.X, selectedPosition.Y);
+                    property = new House(_currentPropertyIdIndex, _selectedPosition.X, _selectedPosition.Y);
                     break;
                 case "Farm":
-                    property = new Farm(currentPropertyIdIndex, selectedPosition.X, selectedPosition.Y);
+                    property = new Farm(_currentPropertyIdIndex, _selectedPosition.X, _selectedPosition.Y);
                     break;
                 case "Sawmill":
-                    property = new Sawmill(currentPropertyIdIndex, selectedPosition.X, selectedPosition.Y);
+                    property = new Sawmill(_currentPropertyIdIndex, _selectedPosition.X, _selectedPosition.Y);
                     break;
                 case "Mine":
-                    property = new Mine(currentPropertyIdIndex, selectedPosition.X, selectedPosition.Y);
+                    property = new Mine(_currentPropertyIdIndex, _selectedPosition.X, _selectedPosition.Y);
                     break;
                 case "Cafe":
-                    property = new Cafe(currentPropertyIdIndex, selectedPosition.X, selectedPosition.Y);
+                    property = new Cafe(_currentPropertyIdIndex, _selectedPosition.X, _selectedPosition.Y);
                     break;
             }
 
             if (property == null) return;
 
-            CustomPictureBox selectedTile = grid[selectedPosition.X, selectedPosition.Y];
+            CustomPictureBox selectedTile = _grid[_selectedPosition.X, _selectedPosition.Y];
 
             // Check if the selected tile is empty by verifying the image and BuiltUpon status
             if (selectedTile.BuiltUpon || (selectedTile.ImageLocation != null && !selectedTile.ImageLocation.Contains("empty.jpg")))
@@ -293,21 +293,21 @@ namespace bobFinal
             }
 
             // Check if there are enough resources to build the property
-            if (gold.GetValue() >= property.GetGoldCost() && lumber.GetValue() >= property.GetLumberCost())
+            if (_gold.GetValue() >= property.GetGoldCost() && _lumber.GetValue() >= property.GetLumberCost())
             {
                 // Deduct the cost of the property from the resources
-                gold.ChangeQuantity(-property.GetGoldCost());
-                lumber.ChangeQuantity(-property.GetLumberCost());
+                _gold.ChangeQuantity(-property.GetGoldCost());
+                _lumber.ChangeQuantity(-property.GetLumberCost());
 
                 // Set the image of the selected grid position to the property image
                 selectedTile.Image = Image.FromFile(property.GetImageFileName());
                 selectedTile.BuiltUpon = true;
                 selectedTile.ConnectedViaPathOrProperty = true;
-                properties.Add(property);
+                _properties.Add(property);
 
                 // Add the property to the database and update the DataGridView
-                DatabaseUtils.AddNewProperty(currentPropertyIdIndex, property.GetType().Name, property.GetXCoordinate(), property.GetYCoordinate(), property.GetGoldCost(), property.GetLumberCost(), property.GetDailyGoldGain(), property.GetDailyLumberGain(), property.GetDailyDiamondGain(), property.GetTotalGoldGain(), property.GetTotalLumberGain(), property.GetActive());
-                currentPropertyIdIndex++;
+                DatabaseUtils.AddNewProperty(_currentPropertyIdIndex, property.GetType().Name, property.GetXCoordinate(), property.GetYCoordinate(), property.GetGoldCost(), property.GetLumberCost(), property.GetDailyGoldGain(), property.GetDailyLumberGain(), property.GetDailyDiamondGain(), property.GetTotalGoldGain(), property.GetTotalLumberGain(), property.GetActive());
+                _currentPropertyIdIndex++;
                 RefreshDataGridView("Properties");
             }
 
@@ -319,7 +319,7 @@ namespace bobFinal
 
         private void CheckIfPropertiesAreConnected()
         {
-            foreach (Property property in properties)
+            foreach (Property property in _properties)
             {
                 if (!property.GetConnected())
                 {
@@ -341,7 +341,7 @@ namespace bobFinal
                                 // Check bounds to handle edge properties and corner properties
                                 if ((neighborX >= 0) && (neighborX < GridSize) && (neighborY >= 0) && (neighborY < GridSize))
                                 {
-                                    if (grid[neighborX, neighborY].ConnectedViaPathOrProperty)
+                                    if (_grid[neighborX, neighborY].ConnectedViaPathOrProperty)
                                     {
                                         isConnected = true;
                                         break;
@@ -376,7 +376,7 @@ namespace bobFinal
             // Disable the button and start the timer
             lblNextDayTimer.Text = @"Next day available in 2 seconds...";
             btnNextDay.Enabled = false;
-            newDayTimer.Start();
+            _newDayTimer.Start();
 
             CheckIfPropertiesAreConnected();
 
@@ -385,7 +385,7 @@ namespace bobFinal
             float totalDiamondGain = 0;
 
             // calculate the total resource gain from all properties
-            foreach (Property property in properties)
+            foreach (Property property in _properties)
             {
                 totalGoldGain += property.GetDailyGoldGain();
                 totalLumberGain += property.GetDailyLumberGain();
@@ -400,35 +400,35 @@ namespace bobFinal
             }
 
             // update the resource quantities with the total gains
-            gold.ChangeQuantity(totalGoldGain);
-            lumber.ChangeQuantity(totalLumberGain);
-            diamond.ChangeQuantity(totalDiamondGain);
+            _gold.ChangeQuantity(totalGoldGain);
+            _lumber.ChangeQuantity(totalLumberGain);
+            _diamond.ChangeQuantity(totalDiamondGain);
 
             // update market prices
-            Market.UpdateConversionRates(resources);
+            Market.UpdateConversionRates(_resources);
             UpdateMarketPrices();
             UpdateMarketPanel();
 
             // fluctuate the commission amount to be within 0-10%
-            commissionFluctuation = CustomRandom.Next(0, 11);
-            lblCommission.Text = $@"Commission: {commissionFluctuation}%";
+            _commissionFluctuation = CustomRandom.Next(0, 11);
+            lblCommission.Text = $@"Commission: {_commissionFluctuation}%";
 
             // update cost of building properties
             RefreshPropertyIncomes();
             InitializePropertyPrices();
 
             // update databases and their dataGridViews
-            DatabaseUtils.AddNewDayOfIncome(currentDate, totalGoldGain, totalLumberGain, totalDiamondGain, properties.Count);
+            DatabaseUtils.AddNewDayOfIncome(_currentDate, totalGoldGain, totalLumberGain, totalDiamondGain, _properties.Count);
             RefreshAllDataGridViews();
 
-            currentDate = currentDate.AddDays(1);
-            lblDate.Text = @"Today's Date: " + currentDate.ToString("dd MMMM yyyy");
+            _currentDate = _currentDate.AddDays(1);
+            lblDate.Text = @"Today's Date: " + _currentDate.ToString("dd MMMM yyyy");
         }
 
         private void RefreshPropertyIncomes()
         {
             // for the box that shows incomes and prices of properties
-            foreach (Property property in listOfAllProperties)
+            foreach (Property property in _listOfAllProperties)
             {
                 // fluctuate the cost by upto +/- 10%
                 // as this random number is based upon the time in milliseconds, it will be different each time
@@ -447,7 +447,7 @@ namespace bobFinal
             }
 
             // for the properties in existence right now
-            foreach (Property property in properties)
+            foreach (Property property in _properties)
             {
                 // fluctuate the cost by upto +/- 10%
                 // as this random number is based upon the time (in 'ticks'), it will be different each time
@@ -465,7 +465,7 @@ namespace bobFinal
             }
 
             // update the database with the new costs and incomes for current properties
-            foreach (Property property in properties)
+            foreach (Property property in _properties)
             {
                 DatabaseUtils.UpdatePropertyIncomes(property.GetXCoordinate(), property.GetYCoordinate(), property.GetDailyGoldGain(), property.GetDailyLumberGain(), property.GetDailyDiamondGain());
             }
@@ -474,7 +474,7 @@ namespace bobFinal
         private void UpdateMarketPrices()
         {
             listViewMarket.Items.Clear();
-            foreach (Resource resource in resources)
+            foreach (Resource resource in _resources)
             {
                 if (resource.GetName() != "Dollars")
                 {
@@ -486,20 +486,20 @@ namespace bobFinal
 
         private void UpdateMarketPanel()
         {
-            if (selectedResource == null) return;
+            if (_selectedResource == null) return;
 
             int amount = (int)numericUpDownAmount.Value;
-            float cost = amount * selectedResource.GetConversionRate() - commissionFluctuation / 100;
+            float cost = amount * _selectedResource.GetConversionRate() - _commissionFluctuation / 100;
             if (cost <= 0) cost = 0;
 
-            if (currentAction == "buy")
+            if (_currentAction == "buy")
             {
-                label1.Text = $@"Enter amount of {selectedResource.GetName().ToLower()} to buy";
+                label1.Text = $@"Enter amount of {_selectedResource.GetName().ToLower()} to buy";
                 lblCost.Text = $@"Cost: {Math.Round(cost, 2)} dollars";
             }
             else
             {
-                label1.Text = $@"Enter amount of {selectedResource.GetName().ToLower()} to sell";
+                label1.Text = $@"Enter amount of {_selectedResource.GetName().ToLower()} to sell";
                 lblCost.Text = $@"Value: {Math.Round(cost, 2)} dollars";
             }
         }
@@ -507,7 +507,7 @@ namespace bobFinal
         private void UpdateCost(string buyOrSell)
         {
             int amount = (int)numericUpDownAmount.Value;
-            float cost = amount * selectedResource.GetConversionRate();
+            float cost = amount * _selectedResource.GetConversionRate();
 
             // ReSharper disable once ConvertIfStatementToConditionalTernaryExpression
             if (buyOrSell == "buy")
@@ -532,16 +532,16 @@ namespace bobFinal
 
         private void PerformMarketAction(string buyOrSell)
         {
-            currentAction = buyOrSell;
+            _currentAction = buyOrSell;
 
             // check if a resource is selected in the market list view
             if (listViewMarket.SelectedItems.Count == 1)
             {
                 string selectedItem = listViewMarket.SelectedItems[0].SubItems[1].Text;
                 // find the selected resource from the list of resources using regex
-                selectedResource = resources.Find(r => r.Name == selectedItem);
+                _selectedResource = _resources.Find(r => r.Name == selectedItem);
 
-                if (selectedResource != null)
+                if (_selectedResource != null)
                 {
                     UpdateCost(buyOrSell);
                     UpdateMarketPanel();
@@ -561,22 +561,22 @@ namespace bobFinal
 
         private void numericUpDownAmount_ValueChanged(object sender, EventArgs e)
         {
-            UpdateCost(currentAction); // using the stored action type
+            UpdateCost(_currentAction); // using the stored action type
         }
 
         private void btnConfirmMarketAction_Click(object sender, EventArgs e)
         {
             int amount = (int)numericUpDownAmount.Value;
-            float cost = amount * selectedResource.GetConversionRate();
+            float cost = amount * _selectedResource.GetConversionRate();
 
-            if (selectedResource == null) return;
+            if (_selectedResource == null) return;
 
-            if (currentAction == "buy")
+            if (_currentAction == "buy")
             {
-                if (dollars.GetValue() >= cost)
+                if (_dollars.GetValue() >= cost)
                 {
-                    dollars.ChangeQuantity(-cost);
-                    selectedResource.ChangeQuantity(amount);
+                    _dollars.ChangeQuantity(-cost);
+                    _selectedResource.ChangeQuantity(amount);
                 }
                 else
                 {
@@ -585,17 +585,17 @@ namespace bobFinal
             }
             else
             {
-                if (selectedResource.GetValue() >= amount)
+                if (_selectedResource.GetValue() >= amount)
                 {
-                    dollars.ChangeQuantity(cost);
-                    selectedResource.ChangeQuantity(-amount);
+                    _dollars.ChangeQuantity(cost);
+                    _selectedResource.ChangeQuantity(-amount);
                 }
                 else
                 {
                     // ReSharper disable once ConvertIfStatementToConditionalTernaryExpression
-                    if (selectedResource.GetName() != "Diamond")
+                    if (_selectedResource.GetName() != "Diamond")
                     {
-                        Program.ShowAutoClosingMessageBox($"Not enough {selectedResource.GetName()}!", "Error", 2500);
+                        Program.ShowAutoClosingMessageBox($"Not enough {_selectedResource.GetName()}!", "Error", 2500);
                     }
                     else
                     {
@@ -607,37 +607,37 @@ namespace bobFinal
 
         private void btnCancelMarketAction_Click(object sender, EventArgs e)
         {
-            selectedResource = null;
+            _selectedResource = null;
             lblCost.Text = @"Buy / Sell Panel";
             label1.Text = @"Select a resource to buy or sell";
         }
 
         private void btnUpgradeLumberStorage_Click_1(object sender, EventArgs e)
         {
-            UpgradeStorage(lumber, lumberStorageUpgradeCost);
-            lumberStorageUpgradeCost *= 2;
-            btnUpgradeLumberStorage.Text = $@"Upgrade Lumber Storage (Cost: {lumberStorageUpgradeCost} diamonds)";
+            UpgradeStorage(_lumber, _lumberStorageUpgradeCost);
+            _lumberStorageUpgradeCost *= 2;
+            btnUpgradeLumberStorage.Text = $@"Upgrade Lumber Storage (Cost: {_lumberStorageUpgradeCost} diamonds)";
         }
 
         private void btnUpgradeGoldStorage_Click(object sender, EventArgs e)
         {
-            UpgradeStorage(gold, goldStorageUpgradeCost);
-            goldStorageUpgradeCost *= 2;
-            btnUpgradeGoldStorage.Text = $@"Upgrade Gold Storage (Cost: {goldStorageUpgradeCost} diamonds)";
+            UpgradeStorage(_gold, _goldStorageUpgradeCost);
+            _goldStorageUpgradeCost *= 2;
+            btnUpgradeGoldStorage.Text = $@"Upgrade Gold Storage (Cost: {_goldStorageUpgradeCost} diamonds)";
         }
 
         private void btnUpgradeDiamondStorage_Click(object sender, EventArgs e)
         {
-            UpgradeStorage(diamond, diamondStorageUpgradeCost);
-            diamondStorageUpgradeCost *= 2;
-            btnUpgradeDiamondStorage.Text = $@"Upgrade Diamond Storage (Cost: {diamondStorageUpgradeCost} diamonds)";
+            UpgradeStorage(_diamond, _diamondStorageUpgradeCost);
+            _diamondStorageUpgradeCost *= 2;
+            btnUpgradeDiamondStorage.Text = $@"Upgrade Diamond Storage (Cost: {_diamondStorageUpgradeCost} diamonds)";
         }
 
         private void UpgradeStorage(Resource resource, int cost)
         {
-            if (diamond.GetValue() >= cost)
+            if (_diamond.GetValue() >= cost)
             {
-                diamond.ChangeQuantity(-cost);
+                _diamond.ChangeQuantity(-cost);
                 resource.IncreaseCapacity(100);
                 Program.ShowAutoClosingMessageBox($"{resource.GetName()} storage upgraded!", "Success", 2500);
             }
@@ -669,9 +669,9 @@ namespace bobFinal
 
         private void SetNumericUpDownValue(double percentage)
         {
-            if (selectedResource != null)
+            if (_selectedResource != null)
             {
-                numericUpDownAmount.Value = (decimal)(selectedResource.GetValue() * percentage);
+                numericUpDownAmount.Value = (decimal)(_selectedResource.GetValue() * percentage);
 
                 UpdateMarketPanel();
             }
@@ -683,8 +683,8 @@ namespace bobFinal
 
         private void btnSellBuilding_Click(object sender, EventArgs e)
         {
-            CustomPictureBox selectedTile = grid[selectedPosition.X, selectedPosition.Y];
-            Property property = properties.Find(p => p.GetXCoordinate() == selectedPosition.X && p.GetYCoordinate() == selectedPosition.Y);
+            CustomPictureBox selectedTile = _grid[_selectedPosition.X, _selectedPosition.Y];
+            Property property = _properties.Find(p => p.GetXCoordinate() == _selectedPosition.X && p.GetYCoordinate() == _selectedPosition.Y);
 
             if (property != null)
             {
@@ -693,14 +693,14 @@ namespace bobFinal
                 int sellPriceLumber = (int)(property.GetLumberCost() * 0.8);
 
                 // remove the property from the list and update the grid
-                properties.Remove(property);
+                _properties.Remove(property);
                 selectedTile.Image = Image.FromFile("Images/empty.jpg");
                 selectedTile.BuiltUpon = false;
                 selectedTile.ConnectedViaPathOrProperty = false;
 
                 // Add the sell price to the resources
-                gold.ChangeQuantity(sellPriceGold);
-                lumber.ChangeQuantity(sellPriceLumber);
+                _gold.ChangeQuantity(sellPriceGold);
+                _lumber.ChangeQuantity(sellPriceLumber);
 
                 // change the Active status of the property in the database
                 DatabaseUtils.UpdatePropertyActiveStatus(property.GetXCoordinate(), property.GetYCoordinate(), false);
@@ -853,18 +853,18 @@ namespace bobFinal
         private void button1_Click(object sender, EventArgs e)
         {
             // charge 5 diamonds to do this:
-            if (diamond.GetValue() >= 5)
+            if (_diamond.GetValue() >= 5)
             {
-                diamond.ChangeQuantity(-5);
+                _diamond.ChangeQuantity(-5);
 
-                List<(Property, Property)> mstEdges = FindMst(properties);
+                List<(Property, Property)> mstEdges = FindMst(_properties);
 
                 string message = "";
                 // display the edges of the MST in a message box
                 foreach ((Property, Property) edge in mstEdges) message += $"({edge.Item1.GetXCoordinate()}, {edge.Item1.GetYCoordinate()}) -> ({edge.Item2.GetXCoordinate()}, {edge.Item2.GetYCoordinate()})\n";
 
                 Program.ShowAutoClosingMessageBox($"Edges in the MST: {message}\nPath tiles will be automatically placed to reflect the new MST\nAll properties connected to the MST experience a 1.3x boost in income", "Minimum Spanning Tree", 5000);
-                PlacePathTiles(pathTilesList, mstEdges, grid);
+                PlacePathTiles(_pathTilesList, mstEdges, _grid);
             }
             else
             {
@@ -875,27 +875,27 @@ namespace bobFinal
         private void btnLesson1_Click_1(object sender, EventArgs e)
         {
             // Get the selected lesson from the DataGridView
-            currentLesson = DatabaseUtils.GetRandomIncompleteLesson();
+            _currentLesson = DatabaseUtils.GetRandomIncompleteLesson();
 
-            if (currentLesson != null)
+            if (_currentLesson != null)
             {
                 // display the question
                 // ReSharper disable twice LocalizableElement
                 // ReSharper disable once ConvertIfStatementToConditionalTernaryExpression
-                if (previousLessonId == 0)
+                if (_previousLessonId == 0)
                 {
-                    lblQuestion.Text = $"Current Lesson ID: {currentLesson.LessonId}\n{currentLesson.Question}";
+                    lblQuestion.Text = $"Current Lesson ID: {_currentLesson.LessonId}\n{_currentLesson.Question}";
                 }
                 else
                 {
-                    lblQuestion.Text = $"Previous Lesson ID: {previousLessonId}\nCurrent Lesson ID: {currentLesson.LessonId}\n{currentLesson.Question}";
+                    lblQuestion.Text = $"Previous Lesson ID: {_previousLessonId}\nCurrent Lesson ID: {_currentLesson.LessonId}\n{_currentLesson.Question}";
                 }
 
                 // populate choices
-                radioButton1.Text = currentLesson.ChoiceOne;
-                radioButton2.Text = currentLesson.ChoiceTwo;
-                radioButton3.Text = currentLesson.ChoiceThree;
-                radioButton4.Text = currentLesson.ChoiceFour;
+                radioButton1.Text = _currentLesson.ChoiceOne;
+                radioButton2.Text = _currentLesson.ChoiceTwo;
+                radioButton3.Text = _currentLesson.ChoiceThree;
+                radioButton4.Text = _currentLesson.ChoiceFour;
             }
             else
             {
@@ -905,21 +905,21 @@ namespace bobFinal
 
         private void btnSortByGoldIncome_Click(object sender, EventArgs e)
         {
-            List<Property> sortedProperties = mergeSort.Sort(properties, "Gold", "descending");
+            List<Property> sortedProperties = _mergeSort.Sort(_properties, "Gold", "descending");
             DatabaseUtils.UpdateDatabaseWithSortedProperties(sortedProperties);
             RefreshDataGridView("Properties");
         }
 
         private void btnSortByLumberIncome_Click(object sender, EventArgs e)
         {
-            List<Property> sortedProperties = mergeSort.Sort(properties, "Lumber", "descending");
+            List<Property> sortedProperties = _mergeSort.Sort(_properties, "Lumber", "descending");
             DatabaseUtils.UpdateDatabaseWithSortedProperties(sortedProperties);
             RefreshDataGridView("Properties");
         }
 
         private void btnSortByID_Click(object sender, EventArgs e)
         {
-            List<Property> sortedProperties = mergeSort.Sort(properties, "ID", "ascending");
+            List<Property> sortedProperties = _mergeSort.Sort(_properties, "ID", "ascending");
             DatabaseUtils.UpdateDatabaseWithSortedProperties(sortedProperties);
             RefreshDataGridView("Properties");
         }
@@ -990,18 +990,18 @@ namespace bobFinal
             }
 
             // if not already answered
-            if (!currentLesson.Completed)
+            if (!_currentLesson.Completed)
             {
                 // if correct answer
-                if (currentLesson.IsCorrectAnswer(selectedAnswerIndex))
+                if (_currentLesson.IsCorrectAnswer(selectedAnswerIndex))
                 {
                     Program.ShowAutoClosingMessageBox("Correct Answer!\nYou gained 5 diamond", "Result", 5000);
 
-                    DatabaseUtils.UpdateLessonStatus(currentLesson.LessonId, true);
+                    DatabaseUtils.UpdateLessonStatus(_currentLesson.LessonId, true);
 
-                    previousLessonId = currentLesson.LessonId;
-                    currentLesson.Completed = true;
-                    diamond.ChangeQuantity(5);
+                    _previousLessonId = _currentLesson.LessonId;
+                    _currentLesson.Completed = true;
+                    _diamond.ChangeQuantity(5);
 
                     RefreshDataGridViewLessons();
                 }

@@ -2,10 +2,10 @@
 {
     public abstract class Property : IProperty, IGridEntity
     {
-        private readonly int xCoordinate;
-        private readonly int yCoordinate;
+        private readonly int _xCoordinate;
+        private readonly int _yCoordinate;
+        private bool _connected;
         protected bool Active;
-        private bool connected;
         protected float DailyDiamondGain;
         protected float DailyGoldGain;
         protected float DailyLumberGain;
@@ -18,30 +18,30 @@
 
         protected Property(int x, int y)
         {
-            xCoordinate = x;
-            yCoordinate = y;
+            _xCoordinate = x;
+            _yCoordinate = y;
         }
 
 
         // IGridEntity Implementation
         public int GetXCoordinate()
         {
-            return xCoordinate;
+            return _xCoordinate;
         }
 
         public int GetYCoordinate()
         {
-            return yCoordinate;
+            return _yCoordinate;
         }
 
         public bool GetConnected()
         {
-            return connected;
+            return _connected;
         }
 
         public void SetConnected(bool newCondition)
         {
-            connected = newCondition;
+            _connected = newCondition;
         }
 
         // IProperty Implementation
@@ -128,7 +128,7 @@
         // virtual method to be overridden by subclasses to allow for unique property details
         protected virtual string GetPropertyDetails()
         {
-            return $"Property ID: {PropertyId}, Coordinates: ({xCoordinate}, {yCoordinate})";
+            return $"Property ID: {PropertyId}, Coordinates: ({_xCoordinate}, {_yCoordinate})";
         }
 
         public abstract void SetPropertyCosts(float goldCost, float lumberCost);

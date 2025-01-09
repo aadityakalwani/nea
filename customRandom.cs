@@ -2,7 +2,7 @@
 
 namespace bobFinal
 {
-    public class CustomRandom
+    public abstract class CustomRandom
     {
         // Method to generate the next random number in the range [min, max)
         public static float Next(float min, float max)

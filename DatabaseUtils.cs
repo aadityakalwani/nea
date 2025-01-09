@@ -77,7 +77,6 @@ namespace bobFinal
             ExecuteDatabaseOperation(query, parameters, cmd => { cmd.ExecuteNonQuery(); });
         }
 
-
         public static DataTable LoadDatabaseData(string whichTable)
         {
             string query = $"SELECT * FROM {whichTable}"; // SQL query to fetch all records from the specified table
@@ -330,7 +329,6 @@ namespace bobFinal
 
             ExecuteDatabaseCommand(updateQuery, parameters);
         }
-
 
         public static void UpdateLessonStatus(int lessonId, bool completedOrNot)
         {

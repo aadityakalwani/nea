@@ -1007,7 +1007,7 @@ namespace bobFinal
                 }
                 else
                 {
-                    Program.ShowAutoClosingMessageBox("Incorrect Answer! Try again.", "Result", 2500);
+                    Program.ShowAutoClosingMessageBox("Incorrect Answer! Try again.", "Result", 4500);
                 }
             }
             else

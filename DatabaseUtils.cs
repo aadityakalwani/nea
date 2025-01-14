@@ -183,7 +183,16 @@ namespace bobFinal
                         {
                             if (reader.Read())
                             {
-                                lesson = new Lesson(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetInt32(4), reader.GetString(5), reader.GetString(6), reader.GetString(7), reader.GetString(8), false);
+                                lesson = new Lesson(reader.GetInt32(0),
+                                    reader.GetString(1),
+                                    reader.GetString(2),
+                                    reader.GetString(3),
+                                    reader.GetInt32(4),
+                                    reader.GetString(6),
+                                    reader.GetString(7),
+                                    reader.GetString(8),
+                                    reader.GetString(9),
+                                    false);
                             }
                         }
                     }

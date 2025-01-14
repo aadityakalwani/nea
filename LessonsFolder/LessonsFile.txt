@@ -11,7 +11,7 @@
 11,Economics,Price Discrimination,What is a common method used by firms to practice price discrimination?,0,Student discounts,Loyalty programs,Time of day pricing,All of the above
 12,Business,Entrepreneurship,What is a key risk associated with entrepreneurship?,2,Limited liability,Job security,Financial loss,Low income potential
 13,Economics,Market Failure,How can government intervention address the problem of negative externalities?,1,Subsidies,Taxes,Price controls,Deregulation
-14,Business,Business Objectives,How does a business achieve sustainable growth?,3,Maximizing short term profits,Ignoring environmental concerns,Exploiting natural resources,Balancing financial, social, and environmental goals
+14,Business,Business Objectives,How does a business achieve sustainable growth?,3,Maximizing short term profits,Ignoring environmental concerns,Exploiting natural resources,Balancing financial social and environmental goals
 15,Economics,Government Intervention,What is the purpose of fiscal policy?,2,Controlling the money supply,Influencing interest rates,Adjusting government spending and taxation,Regulating market competition
 16,Business,Marketing,What is the marketing mix and why is it important?,3,A set of marketing tools used to achieve marketing objectives,A strategy for reducing production costs,A method for analyzing consumer behavior,A tool for measuring brand loyalty
 17,Economics,Inflation,What is the likely impact of high inflation on economic growth?,1,Stimulates economic growth,Reduces uncertainty and encourages investment,Erodes purchasing power and slows economic activity,Increases savings and investment
@@ -32,13 +32,13 @@
 32,Economics,Fiscal Policy,What is the impact of increased government spending on aggregate demand?,0,Increases aggregate demand,Decreases aggregate demand,No effect on aggregate demand,Increases aggregate supply
 33,Business,Human Resource Management,What is the primary goal of human resource management?,1,Recruiting and selecting employees,Training and developing employees,Maximizing employee productivity,Ensuring legal compliance
 34,Economics,International Trade,What is the theory of comparative advantage?,2,Countries should specialize in producing goods and services they can produce most efficiently,Countries should protect domestic industries from foreign competition,Countries should impose tariffs on imported goods,Countries should limit the number of foreign workers
-35,Business,Business Ethics,What is the role of corporate social responsibility (CSR)?,0,To improve a company's reputation,To reduce costs,To increase profits,To balance economic, social, and environmental concerns
+35,Business,Business Ethics,What is the role of corporate social responsibility (CSR)?,0,To improve a company's reputation,To reduce costs,To increase profits,To balance economic social and environmental concerns
 36,Economics,Inflation,What is the relationship between inflation and unemployment as described by the Phillips Curve?,2,Inverse relationship,Direct relationship,No relationship,Uncertain relationship
 37,Business,Financial Analysis,What is the purpose of a balance sheet?,1,To measure profitability,To assess liquidity,To evaluate solvency,To track cash flow
 38,Economics,Market Structures,In which market structure do firms have the most market power?,0,Monopoly,Oligopoly,Monopolistic competition,Perfect competition
 39,Business,Operations Management,What is the purpose of quality control in operations management?,2,To reduce costs,To increase production,To ensure product quality,To improve employee morale
 40,Economics,Economic Growth,What is the role of investment in economic growth?,0,Increases productive capacity,Reduces unemployment,Increases consumer spending,Reduces inflation
-41,Business,Marketing Strategy,What is the purpose of a SWOT analysis?,3,To identify a company's strengths, weaknesses, opportunities, and threats,To measure a company's market share,To evaluate a company's financial performance,To assess a company's customer satisfaction
+41,Business,Marketing Strategy,What is the purpose of a SWOT analysis?,3,To identify a company's strengths weaknesses opportunities and threats,To measure a company's market share,To evaluate a company's financial performance,To assess a company's customer satisfaction
 42,Economics,Exchange Rates,What is the impact of a depreciation of a country's currency on its exports?,0,Increases exports,Decreases exports,No effect on exports,Increases imports
 43,Business,Business Plans,What is the purpose of a business plan?,1,To secure funding,To guide business operations,To assess market potential,All of the above
 44,Economics,Economic Indicators,What is the Consumer Price Index (CPI) used to measure?,2,Economic growth,Unemployment rate,Inflation rate,Interest rates
@@ -52,13 +52,13 @@
 52,Economics,Fiscal Policy,What is the impact of increased government spending on aggregate demand?,0,Increases aggregate demand,Decreases aggregate demand,No effect on aggregate demand,Increases aggregate supply
 53,Business,Human Resource Management,What is the primary goal of human resource management?,1,Recruiting and selecting employees,Training and developing employees,Maximizing employee productivity,Ensuring legal compliance
 54,Economics,International Trade,What is the theory of comparative advantage?,2,Countries should specialize in producing goods and services they can produce most efficiently,Countries should protect domestic industries from foreign competition,Countries should impose tariffs on imported goods,Countries should limit the number of foreign workers
-55,Business,Business Ethics,What is the role of corporate social responsibility (CSR)?,0,To improve a company's reputation,To reduce costs,To increase profits,To balance economic, social, and environmental concerns
+55,Business,Business Ethics,What is the role of corporate social responsibility (CSR)?,0,To improve a company's reputation,To reduce costs,To increase profits,To balance economic social and environmental concerns
 56,Economics,Inflation,What is the relationship between inflation and unemployment as described by the Phillips Curve?,2,Inverse relationship,Direct relationship,No relationship,Uncertain relationship
 57,Business,Financial Analysis,What is the purpose of a balance sheet?,1,To measure profitability,To assess liquidity,To evaluate solvency,To track cash flow
 58,Economics,Market Structures,In which market structure do firms have the most market power?,0,Monopoly,Oligopoly,Monopolistic competition,Perfect competition
 59,Business,Operations Management,What is the purpose of quality control in operations management?,2,To reduce costs,To increase production,To ensure product quality,To improve employee morale
 60,Economics,Economic Growth,What is the role of investment in economic growth?,0,Increases productive capacity,Reduces unemployment,Increases consumer spending,Reduces inflation
-61,Business,Marketing Strategy,What is the purpose of a SWOT analysis?,3,To identify a company's strengths, weaknesses, opportunities, and threats,To measure a company's market share,To evaluate a company's financial performance,To assess a company's customer satisfaction
+61,Business,Marketing Strategy,What is the purpose of a SWOT analysis?,3,To identify a company's strengths weaknesses opportunities and threats,To measure a company's market share,To evaluate a company's financial performance,To assess a company's customer satisfaction
 62,Economics,Exchange Rates,What is the impact of a depreciation of a country's currency on its exports?,0,Increases exports,Decreases exports,No effect on exports,Increases imports
 63,Business,Business Plans,What is the purpose of a business plan?,1,To secure funding,To guide business operations,To assess market potential,All of the above
 64,Economics,Economic Indicators,What is the Consumer Price Index (CPI) used to measure?,2,Economic growth,Unemployment rate,Inflation rate,Interest rates

@@ -225,24 +225,33 @@ namespace bobFinal
         private static int InsertLesson(Lesson lesson)
         {
             const string insertLessonQuery = @"
-                INSERT INTO lessonsTable (Topic, Title, Question, CorrectAnswerIndex, Reward, ChoiceOne, ChoiceTwo, ChoiceThree, ChoiceFour, Completed) 
-                VALUES (@Topic, @Title, @Question, @CorrectAnswerIndex, @Reward, @ChoiceOne, @ChoiceTwo, @ChoiceThree, @ChoiceFour, False)";
+        INSERT INTO lessonsTable (Topic, Title, Question, CorrectAnswerIndex, Reward, ChoiceOne, ChoiceTwo, ChoiceThree, ChoiceFour, Completed) 
+        VALUES (@Topic, @Title, @Question, @CorrectAnswerIndex, @Reward, @ChoiceOne, @ChoiceTwo, @ChoiceThree, @ChoiceFour, False)";
 
-            Dictionary<string, object> parameters = new Dictionary<string, object>
+            using (OleDbConnection conn = new OleDbConnection(ConnectionString))
             {
-                { "@Topic", lesson.Topic },
-                { "@Title", lesson.Title },
-                { "@Question", lesson.Question },
-                { "@CorrectAnswerIndex", lesson.CorrectAnswerIndex },
-                { "@Reward", lesson.Reward },
-                { "@ChoiceOne", lesson.ChoiceOne },
-                { "@ChoiceTwo", lesson.ChoiceTwo },
-                { "@ChoiceThree", lesson.ChoiceThree },
-                { "@ChoiceFour", lesson.ChoiceFour }
-            };
+                conn.Open();
+                using (OleDbCommand cmd = new OleDbCommand(insertLessonQuery, conn))
+                {
+                    cmd.Parameters.AddWithValue("@Topic", lesson.Topic);
+                    cmd.Parameters.AddWithValue("@Title", lesson.Title);
+                    cmd.Parameters.AddWithValue("@Question", lesson.Question);
+                    cmd.Parameters.AddWithValue("@CorrectAnswerIndex", lesson.CorrectAnswerIndex);
+                    cmd.Parameters.AddWithValue("@Reward", lesson.Reward);
+                    cmd.Parameters.AddWithValue("@ChoiceOne", lesson.ChoiceOne);
+                    cmd.Parameters.AddWithValue("@ChoiceTwo", lesson.ChoiceTwo);
+                    cmd.Parameters.AddWithValue("@ChoiceThree", lesson.ChoiceThree);
+                    cmd.Parameters.AddWithValue("@ChoiceFour", lesson.ChoiceFour);
 
-            ExecuteDatabaseOperation(insertLessonQuery, parameters);
-            return (int)new OleDbCommand("SELECT @@IDENTITY").ExecuteScalar();
+                    cmd.ExecuteNonQuery();
+
+                    // Retrieve the last inserted identity value
+                    using (OleDbCommand identityCommand = new OleDbCommand("SELECT @@IDENTITY", conn))
+                    {
+                        return Convert.ToInt32(identityCommand.ExecuteScalar());
+                    }
+                }
+            }
         }
 
         private static void InsertChoices(int lessonId, Lesson lesson)
